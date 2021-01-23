@@ -31,6 +31,7 @@
 		04A7E99B25AF309900C0F43C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04A7E99A25AF309900C0F43C /* Assets.xcassets */; };
 		04A7E99E25AF309900C0F43C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A7E99C25AF309900C0F43C /* LaunchScreen.storyboard */; };
 		04A7E9A625AF327B00C0F43C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7E9A525AF327B00C0F43C /* Extensions.swift */; };
+		04EA679125BC8A9C005F0D06 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EA679025BC8A9C005F0D06 /* User.swift */; };
 		340713FEDEBF163EE86F1551 /* Pods_iProjectStudent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DE0601A6454D98F09896370 /* Pods_iProjectStudent.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +62,7 @@
 		04A7E99D25AF309900C0F43C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04A7E99F25AF309900C0F43C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04A7E9A525AF327B00C0F43C /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		04EA679025BC8A9C005F0D06 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1E933D9E06614E36D1EB6CA6 /* Pods-iProjectStudent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iProjectStudent.debug.xcconfig"; path = "Target Support Files/Pods-iProjectStudent/Pods-iProjectStudent.debug.xcconfig"; sourceTree = "<group>"; };
 		6DE0601A6454D98F09896370 /* Pods_iProjectStudent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iProjectStudent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D422194F92E40D78F265E371 /* Pods-iProjectStudent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iProjectStudent.release.xcconfig"; path = "Target Support Files/Pods-iProjectStudent/Pods-iProjectStudent.release.xcconfig"; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				04A7E99125AF309900C0F43C /* AppDelegate.swift */,
 				04A7E99325AF309900C0F43C /* SceneDelegate.swift */,
 				04A7E99525AF309900C0F43C /* ViewController.swift */,
+				04EA679025BC8A9C005F0D06 /* User.swift */,
 				04A7E9A525AF327B00C0F43C /* Extensions.swift */,
 				04A7E99725AF309900C0F43C /* Main.storyboard */,
 				04A7E99A25AF309900C0F43C /* Assets.xcassets */,
@@ -304,6 +307,7 @@
 				04845C3725BC76EF0032B567 /* YourChatViewCell.swift in Sources */,
 				04845C4325BC76F00032B567 /* SearchUserForCreateGroupViewController.swift in Sources */,
 				04A7E99425AF309900C0F43C /* SceneDelegate.swift in Sources */,
+				04EA679125BC8A9C005F0D06 /* User.swift in Sources */,
 				04845C3A25BC76EF0032B567 /* YourGroupChatViewCell.swift in Sources */,
 				04845C4425BC76F00032B567 /* GoToChatExtension.swift in Sources */,
 				04845C3C25BC76F00032B567 /* MyBalloonView.swift in Sources */,
