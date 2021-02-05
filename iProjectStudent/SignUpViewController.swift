@@ -17,8 +17,10 @@ class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDe
     @IBOutlet var pickerView: UIPickerView!
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var confirmTextField: UITextField!
-    @IBOutlet var label:UILabel!
-    let dataList = ["文系","理系","その他"]
+    
+    var selected: String?
+    
+    let dataList = ["文理選択","文系","理系","その他"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,8 +33,6 @@ class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDe
         pickerView.dataSource = self
         passwordTextField.delegate = self
         confirmTextField.delegate = self
-        
-        label.text = "文理選択"
         
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -63,9 +63,11 @@ class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDe
     func pickerView(_ pickerView: UIPickerView,
                     didSelectRow row: Int,
                     inComponent component: Int) {
-        
-        label.text = dataList[row]
-        
+        if row != 0 {
+            selected = dataList[row]
+        } else {
+            selected = nil
+        }
     }
     
     @IBAction func signUp() {
@@ -75,21 +77,49 @@ class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDe
         
         if passwordTextField.text == confirmTextField.text {
             user.password = passwordTextField.text!
-        } else {
-            print("パスワードの不一致")
-        }
-        user.signUpInBackground { (error) in
-            if error != nil{
-                //エラーがあった場合
-                print(error!.localizedDescription)
+            user.setObject(false, forKey: "isTeacher")
+            if selected != nil {
+                let object = NCMBObject(className: "StudentParameter")
+                object?.setObject(user, forKey: "user")
+                //クラス間で紐付け
+                object?.setObject(selected!, forKey: "selection")
+                object?.setObject(schoolTextField.text!, forKey: "SchoolName")
+                user.signUpInBackground { (error) in
+                    if error != nil{
+                        //エラーがあった場合
+                        self.showOkAlert(title: "エラー", message: error!.localizedDescription)
+                        print(error!.localizedDescription)
+                    } else {
+                        //登録成功
+                        object?.saveInBackground({ (error) in
+                            if error != nil {
+                                self.showOkAlert(title: "エラー", message: error!.localizedDescription)
+                            } else {
+                                user.setObject(object!, forKey: "parameter")
+                                user.setObject(nil, forKey: "peerId")
+                                user.setObject(true, forKey: "isActive")
+                                user.saveInBackground { (error) in
+                                    if error != nil {
+                                        self.showOkAlert(title: "エラー", message: error!.localizedDescription)
+                                    }
+                                }
+                                let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                                let rootViewController = storyboard.instantiateViewController(identifier: "RootTabBarController")
+                                
+                                UIApplication.shared.keyWindow?.rootViewController = rootViewController
+                            }
+                        })
+
+                    }
+                }
             } else {
-                //登録成功
-                let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-                let rootViewController = storyboard.instantiateViewController(identifier: "RootTabBarController")
-                
-                UIApplication.shared.keyWindow?.rootViewController = rootViewController
+                showOkAlert(title: "エラー", message: "文理選択がされていません")
             }
+            
+        } else {
+            showOkAlert(title: "エラー", message: "パスワードが一致していません")
         }
+
     }
 
 }
