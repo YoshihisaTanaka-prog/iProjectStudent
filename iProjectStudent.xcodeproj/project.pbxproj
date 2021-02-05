@@ -52,6 +52,10 @@
 		04A7E99E25AF309900C0F43C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A7E99C25AF309900C0F43C /* LaunchScreen.storyboard */; };
 		04A7E9A625AF327B00C0F43C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7E9A525AF327B00C0F43C /* Extensions.swift */; };
 		04A841EC25C57B1E00469B5E /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A841EB25C57B1E00469B5E /* SignIn.storyboard */; };
+		04C7A05A25CD7F0F0031281B /* Opening.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04C7A05825CD7EC10031281B /* Opening.storyboard */; };
+		04C7A05C25CD7F6F0031281B /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C83FA25C695A200D4D380 /* ScreenSize.swift */; };
+		04C7A05E25CD7F720031281B /* Opening1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C83FB25C695A200D4D380 /* Opening1ViewController.swift */; };
+		04C7A06025CD7F750031281B /* Opening2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C83FC25C695A200D4D380 /* Opening2ViewController.swift */; };
 		04EA679125BC8A9C005F0D06 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EA679025BC8A9C005F0D06 /* User.swift */; };
 		1FA191B625CACE3F007B935B /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA191B525CACE3F007B935B /* SignInViewController.swift */; };
 		1FA191B925CC1F56007B935B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA191B825CC1F56007B935B /* SignUpViewController.swift */; };
@@ -100,7 +104,6 @@
 		049C83FA25C695A200D4D380 /* ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
 		049C83FB25C695A200D4D380 /* Opening1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Opening1ViewController.swift; sourceTree = "<group>"; };
 		049C83FC25C695A200D4D380 /* Opening2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Opening2ViewController.swift; sourceTree = "<group>"; };
-		049C83FD25C695A200D4D380 /* Opening.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Opening.storyboard; sourceTree = "<group>"; };
 		04A7E98E25AF309900C0F43C /* iProjectStudent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iProjectStudent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A7E99325AF309900C0F43C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		04A7E99525AF309900C0F43C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +113,7 @@
 		04A7E99F25AF309900C0F43C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04A7E9A525AF327B00C0F43C /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		04A841EB25C57B1E00469B5E /* SignIn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
+		04C7A05825CD7EC10031281B /* Opening.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Opening.storyboard; sourceTree = "<group>"; };
 		04EA679025BC8A9C005F0D06 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1E933D9E06614E36D1EB6CA6 /* Pods-iProjectStudent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iProjectStudent.debug.xcconfig"; path = "Target Support Files/Pods-iProjectStudent/Pods-iProjectStudent.debug.xcconfig"; sourceTree = "<group>"; };
 		1FA191B525CACE3F007B935B /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -224,10 +228,10 @@
 		049C83F925C695A200D4D380 /* Open */ = {
 			isa = PBXGroup;
 			children = (
+				04C7A05825CD7EC10031281B /* Opening.storyboard */,
 				049C83FA25C695A200D4D380 /* ScreenSize.swift */,
 				049C83FB25C695A200D4D380 /* Opening1ViewController.swift */,
 				049C83FC25C695A200D4D380 /* Opening2ViewController.swift */,
-				049C83FD25C695A200D4D380 /* Opening.storyboard */,
 			);
 			path = Open;
 			sourceTree = "<group>";
@@ -362,6 +366,7 @@
 				047C4E0D25C858B80082807A /* Icon-App-29x29@3x.png in Resources */,
 				047C4E0C25C858B80082807A /* Icon-App-20x20@2x.png in Resources */,
 				047C4E1225C858B80082807A /* Icon-App-40x40@3x.png in Resources */,
+				04C7A05A25CD7F0F0031281B /* Opening.storyboard in Resources */,
 				047C4E0825C858B80082807A /* Icon-App-83.5x83.5@2x.png in Resources */,
 				04A7E99925AF309900C0F43C /* Main.storyboard in Resources */,
 				047C4E0425C858B80082807A /* Icon-App-76x76@2x.png in Resources */,
@@ -430,6 +435,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04C7A05E25CD7F720031281B /* Opening1ViewController.swift in Sources */,
 				04845C3525BC76EF0032B567 /* MyChatViewCell.swift in Sources */,
 				04845C3F25BC76F00032B567 /* Chat.swift in Sources */,
 				04A7E99625AF309900C0F43C /* ViewController.swift in Sources */,
@@ -437,9 +443,11 @@
 				04845C4325BC76F00032B567 /* SearchUserForCreateGroupViewController.swift in Sources */,
 				04A7E99425AF309900C0F43C /* SceneDelegate.swift in Sources */,
 				04EA679125BC8A9C005F0D06 /* User.swift in Sources */,
+				04C7A06025CD7F750031281B /* Opening2ViewController.swift in Sources */,
 				1FA191B925CC1F56007B935B /* SignUpViewController.swift in Sources */,
 				04845C3A25BC76EF0032B567 /* YourGroupChatViewCell.swift in Sources */,
 				04845C4425BC76F00032B567 /* GoToChatExtension.swift in Sources */,
+				04C7A05C25CD7F6F0031281B /* ScreenSize.swift in Sources */,
 				04845C3C25BC76F00032B567 /* MyBalloonView.swift in Sources */,
 				04845C4225BC76F00032B567 /* CreateGroupViewController.swift in Sources */,
 				049C83E425C6921000D4D380 /* AppDelegate.swift in Sources */,
