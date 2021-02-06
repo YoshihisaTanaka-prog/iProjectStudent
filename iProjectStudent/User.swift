@@ -61,11 +61,11 @@ class User {
 }
 
 class TeacherParameter{
-//    記入例
-    var aaa: String
-    init(_ parameter: NCMBObject) {
-        self.aaa = parameter.object(forKey: "aaa") as! String
-    }
+    //    記入例
+        var departments: String
+        init(_ parameter: NCMBObject) {
+            self.departments = parameter.object(forKey: "departments") as! String
+        }
 }
 
 class StudentParameter{
