@@ -1,14 +1,23 @@
 PODS:
+  - CalculateCalendarLogic (0.4.0)
   - Cosmos (23.0.0)
+  - FSCalendar (2.8.2)
   - NCMB (3.1.0)
+  - SkyWay (3.5.0)
 
 DEPENDENCIES:
+  - CalculateCalendarLogic
   - Cosmos
+  - FSCalendar
   - NCMB (from `https://github.com/NIFCLOUD-mbaas/ncmb_ios.git`)
+  - SkyWay
 
 SPEC REPOS:
   trunk:
+    - CalculateCalendarLogic
     - Cosmos
+    - FSCalendar
+    - SkyWay
 
 EXTERNAL SOURCES:
   NCMB:
@@ -20,9 +29,12 @@ CHECKOUT OPTIONS:
     :git: https://github.com/NIFCLOUD-mbaas/ncmb_ios.git
 
 SPEC CHECKSUMS:
+  CalculateCalendarLogic: 84d3aff9456340ff07f7b77242a57b5d2f0ed631
   Cosmos: b5c6a9a637e28a061b54c8f8b1d8529d7d4db73f
+  FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
   NCMB: c308972109137bf523ec1830bac16de6a31c25f4
+  SkyWay: d5dab66b3dbe110129c874202b7dd422477d9c9c
 
-PODFILE CHECKSUM: 06849243015ea80c47e1b7c95cccd2c46ada9948
+PODFILE CHECKSUM: 0b7724f669031ebf90b713c1f958571d2a48c2b5
 
 COCOAPODS: 1.10.1
