@@ -16,5 +16,7 @@ target 'iProjectStudent' do
   pod 'FSCalendar'
   
   pod 'CalculateCalendarLogic'
+  
+  pod 'RealmSwift'
  
 end
