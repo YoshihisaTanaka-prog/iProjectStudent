@@ -7,8 +7,6 @@ target 'iProjectStudent' do
 
   # Pods for iProjectStudent iProjectTeacher
 
-  pod 'SkyWay'
-
   pod 'NCMB', :git => 'https://github.com/NIFCLOUD-mbaas/ncmb_ios.git'
 	
   pod 'Cosmos'
@@ -16,7 +14,5 @@ target 'iProjectStudent' do
   pod 'FSCalendar'
   
   pod 'CalculateCalendarLogic'
-  
-  pod 'RealmSwift'
  
 end
