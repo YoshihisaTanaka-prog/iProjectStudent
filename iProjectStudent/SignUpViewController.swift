@@ -107,6 +107,11 @@ class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDe
                                 let rootViewController = storyboard.instantiateViewController(identifier: "RootTabBarController")
                                 
                                 UIApplication.shared.keyWindow?.rootViewController = rootViewController
+                                
+                                //ログイン状態の保持
+                                let ud = UserDefaults.standard
+                                ud.set(true, forKey: "isLogin")
+                                ud.synchronize()
                             }
                         })
 

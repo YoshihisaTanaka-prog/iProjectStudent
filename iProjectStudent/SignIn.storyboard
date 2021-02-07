@@ -12,7 +12,7 @@
         <!--ログイン-->
         <scene sceneID="ELt-wY-YAy">
             <objects>
-                <viewController id="l3F-HF-o1F" sceneMemberID="viewController">
+                <viewController id="l3F-HF-o1F" customClass="SignInViewController" customModule="iProjectStudent" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dtS-0f-QoT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -27,7 +27,7 @@
                                 <rect key="frame" x="62" y="248" width="293" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cS-dI-rd8">
                                 <rect key="frame" x="161" y="502" width="92" height="30"/>
@@ -48,6 +48,9 @@
                                 <rect key="frame" x="93" y="309" width="230" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="パスワードをお忘れの方はこちら"/>
+                                <connections>
+                                    <action selector="forgetPassword" destination="l3F-HF-o1F" eventType="touchUpInside" id="Dys-Ot-605"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a0C-LO-h1j">
                                 <rect key="frame" x="61" y="378" width="293" height="30"/>
@@ -56,12 +59,19 @@
                                 <state key="normal" title="ログイン">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="signIn" destination="l3F-HF-o1F" eventType="touchUpInside" id="PM5-43-bT8"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DvO-qm-rEf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="ログイン" id="1QU-9J-ZHR"/>
+                    <connections>
+                        <outlet property="passwordTextField" destination="m4p-RK-e3w" id="E2F-e1-hg9"/>
+                        <outlet property="userIdTextField" destination="gnM-l0-Vfe" id="FZB-Iu-dGp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xTj-Lu-YA9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -97,13 +107,13 @@
                                 <rect key="frame" x="61" y="371" width="292" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="パスワード（確認用）" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ilx-WK-I1d">
                                 <rect key="frame" x="61" y="431" width="292" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1rR-QV-C5t">
                                 <rect key="frame" x="61" y="543" width="292" height="30"/>

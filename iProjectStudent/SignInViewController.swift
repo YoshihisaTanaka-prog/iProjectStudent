@@ -35,7 +35,16 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                     //エラーがあった場合
                     print(error)
                 } else {
-                    //登録成功
+                    //ログイン成功
+                    let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                    let rootViewController = storyboard.instantiateViewController(identifier: "RootTabBarController")
+                    
+                    UIApplication.shared.keyWindow?.rootViewController = rootViewController
+                    
+                    //ログイン状態の保持
+                    let ud = UserDefaults.standard
+                    ud.set(true, forKey: "isLogin")
+                    ud.synchronize()
                 }
             }
         }
