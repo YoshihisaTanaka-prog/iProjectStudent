@@ -70,6 +70,8 @@ class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDe
         }
     }
     
+
+    
     @IBAction func signUp() {
         let user = NCMBUser()
         user.userName = userIdTextField.text!
