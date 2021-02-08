@@ -97,6 +97,15 @@ class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDe
                             if error != nil {
                                 self.showOkAlert(title: "エラー", message: error!.localizedDescription)
                             } else {
+                                //ACLオブジェクトを作成
+                                let acl = NCMBACL()
+                                //読み込み・検索を全開放
+                                acl.setPublicReadAccess(true)
+                                acl.setPublicWriteAccess(false)
+                                acl.setReadAccess(true, for: user)
+                                acl.setWriteAccess(true, for: user)
+                                user.acl = acl
+                                
                                 user.setObject(object!, forKey: "parameter")
                                 user.setObject(nil, forKey: "peerId")
                                 user.setObject(true, forKey: "isActive")
