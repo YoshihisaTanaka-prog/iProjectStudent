@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0459388225D1497300A0E3C8 /* creating.png in Resources */ = {isa = PBXBuildFile; fileRef = 0459388125D1495E00A0E3C8 /* creating.png */; };
+		0459388425D1497600A0E3C8 /* teacherNoImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0459387F25D1495E00A0E3C8 /* teacherNoImage.png */; };
+		0459388625D1497900A0E3C8 /* studentNoImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0459388025D1495E00A0E3C8 /* studentNoImage.png */; };
 		047C4E0325C858B80082807A /* iTunesArtwork@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 047C4DEE25C858B80082807A /* iTunesArtwork@1x.png */; };
 		047C4E0425C858B80082807A /* Icon-App-76x76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 047C4DF025C858B80082807A /* Icon-App-76x76@2x.png */; };
 		047C4E0525C858B80082807A /* Icon-App-29x29@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 047C4DF125C858B80082807A /* Icon-App-29x29@1x.png */; };
@@ -63,6 +66,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0459387F25D1495E00A0E3C8 /* teacherNoImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = teacherNoImage.png; sourceTree = "<group>"; };
+		0459388025D1495E00A0E3C8 /* studentNoImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = studentNoImage.png; sourceTree = "<group>"; };
+		0459388125D1495E00A0E3C8 /* creating.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = creating.png; sourceTree = "<group>"; };
 		047C4DEE25C858B80082807A /* iTunesArtwork@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@1x.png"; sourceTree = "<group>"; };
 		047C4DF025C858B80082807A /* Icon-App-76x76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-App-76x76@2x.png"; sourceTree = "<group>"; };
 		047C4DF125C858B80082807A /* Icon-App-29x29@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-App-29x29@1x.png"; sourceTree = "<group>"; };
@@ -137,6 +143,9 @@
 		047C4DE825C855FA0082807A /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				0459388125D1495E00A0E3C8 /* creating.png */,
+				0459388025D1495E00A0E3C8 /* studentNoImage.png */,
+				0459387F25D1495E00A0E3C8 /* teacherNoImage.png */,
 				047C4DED25C858B80082807A /* icons */,
 			);
 			path = Images;
@@ -354,6 +363,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				04A7E99E25AF309900C0F43C /* LaunchScreen.storyboard in Resources */,
+				0459388425D1497600A0E3C8 /* teacherNoImage.png in Resources */,
+				0459388625D1497900A0E3C8 /* studentNoImage.png in Resources */,
 				04A7E99B25AF309900C0F43C /* Assets.xcassets in Resources */,
 				04845C3925BC76EF0032B567 /* MyChatViewCell.xib in Resources */,
 				047C4E0E25C858B80082807A /* Icon-App-40x40@2x.png in Resources */,
@@ -376,6 +387,7 @@
 				047C4E0625C858B80082807A /* Icon-App-40x40@1x.png in Resources */,
 				047C4E0B25C858B80082807A /* Contents.json in Resources */,
 				047C4E0325C858B80082807A /* iTunesArtwork@1x.png in Resources */,
+				0459388225D1497300A0E3C8 /* creating.png in Resources */,
 				04845C3825BC76EF0032B567 /* YourGroupChatViewCell.xib in Resources */,
 				04845C4125BC76F00032B567 /* Chat.storyboard in Resources */,
 				047C4E1525C858B80082807A /* iTunesArtwork@2x.png in Resources */,
