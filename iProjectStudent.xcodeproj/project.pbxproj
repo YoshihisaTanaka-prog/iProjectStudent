@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0459388225D1497300A0E3C8 /* creating.png in Resources */ = {isa = PBXBuildFile; fileRef = 0459388125D1495E00A0E3C8 /* creating.png */; };
+		0459388425D1497600A0E3C8 /* teacherNoImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0459387F25D1495E00A0E3C8 /* teacherNoImage.png */; };
+		0459388625D1497900A0E3C8 /* studentNoImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0459388025D1495E00A0E3C8 /* studentNoImage.png */; };
+		0473BF5625D2EA0900550EFB /* Questionnaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473BF5525D2EA0900550EFB /* Questionnaire.swift */; };
 		047C4E0325C858B80082807A /* iTunesArtwork@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 047C4DEE25C858B80082807A /* iTunesArtwork@1x.png */; };
 		047C4E0425C858B80082807A /* Icon-App-76x76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 047C4DF025C858B80082807A /* Icon-App-76x76@2x.png */; };
 		047C4E0525C858B80082807A /* Icon-App-29x29@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 047C4DF125C858B80082807A /* Icon-App-29x29@1x.png */; };
@@ -65,6 +69,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0459387F25D1495E00A0E3C8 /* teacherNoImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = teacherNoImage.png; sourceTree = "<group>"; };
+		0459388025D1495E00A0E3C8 /* studentNoImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = studentNoImage.png; sourceTree = "<group>"; };
+		0459388125D1495E00A0E3C8 /* creating.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = creating.png; sourceTree = "<group>"; };
+		0473BF5525D2EA0900550EFB /* Questionnaire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questionnaire.swift; sourceTree = "<group>"; };
 		047C4DEE25C858B80082807A /* iTunesArtwork@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@1x.png"; sourceTree = "<group>"; };
 		047C4DF025C858B80082807A /* Icon-App-76x76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-App-76x76@2x.png"; sourceTree = "<group>"; };
 		047C4DF125C858B80082807A /* Icon-App-29x29@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-App-29x29@1x.png"; sourceTree = "<group>"; };
@@ -138,9 +146,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0473BF5325D2E99300550EFB /* Questionnaire */ = {
+			isa = PBXGroup;
+			children = (
+				0473BF5525D2EA0900550EFB /* Questionnaire.swift */,
+			);
+			path = Questionnaire;
+			sourceTree = "<group>";
+		};
 		047C4DE825C855FA0082807A /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				0459388125D1495E00A0E3C8 /* creating.png */,
+				0459388025D1495E00A0E3C8 /* studentNoImage.png */,
+				0459387F25D1495E00A0E3C8 /* teacherNoImage.png */,
 				047C4DED25C858B80082807A /* icons */,
 			);
 			path = Images;
@@ -229,7 +248,7 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		049C83F925C695A200D4D380 /* Open */ = {
+		049C83F925C695A200D4D380 /* Opening */ = {
 			isa = PBXGroup;
 			children = (
 				04C7A05825CD7EC10031281B /* Opening.storyboard */,
@@ -237,7 +256,7 @@
 				049C83FB25C695A200D4D380 /* Opening1ViewController.swift */,
 				049C83FC25C695A200D4D380 /* Opening2ViewController.swift */,
 			);
-			path = Open;
+			path = Opening;
 			sourceTree = "<group>";
 		};
 		04A7E98525AF309900C0F43C = {
@@ -262,8 +281,9 @@
 			isa = PBXGroup;
 			children = (
 				04845C1F25BC76EF0032B567 /* Chat */,
-				049C83F925C695A200D4D380 /* Open */,
+				049C83F925C695A200D4D380 /* Opening */,
 				047C4DE825C855FA0082807A /* Images */,
+				0473BF5325D2E99300550EFB /* Questionnaire */,
 				049C83E325C6921000D4D380 /* AppDelegate.swift */,
 				04A7E99325AF309900C0F43C /* SceneDelegate.swift */,
 				04A7E99525AF309900C0F43C /* ViewController.swift */,
@@ -368,6 +388,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				04A7E99E25AF309900C0F43C /* LaunchScreen.storyboard in Resources */,
+				0459388425D1497600A0E3C8 /* teacherNoImage.png in Resources */,
+				0459388625D1497900A0E3C8 /* studentNoImage.png in Resources */,
 				04A7E99B25AF309900C0F43C /* Assets.xcassets in Resources */,
 				04845C3925BC76EF0032B567 /* MyChatViewCell.xib in Resources */,
 				047C4E0E25C858B80082807A /* Icon-App-40x40@2x.png in Resources */,
@@ -391,6 +413,7 @@
 				047C4E0625C858B80082807A /* Icon-App-40x40@1x.png in Resources */,
 				047C4E0B25C858B80082807A /* Contents.json in Resources */,
 				047C4E0325C858B80082807A /* iTunesArtwork@1x.png in Resources */,
+				0459388225D1497300A0E3C8 /* creating.png in Resources */,
 				04845C3825BC76EF0032B567 /* YourGroupChatViewCell.xib in Resources */,
 				04845C4125BC76F00032B567 /* Chat.storyboard in Resources */,
 				047C4E1525C858B80082807A /* iTunesArtwork@2x.png in Resources */,
@@ -471,6 +494,7 @@
 				04845C3B25BC76F00032B567 /* ChatRoomInputView.swift in Sources */,
 				1FA191B625CACE3F007B935B /* SignInViewController.swift in Sources */,
 				04845C3425BC76EF0032B567 /* ChatViewController.swift in Sources */,
+				0473BF5625D2EA0900550EFB /* Questionnaire.swift in Sources */,
 				04845C4025BC76F00032B567 /* ChatTableViewController.swift in Sources */,
 				04A7E9A625AF327B00C0F43C /* Extensions.swift in Sources */,
 			);
