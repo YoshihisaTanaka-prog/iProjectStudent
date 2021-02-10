@@ -114,8 +114,8 @@ class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDe
                                         self.showOkAlert(title: "エラー", message: error!.localizedDescription)
                                     }
                                 }
-                                let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-                                let rootViewController = storyboard.instantiateViewController(identifier: "RootTabBarController")
+                                let storyboard = UIStoryboard(name: "Questionnaire", bundle: Bundle.main)
+                                let rootViewController = storyboard.instantiateViewController(identifier: "QuestionnaireController")
                                 
                                 UIApplication.shared.keyWindow?.rootViewController = rootViewController
                                 
