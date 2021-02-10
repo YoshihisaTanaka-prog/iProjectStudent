@@ -13,11 +13,18 @@ class QuestionnaireViewController: UIViewController,UITextFieldDelegate, UIPicke
     
     var questionaire: Questionnaire!
     let qustionlist = [[
-        QuestionInputFormat(question: "応用よりもまずは基礎をじっくり学びたい。", isNegative: true),
-        QuestionInputFormat(question: "初対面の人とも気さくに話せる。", isNegative: false),
-        QuestionInputFormat(question: "他人に自己紹介するのが苦手だと感じる。", isNegative: true),
-        QuestionInputFormat(question: "他人に自己紹介するのが苦手だと感じる。", isNegative: true),
-        QuestionInputFormat(question: "他人に自己紹介するのが苦手だと感じる。", isNegative: true)
+        QuestionInputFormat(question: "応用よりもまずは基礎をじっくり学びたい", isNegative: true),
+        QuestionInputFormat(question: "初対面の人とも気さくに話せる", isNegative: false),
+        QuestionInputFormat(question: "計画を立てるのが苦手", isNegative: true),
+        QuestionInputFormat(question: "一人で過ごすのが好き", isNegative: false),
+        QuestionInputFormat(question:"慎重だとよく言われる", isNegative: true),
+        QuestionInputFormat(question: "ポジティブに考えることが多い", isNegative: false),
+        QuestionInputFormat(question: "新しいアイデアをひらめくことが好きだ", isNegative: true),
+        QuestionInputFormat(question: "周りから大人しいと言われる", isNegative: false),
+        QuestionInputFormat(question: "論理的に相手を説得させることができる", isNegative: true),
+        QuestionInputFormat(question: "積極的だとよく言われる", isNegative: false),
+        QuestionInputFormat(question: "絵や図で説明してもらう方がわかりやすい", isNegative: true),
+        QuestionInputFormat(question: "自分の話をするより人の話を聞くことが多い", isNegative: false)
     ]]
     
 //    @IBOutlet var Q1pickerView: UIPickerView!
