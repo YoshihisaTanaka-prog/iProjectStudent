@@ -66,6 +66,7 @@
 		1FA191B625CACE3F007B935B /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA191B525CACE3F007B935B /* SignInViewController.swift */; };
 		1FA191B925CC1F56007B935B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA191B825CC1F56007B935B /* SignUpViewController.swift */; };
 		340713FEDEBF163EE86F1551 /* Pods_iProjectStudent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DE0601A6454D98F09896370 /* Pods_iProjectStudent.framework */; };
+		CE30BB2C25D406D3002A2F8C /* ReviewTeacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30BB2B25D406D3002A2F8C /* ReviewTeacher.swift */; };
 		CED3EA5325D3F31800A67691 /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED3EA5125D3F31800A67691 /* ReviewTableViewCell.swift */; };
 		CED3EA5425D3F31800A67691 /* ReviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED3EA5225D3F31800A67691 /* ReviewTableViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -133,6 +134,7 @@
 		1FA191B525CACE3F007B935B /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		1FA191B825CC1F56007B935B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		6DE0601A6454D98F09896370 /* Pods_iProjectStudent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iProjectStudent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE30BB2B25D406D3002A2F8C /* ReviewTeacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTeacher.swift; sourceTree = "<group>"; };
 		CED3EA5125D3F31800A67691 /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
 		CED3EA5225D3F31800A67691 /* ReviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewTableViewCell.xib; sourceTree = "<group>"; };
 		D422194F92E40D78F265E371 /* Pods-iProjectStudent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iProjectStudent.release.xcconfig"; path = "Target Support Files/Pods-iProjectStudent/Pods-iProjectStudent.release.xcconfig"; sourceTree = "<group>"; };
@@ -292,12 +294,11 @@
 				0473BF5325D2E99300550EFB /* Questionnaire */,
 				049C83E325C6921000D4D380 /* AppDelegate.swift */,
 				04A7E99325AF309900C0F43C /* SceneDelegate.swift */,
+				CE30BB2E25D406F0002A2F8C /* ReviewTeacher */,
 				04A7E99525AF309900C0F43C /* ViewController.swift */,
 				04EA679025BC8A9C005F0D06 /* User.swift */,
 				04A7E9A525AF327B00C0F43C /* Extensions.swift */,
 				04A7E99725AF309900C0F43C /* Main.storyboard */,
-				CED3EA5125D3F31800A67691 /* ReviewTableViewCell.swift */,
-				CED3EA5225D3F31800A67691 /* ReviewTableViewCell.xib */,
 				04A841EB25C57B1E00469B5E /* SignIn.storyboard */,
 				1FA191B525CACE3F007B935B /* SignInViewController.swift */,
 				1FA191B825CC1F56007B935B /* SignUpViewController.swift */,
@@ -315,6 +316,16 @@
 				D422194F92E40D78F265E371 /* Pods-iProjectStudent.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		CE30BB2E25D406F0002A2F8C /* ReviewTeacher */ = {
+			isa = PBXGroup;
+			children = (
+				CED3EA5125D3F31800A67691 /* ReviewTableViewCell.swift */,
+				CED3EA5225D3F31800A67691 /* ReviewTableViewCell.xib */,
+				CE30BB2B25D406D3002A2F8C /* ReviewTeacher.swift */,
+			);
+			path = ReviewTeacher;
 			sourceTree = "<group>";
 		};
 		D7CFD3D9EEBE9BEA55DDBD1F /* Frameworks */ = {
@@ -490,6 +501,7 @@
 				04845C3C25BC76F00032B567 /* MyBalloonView.swift in Sources */,
 				04845C4225BC76F00032B567 /* CreateGroupViewController.swift in Sources */,
 				049C83E425C6921000D4D380 /* AppDelegate.swift in Sources */,
+				CE30BB2C25D406D3002A2F8C /* ReviewTeacher.swift in Sources */,
 				04845C3E25BC76F00032B567 /* YourBalloonView.swift in Sources */,
 				04845C3B25BC76F00032B567 /* ChatRoomInputView.swift in Sources */,
 				1FA191B625CACE3F007B935B /* SignInViewController.swift in Sources */,
