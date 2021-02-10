@@ -124,6 +124,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
+                                    <action selector="didTapNextButton:" destination="yUN-6I-N4y" eventType="touchUpInside" id="4Kh-7V-7l2"/>
                                     <action selector="signUp" destination="yUN-6I-N4y" eventType="touchUpInside" id="fb4-RC-QIC"/>
                                 </connections>
                             </button>
@@ -191,7 +192,7 @@
                                 <rect key="frame" x="20" y="90" width="374" height="748"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <mutableString key="text">プライバシーポリシー
+                                <string key="text">プライバシーポリシー
 田中義久，平岡龍聖，上園陸斗，中村香織（以下，「開発者」といいます。）は，本アプリ上で提供するサービス（以下,「本サービス」といいます。）におけるプライバシー情報の取扱いについて，以下のとおりプライバシーポリシー（以下，「本ポリシー」といいます。）を定めます。
 
 第1条（プライバシー情報）
@@ -249,7 +250,7 @@
 
 本ポリシーの内容は，ユーザーに通知することなく，変更することができるものとします。
 開発者が別途定める場合を除いて，変更後のプライバシーポリシーは，本ウェブサイトに掲載したときから効力を生じるものとします。
-</mutableString>
+</string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -275,7 +276,7 @@
                                 <rect key="frame" x="10" y="100" width="394" height="696"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <mutableString key="text">利用規約
+                                <string key="text">利用規約
 この利用規約（以下，「本規約」といいます。）は，田中義久，平岡龍聖，上園陸斗，中村香織（以下，「開発者」といいます。）がこのアプリ上で提供するサービス（以下，「本サービス」といいます。）の利用条件を定めるものです。登録ユーザーの皆さま（以下，「ユーザー」といいます。）には，本規約に従って，本サービスをご利用いただきます。
 
 第1条（適用）
@@ -374,7 +375,7 @@ e. その他，開発者が本サービスの利用を適当でないと判断�
 第15条（準拠法・裁判管轄）
 本規約の解釈にあたっては，日本法を準拠法とします。
 本サービスに関して紛争が生じた場合には，開発者の本店所在地を管轄する裁判所を専属的合意管轄とします。
-</mutableString>
+</string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>

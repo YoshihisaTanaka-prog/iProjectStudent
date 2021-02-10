@@ -137,5 +137,13 @@ class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDe
         }
 
     }
+    
+    @IBAction func didTapNextButton(_ sender: UIButton) {
+        // ここに画面遷移処理(QuestionnarieViewControllerに遷移する処理)を記載
+        let storyboard: UIStoryboard = UIStoryboard(name: "Questionnaire", bundle: nil)
+        if let vc = storyboard.instantiateInitialViewController() {
+            self.present(vc, animated: true, completion: nil)
+        }
+    }
 
 }
