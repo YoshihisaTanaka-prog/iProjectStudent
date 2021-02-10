@@ -114,8 +114,8 @@ class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDe
                                         self.showOkAlert(title: "エラー", message: error!.localizedDescription)
                                     }
                                 }
-                                let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-                                let rootViewController = storyboard.instantiateViewController(identifier: "RootTabBarController")
+                                let storyboard = UIStoryboard(name: "Questionnaire", bundle: Bundle.main)
+                                let rootViewController = storyboard.instantiateViewController(identifier: "QuestionnaireController")
                                 
                                 UIApplication.shared.keyWindow?.rootViewController = rootViewController
                                 
@@ -136,14 +136,6 @@ class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDe
             showOkAlert(title: "エラー", message: "パスワードが一致していません")
         }
 
-    }
-    
-    @IBAction func didTapNextButton(_ sender: UIButton) {
-        // ここに画面遷移処理(QuestionnarieViewControllerに遷移する処理)を記載
-        let storyboard: UIStoryboard = UIStoryboard(name: "Questionnaire", bundle: nil)
-        if let vc = storyboard.instantiateInitialViewController() {
-            self.present(vc, animated: true, completion: nil)
-        }
     }
 
 }

@@ -111,6 +111,7 @@ class QuestionView{
             self.buttons.append(UIButton(frame: CGRect(x: 0.f, y: 0.f, width: 30.f, height: 30.f)))
             let buttonWidth = (size.width - 260.f) / numOfButton.f
             self.buttons[i].center = CGPoint(x: 130 + buttonWidth / 2.f + i.f * buttonWidth, y: height + 25)
+            self.buttons[i].backgroundColor = .blue
             self.buttons[i].setTitle("○", for: .normal)
             self.buttons[i].tag = i
             self.buttons[i].addTarget(self, action: #selector(self.selected(_:)), for: .touchUpInside)
@@ -143,7 +144,7 @@ class QuestionView{
 class QuestionInputFormat{
     var question: String
     var isNegative: Bool
-    init(_ question: String, isNegative: Bool) {
+    init( question: String, isNegative: Bool) {
         self.isNegative = isNegative
         if( question.hasSuffix("?") || question.hasSuffix("？") ){
             self.question = question

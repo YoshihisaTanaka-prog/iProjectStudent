@@ -11,17 +11,28 @@ import NCMB
 
 class QuestionnaireViewController: UIViewController,UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
+    var questionaire: Questionnaire!
+    let qustionlist = [[
+        QuestionInputFormat(question: "他人に自己紹介するのが苦手だと感じる。", isNegative: true),
+        QuestionInputFormat(question: "他人に自己紹介するのが苦手だと感じる。", isNegative: false),
+        QuestionInputFormat(question: "他人に自己紹介するのが苦手だと感じる。", isNegative: true),
+        QuestionInputFormat(question: "他人に自己紹介するのが苦手だと感じる。", isNegative: true),
+        QuestionInputFormat(question: "他人に自己紹介するのが苦手だと感じる。", isNegative: true)
+    ]]
+    
     @IBOutlet var Q1pickerView: UIPickerView!
 
     var selected: String?
     
-    let Q1dataList = ["Q1. 他人に自己紹介するのが苦手だと感じる。","あてはまる","ややあてはまる","あまりあてはまらない","あてはまらない"]
+   let Q1dataList = ["Q1. 他人に自己紹介するのが苦手だと感じる。","あてはまる","ややあてはまる","あまりあてはまらない","あてはまらない"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        questionaire = Questionnaire(questions: qustionlist, size: getScreenSize(isExsistsNavigationBar: true, isExsistsTabBar: true)!, onlyEven: 4)
         
-        Q1pickerView.delegate = self
-        Q1pickerView.dataSource = self
+        self.view.addSubview(questionaire.mainScrollView)
+//        Q1pickerView.delegate = self
+//        Q1pickerView.dataSource = self
         
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

@@ -124,7 +124,6 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="didTapNextButton:" destination="yUN-6I-N4y" eventType="touchUpInside" id="4Kh-7V-7l2"/>
                                     <action selector="signUp" destination="yUN-6I-N4y" eventType="touchUpInside" id="fb4-RC-QIC"/>
                                 </connections>
                             </button>
