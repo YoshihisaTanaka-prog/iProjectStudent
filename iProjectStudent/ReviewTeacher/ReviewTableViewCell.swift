@@ -12,19 +12,25 @@ import NCMB
 
 class ReviewTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var userimage: UIImage!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet var cosmosView: CosmosView!
+    
 
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        cosmosView.settings.totalStars = 5
+        // スター半分の評価ができるようにする
+        cosmosView.settings.fillMode = .half
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
+        
         // Configure the view for the selected state
     }
     
