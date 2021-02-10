@@ -45,10 +45,8 @@ class Opening2ViewController: UIViewController {
                 self.present(rootViewController, animated: true, completion: nil)
             } else {
                 // ログイン中だったら
-//                let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-//                let rootViewController = storyboard.instantiateViewController(withIdentifier: "RootTabBarController")
-                let storyboard = UIStoryboard(name: "Questionnaire", bundle: Bundle.main)
-                let rootViewController = storyboard.instantiateViewController(withIdentifier: "QuestionnaireController")
+                let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                let rootViewController = storyboard.instantiateViewController(withIdentifier: "RootTabBarController")
                 self.present(rootViewController, animated: false, completion: nil)
             }
         }
