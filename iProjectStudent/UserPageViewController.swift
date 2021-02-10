@@ -17,6 +17,37 @@ class UserPageViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func showMenu() {
+        let alertController = UIAlertController(title: "メニュー", message: "メニューを選択して下さい。", preferredStyle: .actionSheet)
+        let signOutAction = UIAlertAction(title: "ログアウト", style: .default) { (action) in
+            NCMBUser.logOutInBackground { (error) in
+                if error != nil {
+                    print(error)
+                } else {
+                    //ログアウト成功
+                    let storyboard = UIStoryboard(name: "SignIn", bundle: Bundle.main)
+                    let rootViewController = storyboard.instantiateViewController(identifier: "RootNavigationController")
+                    
+                    UIApplication.shared.keyWindow?.rootViewController = rootViewController
+                    
+                    //ログイン状態の保持
+                    let ud = UserDefaults.standard
+                    ud.set(false, forKey: "isLogin")
+                    ud.synchronize()
+                }
+            }
+        }
+        
+        let  cancalAction = UIAlertAction(title: "キャンセル", style: .cancel) { (action) in
+            alertController.dismiss(animated: true, completion: nil)
+        }
+        
+        
+        alertController.addAction(signOutAction)
+        alertController.addAction(cancalAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
 
 
 
