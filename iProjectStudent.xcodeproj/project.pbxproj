@@ -64,6 +64,8 @@
 		1FA191B625CACE3F007B935B /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA191B525CACE3F007B935B /* SignInViewController.swift */; };
 		1FA191B925CC1F56007B935B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA191B825CC1F56007B935B /* SignUpViewController.swift */; };
 		340713FEDEBF163EE86F1551 /* Pods_iProjectStudent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DE0601A6454D98F09896370 /* Pods_iProjectStudent.framework */; };
+		CED3EA5325D3F31800A67691 /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED3EA5125D3F31800A67691 /* ReviewTableViewCell.swift */; };
+		CED3EA5425D3F31800A67691 /* ReviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED3EA5225D3F31800A67691 /* ReviewTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -127,6 +129,8 @@
 		1FA191B525CACE3F007B935B /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		1FA191B825CC1F56007B935B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		6DE0601A6454D98F09896370 /* Pods_iProjectStudent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iProjectStudent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CED3EA5125D3F31800A67691 /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
+		CED3EA5225D3F31800A67691 /* ReviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewTableViewCell.xib; sourceTree = "<group>"; };
 		D422194F92E40D78F265E371 /* Pods-iProjectStudent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iProjectStudent.release.xcconfig"; path = "Target Support Files/Pods-iProjectStudent/Pods-iProjectStudent.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -286,6 +290,8 @@
 				04EA679025BC8A9C005F0D06 /* User.swift */,
 				04A7E9A525AF327B00C0F43C /* Extensions.swift */,
 				04A7E99725AF309900C0F43C /* Main.storyboard */,
+				CED3EA5125D3F31800A67691 /* ReviewTableViewCell.swift */,
+				CED3EA5225D3F31800A67691 /* ReviewTableViewCell.xib */,
 				04A841EB25C57B1E00469B5E /* SignIn.storyboard */,
 				1FA191B525CACE3F007B935B /* SignInViewController.swift */,
 				1FA191B825CC1F56007B935B /* SignUpViewController.swift */,
@@ -374,6 +380,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04A7E99E25AF309900C0F43C /* LaunchScreen.storyboard in Resources */,
+				CED3EA5425D3F31800A67691 /* ReviewTableViewCell.xib in Resources */,
 				0459388425D1497600A0E3C8 /* teacherNoImage.png in Resources */,
 				0459388625D1497900A0E3C8 /* studentNoImage.png in Resources */,
 				04A7E99B25AF309900C0F43C /* Assets.xcassets in Resources */,
@@ -459,6 +466,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04C7A05E25CD7F720031281B /* Opening1ViewController.swift in Sources */,
+				CED3EA5325D3F31800A67691 /* ReviewTableViewCell.swift in Sources */,
 				04845C3525BC76EF0032B567 /* MyChatViewCell.swift in Sources */,
 				04845C3F25BC76F00032B567 /* Chat.swift in Sources */,
 				04A7E99625AF309900C0F43C /* ViewController.swift in Sources */,
