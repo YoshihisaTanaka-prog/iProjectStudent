@@ -22,7 +22,7 @@
                     <navigationItem key="navigationItem" id="MT0-fF-bQd">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="e88-x4-YpJ">
                             <connections>
-                                <action selector="showMenu" destination="BYZ-38-t0r" id="Hes-vY-GSZ"/>
+                                <action selector="showMenu" destination="BYZ-38-t0r" id="FQ2-t6-L5q"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
