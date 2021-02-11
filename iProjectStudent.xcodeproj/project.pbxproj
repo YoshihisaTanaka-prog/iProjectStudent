@@ -63,6 +63,7 @@
 		04EA679125BC8A9C005F0D06 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EA679025BC8A9C005F0D06 /* User.swift */; };
 		1F3343F125D1500A00A090DA /* Questionnaire.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F3343F025D1500A00A090DA /* Questionnaire.storyboard */; };
 		1F3343F525D151C400A090DA /* Questionnaire_subViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3343F425D151C400A090DA /* Questionnaire_subViewController.swift */; };
+		1F761FEA25D419C600FFB590 /* UserPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F761FE925D419C600FFB590 /* UserPageViewController.swift */; };
 		1FA191B625CACE3F007B935B /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA191B525CACE3F007B935B /* SignInViewController.swift */; };
 		1FA191B925CC1F56007B935B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA191B825CC1F56007B935B /* SignUpViewController.swift */; };
 		340713FEDEBF163EE86F1551 /* Pods_iProjectStudent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DE0601A6454D98F09896370 /* Pods_iProjectStudent.framework */; };
@@ -133,6 +134,7 @@
 		1E933D9E06614E36D1EB6CA6 /* Pods-iProjectStudent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iProjectStudent.debug.xcconfig"; path = "Target Support Files/Pods-iProjectStudent/Pods-iProjectStudent.debug.xcconfig"; sourceTree = "<group>"; };
 		1F3343F025D1500A00A090DA /* Questionnaire.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Questionnaire.storyboard; sourceTree = "<group>"; };
 		1F3343F425D151C400A090DA /* Questionnaire_subViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questionnaire_subViewController.swift; sourceTree = "<group>"; };
+		1F761FE925D419C600FFB590 /* UserPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageViewController.swift; sourceTree = "<group>"; };
 		1FA191B525CACE3F007B935B /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		1FA191B825CC1F56007B935B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		6DE0601A6454D98F09896370 /* Pods_iProjectStudent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iProjectStudent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -296,6 +298,7 @@
 				049C83F925C695A200D4D380 /* Opening */,
 				047C4DE825C855FA0082807A /* Images */,
 				0473BF5325D2E99300550EFB /* Questionnaire */,
+				1F761FE825D4194900FFB590 /* Login */,
 				049C83E325C6921000D4D380 /* AppDelegate.swift */,
 				04A7E99325AF309900C0F43C /* SceneDelegate.swift */,
 				CE30BB2E25D406F0002A2F8C /* ReviewTeacher */,
@@ -303,14 +306,22 @@
 				04EA679025BC8A9C005F0D06 /* User.swift */,
 				04A7E9A525AF327B00C0F43C /* Extensions.swift */,
 				04A7E99725AF309900C0F43C /* Main.storyboard */,
-				04A841EB25C57B1E00469B5E /* SignIn.storyboard */,
-				1FA191B525CACE3F007B935B /* SignInViewController.swift */,
-				1FA191B825CC1F56007B935B /* SignUpViewController.swift */,
 				04A7E99A25AF309900C0F43C /* Assets.xcassets */,
 				04A7E99C25AF309900C0F43C /* LaunchScreen.storyboard */,
 				04A7E99F25AF309900C0F43C /* Info.plist */,
 			);
 			path = iProjectStudent;
+			sourceTree = "<group>";
+		};
+		1F761FE825D4194900FFB590 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				1FA191B825CC1F56007B935B /* SignUpViewController.swift */,
+				1F761FE925D419C600FFB590 /* UserPageViewController.swift */,
+				04A841EB25C57B1E00469B5E /* SignIn.storyboard */,
+				1FA191B525CACE3F007B935B /* SignInViewController.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		A48DA7138F15C04F71077065 /* Pods */ = {
@@ -492,6 +503,7 @@
 				04C7A05E25CD7F720031281B /* Opening1ViewController.swift in Sources */,
 				CED3EA5325D3F31800A67691 /* ReviewTableViewCell.swift in Sources */,
 				04845C3525BC76EF0032B567 /* MyChatViewCell.swift in Sources */,
+				1F761FEA25D419C600FFB590 /* UserPageViewController.swift in Sources */,
 				04845C3F25BC76F00032B567 /* Chat.swift in Sources */,
 				04A7E99625AF309900C0F43C /* ViewController.swift in Sources */,
 				04845C3725BC76EF0032B567 /* YourChatViewCell.swift in Sources */,

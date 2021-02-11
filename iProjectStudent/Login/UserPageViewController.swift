@@ -17,9 +17,9 @@ class UserPageViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func showMenu() {
+    @IBAction func showMenu(){
         let alertController = UIAlertController(title: "メニュー", message: "メニューを選択して下さい。", preferredStyle: .actionSheet)
-        let signOutAction = UIAlertAction(title: "ログアウト", style: .default) { (action) in
+        let  signOutAction = UIAlertAction(title: "ログアウト", style: .default) { (action) in
             NCMBUser.logOutInBackground { (error) in
                 if error != nil {
                     print(error)
@@ -36,19 +36,17 @@ class UserPageViewController: UIViewController {
                     ud.synchronize()
                 }
             }
-        }
         
-        let  cancalAction = UIAlertAction(title: "キャンセル", style: .cancel) { (action) in
+            }
+        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { (action) in
             alertController.dismiss(animated: true, completion: nil)
         }
         
-        
         alertController.addAction(signOutAction)
-        alertController.addAction(cancalAction)
+        alertController.addAction(cancelAction)
         
         self.present(alertController, animated: true, completion: nil)
     }
-
-
+  
 
 }
