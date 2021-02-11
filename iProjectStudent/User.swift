@@ -48,7 +48,7 @@ class User {
         if( imageUrl != nil ){
             let file = NCMBFile.file(withName: imageUrl!, data: nil) as! NCMBFile
             file.getDataInBackground { (data, error) in
-                if error != nil {
+                if error == nil {
                 } else {
                     if data != nil {
                         let image = UIImage(data: data!)
