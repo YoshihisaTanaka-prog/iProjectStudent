@@ -24,6 +24,8 @@ class ReviewTableViewCell: UITableViewCell {
         cosmosView.settings.totalStars = 5
         // スター半分の評価ができるようにする
         cosmosView.settings.fillMode = .half
+        //ユーザー以外の人が編集できないようにする
+        cosmosView.settings.updateOnTouch = false
         
     }
 
@@ -33,5 +35,7 @@ class ReviewTableViewCell: UITableViewCell {
         
         // Configure the view for the selected state
     }
+    
+    
     
 }
