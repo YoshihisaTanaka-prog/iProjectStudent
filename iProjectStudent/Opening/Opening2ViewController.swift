@@ -45,6 +45,8 @@ class Opening2ViewController: UIViewController {
                 self.present(rootViewController, animated: false, completion: nil)
             } else {
                 // ログインしていなかったら
+//                let storyboard = UIStoryboard(name: "Questionnaire", bundle: Bundle.main)
+//                let rootViewController = storyboard.instantiateViewController(withIdentifier: "QuestionnaireController")
                 let storyboard = UIStoryboard(name: "SignIn", bundle: Bundle.main)
                 let rootViewController = storyboard.instantiateViewController(withIdentifier: "RootNavigationController")
                 self.present(rootViewController, animated: true, completion: nil)
