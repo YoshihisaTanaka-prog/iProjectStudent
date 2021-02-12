@@ -48,6 +48,7 @@ class Questionnaire {
         let answerButton = UIButton(frame: CGRect(x: 0.f, y: mainSVHeight, width: size.width, height: 40))
         answerButton.setTitle("アンケート結果を送信", for: .normal)
         answerButton.addTarget(self, action: #selector(tappedAnswer), for: .touchUpInside)
+        answerButton.backgroundColor = .darkGray
         self.mainScrollView.addSubview(answerButton)
         mainSVHeight += 50.f
         
@@ -66,14 +67,16 @@ class Questionnaire {
     }
     
     private func isAnsweredAllQuestions() -> Bool {
+        var ret = true
         for questViews in self.questionViews {
             for questView in questViews {
                 if(questView.result == -1){
-                    return false
+                    ret = false
+                    questView.mainView.backgroundColor = .yellow
                 }
             }
         }
-        return true
+        return ret
     }
 }
 
@@ -123,7 +126,7 @@ class QuestionView{
     }
     
     @objc func selected(_ sender: UIButton){
-        
+        self.mainView.backgroundColor = .clear
         for i in 0..<self.numOfButton {
             if(i == sender.tag){
                 buttons[i].setTitle("●", for: .normal)

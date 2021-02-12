@@ -266,6 +266,7 @@ extension ChatViewController: UITableViewDataSource {
         else if(selectedChatRoom.isGroup){
             let cell = tableView.dequeueReusableCell(withIdentifier: "YourGroupChat") as! YourGroupChatViewCell
             cell.userNameLabel.text = chat.userName
+            
             cell.textView.text = chat.message
             cell.timeLabel.text = chat.sentTime
             return cell

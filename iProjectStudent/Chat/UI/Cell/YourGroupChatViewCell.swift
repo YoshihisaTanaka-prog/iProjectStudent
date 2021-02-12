@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Cosmos
 
 class YourGroupChatViewCell: UITableViewCell {
     
@@ -15,13 +14,8 @@ class YourGroupChatViewCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var textViewWidthConstraint: NSLayoutConstraint!
-    @IBOutlet var cosmosView: CosmosView!
     
     override func awakeFromNib() {
-        cosmosView.settings.totalStars = 5
-        // スター半分の評価ができるようにする
-        cosmosView.settings.fillMode = .half
-        
         super.awakeFromNib()
         self.backgroundColor = UIColor.clear
         self.textView.layer.cornerRadius = 15// 角を丸める
@@ -47,6 +41,4 @@ extension YourGroupChatViewCell {
         }
         textViewWidthConstraint.constant = rect.width//テキストが短くても最小のビューの幅を30とする
     }
-    
-    
 }
