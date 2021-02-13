@@ -75,6 +75,7 @@ class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDe
     @IBAction func signUp() {
         
         if passwordTextField.text == confirmTextField.text {
+//            userNameやmailAddressが空白か確認をするコードの追加をする。
             if selected != nil {
                 let user = NCMBUser()
                 user.userName = userIdTextField.text!
