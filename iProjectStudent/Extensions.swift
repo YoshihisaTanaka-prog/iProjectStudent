@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import NCMB
 
 extension Int{
     public var d: Double {
@@ -44,3 +45,19 @@ extension UIViewController{
     }
 }
 
+extension NCMBUser{
+    func getParameter() -> NCMBObject? {
+        let object = self.object(forKey: "parameter") as? NCMBObject
+        return object
+    }
+}
+
+extension NCMBObject{
+    func getUser() -> NCMBUser?{
+        if(["StudentParameter","TeacherParameter"].contains(self.ncmbClassName)){
+            let user = self.object(forKey: "user") as? NCMBUser
+            return user
+        }
+        return nil
+    }
+}
