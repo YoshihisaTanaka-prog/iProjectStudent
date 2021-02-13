@@ -48,9 +48,7 @@ class CommentTeacherViewController: UIViewController {
             
         }
         //描画の設定ここまで
-        
-        // ここからコメントの編集設定をする
-        
+                
         // スター半分の評価ができるようにする(本人だけが編集できるよう設定してある）
         ratingScore.settings.fillMode = .half
         if isAbletoEdit {
@@ -63,6 +61,13 @@ class CommentTeacherViewController: UIViewController {
         } else{
             sendButton.setTitle("編集不可", for: .normal)
             ratingScore.settings.updateOnTouch = false
+        }
+        
+        //コメントボックスの編集権限
+        if isAbletoEdit {
+            self.commentBox.isEditable = true
+        }else{
+            self.commentBox.isEditable = false
         }
         
     }
@@ -84,7 +89,7 @@ class CommentTeacherViewController: UIViewController {
             }else{
                 let object = NCMBObject(className: "Review",objectId:self.objectId!)
                 object?.setObject(numofAfterScore, forKey: "Reviewscore")
-                //コメントボックスのアップデートをする
+        
                 object?.saveInBackground({ (error) in
                     if error == nil{
                         self.navigationController?.popViewController(animated: true)
@@ -94,6 +99,33 @@ class CommentTeacherViewController: UIViewController {
                 })
             }
         }
+        //レビューコメントの設定
+        if isAbletoEdit {
+            if isCreate{
+                let object = NCMBObject(className: "Review")
+                object?.setObject(commentBox, forKey: "Reviewcomment")
+                
+                object?.saveInBackground({ (error) in
+                    if error == nil{
+                        self.dismiss(animated: true, completion: nil)
+                    }else{
+                        self.showOkAlert(title: "エラー", message: error!.localizedDescription)
+                    }
+                })
+            }
+
+        }else{
+            let object = NCMBObject(className: "Review", objectId: self.objectId!)
+            object?.setObject(self.commentBox, forKey: "Reviewcomment")
+            
+            object?.saveInBackground({ (error) in
+                if error == nil{
+                    self.navigationController?.popViewController(animated: true)
+                }else{
+                    self.showOkAlert(title: "エラー", message: error!.localizedDescription)
+                }
+            })
+         }
     }
 
 
