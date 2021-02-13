@@ -12,25 +12,37 @@ import NCMB
 class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet var userIdTextField: UITextField!
+    @IBOutlet var userIdFuriganaTextField: UITextField!
     @IBOutlet var schoolTextField: UITextField!
+    @IBOutlet var gradeTextField: UITextField!
+    @IBOutlet var choiceTextField: UITextField!
     @IBOutlet var emailTextField: UITextField!
-    @IBOutlet var pickerView: UIPickerView!
+    @IBOutlet var parentsEmailTextField: UITextField!
+    @IBOutlet var pickerView1: UIPickerView!
+    @IBOutlet var pickerView2: UIPickerView!
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var confirmTextField: UITextField!
     
     var selected: String?
     
-    let dataList = ["文理選択","文系","理系","その他"]
+    let bunri = ["文理選択","文系","理系","その他"]
+    let kamoku = ["指導希望教科","国語","数学","英語","化学","生物","物理","地学","地理","日本史","世界史","政治・経済","倫理","その他"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
 
         userIdTextField.delegate = self
+        userIdFuriganaTextField.delegate = self
         schoolTextField.delegate = self
+        gradeTextField.delegate = self
+        choiceTextField.delegate = self
         emailTextField.delegate = self
-        pickerView.delegate = self
-        pickerView.dataSource = self
+        parentsEmailTextField.delegate = self
+        pickerView1.delegate = self
+        pickerView1.dataSource = self
+        pickerView2.delegate = self
+        pickerView2.dataSource = self
         passwordTextField.delegate = self
         confirmTextField.delegate = self
         
@@ -48,28 +60,40 @@ class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDe
     // UIPickerViewの行数、リストの数
     func pickerView(_ pickerView: UIPickerView,
                     numberOfRowsInComponent component: Int) -> Int {
-        return dataList.count
+        if pickerView.tag == 1{
+        return bunri.count
+        } else {
+            return kamoku.count
+        }
     }
     
     // UIPickerViewの最初の表示
     func pickerView(_ pickerView: UIPickerView,
                     titleForRow row: Int,
                     forComponent component: Int) -> String? {
-        
-        return dataList[row]
+        if pickerView.tag == 1{
+        return bunri[row]
+        } else {
+            return kamoku[row]
+        }
     }
     
+/*
     // UIPickerViewのRowが選択された時の挙動
     func pickerView(_ pickerView: UIPickerView,
                     didSelectRow row: Int,
-                    inComponent component: Int) {
+                    inComponent component: Int) -> <#Return Type#> -> <#Return Type#> {
         if row != 0 {
-            selected = dataList[row]
+            if pickerView.tag == 1{
+            return bunri[row]
+            } else {
+                return kamoku[row]
+            }
         } else {
             selected = nil
         }
     }
-    
+*/
 
     
     @IBAction func signUp() {
@@ -86,6 +110,13 @@ class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDe
                 //クラス間で紐付け
                 object?.setObject(selected!, forKey: "selection")
                 object?.setObject(schoolTextField.text!, forKey: "SchoolName")
+                
+                object?.setObject(gradeTextField.text!, forKey: "grade")
+                
+                
+                
+                
+                
                 user.signUpInBackground { (error) in
                     if error != nil{
                         //エラーがあった場合
