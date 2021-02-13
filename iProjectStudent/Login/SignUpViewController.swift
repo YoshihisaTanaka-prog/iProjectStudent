@@ -73,14 +73,13 @@ class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDe
 
     
     @IBAction func signUp() {
-        let user = NCMBUser()
-        user.userName = userIdTextField.text!
-        user.mailAddress = emailTextField.text!
         
         if passwordTextField.text == confirmTextField.text {
-            user.password = passwordTextField.text!
-            user.setObject(false, forKey: "isTeacher")
             if selected != nil {
+                let user = NCMBUser()
+                user.userName = userIdTextField.text!
+                user.mailAddress = emailTextField.text!
+                user.password = passwordTextField.text!
                 let object = NCMBObject(className: "StudentParameter")
                 object?.setObject(user, forKey: "user")
                 //クラス間で紐付け
@@ -90,7 +89,6 @@ class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDe
                     if error != nil{
                         //エラーがあった場合
                         self.showOkAlert(title: "エラー", message: error!.localizedDescription)
-                        print(error!.localizedDescription)
                     } else {
                         //登録成功
                         object?.saveInBackground({ (error) in
@@ -106,6 +104,7 @@ class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDe
                                 acl.setWriteAccess(true, for: user)
                                 user.acl = acl
                                 
+                                user.setObject(false, forKey: "isTeacher")
                                 user.setObject(object!, forKey: "parameter")
                                 user.setObject(nil, forKey: "peerId")
                                 user.setObject(true, forKey: "isActive")
