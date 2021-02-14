@@ -235,8 +235,8 @@
 			children = (
 				1FA191B825CC1F56007B935B /* SignUpViewController.swift */,
 				1F761FE925D419C600FFB590 /* UserPageViewController.swift */,
-				04A841EB25C57B1E00469B5E /* SignIn.storyboard */,
 				1FA191B525CACE3F007B935B /* SignInViewController.swift */,
+				04A841EB25C57B1E00469B5E /* SignIn.storyboard */,
 			);
 			path = Login;
 			sourceTree = "<group>";

@@ -16,6 +16,7 @@ class ReviewTeacher{
     var score: Double
     var comment: String
     var title: String
+    var subject: String
 
     init (_ review:NCMBObject){
         self.objectId = review.object(forKey: "objectId") as! String
@@ -23,7 +24,8 @@ class ReviewTeacher{
         self.teacherId = review.object(forKey: "teacherId") as! String
         self.score = review.object(forKey: "Reviewscore") as! Double
         self.comment = review.object(forKey: "Reviewcomment")as! String
-        self.title = review.object(forKey: "Reviewcomment")as! String
+        self.title = review.object(forKey: "Reviewcomment") as! String
+        self.subject = review.object(forKey: "subject") as! String
     }
     
 }
