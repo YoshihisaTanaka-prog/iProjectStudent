@@ -89,6 +89,8 @@ class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDe
                     //クラス間で紐付け
                     object?.setObject(selected!, forKey: "selection")
                     object?.setObject(schoolTextField.text!, forKey: "SchoolName")
+                    object?.setObject(gradeTextField.text!, forKey: "grade")
+                    object?.setObject(parentemailTextField.text!, forKey: "parentEmailAdress")
                     user.signUpInBackground { (error) in
                         if error != nil{
                             //エラーがあった場合
