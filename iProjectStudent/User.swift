@@ -63,29 +63,62 @@ class User {
 class TeacherParameter{
     
     var objectId: String
-    var departments: String
-    var score: Double
+    var departments: String?
+    var score: Double?
+    
     init(_ parameter: NCMBObject) {
+        
+        func set(obj: NCMBObject){
+            self.departments = obj.object(forKey: "departments") as? String
+            self.score = 1.d// 一旦これで
+        }
+        
         self.objectId = parameter.objectId
-        self.departments = parameter.object(forKey: "departments") as! String
-        self.score = 1.d// 一旦これで
+        if(parameter.object(forKey: "departments") == nil){
+            var error: NSError? = nil
+            let obj = NCMBObject(className: "TeacherParameter", objectId: self.objectId)
+            obj?.fetch(&error)
+            if(error == nil){
+                set(obj: obj!)
+            } else {
+                fatalError(error!.localizedDescription)
+            }
+        }
+        else{
+            set(obj: parameter)
+        }
     }
 }
 
 class StudentParameter{
     
     var objectId: String
-    var SchoolName: String
-    var selection: String
+    var SchoolName: String?
+    var selection: String?
+    
+    
+    
     init(_ parameter: NCMBObject) {
+        
+        func set(obj: NCMBObject){
+            self.SchoolName = obj.object(forKey: "SchoolName") as? String
+            self.selection = obj.object(forKey: "selection") as? String
+        }
+        
         self.objectId = parameter.objectId
         if( parameter.object(forKey: "SchoolName") == nil ){
-            let object = NCMBObject(className: "StudentParameter", objectId: self.objectId)
-            object.
+            var error: NSError? = nil
+            let obj = NCMBObject(className: "StudentParameter", objectId: self.objectId)
+            obj?.fetch(&error)
+            if(error == nil){
+                set(obj: obj!)
+            }
+            else{
+                fatalError(error!.localizedDescription)
+            }
         }
         else{
-            self.SchoolName = parameter.object(forKey: "SchoolName") as! String
-            self.selection = parameter.object(forKey: "selection") as! String
+            set(obj: parameter)
         }
     }
 }
