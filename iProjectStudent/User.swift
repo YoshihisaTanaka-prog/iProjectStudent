@@ -35,12 +35,13 @@ class User {
         }
         
 //        ユーザの詳細データ
-        let parameter = user.object(forKey: "parameter") as! NCMBObject
+        let parameter = user.object(forKey: "parameter")// as! NCMBObject
+        print(String(describing: type(of: parameter)))
         if(self.isTeacher){
-            self.teacherParameter = TeacherParameter(parameter)
+//            self.teacherParameter = TeacherParameter(parameter)
         }
         else{
-            self.studentParameter = StudentParameter(parameter)
+//            self.studentParameter = StudentParameter(parameter)
         }
         
 //        画像の設定
@@ -64,9 +65,11 @@ class TeacherParameter{
     
     var objectId: String
     var departments: String
+    var score: Double
     init(_ parameter: NCMBObject) {
         self.objectId = parameter.objectId
         self.departments = parameter.object(forKey: "departments") as! String
+        self.score = 1.d// 一旦これで
     }
 }
 

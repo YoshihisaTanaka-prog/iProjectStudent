@@ -11,20 +11,22 @@ import NCMB
 import Cosmos
 
 class ReviewDetailViewController: UIViewController {
-    @IBOutlet var ratingScore: CosmosView!
-    @IBOutlet var commentBox: UITextView!
-    @IBOutlet var sendButton: UIButton!
-    @IBOutlet var titleField: UITextField!
     
     var isAbletoEdit: Bool!
-    var isEditted: Bool = false
-    var numofBeforeScore: Int = 2
-    var numofAfterScore: Int = 2
     var review: ReviewTeacher?
     var teacherId: String!
     var studentId: String!
     var subjectName: String!
-    var teacher: User!
+    
+    private var isEditted: Bool = false
+    private var numofBeforeScore: Int = 2
+    private var numofAfterScore: Int = 2
+    private var teacher: User!
+    
+    @IBOutlet var ratingScore: CosmosView!
+    @IBOutlet var commentBox: UITextView!
+    @IBOutlet var sendButton: UIButton!
+    @IBOutlet var titleField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +48,7 @@ class ReviewDetailViewController: UIViewController {
         }
         
         self.commentBox.isEditable = isAbletoEdit
+        self.commentBox.isSelectable = isAbletoEdit
         self.titleField.isEnabled = isAbletoEdit
         
         if review != nil {

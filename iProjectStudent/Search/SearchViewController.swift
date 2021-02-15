@@ -32,7 +32,7 @@ class SearchViewController: UIViewController {
         [   1, 1, 0],
         [      1, 0],
         [         1]
-    ]// 暫定的なものなので、実際に運用するまでにはこの行列を要修正
+    ]// 暫定的なものなので、実際に運用するまでにはこの行列(?)を要修正
     private func isGoodCompatibility(numOfMyGroupId: Int, numOfYourGroupId: Int) -> Bool?{
         //        引数が範囲外だった場合の例外処理
         if( numOfMyGroupId >= goodCompatibilityList.count ||

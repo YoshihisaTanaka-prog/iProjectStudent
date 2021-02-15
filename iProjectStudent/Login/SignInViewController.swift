@@ -41,6 +41,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                     
                     UIApplication.shared.keyWindow?.rootViewController = rootViewController
                     
+                    let _ = User(NCMBUser.current())
+                    
                     //ログイン状態の保持
                     let ud = UserDefaults.standard
                     ud.set(true, forKey: "isLogin")
