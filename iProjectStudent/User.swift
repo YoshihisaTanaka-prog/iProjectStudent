@@ -61,18 +61,22 @@ class User {
 }
 
 class TeacherParameter{
-    //    記入例
-        var departments: String
-        init(_ parameter: NCMBObject) {
-            self.departments = parameter.object(forKey: "departments") as! String
-        }
+    
+    var objectId: String
+    var departments: String
+    init(_ parameter: NCMBObject) {
+        self.objectId = parameter.objectId
+        self.departments = parameter.object(forKey: "departments") as! String
+    }
 }
 
 class StudentParameter{
+    
+    var objectId: String
     var SchoolName: String
     var selection: String
-    
     init(_ parameter: NCMBObject) {
+        self.objectId = parameter.objectId
         self.SchoolName = parameter.object(forKey: "SchoolName") as! String
         self.selection = parameter.object(forKey: "selection") as! String
     }

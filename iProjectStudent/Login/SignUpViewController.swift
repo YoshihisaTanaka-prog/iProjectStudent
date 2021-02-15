@@ -12,37 +12,24 @@ import NCMB
 class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet var userIdTextField: UITextField!
-    @IBOutlet var userIdFuriganaTextField: UITextField!
     @IBOutlet var schoolTextField: UITextField!
-    @IBOutlet var gradeTextField: UITextField!
-//    @IBOutlet var choiceTextField: UITextField!
     @IBOutlet var emailTextField: UITextField!
-    @IBOutlet var parentsEmailTextField: UITextField!
-    @IBOutlet var pickerView1: UIPickerView!
-//    @IBOutlet var pickerView2: UIPickerView!
+    @IBOutlet var pickerView: UIPickerView!
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var confirmTextField: UITextField!
     
     var selected: String?
     
-    let bunri = ["文理選択","文系","理系","その他"]
-//    let kamoku = ["指導希望教科","国語","数学","英語","化学","生物","物理","地学","地理","日本史","世界史","政治・経済","倫理","その他"]
+    let dataList = ["文理選択","文系","理系","その他"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
         userIdTextField.delegate = self
-        userIdFuriganaTextField.delegate = self
         schoolTextField.delegate = self
-        gradeTextField.delegate = self
-//        choiceTextField.delegate = self
         emailTextField.delegate = self
-        parentsEmailTextField.delegate = self
-        pickerView1.delegate = self
-        pickerView1.dataSource = self
-//        pickerView2.delegate = self
-//        pickerView2.dataSource = self
+        pickerView.delegate = self
+        pickerView.dataSource = self
         passwordTextField.delegate = self
         confirmTextField.delegate = self
         
@@ -60,98 +47,88 @@ class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDe
     // UIPickerViewの行数、リストの数
     func pickerView(_ pickerView: UIPickerView,
                     numberOfRowsInComponent component: Int) -> Int {
-        return bunri.count
-        
+        return dataList.count
     }
     
     // UIPickerViewの最初の表示
-    func pickerView(_ pickerView: UIPickerView,
-                    titleForRow row: Int,
-                    forComponent component: Int) -> String? {
-        return bunri[row]
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
+        return dataList[row]
     }
     
     // UIPickerViewのRowが選択された時の挙動
-    func pickerView(_ pickerView: UIPickerView,
-                    didSelectRow row: Int,
-                    inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if row != 0 {
-            selected = bunri[row]
+            selected = dataList[row]
         } else {
             selected = nil
         }
     }
-
     
     @IBAction func signUp() {
-        let user = NCMBUser()
-        user.userName = userIdTextField.text!
-        user.mailAddress = emailTextField.text!
-        user.setObject(userIdFuriganaTextField.text!, forKey: "furigana")
         
         if passwordTextField.text == confirmTextField.text {
-            user.password = passwordTextField.text!
-            user.setObject(false, forKey: "isTeacher")
-            if selected != nil {
-                let object = NCMBObject(className: "StudentParameter")
-                object?.setObject(user, forKey: "user")
-                //クラス間で紐付け
-                object?.setObject(selected!, forKey: "selection")
-                object?.setObject(schoolTextField.text!, forKey: "SchoolName")
-                object?.setObject(gradeTextField.text!, forKey: "grade")
-                object?.setObject(parentsEmailTextField.text!, forKey: "parentEmailAdress")
-                
-                
-                
-                
-                
-                user.signUpInBackground { (error) in
-                    if error != nil{
-                        //エラーがあった場合
-                        self.showOkAlert(title: "エラー", message: error!.localizedDescription)
-                        print(error!.localizedDescription)
-                    } else {
-                        //登録成功
-                        object?.saveInBackground({ (error) in
-                            if error != nil {
-                                self.showOkAlert(title: "エラー", message: error!.localizedDescription)
-                            } else {
-                                //ACLオブジェクトを作成
-                                let acl = NCMBACL()
-                                //読み込み・検索を全開放
-                                acl.setPublicReadAccess(true)
-                                acl.setPublicWriteAccess(false)
-                                acl.setReadAccess(true, for: user)
-                                acl.setWriteAccess(true, for: user)
-                                user.acl = acl
-                                
-                                user.setObject(object!, forKey: "parameter")
-                                user.setObject(nil, forKey: "peerId")
-                                user.setObject(true, forKey: "isActive")
-                                user.saveInBackground { (error) in
-                                    if error != nil {
-                                        self.showOkAlert(title: "エラー", message: error!.localizedDescription)
-                                    }
-                                }
-                                let storyboard = UIStoryboard(name: "Questionnaire", bundle: Bundle.main)
-                                let rootViewController = storyboard.instantiateViewController(identifier: "QuestionnaireController")
-                                
-                                UIApplication.shared.keyWindow?.rootViewController = rootViewController
-                                
-                                //ログイン状態の保持
-                                let ud = UserDefaults.standard
-                                ud.set(true, forKey: "isLogin")
-                                ud.synchronize()
-                            }
-                        })
-
-                    }
-                }
-            } else {
-                showOkAlert(title: "エラー", message: "文理選択がされていません")
+//            userNameやmailAddressが空白か確認をするコードの追加をする。
+            if(userIdTextField.text!.count * emailTextField.text!.count == 0){
+                showOkAlert(title: "注意", message: "ユーザー名かメールアドレスが入力されていません。")
             }
-            
+            else{
+                if selected != nil {
+                    let user = NCMBUser()
+                    user.userName = userIdTextField.text!
+                    user.mailAddress = emailTextField.text!
+                    user.password = passwordTextField.text!
+                    let object = NCMBObject(className: "StudentParameter")
+                    object?.setObject(user, forKey: "user")
+                    //クラス間で紐付け
+                    object?.setObject(selected!, forKey: "selection")
+                    object?.setObject(schoolTextField.text!, forKey: "SchoolName")
+                    user.signUpInBackground { (error) in
+                        if error != nil{
+                            //エラーがあった場合
+                            self.showOkAlert(title: "エラー", message: error!.localizedDescription)
+                        } else {
+                            //登録成功
+                            object?.saveInBackground({ (error) in
+                                if error != nil {
+                                    self.showOkAlert(title: "エラー", message: error!.localizedDescription)
+                                } else {
+                                    //ACLオブジェクトを作成
+                                    let acl = NCMBACL()
+                                    //読み込み・検索を全開放
+                                    acl.setPublicReadAccess(true)
+                                    acl.setPublicWriteAccess(false)
+                                    acl.setReadAccess(true, for: user)
+                                    acl.setWriteAccess(true, for: user)
+                                    user.acl = acl
+                                    
+                                    user.setObject(false, forKey: "isTeacher")
+                                    user.setObject(object!, forKey: "parameter")
+                                    user.setObject(nil, forKey: "peerId")
+                                    user.setObject(true, forKey: "isActive")
+                                    user.saveInBackground { (error) in
+                                        if error != nil {
+                                            self.showOkAlert(title: "エラー", message: error!.localizedDescription)
+                                        }
+                                    }
+                                    let storyboard = UIStoryboard(name: "Questionnaire", bundle: Bundle.main)
+                                    let rootViewController = storyboard.instantiateViewController(identifier: "QuestionnaireController")
+                                    
+                                    UIApplication.shared.keyWindow?.rootViewController = rootViewController
+                                    
+                                    //ログイン状態の保持
+                                    let ud = UserDefaults.standard
+                                    ud.set(true, forKey: "isLogin")
+                                    ud.synchronize()
+                                }
+                            })
+                            
+                        }
+                    }
+                } else {
+                    showOkAlert(title: "エラー", message: "文理選択がされていません")
+                }
+            }
         } else {
             showOkAlert(title: "エラー", message: "パスワードが一致していません")
         }
