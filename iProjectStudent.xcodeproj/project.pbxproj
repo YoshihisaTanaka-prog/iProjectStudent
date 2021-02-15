@@ -49,6 +49,7 @@
 		1F3343F125D1500A00A090DA /* Questionnaire.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F3343F025D1500A00A090DA /* Questionnaire.storyboard */; };
 		1F3343F525D151C400A090DA /* Questionnaire_subViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3343F425D151C400A090DA /* Questionnaire_subViewController.swift */; };
 		1F761FEA25D419C600FFB590 /* UserPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F761FE925D419C600FFB590 /* UserPageViewController.swift */; };
+		1F806AC925D81336001BF41B /* EditUserPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F806AC825D81336001BF41B /* EditUserPageViewController.swift */; };
 		1FA191B625CACE3F007B935B /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA191B525CACE3F007B935B /* SignInViewController.swift */; };
 		1FA191B925CC1F56007B935B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA191B825CC1F56007B935B /* SignUpViewController.swift */; };
 		340713FEDEBF163EE86F1551 /* Pods_iProjectStudent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DE0601A6454D98F09896370 /* Pods_iProjectStudent.framework */; };
@@ -103,6 +104,7 @@
 		1F3343F025D1500A00A090DA /* Questionnaire.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Questionnaire.storyboard; sourceTree = "<group>"; };
 		1F3343F425D151C400A090DA /* Questionnaire_subViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questionnaire_subViewController.swift; sourceTree = "<group>"; };
 		1F761FE925D419C600FFB590 /* UserPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageViewController.swift; sourceTree = "<group>"; };
+		1F806AC825D81336001BF41B /* EditUserPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserPageViewController.swift; sourceTree = "<group>"; };
 		1FA191B525CACE3F007B935B /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		1FA191B825CC1F56007B935B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		6DE0601A6454D98F09896370 /* Pods_iProjectStudent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iProjectStudent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -237,6 +239,7 @@
 				1F761FE925D419C600FFB590 /* UserPageViewController.swift */,
 				04A841EB25C57B1E00469B5E /* SignIn.storyboard */,
 				1FA191B525CACE3F007B935B /* SignInViewController.swift */,
+				1F806AC825D81336001BF41B /* EditUserPageViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 				049C83E425C6921000D4D380 /* AppDelegate.swift in Sources */,
 				042767B625D6CAAB004F0A85 /* ReviewTeacherViewController.swift in Sources */,
 				CE30BB2C25D406D3002A2F8C /* ReviewTeacher.swift in Sources */,
+				1F806AC925D81336001BF41B /* EditUserPageViewController.swift in Sources */,
 				1FA191B625CACE3F007B935B /* SignInViewController.swift in Sources */,
 				0473BF5625D2EA0900550EFB /* Questionnaire.swift in Sources */,
 				04A7E9A625AF327B00C0F43C /* Extensions.swift in Sources */,

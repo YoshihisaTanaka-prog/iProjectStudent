@@ -14,5 +14,7 @@ target 'iProjectStudent' do
   pod 'FSCalendar'
   
   pod 'CalculateCalendarLogic'
+  
+  pod 'NYXImagesKit'
  
 end

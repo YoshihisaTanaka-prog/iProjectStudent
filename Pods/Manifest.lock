@@ -3,18 +3,21 @@ PODS:
   - Cosmos (23.0.0)
   - FSCalendar (2.8.2)
   - NCMB (3.1.0)
+  - NYXImagesKit (2.3)
 
 DEPENDENCIES:
   - CalculateCalendarLogic
   - Cosmos
   - FSCalendar
   - NCMB (from `https://github.com/NIFCLOUD-mbaas/ncmb_ios.git`)
+  - NYXImagesKit
 
 SPEC REPOS:
   trunk:
     - CalculateCalendarLogic
     - Cosmos
     - FSCalendar
+    - NYXImagesKit
 
 EXTERNAL SOURCES:
   NCMB:
@@ -30,7 +33,8 @@ SPEC CHECKSUMS:
   Cosmos: b5c6a9a637e28a061b54c8f8b1d8529d7d4db73f
   FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
   NCMB: c308972109137bf523ec1830bac16de6a31c25f4
+  NYXImagesKit: 8163e3335a40eaa173ca5bbbf81fafb57d3947eb
 
-PODFILE CHECKSUM: 2e4ff794c2510d27b912f837194b9754779fe0b8
+PODFILE CHECKSUM: f801115f0ffc7773ba0e1bbe0e1eb15e54e892af
 
 COCOAPODS: 1.10.1
