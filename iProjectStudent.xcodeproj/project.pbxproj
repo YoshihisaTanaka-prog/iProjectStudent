@@ -7,15 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		04092EE525DA5BDD00FDE9FC /* TeacherInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04092EE425DA5BDD00FDE9FC /* TeacherInfoViewController.swift */; };
+		042767B625D6CAAB004F0A85 /* ReviewTeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042767B525D6CAAB004F0A85 /* ReviewTeacherViewController.swift */; };
 		042767B925D6CAB4004F0A85 /* ReviewDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042767B825D6CAB4004F0A85 /* ReviewDetailViewController.swift */; };
 		0459388225D1497300A0E3C8 /* creating.png in Resources */ = {isa = PBXBuildFile; fileRef = 0459388125D1495E00A0E3C8 /* creating.png */; };
 		0459388425D1497600A0E3C8 /* teacherNoImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0459387F25D1495E00A0E3C8 /* teacherNoImage.png */; };
 		0459388625D1497900A0E3C8 /* studentNoImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0459388025D1495E00A0E3C8 /* studentNoImage.png */; };
-		04652AF325DA433D00E5B7B8 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04652AF225DA433D00E5B7B8 /* SearchViewController.swift */; };
-		04652AF725DA512B00E5B7B8 /* Teacher.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04652AF625DA512B00E5B7B8 /* Teacher.storyboard */; };
-		04652AFC25DA531000E5B7B8 /* TeacherInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04652AFA25DA531000E5B7B8 /* TeacherInfoTableViewCell.swift */; };
-		04652AFD25DA531000E5B7B8 /* TeacherInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04652AFB25DA531000E5B7B8 /* TeacherInfoTableViewCell.xib */; };
 		0473BF5625D2EA0900550EFB /* Questionnaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473BF5525D2EA0900550EFB /* Questionnaire.swift */; };
 		047C4E0325C858B80082807A /* iTunesArtwork@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 047C4DEE25C858B80082807A /* iTunesArtwork@1x.png */; };
 		047C4E0425C858B80082807A /* Icon-App-76x76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 047C4DF025C858B80082807A /* Icon-App-76x76@2x.png */; };
@@ -53,6 +49,7 @@
 		1F3343F125D1500A00A090DA /* Questionnaire.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F3343F025D1500A00A090DA /* Questionnaire.storyboard */; };
 		1F3343F525D151C400A090DA /* Questionnaire_subViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3343F425D151C400A090DA /* Questionnaire_subViewController.swift */; };
 		1F761FEA25D419C600FFB590 /* UserPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F761FE925D419C600FFB590 /* UserPageViewController.swift */; };
+		1F806AC925D81336001BF41B /* EditUserPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F806AC825D81336001BF41B /* EditUserPageViewController.swift */; };
 		1FA191B625CACE3F007B935B /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA191B525CACE3F007B935B /* SignInViewController.swift */; };
 		1FA191B925CC1F56007B935B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA191B825CC1F56007B935B /* SignUpViewController.swift */; };
 		340713FEDEBF163EE86F1551 /* Pods_iProjectStudent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DE0601A6454D98F09896370 /* Pods_iProjectStudent.framework */; };
@@ -62,15 +59,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		04092EE425DA5BDD00FDE9FC /* TeacherInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherInfoViewController.swift; sourceTree = "<group>"; };
+		042767B525D6CAAB004F0A85 /* ReviewTeacherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewTeacherViewController.swift; sourceTree = "<group>"; };
 		042767B825D6CAB4004F0A85 /* ReviewDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewDetailViewController.swift; sourceTree = "<group>"; };
 		0459387F25D1495E00A0E3C8 /* teacherNoImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = teacherNoImage.png; sourceTree = "<group>"; };
 		0459388025D1495E00A0E3C8 /* studentNoImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = studentNoImage.png; sourceTree = "<group>"; };
 		0459388125D1495E00A0E3C8 /* creating.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = creating.png; sourceTree = "<group>"; };
-		04652AF225DA433D00E5B7B8 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		04652AF625DA512B00E5B7B8 /* Teacher.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Teacher.storyboard; sourceTree = "<group>"; };
-		04652AFA25DA531000E5B7B8 /* TeacherInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherInfoTableViewCell.swift; sourceTree = "<group>"; };
-		04652AFB25DA531000E5B7B8 /* TeacherInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeacherInfoTableViewCell.xib; sourceTree = "<group>"; };
 		0473BF5525D2EA0900550EFB /* Questionnaire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questionnaire.swift; sourceTree = "<group>"; };
 		047C4DEE25C858B80082807A /* iTunesArtwork@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@1x.png"; sourceTree = "<group>"; };
 		047C4DF025C858B80082807A /* Icon-App-76x76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-App-76x76@2x.png"; sourceTree = "<group>"; };
@@ -111,6 +104,7 @@
 		1F3343F025D1500A00A090DA /* Questionnaire.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Questionnaire.storyboard; sourceTree = "<group>"; };
 		1F3343F425D151C400A090DA /* Questionnaire_subViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questionnaire_subViewController.swift; sourceTree = "<group>"; };
 		1F761FE925D419C600FFB590 /* UserPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageViewController.swift; sourceTree = "<group>"; };
+		1F806AC825D81336001BF41B /* EditUserPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserPageViewController.swift; sourceTree = "<group>"; };
 		1FA191B525CACE3F007B935B /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		1FA191B825CC1F56007B935B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		6DE0601A6454D98F09896370 /* Pods_iProjectStudent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iProjectStudent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,14 +126,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		04652AF125DA42FB00E5B7B8 /* Search */ = {
-			isa = PBXGroup;
-			children = (
-				04652AF225DA433D00E5B7B8 /* SearchViewController.swift */,
-			);
-			path = Search;
-			sourceTree = "<group>";
-		};
 		0473BF5325D2E99300550EFB /* Questionnaire */ = {
 			isa = PBXGroup;
 			children = (
@@ -232,8 +218,7 @@
 				047C4DE825C855FA0082807A /* Images */,
 				0473BF5325D2E99300550EFB /* Questionnaire */,
 				1F761FE825D4194900FFB590 /* Login */,
-				CE30BB2E25D406F0002A2F8C /* Teacher */,
-				04652AF125DA42FB00E5B7B8 /* Search */,
+				CE30BB2E25D406F0002A2F8C /* ReviewTeacher */,
 				049C83E325C6921000D4D380 /* AppDelegate.swift */,
 				04A7E99325AF309900C0F43C /* SceneDelegate.swift */,
 				04A7E99525AF309900C0F43C /* ViewController.swift */,
@@ -252,8 +237,9 @@
 			children = (
 				1FA191B825CC1F56007B935B /* SignUpViewController.swift */,
 				1F761FE925D419C600FFB590 /* UserPageViewController.swift */,
-				1FA191B525CACE3F007B935B /* SignInViewController.swift */,
 				04A841EB25C57B1E00469B5E /* SignIn.storyboard */,
+				1FA191B525CACE3F007B935B /* SignInViewController.swift */,
+				1F806AC825D81336001BF41B /* EditUserPageViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -267,19 +253,16 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		CE30BB2E25D406F0002A2F8C /* Teacher */ = {
+		CE30BB2E25D406F0002A2F8C /* ReviewTeacher */ = {
 			isa = PBXGroup;
 			children = (
 				CED3EA5125D3F31800A67691 /* ReviewTableViewCell.swift */,
 				CED3EA5225D3F31800A67691 /* ReviewTableViewCell.xib */,
-				04652AFA25DA531000E5B7B8 /* TeacherInfoTableViewCell.swift */,
-				04652AFB25DA531000E5B7B8 /* TeacherInfoTableViewCell.xib */,
-				04092EE425DA5BDD00FDE9FC /* TeacherInfoViewController.swift */,
-				042767B825D6CAB4004F0A85 /* ReviewDetailViewController.swift */,
 				CE30BB2B25D406D3002A2F8C /* ReviewTeacher.swift */,
-				04652AF625DA512B00E5B7B8 /* Teacher.storyboard */,
+				042767B525D6CAAB004F0A85 /* ReviewTeacherViewController.swift */,
+				042767B825D6CAB4004F0A85 /* ReviewDetailViewController.swift */,
 			);
-			path = Teacher;
+			path = ReviewTeacher;
 			sourceTree = "<group>";
 		};
 		D7CFD3D9EEBE9BEA55DDBD1F /* Frameworks */ = {
@@ -351,7 +334,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				04A7E99E25AF309900C0F43C /* LaunchScreen.storyboard in Resources */,
-				04652AF725DA512B00E5B7B8 /* Teacher.storyboard in Resources */,
 				CED3EA5425D3F31800A67691 /* ReviewTableViewCell.xib in Resources */,
 				0459388425D1497600A0E3C8 /* teacherNoImage.png in Resources */,
 				0459388625D1497900A0E3C8 /* studentNoImage.png in Resources */,
@@ -374,7 +356,6 @@
 				04A841EC25C57B1E00469B5E /* SignIn.storyboard in Resources */,
 				047C4E0725C858B80082807A /* Icon-App-20x20@1x.png in Resources */,
 				047C4E0625C858B80082807A /* Icon-App-40x40@1x.png in Resources */,
-				04652AFD25DA531000E5B7B8 /* TeacherInfoTableViewCell.xib in Resources */,
 				047C4E0B25C858B80082807A /* Contents.json in Resources */,
 				047C4E0325C858B80082807A /* iTunesArtwork@1x.png in Resources */,
 				0459388225D1497300A0E3C8 /* creating.png in Resources */,
@@ -437,19 +418,18 @@
 				04C7A05E25CD7F720031281B /* Opening1ViewController.swift in Sources */,
 				CED3EA5325D3F31800A67691 /* ReviewTableViewCell.swift in Sources */,
 				042767B925D6CAB4004F0A85 /* ReviewDetailViewController.swift in Sources */,
-				04652AFC25DA531000E5B7B8 /* TeacherInfoTableViewCell.swift in Sources */,
 				1F761FEA25D419C600FFB590 /* UserPageViewController.swift in Sources */,
 				04A7E99625AF309900C0F43C /* ViewController.swift in Sources */,
 				04A7E99425AF309900C0F43C /* SceneDelegate.swift in Sources */,
 				04EA679125BC8A9C005F0D06 /* User.swift in Sources */,
 				04C7A06025CD7F750031281B /* Opening2ViewController.swift in Sources */,
 				1FA191B925CC1F56007B935B /* SignUpViewController.swift in Sources */,
-				04092EE525DA5BDD00FDE9FC /* TeacherInfoViewController.swift in Sources */,
 				1F3343F525D151C400A090DA /* Questionnaire_subViewController.swift in Sources */,
 				04C7A05C25CD7F6F0031281B /* ScreenSize.swift in Sources */,
 				049C83E425C6921000D4D380 /* AppDelegate.swift in Sources */,
-				04652AF325DA433D00E5B7B8 /* SearchViewController.swift in Sources */,
+				042767B625D6CAAB004F0A85 /* ReviewTeacherViewController.swift in Sources */,
 				CE30BB2C25D406D3002A2F8C /* ReviewTeacher.swift in Sources */,
+				1F806AC925D81336001BF41B /* EditUserPageViewController.swift in Sources */,
 				1FA191B625CACE3F007B935B /* SignInViewController.swift in Sources */,
 				0473BF5625D2EA0900550EFB /* Questionnaire.swift in Sources */,
 				04A7E9A625AF327B00C0F43C /* Extensions.swift in Sources */,

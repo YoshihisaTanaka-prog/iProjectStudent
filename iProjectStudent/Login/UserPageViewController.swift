@@ -2,19 +2,48 @@
 //  UserPageViewController.swift
 //  iProjectStudent
 //
-//  Created by Ring Trap on 2/10/21.
+//  Created by Kaori Nakamura on 2/10/21.
 //  Copyright © 2021 Tanaka_Yoshihisa_4413. All rights reserved.
 //
 
 import UIKit
 import NCMB
+import NYXImagesKit
 
 class UserPageViewController: UIViewController {
+    
+    @IBOutlet var userImageView: UIImageView!
+    
+    @IBOutlet var userIdTextField: UITextField!
+    @IBOutlet var userIdFuriganaTextField: UITextField!
+    @IBOutlet var schoolTextField: UITextField!
+    @IBOutlet var gradeTextField: UITextField!
+    @IBOutlet var emailTextField: UITextField!
+    @IBOutlet var parentsEmailTextField: UITextField!
+    @IBOutlet var pickerView1: UIPickerView!
+    @IBOutlet var introductionTextView: UITextView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        userImageView.layer.cornerRadius = userImageView.bounds.width / 2.0
+        userImageView.layer.masksToBounds = true
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let file = NCMBFile.file(withName: (NCMBUser.current()?.objectId)! + ".png", data: nil) as! NCMBFile
+        file.getDataInBackground { (data, error) in
+            if error != nil {
+            print(error)
+        } else {
+            if error != nil{
+                let image = UIImage(data: data!)
+                self.userImageView.image = image
+            }
+        }
+    }
     }
     
     @IBAction func showMenu(){
