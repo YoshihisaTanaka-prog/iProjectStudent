@@ -84,15 +84,6 @@ class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDe
                     user.userName = userIdTextField.text!
                     user.password = passwordTextField.text!
                     
-                    //ACLオブジェクトを作成
-                    let acl = NCMBACL()
-                    //読み込み・検索を全開放
-                    acl.setPublicReadAccess(true)
-                    acl.setPublicWriteAccess(false)
-                    acl.setReadAccess(true, for: user)
-                    acl.setWriteAccess(true, for: user)
-                    user.acl = acl
-                    
                     let object = NCMBObject(className: "StudentParameter")
                     object?.setObject(user, forKey: "user")
                     //クラス間で紐付け
@@ -112,6 +103,25 @@ class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDe
                                 if error != nil {
                                     self.showOkAlert(title: "エラー", message: error!.localizedDescription)
                                 } else {
+                                    
+                                    let groupACL = NCMBACL()
+                                    let currentUser = NCMBUser.current()
+
+                                    //会員本人（currentUser）の権限
+                                    //for: userは、自分（currentUser）に対してacl情報を書き換える
+                                    groupACL.setReadAccess(true, for: currentUser)
+                                    groupACL.setWriteAccess(true, for: currentUser)
+
+                                    //全てのユーザの権限
+                                    //setPublicReadAccessをtrueにすれば他人の情報を取得可能！
+                                    //基本的にsetPublicWriteAccessをtrueにすると、他人でもユーザ消したり、情報変更できてしまうから注意
+                                    groupACL.setPublicReadAccess(true)
+                                    groupACL.setPublicWriteAccess(false)
+
+                                    //userクラスにこれまで設定してきたACL情報をセット
+                                    user.acl = groupACL
+
+                                    //userデータ(設定したacl情報)を保存する
                                     
                                     user.mailAddress = self.emailTextField.text!
                                     user.setObject(self.userIdFuriganaTextField.text, forKey: "furigana")
