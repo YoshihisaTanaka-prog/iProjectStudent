@@ -44,8 +44,9 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         introductionTextView.delegate = self
         
         let userId = NCMBUser.current()?.userName
-//        let email = NCMBUser.current()?.mailAddress
+        let user = NCMBUser.current()
         userIdTextField.text = userId
+        userIdFuriganaTextField.text = user!.object(forKey: "furigana") as? String
 //      emailTextField.text = email
         
         let file = NCMBFile.file(withName: (NCMBUser.current()?.objectId)! + ".png", data: nil) as! NCMBFile

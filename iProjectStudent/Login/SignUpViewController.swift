@@ -12,8 +12,11 @@ import NCMB
 class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet var userIdTextField: UITextField!
+    @IBOutlet var userIdFuriganaTextField: UITextField!
     @IBOutlet var schoolTextField: UITextField!
     @IBOutlet var emailTextField: UITextField!
+    @IBOutlet var parentemailTextField: UITextField!
+    @IBOutlet var gradeTextField: UITextField!
     @IBOutlet var pickerView: UIPickerView!
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var confirmTextField: UITextField!
@@ -26,8 +29,11 @@ class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDe
         super.viewDidLoad()
         
         userIdTextField.delegate = self
+        userIdFuriganaTextField.delegate = self
         schoolTextField.delegate = self
         emailTextField.delegate = self
+        parentemailTextField.delegate = self
+        gradeTextField.delegate = self
         pickerView.delegate = self
         pickerView.dataSource = self
         passwordTextField.delegate = self
