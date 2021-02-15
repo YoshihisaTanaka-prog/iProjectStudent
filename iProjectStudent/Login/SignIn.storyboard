@@ -187,10 +187,10 @@
                     <connections>
                         <outlet property="confirmTextField" destination="ilx-WK-I1d" id="V6N-Eb-Rlo"/>
                         <outlet property="emailTextField" destination="SW7-kG-wmi" id="FMY-Kh-lcd"/>
-                        <outlet property="gradeTextField" destination="fcD-Oi-yp3" id="T27-a6-qtU"/>
-                        <outlet property="parentsEmailTextField" destination="Ry1-Rg-3JN" id="eig-hT-KGL"/>
+                        <outlet property="gradeTextField" destination="fcD-Oi-yp3" id="isC-4b-RpC"/>
+                        <outlet property="parentemailTextField" destination="Ry1-Rg-3JN" id="jhf-8Q-QBM"/>
                         <outlet property="passwordTextField" destination="qaM-VA-Gck" id="Frn-Un-UrQ"/>
-                        <outlet property="pickerView1" destination="vP8-zE-vRU" id="BIs-CO-lFB"/>
+                        <outlet property="pickerView" destination="vP8-zE-vRU" id="LMK-5t-tq1"/>
                         <outlet property="schoolTextField" destination="tS5-5l-kZo" id="Br5-lR-4kX"/>
                         <outlet property="userIdFuriganaTextField" destination="mW4-Ev-fFG" id="Lr5-ud-1gt"/>
                         <outlet property="userIdTextField" destination="djV-An-CwQ" id="dmM-Kl-blW"/>
