@@ -100,6 +100,8 @@ class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDe
                     object?.setObject(parentemailTextField.text!, forKey: "parentEmailAdress")
                     object?.setObject(gradeTextField.text!, forKey: "grade")
                     object?.setObject(schoolTextField.text!, forKey: "SchoolName")
+                    object?.setObject(gradeTextField.text!, forKey: "grade")
+                    object?.setObject(parentemailTextField.text!, forKey: "parentEmailAdress")
                     user.signUpInBackground { (error) in
                         if error != nil{
                             //エラーがあった場合

@@ -13,6 +13,8 @@ import NCMB
 class User {
     var userId: String
     var userName: String
+    var userIdFurigana: String?
+    var mailAddress: String?
     var isTeacher: Bool
     var oneOnOneSerch: String
     var userImage: UIImage?
@@ -23,6 +25,8 @@ class User {
     init(_ user: NCMBUser) {
         
         self.userId = user.objectId
+        self.mailAddress = user.mailAddress
+        self.userIdFurigana = user.object(forKey: "furigana") as? String
         self.userName = user.object(forKey: "userName") as! String
         self.isTeacher = user.object(forKey: "isTeacher") as! Bool
         
@@ -95,6 +99,8 @@ class StudentParameter{
     var objectId: String
     var SchoolName: String?
     var selection: String?
+    var grade: String?
+    var parentEmailAdress: String?
     
     
     
@@ -103,6 +109,8 @@ class StudentParameter{
         func set(obj: NCMBObject){
             self.SchoolName = obj.object(forKey: "SchoolName") as? String
             self.selection = obj.object(forKey: "selection") as? String
+            self.grade = obj.object(forKey: "grade") as? String
+            self.parentEmailAdress = obj.object(forKey: "parentEmailAdress") as? String
         }
         
         self.objectId = parameter.objectId

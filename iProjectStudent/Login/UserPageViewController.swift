@@ -18,6 +18,7 @@ class UserPageViewController: UIViewController, UITextFieldDelegate, UITextViewD
     @IBOutlet var userIdFuriganaTextField: UITextField!
     @IBOutlet var schoolTextField: UITextField!
     @IBOutlet var gradeTextField: UITextField!
+    @IBOutlet var selectionTextField: UITextField!
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var parentsEmailTextField: UITextField!
     @IBOutlet var pickerView1: UIPickerView!
@@ -50,19 +51,24 @@ class UserPageViewController: UIViewController, UITextFieldDelegate, UITextViewD
         
         userIdTextField.delegate = self
         userIdFuriganaTextField.delegate = self
-//        schoolTextField.delegate = self
-//        gradeTextField.delegate = self
-//        emailTextField.delegate = self
-//        parentsEmailTextField.delegate = self
+        schoolTextField.delegate = self
+        gradeTextField.delegate = self
+        emailTextField.delegate = self
+        parentsEmailTextField.delegate = self
 //        pickerView1.delegate = self
 //        pickerView1.dataSource = self
 //        introductionTextView.delegate = self
         
         let userId = NCMBUser.current()?.userName
-        let user = NCMBUser.current()
+        let mailAddress = NCMBUser.current()?.mailAddress
+        let user = User(NCMBUser.current())
         userIdTextField.text = userId
-        userIdFuriganaTextField.text = user!.object(forKey: "furigana") as? String
-        
+        emailTextField.text = mailAddress
+        userIdFuriganaTextField.text = user.userIdFurigana
+        schoolTextField.text = user.studentParameter?.SchoolName
+        gradeTextField.text = user.studentParameter?.grade
+        selectionTextField.text = user.studentParameter?.selection
+        parentsEmailTextField.text = user.studentParameter?.parentEmailAdress
     }
     
     @IBAction func showMenu(){
