@@ -12,6 +12,7 @@
 		0459388225D1497300A0E3C8 /* creating.png in Resources */ = {isa = PBXBuildFile; fileRef = 0459388125D1495E00A0E3C8 /* creating.png */; };
 		0459388425D1497600A0E3C8 /* teacherNoImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0459387F25D1495E00A0E3C8 /* teacherNoImage.png */; };
 		0459388625D1497900A0E3C8 /* studentNoImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0459388025D1495E00A0E3C8 /* studentNoImage.png */; };
+		04652AF325DA433D00E5B7B8 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04652AF225DA433D00E5B7B8 /* SearchViewController.swift */; };
 		0473BF5625D2EA0900550EFB /* Questionnaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473BF5525D2EA0900550EFB /* Questionnaire.swift */; };
 		047C4E0325C858B80082807A /* iTunesArtwork@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 047C4DEE25C858B80082807A /* iTunesArtwork@1x.png */; };
 		047C4E0425C858B80082807A /* Icon-App-76x76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 047C4DF025C858B80082807A /* Icon-App-76x76@2x.png */; };
@@ -63,6 +64,7 @@
 		0459387F25D1495E00A0E3C8 /* teacherNoImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = teacherNoImage.png; sourceTree = "<group>"; };
 		0459388025D1495E00A0E3C8 /* studentNoImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = studentNoImage.png; sourceTree = "<group>"; };
 		0459388125D1495E00A0E3C8 /* creating.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = creating.png; sourceTree = "<group>"; };
+		04652AF225DA433D00E5B7B8 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		0473BF5525D2EA0900550EFB /* Questionnaire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questionnaire.swift; sourceTree = "<group>"; };
 		047C4DEE25C858B80082807A /* iTunesArtwork@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@1x.png"; sourceTree = "<group>"; };
 		047C4DF025C858B80082807A /* Icon-App-76x76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-App-76x76@2x.png"; sourceTree = "<group>"; };
@@ -124,6 +126,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04652AF125DA42FB00E5B7B8 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				04652AF225DA433D00E5B7B8 /* SearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		0473BF5325D2E99300550EFB /* Questionnaire */ = {
 			isa = PBXGroup;
 			children = (
@@ -217,6 +227,7 @@
 				0473BF5325D2E99300550EFB /* Questionnaire */,
 				1F761FE825D4194900FFB590 /* Login */,
 				CE30BB2E25D406F0002A2F8C /* ReviewTeacher */,
+				04652AF125DA42FB00E5B7B8 /* Search */,
 				049C83E325C6921000D4D380 /* AppDelegate.swift */,
 				04A7E99325AF309900C0F43C /* SceneDelegate.swift */,
 				04A7E99525AF309900C0F43C /* ViewController.swift */,
@@ -424,6 +435,7 @@
 				1F3343F525D151C400A090DA /* Questionnaire_subViewController.swift in Sources */,
 				04C7A05C25CD7F6F0031281B /* ScreenSize.swift in Sources */,
 				049C83E425C6921000D4D380 /* AppDelegate.swift in Sources */,
+				04652AF325DA433D00E5B7B8 /* SearchViewController.swift in Sources */,
 				042767B625D6CAAB004F0A85 /* ReviewTeacherViewController.swift in Sources */,
 				CE30BB2C25D406D3002A2F8C /* ReviewTeacher.swift in Sources */,
 				1FA191B625CACE3F007B935B /* SignInViewController.swift in Sources */,
