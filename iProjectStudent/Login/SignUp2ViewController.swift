@@ -82,12 +82,23 @@ class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDe
                 if selected != nil {
                     let user = NCMBUser()
                     user.userName = userIdTextField.text!
-                    user.mailAddress = emailTextField.text!
                     user.password = passwordTextField.text!
+                    
+                    //ACLオブジェクトを作成
+                    let acl = NCMBACL()
+                    //読み込み・検索を全開放
+                    acl.setPublicReadAccess(true)
+                    acl.setPublicWriteAccess(false)
+                    acl.setReadAccess(true, for: user)
+                    acl.setWriteAccess(true, for: user)
+                    user.acl = acl
+                    
                     let object = NCMBObject(className: "StudentParameter")
                     object?.setObject(user, forKey: "user")
                     //クラス間で紐付け
                     object?.setObject(selected!, forKey: "selection")
+                    object?.setObject(parentemailTextField.text!, forKey: "parentEmailAdress")
+                    object?.setObject(gradeTextField.text!, forKey: "grade")
                     object?.setObject(schoolTextField.text!, forKey: "SchoolName")
                     user.signUpInBackground { (error) in
                         if error != nil{
@@ -99,15 +110,9 @@ class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDe
                                 if error != nil {
                                     self.showOkAlert(title: "エラー", message: error!.localizedDescription)
                                 } else {
-                                    //ACLオブジェクトを作成
-                                    let acl = NCMBACL()
-                                    //読み込み・検索を全開放
-                                    acl.setPublicReadAccess(true)
-                                    acl.setPublicWriteAccess(false)
-                                    acl.setReadAccess(true, for: user)
-                                    acl.setWriteAccess(true, for: user)
-                                    user.acl = acl
                                     
+                                    user.mailAddress = self.emailTextField.text!
+                                    user.setObject(self.userIdFuriganaTextField.text, forKey: "furigana")
                                     user.setObject(false, forKey: "isTeacher")
                                     user.setObject(object!, forKey: "parameter")
                                     user.setObject(nil, forKey: "peerId")
