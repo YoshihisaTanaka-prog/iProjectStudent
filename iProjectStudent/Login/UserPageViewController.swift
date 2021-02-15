@@ -10,7 +10,7 @@ import UIKit
 import NCMB
 import NYXImagesKit
 
-class UserPageViewController: UIViewController {
+class UserPageViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     @IBOutlet var userImageView: UIImageView!
     
@@ -22,6 +22,7 @@ class UserPageViewController: UIViewController {
     @IBOutlet var parentsEmailTextField: UITextField!
     @IBOutlet var pickerView1: UIPickerView!
     @IBOutlet var introductionTextView: UITextView!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +45,24 @@ class UserPageViewController: UIViewController {
             }
         }
     }
+        userImageView.layer.cornerRadius = userImageView.bounds.width / 2.0
+        userImageView.layer.masksToBounds = true
+        
+        userIdTextField.delegate = self
+        userIdFuriganaTextField.delegate = self
+//        schoolTextField.delegate = self
+//        gradeTextField.delegate = self
+//        emailTextField.delegate = self
+//        parentsEmailTextField.delegate = self
+//        pickerView1.delegate = self
+//        pickerView1.dataSource = self
+//        introductionTextView.delegate = self
+        
+        let userId = NCMBUser.current()?.userName
+        let user = NCMBUser.current()
+        userIdTextField.text = userId
+        userIdFuriganaTextField.text = user!.object(forKey: "furigana") as? String
+        
     }
     
     @IBAction func showMenu(){
