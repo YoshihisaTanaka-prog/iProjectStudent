@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="u8E-Cc-qLS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="u8E-Cc-qLS">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -187,12 +187,9 @@
                     <connections>
                         <outlet property="confirmTextField" destination="ilx-WK-I1d" id="V6N-Eb-Rlo"/>
                         <outlet property="emailTextField" destination="SW7-kG-wmi" id="FMY-Kh-lcd"/>
-                        <outlet property="gradeTextField" destination="fcD-Oi-yp3" id="T27-a6-qtU"/>
-                        <outlet property="parentsEmailTextField" destination="Ry1-Rg-3JN" id="eig-hT-KGL"/>
-                        <outlet property="passwordTextField" destination="qaM-VA-Gck" id="Frn-Un-UrQ"/>
-                        <outlet property="pickerView1" destination="vP8-zE-vRU" id="BIs-CO-lFB"/>
+                        <outlet property="passwordTextField" destination="qaM-VA-Gck" id="icQ-Bm-F1y"/>
+                        <outlet property="pickerView" destination="vP8-zE-vRU" id="8h8-g8-oeC"/>
                         <outlet property="schoolTextField" destination="tS5-5l-kZo" id="Br5-lR-4kX"/>
-                        <outlet property="userIdFuriganaTextField" destination="mW4-Ev-fFG" id="Lr5-ud-1gt"/>
                         <outlet property="userIdTextField" destination="djV-An-CwQ" id="dmM-Kl-blW"/>
                     </connections>
                 </viewController>

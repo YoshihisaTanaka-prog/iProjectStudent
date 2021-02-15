@@ -36,14 +36,15 @@ class UserPageViewController: UIViewController {
         let file = NCMBFile.file(withName: (NCMBUser.current()?.objectId)! + ".png", data: nil) as! NCMBFile
         file.getDataInBackground { (data, error) in
             if error != nil {
-            print(error)
-        } else {
-            if error != nil{
-                let image = UIImage(data: data!)
-                self.userImageView.image = image
+                print(error)
+            } else {
+                if error != nil{
+                    let image = UIImage(data: data!)
+                    self.userImageView.image = image
+                }
             }
         }
-    }
+        let _ = User(NCMBUser.current())
     }
     
     @IBAction func showMenu(){
