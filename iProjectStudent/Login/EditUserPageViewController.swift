@@ -131,8 +131,11 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
     
     @IBAction func saveUserInfo(){
         let user = NCMBUser.current()
+        
+//        〇〇TextField -> 〇〇TextField.textにする。
+        
 //        user?.setObject(userIdTextField, forKey: "userName")
-        user?.setObject(userIdFuriganaTextField, forKey: "furigana")
+        user?.setObject(userIdFuriganaTextField.text, forKey: "furigana")
 //        user?.setObject(schoolTextField, forKey: "SchoolName")
  //       user?.setObject(gradeTextField, forKey: "grade")
 //        user?.setObject(emailTextField, forKey: "mailAddress")
@@ -145,9 +148,9 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
             } else {
                 self.dismiss(animated: true, completion: nil)
             }
-            })
+        })
 
-        }
+    }
  
     
     @IBAction func selectImage() {

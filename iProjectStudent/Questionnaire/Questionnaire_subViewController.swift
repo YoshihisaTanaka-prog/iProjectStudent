@@ -12,6 +12,7 @@ import NCMB
 class QuestionnaireViewController: UIViewController {
 
     var questionaire: Questionnaire!
+    var timer: Timer!
     
     /*
      let qustionlist = [[
@@ -48,23 +49,39 @@ class QuestionnaireViewController: UIViewController {
         
         self.view.addSubview(questionaire.mainScrollView)
         
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(QuestionnaireViewController.read), userInfo: nil, repeats: true)
+        
     }
     
-    @IBAction func tappedSend(){
-        if questionaire.result != -1 {
-            let object = NCMBUser.current()?.object(forKey: "parameter") as! NCMBObject
-            object.setObject(questionaire.result, forKey: "personalityGroup")
-            object.saveInBackground { (error) in
-                if(error == nil){
-                    let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-                    let rootViewController = storyboard.instantiateViewController(withIdentifier: "RootTabBarController")
-                    self.present(rootViewController, animated: false, completion: nil)
-                }
-                else{
-                    self.showOkAlert(title: "Error", message: error!.localizedDescription)
-                }
+    @objc func read(){
+        if(questionaire.result > -1){
+//            送信して画面を移動
+            timer.invalidate()
+            let user = User(NCMBUser.current()!)
+            let object = NCMBObject(className: "StudentParameter", objectId: user.studentParameter!.objectId)
+            var error: NSError? = nil
+            object?.fetch(&error)
+            if(error == nil){
+                object?.setObject(questionaire.result, forKey: "personalityGroup")
+                object?.saveInBackground({ (error) in
+                    if(error == nil){
+                        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                        let rootViewController = storyboard.instantiateViewController(withIdentifier: "RootTabBarController")
+                        self.present(rootViewController, animated: false, completion: nil)
+                    }
+                    else{
+                        self.showOkAlert(title: "Error", message: error!.localizedDescription)
+                    }
+                })
+            }
+            else{
+                showOkAlert(title: "Error", message: error!.localizedDescription)
             }
         }
+        if(questionaire.result == -2){
+            questionaire.result = -1
+            showOkAlert(title: "注意", message: "未回答の項目があります。")
+            questionaire.mainScrollView.setContentOffset(CGPoint(x: 0, y: -questionaire.mainScrollView.contentInset.top), animated: true)
+        }
     }
-    
 }
