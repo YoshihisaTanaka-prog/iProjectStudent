@@ -21,6 +21,8 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
     @IBOutlet var gradeTextField: UITextField!
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var parentsEmailTextField: UITextField!
+    @IBOutlet var selectionTextField: UITextField!
+    @IBOutlet var choiceTextField: UITextField!
     @IBOutlet var pickerView1: UIPickerView!
     @IBOutlet var introductionTextView: UITextView!
 
@@ -39,15 +41,25 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         gradeTextField.delegate = self
         emailTextField.delegate = self
         parentsEmailTextField.delegate = self
-        pickerView1.delegate = self
-        pickerView1.dataSource = self
+//        pickerView1.delegate = self
+//        pickerView1.dataSource = self
+        choiceTextField.delegate = self
         introductionTextView.delegate = self
         
-        let userId = NCMBUser.current()?.userName
-        let user = NCMBUser.current()
-        userIdTextField.text = userId
-        userIdFuriganaTextField.text = user!.object(forKey: "furigana") as? String
-//      emailTextField.text = email
+
+        
+        let userId_ = NCMBUser.current()?.userName
+        let mailAddress_ = NCMBUser.current()?.mailAddress
+        let userIdFurigana = NCMBUser.current()?.setObject(userIdFuriganaTextField.text, forKey: "furigana")
+        let user_ = User(NCMBUser.current())
+        userIdTextField.text = userId_
+        emailTextField.text = mailAddress_
+        //userIdFuriganaTextField.text = userIdFurigana!
+        schoolTextField.text = user_.studentParameter?.SchoolName
+        gradeTextField.text = user_.studentParameter?.grade
+        selectionTextField.text = user_.studentParameter?.selection
+        parentsEmailTextField.text = user_.studentParameter?.parentEmailAdress
+        
         
         let file = NCMBFile.file(withName: (NCMBUser.current()?.objectId)! + ".png", data: nil) as! NCMBFile
         file.getDataInBackground { (data, error) in
@@ -93,7 +105,8 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         }
         
     }
-    
+  
+
     // UIPickerViewの列の数
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -124,6 +137,7 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
             selected = nil
         }
     }
+
     
     @IBAction func closeEditViewController(){
         self.dismiss(animated: true, completion: nil)
@@ -131,24 +145,27 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
     
     @IBAction func saveUserInfo(){
         let user = NCMBUser.current()
-//        user?.setObject(userIdTextField, forKey: "userName")
-        user?.setObject(userIdFuriganaTextField, forKey: "furigana")
-//        user?.setObject(schoolTextField, forKey: "SchoolName")
- //       user?.setObject(gradeTextField, forKey: "grade")
-//        user?.setObject(emailTextField, forKey: "mailAddress")
-//        user?.setObject(parentsEmailTextField, forKey: "parentEmailAdress")
-//        user?.setObject(selected!, forKey: "selection")
- //       user?.setObject(introductionTextView, forKey: "userName")
+        user?.setObject(userIdTextField.text, forKey: "userName")
+        user?.setObject(userIdFuriganaTextField.text, forKey: "furigana")
+        user?.setObject(schoolTextField.text, forKey: "SchoolName")
+        user?.setObject(gradeTextField.text, forKey: "grade")
+        user?.setObject(choiceTextField.text, forKey: "choice")
+        user?.setObject(parentsEmailTextField.text, forKey: "parentEmailAdress")
+        //user?.setObject(selected!, forKey: "selection")
+        user?.setObject(emailTextField.text, forKey: "mailAddress")
+        user?.setObject(introductionTextView.text, forKey: "introduction")
         user?.saveInBackground({ (error) in
             if error != nil {
-                print(error)
+                print(error!.localizedDescription)
             } else {
-                self.dismiss(animated: true, completion: nil)
+                self.navigationController?.popViewController(animated: true)
             }
             })
 
         }
  
+    
+    
     
     @IBAction func selectImage() {
         let actionController = UIAlertController(title: "画像の選択", message: "選択して下さい", preferredStyle: .actionSheet)
