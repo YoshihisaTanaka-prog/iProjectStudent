@@ -70,7 +70,7 @@ class Questionnaire {
     @objc func tappedAnswer(){
         if(isAnsweredAllQuestions()){
 //            reslt に値を埋め込む
-            self.result = 0
+            var res = 0
             var keta = 1
                 for i in 0..<self.totalNumbers.count {
                     self.totalNumbers[i] = 0
@@ -78,14 +78,14 @@ class Questionnaire {
                         self.totalNumbers[i] += questionViews[i][j].reslut
                     }
                     if(self.totalNumbers[i] > questionViews[i].count * ( self.numOfButton - 1 ) / 2){
-                        self.result += keta
+                        res += keta
                     }
                     keta *= 2
                 }
-                self.mainScrollView.removeFromSuperview()
+            self.result = res
         }
         else{
-            answerButton.setTitle("未回答の項目があります。", for: .normal)
+            self.result = -2
         }
     }
     
