@@ -24,6 +24,7 @@ class UserPageViewController: UIViewController, UITextFieldDelegate, UITextViewD
     @IBOutlet var parentsEmailTextField: UITextField!
     @IBOutlet var pickerView1: UIPickerView!
     @IBOutlet var introductionTextView: UITextView!
+
     
 
     override func viewDidLoad() {
@@ -64,8 +65,8 @@ class UserPageViewController: UIViewController, UITextFieldDelegate, UITextViewD
         let userId = NCMBUser.current()?.userName
         let mailAddress = NCMBUser.current()?.mailAddress
         let user = User(NCMBUser.current())
-        let userIdFurigana = NCMBUser.current()?.setObject(userIdFuriganaTextField.text, forKey: "furigana")
-        let Introduction = NCMBUser.current()?.setObject(introductionTextView.text, forKey: "introduction")
+        //let userIdFurigana = NCMBUser.current()?.setObject(userIdFuriganaTextField.text, forKey: "furigana") as! String
+        //let Introduction = NCMBUser.current()?.setObject(introductionTextView.text, forKey: "introduction") as! String
         userIdTextField.text = userId
         emailTextField.text = mailAddress
         userIdFuriganaTextField.text = user.userIdFurigana
@@ -74,7 +75,7 @@ class UserPageViewController: UIViewController, UITextFieldDelegate, UITextViewD
         //choiceTextField.text = user.studentParameter?.choice
         selectionTextField.text = user.studentParameter?.selection
         parentsEmailTextField.text = user.studentParameter?.parentEmailAdress
-        //introductionTextView.text = user.studentParameter?.introduction
+        introductionTextView.text = user.studentParameter?.introduction
     }
     
     @IBAction func showMenu(){

@@ -92,6 +92,7 @@ class StudentParameter{
     var selection: String
     var grade: String
     var parentEmailAdress: String
+    var introduction: String
     
     init(_ parameter: NCMBObject) {
         self.objectId = parameter.objectId
@@ -99,5 +100,6 @@ class StudentParameter{
         self.selection = parameter.object(forKey: "selection") as! String
         self.grade = parameter.object(forKey: "grade") as! String
         self.parentEmailAdress = parameter.object(forKey: "parentEmailAdress") as! String
+        self.introduction = parameter.object(forKey: "introduction") as! String
     }
 }
