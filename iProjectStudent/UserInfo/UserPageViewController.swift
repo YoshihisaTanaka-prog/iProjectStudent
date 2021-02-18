@@ -18,12 +18,13 @@ class UserPageViewController: UIViewController, UITextFieldDelegate, UITextViewD
     @IBOutlet var userIdFuriganaTextField: UITextField!
     @IBOutlet var schoolTextField: UITextField!
     @IBOutlet var gradeTextField: UITextField!
-    @IBOutlet var choiceTextField: UITextView!
+    @IBOutlet var choiceTextField: UITextField!
     @IBOutlet var selectionTextField: UITextField!
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var parentsEmailTextField: UITextField!
     @IBOutlet var pickerView1: UIPickerView!
     @IBOutlet var introductionTextView: UITextView!
+
     
 
     override func viewDidLoad() {
@@ -39,14 +40,14 @@ class UserPageViewController: UIViewController, UITextFieldDelegate, UITextViewD
         let file = NCMBFile.file(withName: (NCMBUser.current()?.objectId)! + ".png", data: nil) as! NCMBFile
         file.getDataInBackground { (data, error) in
             if error != nil {
-                print(error)
-            } else {
-                if error != nil{
-                    let image = UIImage(data: data!)
-                    self.userImageView.image = image
-                }
+            print(error)
+        } else {
+            if error != nil{
+                let image = UIImage(data: data!)
+                self.userImageView.image = image
             }
         }
+    }
         userImageView.layer.cornerRadius = userImageView.bounds.width / 2.0
         userImageView.layer.masksToBounds = true
         
@@ -64,7 +65,8 @@ class UserPageViewController: UIViewController, UITextFieldDelegate, UITextViewD
         let userId = NCMBUser.current()?.userName
         let mailAddress = NCMBUser.current()?.mailAddress
         let user = User(NCMBUser.current())
-        introductionTextView.text = NCMBUser.current()?.setObject(introductionTextView.text, forKey: "introduction") as? String
+        //let userIdFurigana = NCMBUser.current()?.setObject(userIdFuriganaTextField.text, forKey: "furigana") as! String
+        //let Introduction = NCMBUser.current()?.setObject(introductionTextView.text, forKey: "introduction") as! String
         userIdTextField.text = userId
         emailTextField.text = mailAddress
         userIdFuriganaTextField.text = user.userIdFurigana
@@ -73,7 +75,7 @@ class UserPageViewController: UIViewController, UITextFieldDelegate, UITextViewD
         //choiceTextField.text = user.studentParameter?.choice
         selectionTextField.text = user.studentParameter?.selection
         parentsEmailTextField.text = user.studentParameter?.parentEmailAdress
-        //introductionTextView.text = user.studentParameter?.introduction
+        introductionTextView.text = user.studentParameter?.introduction
     }
     
     @IBAction func showMenu(){
