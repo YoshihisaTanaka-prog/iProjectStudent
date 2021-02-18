@@ -17,7 +17,6 @@ class User {
     var mailAddress: String?
     var isTeacher: Bool
     var oneOnOneSerch: String
-    var userImage: UIImage?
     var teacherParameter: TeacherParameter?
     var studentParameter: StudentParameter?
     
@@ -64,7 +63,7 @@ class User {
                 } else {
                     if data != nil {
                         let image = UIImage(data: data!)
-                        self.userImage = image
+                        userImagesG[self.userId] = image
                     }
                 }
             }

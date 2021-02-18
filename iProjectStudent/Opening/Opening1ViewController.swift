@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import NCMB
 
 class Opening1ViewController: UIViewController {
     
     @IBOutlet var label: UILabel!
+    var isLogin: Bool!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +23,13 @@ class Opening1ViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        if let user = NCMBUser.current() {
+            let _ = User(user)
+            isLogin = true
+        }
+        else{
+            isLogin = false
+        }
 //        画面サイズの取得
         screenSizeG["NnNt"] = Size(x: self.view.frame.size.width, y: self.view.frame.size.height, tm: self.view.safeAreaInsets.top, bm: self.view.safeAreaInsets.bottom)
         print("NnNt", screenSizeG["NnNt"]!.viewHeight)
@@ -30,6 +39,9 @@ class Opening1ViewController: UIViewController {
 //            ナビゲーションバーがある場合の画面サイズを取得するために画面遷移を行う
             let storyboad = UIStoryboard(name: "Opening", bundle: nil)
             let nextTC = storyboad.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
+            let nextNC = nextTC.customizableViewControllers?.first as! UINavigationController
+            let nextVC = nextNC.topViewController as! Opening2ViewController
+            nextVC.isLogIn = self.isLogin
             self.present(nextTC, animated: false, completion: nil)
         }
     }

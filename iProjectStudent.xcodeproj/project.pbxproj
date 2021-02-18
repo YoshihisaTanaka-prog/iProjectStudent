@@ -18,6 +18,8 @@
 		0459388225D1497300A0E3C8 /* creating.png in Resources */ = {isa = PBXBuildFile; fileRef = 0459388125D1495E00A0E3C8 /* creating.png */; };
 		0459388425D1497600A0E3C8 /* teacherNoImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0459387F25D1495E00A0E3C8 /* teacherNoImage.png */; };
 		0459388625D1497900A0E3C8 /* studentNoImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0459388025D1495E00A0E3C8 /* studentNoImage.png */; };
+		046872CD25DE0CB800A6ABBF /* GlobalParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046872CC25DE0CB800A6ABBF /* GlobalParameters.swift */; };
+		046872D125DE0E1C00A6ABBF /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046872D025DE0E1C00A6ABBF /* CheckBox.swift */; };
 		0473BF5625D2EA0900550EFB /* Questionnaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473BF5525D2EA0900550EFB /* Questionnaire.swift */; };
 		047C4E0325C858B80082807A /* iTunesArtwork@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 047C4DEE25C858B80082807A /* iTunesArtwork@1x.png */; };
 		047C4E0425C858B80082807A /* Icon-App-76x76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 047C4DF025C858B80082807A /* Icon-App-76x76@2x.png */; };
@@ -73,6 +75,8 @@
 		0459387F25D1495E00A0E3C8 /* teacherNoImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = teacherNoImage.png; sourceTree = "<group>"; };
 		0459388025D1495E00A0E3C8 /* studentNoImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = studentNoImage.png; sourceTree = "<group>"; };
 		0459388125D1495E00A0E3C8 /* creating.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = creating.png; sourceTree = "<group>"; };
+		046872CC25DE0CB800A6ABBF /* GlobalParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalParameters.swift; sourceTree = "<group>"; };
+		046872D025DE0E1C00A6ABBF /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		0473BF5525D2EA0900550EFB /* Questionnaire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questionnaire.swift; sourceTree = "<group>"; };
 		047C4DEE25C858B80082807A /* iTunesArtwork@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@1x.png"; sourceTree = "<group>"; };
 		047C4DF025C858B80082807A /* Icon-App-76x76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-App-76x76@2x.png"; sourceTree = "<group>"; };
@@ -145,6 +149,15 @@
 				0455EDBE25DA8ECD00013330 /* TeacherInfoTableViewCell.xib */,
 			);
 			path = Teacher;
+			sourceTree = "<group>";
+		};
+		046872CF25DE0D5000A6ABBF /* UserInfo */ = {
+			isa = PBXGroup;
+			children = (
+				1F761FE925D419C600FFB590 /* UserPageViewController.swift */,
+				1F806AC825D81336001BF41B /* EditUserPageViewController.swift */,
+			);
+			path = UserInfo;
 			sourceTree = "<group>";
 		};
 		0473BF5325D2E99300550EFB /* Questionnaire */ = {
@@ -240,10 +253,13 @@
 				0473BF5325D2E99300550EFB /* Questionnaire */,
 				1F761FE825D4194900FFB590 /* Login */,
 				0455EDB625DA8ECD00013330 /* Teacher */,
+				046872CF25DE0D5000A6ABBF /* UserInfo */,
 				049C83E325C6921000D4D380 /* AppDelegate.swift */,
 				04A7E99325AF309900C0F43C /* SceneDelegate.swift */,
 				04A7E99525AF309900C0F43C /* ViewController.swift */,
+				046872D025DE0E1C00A6ABBF /* CheckBox.swift */,
 				04EA679025BC8A9C005F0D06 /* User.swift */,
+				046872CC25DE0CB800A6ABBF /* GlobalParameters.swift */,
 				04A7E9A525AF327B00C0F43C /* Extensions.swift */,
 				04A7E99725AF309900C0F43C /* Main.storyboard */,
 				04A7E99A25AF309900C0F43C /* Assets.xcassets */,
@@ -257,10 +273,8 @@
 			isa = PBXGroup;
 			children = (
 				1FA191B825CC1F56007B935B /* SignUp2ViewController.swift */,
-				1F761FE925D419C600FFB590 /* UserPageViewController.swift */,
 				04A841EB25C57B1E00469B5E /* SignIn.storyboard */,
 				1FA191B525CACE3F007B935B /* SignInViewController.swift */,
-				1F806AC825D81336001BF41B /* EditUserPageViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -440,8 +454,10 @@
 				04C7A05C25CD7F6F0031281B /* ScreenSize.swift in Sources */,
 				049C83E425C6921000D4D380 /* AppDelegate.swift in Sources */,
 				1F806AC925D81336001BF41B /* EditUserPageViewController.swift in Sources */,
+				046872CD25DE0CB800A6ABBF /* GlobalParameters.swift in Sources */,
 				1FA191B625CACE3F007B935B /* SignInViewController.swift in Sources */,
 				0455EDC025DA8ECD00013330 /* TeacherInfoViewController.swift in Sources */,
+				046872D125DE0E1C00A6ABBF /* CheckBox.swift in Sources */,
 				0473BF5625D2EA0900550EFB /* Questionnaire.swift in Sources */,
 				0455EDC125DA8ECE00013330 /* ReviewDetailViewController.swift in Sources */,
 				04A7E9A625AF327B00C0F43C /* Extensions.swift in Sources */,

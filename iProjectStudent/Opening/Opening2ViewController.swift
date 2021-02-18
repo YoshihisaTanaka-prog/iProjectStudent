@@ -12,6 +12,7 @@ import NCMB
 class Opening2ViewController: UIViewController {
     
     @IBOutlet var label: UILabel!
+    var isLogIn: Bool!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,12 +39,12 @@ class Opening2ViewController: UIViewController {
             self.label.textColor = .red
         }) { _ in
 //            ログイン判定
-            if let _ = NCMBUser.current() {
+            if self.isLogIn {
                 // ログイン中だったら
-                let storyboard = UIStoryboard(name: "Questionnaire", bundle: Bundle.main)
-                let rootViewController = storyboard.instantiateViewController(withIdentifier: "QuestionnaireController")
-//                let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-//                let rootViewController = storyboard.instantiateViewController(withIdentifier: "RootTabBarController")
+//                let storyboard = UIStoryboard(name: "Questionnaire", bundle: Bundle.main)
+//                let rootViewController = storyboard.instantiateViewController(withIdentifier: "QuestionnaireController")
+                let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                let rootViewController = storyboard.instantiateViewController(withIdentifier: "RootTabBarController")
                 self.present(rootViewController, animated: false, completion: nil)
             } else {
                 // ログインしていなかったら
