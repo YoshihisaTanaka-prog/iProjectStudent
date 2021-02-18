@@ -14,7 +14,6 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
     
     
     @IBOutlet var userImageView: UIImageView!
-    
     @IBOutlet var userIdTextField: UITextField!
     @IBOutlet var userIdFuriganaTextField: UITextField!
     @IBOutlet var schoolTextField: UITextField!
@@ -28,9 +27,21 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
 
     var selected: String?
     let bunri = ["文理選択","文系","理系","その他"]
+    var youbiCheckBox: CheckBox!
+    let youbiList: [CheckBoxInput] = [
+        CheckBoxInput("月曜日"),
+        CheckBoxInput("火曜日"),
+        CheckBoxInput("水曜日"),
+        CheckBoxInput("木曜日"),
+        CheckBoxInput("金曜日"),
+        CheckBoxInput("土曜日", color: .blue),
+        CheckBoxInput("日曜日", color: .red)
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        youbiCheckBox = CheckBox(youbiList,size: CGRect(x: 0, y: 0, width: 0, height: 0))
         
         userImageView.layer.cornerRadius = userImageView.bounds.width / 2.0
         userImageView.layer.masksToBounds = true
@@ -163,9 +174,6 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
             })
 
         }
- 
-    
-    
     
     @IBAction func selectImage() {
         let actionController = UIAlertController(title: "画像の選択", message: "選択して下さい", preferredStyle: .actionSheet)
@@ -198,7 +206,20 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         actionController.addAction(albumAction)
         actionController.addAction(cancelAction)
         self.present(actionController, animated: true, completion: nil)
-        
-        
+    }
+    
+    @IBAction func selectWeek(){
+        let alertController = UIAlertController(title: "", message: "曜日を選んでください。", preferredStyle: .alert)
+        let alertOkAction = UIAlertAction(title: "選択完了", style: .default) { (action) in
+            self.youbiCheckBox.mainView.removeFromSuperview()
+            alertController.dismiss(animated: true, completion: nil)
+        }
+        alertController.addAction(alertOkAction)
+        let width = alertController.view.frame.width
+        let height = alertController.view.frame.height + youbiCheckBox.height
+        youbiCheckBox.mainView.frame = CGRect(x: width / 10.f, y: 50, width: width * 0.8, height: youbiCheckBox.height)
+        alertController.view.addSubview(youbiCheckBox.mainView)
+        self.present(alertController, animated: true, completion: nil)
+//        alertController.view.
     }
 }

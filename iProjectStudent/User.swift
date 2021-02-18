@@ -99,6 +99,13 @@ class StudentParameter{
         self.selection = parameter.object(forKey: "selection") as! String
         self.grade = parameter.object(forKey: "grade") as! String
         self.parentEmailAdress = parameter.object(forKey: "parentEmailAdress") as! String
-        self.introduction = parameter.object(forKey: "introduction") as! String
+        
+        //ニフクラ上にデータがない場合があるので条件分岐
+        let intro = parameter.object(forKey: "introduction") as? String
+        if(intro == nil){
+            self.introduction = ""
+        } else {
+            self.introduction = intro!
+        }
     }
 }
