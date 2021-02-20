@@ -83,7 +83,7 @@ class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDe
                 if selected != nil {
                     let user = NCMBUser()
                     user.acl = nil
-                    user.mailAddress = emailTextField.text!
+                    let mail = emailTextField.text!
                     user.userName = userIdTextField.text!
                     user.password = passwordTextField.text!
                     print(emailTextField.text!)
@@ -97,58 +97,57 @@ class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDe
                     object?.setObject(schoolTextField.text!, forKey: "SchoolName")
 //                    object?.setObject(gradeTextField.text!, forKey: "grade")
                     object?.setObject(parentemailTextField.text!, forKey: "parentEmailAdress")
-                    user.signUpInBackground { (error) in
-                        if error != nil{
-                            //エラーがあった場合
-                            self.showOkAlert(title: "エラー", message: error!.localizedDescription)
-                        } else {
-                            //登録成功
-                            object?.saveInBackground({ (error) in
-                                if error != nil {
-                                    self.showOkAlert(title: "エラー", message: error!.localizedDescription)
-                                } else {
-                                    
-                                    var groupACL = NCMBACL()
-                                    let currentUser = NCMBUser.current()
+                    var error: NSError? = nil
+                    NCMBUser.requestAuthenticationMail(mail, error: &error)
+                    if error != nil{
+                        //エラーがあった場合
+                        self.showOkAlert(title: "エラー", message: error!.localizedDescription)
+                    } else {
+                        //登録成功
+                        object?.saveInBackground({ (error) in
+                            if error != nil {
+                                self.showOkAlert(title: "エラー", message: error!.localizedDescription)
+                            } else {
+                                
+                                var groupACL = NCMBACL()
+                                let currentUser = NCMBUser.current()
 
-                                    //会員本人（currentUser）の権限
-                                    //for: userは、自分（currentUser）に対してacl情報を書き換える
-                                    groupACL.setReadAccess(true, for: currentUser)
-                                    groupACL.setWriteAccess(true, for: currentUser)
+                                //会員本人（currentUser）の権限
+                                //for: userは、自分（currentUser）に対してacl情報を書き換える
+                                groupACL.setReadAccess(true, for: currentUser)
+                                groupACL.setWriteAccess(true, for: currentUser)
 
-                                    //全てのユーザの権限
-                                    //setPublicReadAccessをtrueにすれば他人の情報を取得可能！
-                                    //基本的にsetPublicWriteAccessをtrueにすると、他人でもユーザ消したり、情報変更できてしまうから注意
-                                    groupACL.setPublicWriteAccess(false)
-                                    groupACL.setPublicReadAccess(true)
+                                //全てのユーザの権限
+                                //setPublicReadAccessをtrueにすれば他人の情報を取得可能！
+                                //基本的にsetPublicWriteAccessをtrueにすると、他人でもユーザ消したり、情報変更できてしまうから注意
+                                groupACL.setPublicWriteAccess(false)
+                                groupACL.setPublicReadAccess(true)
 
-                                    //userクラスにこれまで設定してきたACL情報をセット
-                                    user.acl = groupACL
+                                //userクラスにこれまで設定してきたACL情報をセット
+                                user.acl = groupACL
 
-                                    //userデータ(設定したacl情報)を保存する
-                                    
-                                    user.setObject(self.userIdFuriganaTextField.text, forKey: "furigana")
-                                    user.setObject(false, forKey: "isTeacher")
-                                    user.setObject(object!, forKey: "parameter")
-                                    user.setObject(nil, forKey: "peerId")
-                                    user.setObject(true, forKey: "isActive")
-                                    user.saveInBackground { (error) in
-                                        if error != nil {
-                                            self.showOkAlert(title: "エラー", message: error!.localizedDescription)
-                                        }
+                                //userデータ(設定したacl情報)を保存する
+                                
+                                user.setObject(self.userIdFuriganaTextField.text, forKey: "furigana")
+                                user.setObject(false, forKey: "isTeacher")
+                                user.setObject(object!, forKey: "parameter")
+                                user.setObject(nil, forKey: "peerId")
+                                user.setObject(true, forKey: "isActive")
+                                user.saveInBackground { (error) in
+                                    if error != nil {
+                                        self.showOkAlert(title: "エラー", message: error!.localizedDescription)
                                     }
-                                    let storyboard = UIStoryboard(name: "Questionnaire", bundle: Bundle.main)
-                                    let rootViewController = storyboard.instantiateViewController(identifier: "QuestionnaireController")
-                                    self.present(rootViewController, animated: true, completion: nil)
-                                    
-                                    //ログイン状態の保持
-                                    let ud = UserDefaults.standard
-                                    ud.set(true, forKey: "isLogin")
-                                    ud.synchronize()
                                 }
-                            })
-                            
-                        }
+                                let storyboard = UIStoryboard(name: "Questionnaire", bundle: Bundle.main)
+                                let rootViewController = storyboard.instantiateViewController(identifier: "QuestionnaireController")
+                                self.present(rootViewController, animated: true, completion: nil)
+                                
+                                //ログイン状態の保持
+                                let ud = UserDefaults.standard
+                                ud.set(true, forKey: "isLogin")
+                                ud.synchronize()
+                            }
+                        })
                     }
                 } else {
                     showOkAlert(title: "エラー", message: "文理選択がされていません")
