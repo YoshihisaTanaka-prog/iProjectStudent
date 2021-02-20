@@ -16,6 +16,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setBackGround(true, false)
 
         userIdTextField.delegate = self
         passwordTextField.delegate = self
@@ -38,10 +39,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                     //ログイン成功
                     let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
                     let rootViewController = storyboard.instantiateViewController(identifier: "RootTabBarController")
+                    self.present(rootViewController, animated: true, completion: nil)
                     
-                    UIApplication.shared.keyWindow?.rootViewController = rootViewController
-                    
-                    let _ = User(NCMBUser.current())
+//                    let _ = User(NCMBUser.current())
                     
                     //ログイン状態の保持
                     let ud = UserDefaults.standard

@@ -11,6 +11,8 @@ import UIKit
 import NCMB
 
 class User {
+    
+    var ncmb: NCMBUser
     var userId: String
     var userName: String
     var userIdFurigana: String?
@@ -23,6 +25,7 @@ class User {
     
     init(_ user: NCMBUser) {
         
+        self.ncmb = user
         self.userId = user.objectId
         self.mailAddress = user.mailAddress
         self.userIdFurigana = user.object(forKey: "furigana") as? String
@@ -71,21 +74,39 @@ class User {
     }
 }
 
+extension User{
+    convenience init(_ parameter: NCMBObject, subject: String){
+        let user = parameter.object(forKey: "user") as! NCMBUser
+        self.init(user)
+        self.teacherParameter = TeacherParameter(parameter)
+    }
+}
+
 class TeacherParameter{
     
+    var ncmb: NCMBObject
     var objectId: String
     var departments: String
-    var score: Double
+    var score: Double?
     
     init(_ parameter: NCMBObject) {
+        self.ncmb = parameter
         self.objectId = parameter.objectId
         self.departments = parameter.object(forKey: "departments") as! String
         self.score = 1.d// 一旦これで
+    }
+    
+    init(_ parameter: NCMBObject, subject: String){
+        self.ncmb = parameter
+        self.objectId = parameter.objectId
+        self.departments = parameter.object(forKey: "departments") as! String
+        self.score = parameter.object(forKey: subject + "AverageScore") as? Double
     }
 }
 
 class StudentParameter{
     
+    var ncmb: NCMBObject
     var objectId: String
     var SchoolName: String
     var selection: String
@@ -94,6 +115,7 @@ class StudentParameter{
     var introduction: String
     
     init(_ parameter: NCMBObject) {
+        self.ncmb = parameter
         self.objectId = parameter.objectId
         self.SchoolName = parameter.object(forKey: "SchoolName") as! String
         self.selection = parameter.object(forKey: "selection") as! String

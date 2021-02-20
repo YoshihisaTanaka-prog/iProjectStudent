@@ -10,3 +10,6 @@ import Foundation
 import UIKit
 
 var userImagesG: [String:UIImage] = [:]
+var isLogInG: Bool = false
+let dColor = OriginalCollor()
+

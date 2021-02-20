@@ -12,12 +12,12 @@ import NCMB
 class Opening2ViewController: UIViewController {
     
     @IBOutlet var label: UILabel!
-    var isLogIn: Bool!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.view.backgroundColor = dColor.concept
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -39,7 +39,7 @@ class Opening2ViewController: UIViewController {
             self.label.textColor = .red
         }) { _ in
 //            ログイン判定
-            if self.isLogIn {
+            if isLogInG {
                 // ログイン中だったら
 //                let storyboard = UIStoryboard(name: "Questionnaire", bundle: Bundle.main)
 //                let rootViewController = storyboard.instantiateViewController(withIdentifier: "QuestionnaireController")

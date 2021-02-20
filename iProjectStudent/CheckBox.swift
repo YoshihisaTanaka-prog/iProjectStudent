@@ -23,6 +23,8 @@ class CheckBox {
             self.mainView.addSubview(self.checkBoxes[i].label)
             height += 25.f
         }
+        self.mainView.frame = CGRect(x: 0, y: 0, width: 0, height: self.height)
+        print(height)
     }
 }
 
@@ -41,9 +43,10 @@ class CheckBoxButton {
         self.button = UIButton(frame: CGRect(x: 0.f, y: 25.f * num.f, width: 20.f, height: 20.f))
         self.button.setTitle("○", for: .normal)
         self.button.setTitleColor(UIColor(red: 0.f, green: 0.f, blue: 0.5.f, alpha: 1.f), for: .normal)
+        self.button.addTarget(self, action: #selector(tapped), for: .touchUpInside)
     }
     
-    @objc private func tapped(_ sender: UIButton){
+    @objc private func tapped(){
         if(self.isSelected){
             self.button.setTitle("○", for: .normal)
         }else{

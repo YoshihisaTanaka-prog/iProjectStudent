@@ -59,7 +59,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="pu2-Jx-xK8" kind="show" id="97b-F6-V5J"/>
+                                    <segue destination="pu2-Jx-xK8" kind="show" id="yTh-gY-ZmF"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="自分のメールアドレス" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="asQ-Qm-yg8">
@@ -117,21 +117,21 @@
                     <navigationItem key="navigationItem" id="MT0-fF-bQd">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="e88-x4-YpJ">
                             <connections>
-                                <action selector="showMenu" destination="BYZ-38-t0r" id="FQ2-t6-L5q"/>
+                                <action selector="showMenu" destination="BYZ-38-t0r" id="dcO-Md-ZSh"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="choiceTextField" destination="Nvx-Wt-R4v" id="Qox-SW-9PW"/>
-                        <outlet property="emailTextField" destination="asQ-Qm-yg8" id="oGS-rC-e0A"/>
-                        <outlet property="gradeTextField" destination="oQ1-uN-FD1" id="dg2-4T-I3u"/>
-                        <outlet property="introductionTextView" destination="LEb-oa-sgw" id="QWp-7F-XCj"/>
-                        <outlet property="parentsEmailTextField" destination="3CF-ef-P4g" id="XyP-am-OoX"/>
-                        <outlet property="schoolTextField" destination="lQ1-qw-F3k" id="Aoz-cx-8OI"/>
-                        <outlet property="selectionTextField" destination="rZ8-fC-kyn" id="KOZ-tM-Cso"/>
-                        <outlet property="userIdFuriganaTextField" destination="Pg8-3s-KDa" id="Lh1-Iy-xEx"/>
-                        <outlet property="userIdTextField" destination="hVd-Wa-ug9" id="dvN-hg-Q1Z"/>
-                        <outlet property="userImageView" destination="2R3-Di-T8d" id="QfS-Qd-vuG"/>
+                        <outlet property="choiceTextField" destination="Nvx-Wt-R4v" id="krp-xh-IC0"/>
+                        <outlet property="emailTextField" destination="asQ-Qm-yg8" id="Atw-hf-V5i"/>
+                        <outlet property="gradeTextField" destination="oQ1-uN-FD1" id="MSu-qe-gMx"/>
+                        <outlet property="introductionTextView" destination="LEb-oa-sgw" id="h8R-9U-rMU"/>
+                        <outlet property="parentsEmailTextField" destination="3CF-ef-P4g" id="4bb-wt-3WP"/>
+                        <outlet property="schoolTextField" destination="lQ1-qw-F3k" id="48I-Uu-p3V"/>
+                        <outlet property="selectionTextField" destination="rZ8-fC-kyn" id="egR-uW-xbM"/>
+                        <outlet property="userIdFuriganaTextField" destination="Pg8-3s-KDa" id="Qht-RJ-Jeb"/>
+                        <outlet property="userIdTextField" destination="hVd-Wa-ug9" id="ks2-f2-WGR"/>
+                        <outlet property="userImageView" destination="2R3-Di-T8d" id="y7b-A0-3r6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

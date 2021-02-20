@@ -27,6 +27,7 @@ class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDe
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setBackGround(true, false)
         
         userIdTextField.delegate = self
         userIdFuriganaTextField.delegate = self
@@ -81,8 +82,11 @@ class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDe
             else{
                 if selected != nil {
                     let user = NCMBUser()
+                    user.acl = nil
+                    user.mailAddress = emailTextField.text!
                     user.userName = userIdTextField.text!
                     user.password = passwordTextField.text!
+                    print(emailTextField.text!)
                     
                     let object = NCMBObject(className: "StudentParameter")
                     object?.setObject(user, forKey: "user")
@@ -104,7 +108,7 @@ class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDe
                                     self.showOkAlert(title: "エラー", message: error!.localizedDescription)
                                 } else {
                                     
-                                    let groupACL = NCMBACL()
+                                    var groupACL = NCMBACL()
                                     let currentUser = NCMBUser.current()
 
                                     //会員本人（currentUser）の権限
@@ -115,15 +119,14 @@ class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDe
                                     //全てのユーザの権限
                                     //setPublicReadAccessをtrueにすれば他人の情報を取得可能！
                                     //基本的にsetPublicWriteAccessをtrueにすると、他人でもユーザ消したり、情報変更できてしまうから注意
-                                    groupACL.setPublicReadAccess(true)
                                     groupACL.setPublicWriteAccess(false)
+                                    groupACL.setPublicReadAccess(true)
 
                                     //userクラスにこれまで設定してきたACL情報をセット
                                     user.acl = groupACL
 
                                     //userデータ(設定したacl情報)を保存する
                                     
-                                    user.mailAddress = self.emailTextField.text!
                                     user.setObject(self.userIdFuriganaTextField.text, forKey: "furigana")
                                     user.setObject(false, forKey: "isTeacher")
                                     user.setObject(object!, forKey: "parameter")
@@ -136,8 +139,7 @@ class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDe
                                     }
                                     let storyboard = UIStoryboard(name: "Questionnaire", bundle: Bundle.main)
                                     let rootViewController = storyboard.instantiateViewController(identifier: "QuestionnaireController")
-                                    
-                                    UIApplication.shared.keyWindow?.rootViewController = rootViewController
+                                    self.present(rootViewController, animated: true, completion: nil)
                                     
                                     //ログイン状態の保持
                                     let ud = UserDefaults.standard
