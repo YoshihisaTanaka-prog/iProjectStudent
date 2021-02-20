@@ -4,6 +4,11 @@ PODS:
   - FSCalendar (2.8.2)
   - NCMB (3.1.0)
   - NYXImagesKit (2.3)
+  - Realm (10.6.0):
+    - Realm/Headers (= 10.6.0)
+  - Realm/Headers (10.6.0)
+  - RealmSwift (10.6.0):
+    - Realm (= 10.6.0)
 
 DEPENDENCIES:
   - CalculateCalendarLogic
@@ -11,6 +16,7 @@ DEPENDENCIES:
   - FSCalendar
   - NCMB (from `https://github.com/NIFCLOUD-mbaas/ncmb_ios.git`)
   - NYXImagesKit
+  - RealmSwift
 
 SPEC REPOS:
   trunk:
@@ -18,6 +24,8 @@ SPEC REPOS:
     - Cosmos
     - FSCalendar
     - NYXImagesKit
+    - Realm
+    - RealmSwift
 
 EXTERNAL SOURCES:
   NCMB:
@@ -34,7 +42,9 @@ SPEC CHECKSUMS:
   FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
   NCMB: c308972109137bf523ec1830bac16de6a31c25f4
   NYXImagesKit: 8163e3335a40eaa173ca5bbbf81fafb57d3947eb
+  Realm: 1ef421d4581513400ad4f8bd39c8157f3266c62e
+  RealmSwift: f80216fb8334b01ccf526e4f2dd5ff0da61863a2
 
-PODFILE CHECKSUM: f801115f0ffc7773ba0e1bbe0e1eb15e54e892af
+PODFILE CHECKSUM: 652c58a4e7ffc87f0169f113c41d161eed8f3460
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.10.0
