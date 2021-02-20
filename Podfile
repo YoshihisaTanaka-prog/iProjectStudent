@@ -16,7 +16,6 @@ target 'iProjectStudent' do
   pod 'CalculateCalendarLogic'
   
   pod 'NYXImagesKit'
-  
+
   pod 'RealmSwift'
-  
 end
