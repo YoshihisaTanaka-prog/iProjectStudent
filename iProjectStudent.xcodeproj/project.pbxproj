@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0424576F25DFE34F00F613FB /* Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0424576E25DFE34F00F613FB /* Design.swift */; };
 		0455EDBF25DA8ECD00013330 /* ReviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0455EDB725DA8ECD00013330 /* ReviewTableViewCell.xib */; };
 		0455EDC025DA8ECD00013330 /* TeacherInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0455EDB825DA8ECD00013330 /* TeacherInfoViewController.swift */; };
 		0455EDC125DA8ECE00013330 /* ReviewDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0455EDB925DA8ECD00013330 /* ReviewDetailViewController.swift */; };
@@ -64,6 +65,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0424576E25DFE34F00F613FB /* Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Design.swift; sourceTree = "<group>"; };
 		0455EDB725DA8ECD00013330 /* ReviewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewTableViewCell.xib; sourceTree = "<group>"; };
 		0455EDB825DA8ECD00013330 /* TeacherInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherInfoViewController.swift; sourceTree = "<group>"; };
 		0455EDB925DA8ECD00013330 /* ReviewDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewDetailViewController.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				04A7E99325AF309900C0F43C /* SceneDelegate.swift */,
 				04A7E99525AF309900C0F43C /* ViewController.swift */,
 				046872D025DE0E1C00A6ABBF /* CheckBox.swift */,
+				0424576E25DFE34F00F613FB /* Design.swift */,
 				04EA679025BC8A9C005F0D06 /* User.swift */,
 				046872CC25DE0CB800A6ABBF /* GlobalParameters.swift */,
 				04A7E9A525AF327B00C0F43C /* Extensions.swift */,
@@ -453,6 +456,7 @@
 				1F3343F525D151C400A090DA /* Questionnaire_subViewController.swift in Sources */,
 				04C7A05C25CD7F6F0031281B /* ScreenSize.swift in Sources */,
 				049C83E425C6921000D4D380 /* AppDelegate.swift in Sources */,
+				0424576F25DFE34F00F613FB /* Design.swift in Sources */,
 				1F806AC925D81336001BF41B /* EditUserPageViewController.swift in Sources */,
 				046872CD25DE0CB800A6ABBF /* GlobalParameters.swift in Sources */,
 				1FA191B625CACE3F007B935B /* SignInViewController.swift in Sources */,
