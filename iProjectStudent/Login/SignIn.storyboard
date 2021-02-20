@@ -80,7 +80,7 @@
         <!--新規登録-->
         <scene sceneID="13I-ri-srJ">
             <objects>
-                <viewController id="yUN-6I-N4y" customClass="SignUpViewController" customModule="iProjectStudent" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="yUN-6I-N4y" customClass="SignUp2ViewController" customModule="iProjectStudent" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KEF-XV-Sir">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

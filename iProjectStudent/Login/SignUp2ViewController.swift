@@ -9,7 +9,7 @@
 import UIKit
 import NCMB
 
-class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+class SignUp2ViewController: UIViewController,UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet var userIdTextField: UITextField!
     @IBOutlet var userIdFuriganaTextField: UITextField!
@@ -82,6 +82,7 @@ class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDe
                 if selected != nil {
                     let user = NCMBUser()
                     user.userName = userIdTextField.text!
+                    user.mailAddress = emailTextField.text!
                     user.password = passwordTextField.text!
                     
                     let object = NCMBObject(className: "StudentParameter")
@@ -92,13 +93,16 @@ class SignUpViewController: UIViewController,UITextFieldDelegate, UIPickerViewDe
                     object?.setObject(gradeTextField.text!, forKey: "grade")
                     object?.setObject(schoolTextField.text!, forKey: "SchoolName")
 //                    object?.setObject(gradeTextField.text!, forKey: "grade")
-                    object?.setObject(parentemailTextField.text!, forKey: "parentEmailAdress")
-                    user.signUpInBackground { (error) in
+//                    object?.setObject(parentemailTextField.text!, forKey: "parentEmailAdress")
+                    
+                    user.signUpInBackground { [self] (error) in
                         if error != nil{
                             //エラーがあった場合
                             self.showOkAlert(title: "エラー", message: error!.localizedDescription)
                         } else {
                             //登録成功
+                            print("登録成功",user.object(forKey: "mailAddress"))
+                            print("emailTextField.text",emailTextField.text)
                             object?.saveInBackground({ (error) in
                                 if error != nil {
                                     self.showOkAlert(title: "エラー", message: error!.localizedDescription)
