@@ -17,7 +17,7 @@ class Opening1ViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.view.backgroundColor = dColor.concept
+        self.view.backgroundColor = dColor.opening
         
         label.alpha = 0.f
     }

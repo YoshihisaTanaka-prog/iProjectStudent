@@ -57,8 +57,7 @@ class QuestionnaireViewController: UIViewController {
         if(questionaire.result > -1){
 //            送信して画面を移動
             timer.invalidate()
-            let user = User(NCMBUser.current()!)
-            let object = NCMBObject(className: "StudentParameter", objectId: user.studentParameter!.objectId)
+            let object = NCMBObject(className: "StudentParameter")
             var error: NSError? = nil
             object?.fetch(&error)
             if(error == nil){

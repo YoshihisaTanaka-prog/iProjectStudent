@@ -72,9 +72,7 @@ class User {
             }
         }
     }
-}
-
-extension User{
+    
     convenience init(_ parameter: NCMBObject, subject: String){
         let user = parameter.object(forKey: "user") as! NCMBUser
         self.init(user)
@@ -90,17 +88,35 @@ class TeacherParameter{
     var score: Double?
     
     init(_ parameter: NCMBObject) {
+        func fillS(_ s: String?) -> String{
+            if s == nil {
+                return ""
+            }
+            else{
+                return s!
+            }
+        }
+        func fillD(_ d: Double?) -> Double{
+            if d == nil {
+                return 0.d
+            }
+            else{
+                return d!
+            }
+        }
+        func fillI(_ i: Int?) -> Int{
+            if i == nil {
+                return 0
+            }
+            else{
+                return i!
+            }
+        }
+        
         self.ncmb = parameter
         self.objectId = parameter.objectId
-        self.departments = parameter.object(forKey: "departments") as! String
-        self.score = 1.d// 一旦これで
-    }
-    
-    init(_ parameter: NCMBObject, subject: String){
-        self.ncmb = parameter
-        self.objectId = parameter.objectId
-        self.departments = parameter.object(forKey: "departments") as! String
-        self.score = parameter.object(forKey: subject + "AverageScore") as? Double
+        self.departments = fillS(parameter.object(forKey: "departments") as? String)
+        self.score = 0.d// 一旦これで
     }
 }
 
@@ -115,19 +131,39 @@ class StudentParameter{
     var introduction: String
     
     init(_ parameter: NCMBObject) {
+        func fillS(_ s: String?) -> String{
+            if s == nil {
+                return ""
+            }
+            else{
+                return s!
+            }
+        }
+        func fillD(_ d: Double?) -> Double{
+            if d == nil {
+                return 0.d
+            }
+            else{
+                return d!
+            }
+        }
+        func fillI(_ i: Int?) -> Int{
+            if i == nil {
+                return 0
+            }
+            else{
+                return i!
+            }
+        }
+        
         self.ncmb = parameter
         self.objectId = parameter.objectId
-        self.SchoolName = parameter.object(forKey: "SchoolName") as! String
-        self.selection = parameter.object(forKey: "selection") as! String
-        self.grade = parameter.object(forKey: "grade") as! String
-        self.parentEmailAdress = parameter.object(forKey: "parentEmailAdress") as! String
+        self.SchoolName = fillS(parameter.object(forKey: "SchoolName") as? String)
+        self.selection = fillS(parameter.object(forKey: "selection") as? String)
+        self.grade = fillS(parameter.object(forKey: "grade") as? String)
+        self.parentEmailAdress = fillS(parameter.object(forKey: "parentEmailAdress") as? String)
         
         //ニフクラ上にデータがない場合があるので条件分岐
-        let intro = parameter.object(forKey: "introduction") as? String
-        if(intro == nil){
-            self.introduction = ""
-        } else {
-            self.introduction = intro!
-        }
+        self.introduction = fillS(parameter.object(forKey: "introduction") as? String)
     }
 }
