@@ -7,7 +7,11 @@
 		<key>iProjectStudent.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>6</integer>
+<<<<<<< Updated upstream
+			<integer>8</integer>
+=======
+			<integer>2</integer>
+>>>>>>> Stashed changes
 		</dict>
 	</dict>
 </dict>

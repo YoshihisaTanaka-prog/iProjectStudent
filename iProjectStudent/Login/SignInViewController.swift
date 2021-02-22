@@ -30,7 +30,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func signIn() {
         
-        if userIdTextField.text!.count > 0 && passwordTextField.text!.count > 0 {
+        if passwordTextField.text!.count > 0 {
             NCMBUser.logInWithUsername(inBackground: userIdTextField.text!, password: passwordTextField.text!) { (user, error) in
                 if error != nil{
                     //エラーがあった場合
@@ -50,6 +50,29 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         }
+        
+        /*
+         if userIdTextField.text!.count > 0 && passwordTextField.text!.count > 0 {
+             NCMBUser.logInWithUsername(inBackground: userIdTextField.text!, password: passwordTextField.text!) { (user, error) in
+                 if error != nil{
+                     //エラーがあった場合
+                     self.showOkAlert(title: "Error", message: error!.localizedDescription)
+                 } else {
+                     //ログイン成功
+                     let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                     let rootViewController = storyboard.instantiateViewController(identifier: "RootTabBarController")
+                     self.present(rootViewController, animated: true, completion: nil)
+                     
+ //                    let _ = User(NCMBUser.current())
+                     
+                     //ログイン状態の保持
+                     let ud = UserDefaults.standard
+                     ud.set(true, forKey: "isLogin")
+                     ud.synchronize()
+                 }
+             }
+         }
+         */
         
     }
     
