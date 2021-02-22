@@ -64,9 +64,17 @@ class QuestionnaireViewController: UIViewController {
                 object?.setObject(questionaire.result, forKey: "personalityGroup")
                 object?.saveInBackground({ (error) in
                     if(error == nil){
-                        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-                        let rootViewController = storyboard.instantiateViewController(withIdentifier: "RootTabBarController")
-                        self.present(rootViewController, animated: false, completion: nil)
+                        NCMBUser.current()?.setObject(object, forKey: "parameter")
+                        NCMBUser.current()?.signUpInBackground({ (error) in
+                            if(error == nil){
+                                let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                                let rootViewController = storyboard.instantiateViewController(withIdentifier: "RootTabBarController")
+                                self.present(rootViewController, animated: false, completion: nil)
+                            }
+                            else{
+                                self.showOkAlert(title: "Error", message: error!.localizedDescription)
+                            }
+                        })
                     }
                     else{
                         self.showOkAlert(title: "Error", message: error!.localizedDescription)

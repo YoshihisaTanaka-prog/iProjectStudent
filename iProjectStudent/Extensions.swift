@@ -56,7 +56,7 @@ extension UIViewController{
         }
         else{
             let safeAreaView = UIView(frame: CGRect(x: 0.f, y: 0.f, width: size.width, height: size.topMargin))
-            safeAreaView.backgroundColor = dColor.concept
+            safeAreaView.backgroundColor = dColor.base
             self.view.addSubview(safeAreaView)
             self.view.sendSubviewToBack(safeAreaView)
         }
@@ -67,7 +67,7 @@ extension UIViewController{
         }
         else{
             let safeAreaView = UIView(frame: CGRect(x: 0.f, y: size.viewHeight + size.topMargin, width: size.width, height: size.bottomMargin))
-            safeAreaView.backgroundColor = dColor.concept
+            safeAreaView.backgroundColor = dColor.base
             self.view.addSubview(safeAreaView)
             self.view.sendSubviewToBack(safeAreaView)
         }
@@ -83,6 +83,11 @@ extension UIView{
                 let v = view as! UILabel
                 v.textColor = dColor.font
                 v.backgroundColor = .clear
+            }
+            if view is AccentLabel {
+                let v = view as! AccentLabel
+                v.textColor = dColor.font
+                v.backgroundColor = dColor.accent
             }
 //            if view is UIPickerView {
 //                let v = view as! UIPickerView
@@ -107,7 +112,7 @@ extension UIView{
             }
             if view is AccentButton {
                 let v = view as! AccentButton
-                v.setTitleColor(.red, for: .normal)
+                v.setTitleColor(UIColor(iRed: 127, iGreen: 0, iBlue: 0), for: .normal)
                 v.backgroundColor = dColor.accent
                 let h = min( v.frame.size.height / 2.f , 15.f )
                 v.layer.cornerRadius = h

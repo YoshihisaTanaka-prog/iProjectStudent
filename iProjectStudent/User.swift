@@ -44,6 +44,9 @@ class User {
         let parameter = user.object(forKey: "parameter") as? NCMBObject
         if parameter == nil {
             self.userName = ""
+            user.userName = ""
+            var e: NSError? = nil
+            user.save(&e)
         } else {
             let param = NCMBObject(className: parameter!.ncmbClassName, objectId: parameter!.objectId)
             var error: NSError? = nil
