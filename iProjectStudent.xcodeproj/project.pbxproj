@@ -62,6 +62,7 @@
 		1F806AC925D81336001BF41B /* EditUserPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F806AC825D81336001BF41B /* EditUserPageViewController.swift */; };
 		1FA191B625CACE3F007B935B /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA191B525CACE3F007B935B /* SignInViewController.swift */; };
 		1FA191B925CC1F56007B935B /* SignUp2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA191B825CC1F56007B935B /* SignUp2ViewController.swift */; };
+		1FB58C2E25E3ED29009CFCD0 /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB58C2D25E3ED29009CFCD0 /* ForgetPasswordViewController.swift */; };
 		340713FEDEBF163EE86F1551 /* Pods_iProjectStudent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DE0601A6454D98F09896370 /* Pods_iProjectStudent.framework */; };
 /* End PBXBuildFile section */
 
@@ -124,6 +125,7 @@
 		1F806AC825D81336001BF41B /* EditUserPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserPageViewController.swift; sourceTree = "<group>"; };
 		1FA191B525CACE3F007B935B /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		1FA191B825CC1F56007B935B /* SignUp2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp2ViewController.swift; sourceTree = "<group>"; };
+		1FB58C2D25E3ED29009CFCD0 /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
 		6DE0601A6454D98F09896370 /* Pods_iProjectStudent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iProjectStudent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D422194F92E40D78F265E371 /* Pods-iProjectStudent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iProjectStudent.release.xcconfig"; path = "Target Support Files/Pods-iProjectStudent/Pods-iProjectStudent.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -281,6 +283,7 @@
 				1F0D91E925E1380800503048 /* SignUpViewController.swift */,
 				04A841EB25C57B1E00469B5E /* SignIn.storyboard */,
 				1FA191B525CACE3F007B935B /* SignInViewController.swift */,
+				1FB58C2D25E3ED29009CFCD0 /* ForgetPasswordViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -468,6 +471,7 @@
 				046872D125DE0E1C00A6ABBF /* CheckBox.swift in Sources */,
 				0473BF5625D2EA0900550EFB /* Questionnaire.swift in Sources */,
 				0455EDC125DA8ECE00013330 /* ReviewDetailViewController.swift in Sources */,
+				1FB58C2E25E3ED29009CFCD0 /* ForgetPasswordViewController.swift in Sources */,
 				04A7E9A625AF327B00C0F43C /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
