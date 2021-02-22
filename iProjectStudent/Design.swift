@@ -14,18 +14,19 @@ import UIKit
 class OriginalCollor {
     var concept: UIColor
     var base: UIColor
+    var opening: UIColor
     var font: UIColor
     var accent: UIColor
     init() {
-        self.concept = UIColor(iRed: 55, iGreen: 180, iBlue: 255)
-        self.base = UIColor(iRed: 215, iGreen: 240, iBlue: 255)
-        self.font = UIColor(iRed: 0, iGreen: 0, iBlue: 102)
-        self.accent = UIColor(iRed: 255, iGreen: 255, iBlue: 0)
+        self.concept = UIColor(iRed: 55, iGreen: 120, iBlue: 255)
+        self.base = UIColor(iRed: 196, iGreen: 220, iBlue: 255)
+        self.opening = UIColor(iRed: 122, iGreen: 170, iBlue: 255)
+        self.font = UIColor(iRed: 0, iGreen: 0, iBlue: 50)
+        self.accent = UIColor(iRed: 255, iGreen: 255, iBlue: 50)
     }
 }
 
 extension UIColor {
-    
     convenience init(iRed: Int, iGreen: Int, iBlue: Int, iAlpha: Int){
         let r = iRed.f / 255.f
         let g = iGreen.f / 255.f
@@ -45,7 +46,6 @@ extension UIColor {
 
 //BackGroundView
 class BackGrounvView{
-    var baseView = UIView()
     var backView =  UIView()
     
     init(_ isExistsNavigationBar: Bool, _ isExistsTabBar: Bool, mainView: inout UIView){
@@ -63,16 +63,17 @@ class BackGrounvView{
         
         let sizeInfo = screenSizeG[title]!
         let frame = CGRect(x: 0.f, y: sizeInfo.topMargin, width: sizeInfo.width, height: sizeInfo.viewHeight)
-        let miniFrame = CGRect(x: frame.width / 20.f, y: 5.f, width: frame.width * 0.9.f, height: frame.height - 10.f)
         let bigFrame = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.width, height: frame.height)
-        self.baseView = UIView(frame: miniFrame)
-        self.baseView.backgroundColor = dColor.base
-        self.baseView.layer.cornerRadius = 10.f
         self.backView = UIView(frame: bigFrame)
-        self.backView.backgroundColor = dColor.concept
-        self.backView.addSubview(self.baseView)
+        self.backView.backgroundColor = dColor.base
         mainView.addSubview(self.backView)
         mainView.sendSubviewToBack(self.backView)
-        mainView.setFontColor()
     }
 }
+
+class AccentButton: UIButton {}
+class AccentLabel: UILabel {}
+
+class WeakButton: UIButton {}
+
+class PickerLabel: UILabel {}

@@ -75,82 +75,19 @@ class SignUp2ViewController: UIViewController,UITextFieldDelegate, UIPickerViewD
         
         if passwordTextField.text == confirmTextField.text {
 //            userNameやmailAddressが空白か確認をするコードの追加をする。
-            if(userIdTextField.text!.count * emailTextField.text!.count == 0){
+            if(emailTextField.text!.count == 0){
                 showOkAlert(title: "注意", message: "ユーザー名かメールアドレスが入力されていません。")
             }
             else{
                 if selected != nil {
-                    let user = NCMBUser()
-                    user.userName = userIdTextField.text!
-                    user.mailAddress = emailTextField.text!
-                    user.password = passwordTextField.text!
-                    
-                    let object = NCMBObject(className: "StudentParameter")
-                    object?.setObject(user, forKey: "user")
-                    //クラス間で紐付け
-                    object?.setObject(selected!, forKey: "selection")
-                    object?.setObject(parentemailTextField.text!, forKey: "parentEmailAdress")
-                    object?.setObject(gradeTextField.text!, forKey: "grade")
-                    object?.setObject(schoolTextField.text!, forKey: "SchoolName")
-//                    object?.setObject(gradeTextField.text!, forKey: "grade")
-//                    object?.setObject(parentemailTextField.text!, forKey: "parentEmailAdress")
-                    
-                    user.signUpInBackground { [self] (error) in
-                        if error != nil{
-                            //エラーがあった場合
-                            self.showOkAlert(title: "エラー", message: error!.localizedDescription)
-                        } else {
-                            //登録成功
-                            print("登録成功",user.object(forKey: "mailAddress"))
-                            print("emailTextField.text",emailTextField.text)
-                            object?.saveInBackground({ (error) in
-                                if error != nil {
-                                    self.showOkAlert(title: "エラー", message: error!.localizedDescription)
-                                } else {
-                                    
-                                    let groupACL = NCMBACL()
-                                    let currentUser = NCMBUser.current()
-
-                                    //会員本人（currentUser）の権限
-                                    //for: userは、自分（currentUser）に対してacl情報を書き換える
-                                    groupACL.setReadAccess(true, for: currentUser)
-                                    groupACL.setWriteAccess(true, for: currentUser)
-
-                                    //全てのユーザの権限
-                                    //setPublicReadAccessをtrueにすれば他人の情報を取得可能！
-                                    //基本的にsetPublicWriteAccessをtrueにすると、他人でもユーザ消したり、情報変更できてしまうから注意
-                                    groupACL.setPublicReadAccess(true)
-                                    groupACL.setPublicWriteAccess(false)
-
-                                    //userクラスにこれまで設定してきたACL情報をセット
-                                    user.acl = groupACL
-
-                                    //userデータ(設定したacl情報)を保存する
-                                    
-                                    user.mailAddress = self.emailTextField.text!
-                                    user.setObject(self.userIdFuriganaTextField.text, forKey: "furigana")
-                                    user.setObject(false, forKey: "isTeacher")
-                                    user.setObject(object!, forKey: "parameter")
-                                    user.setObject(nil, forKey: "peerId")
-                                    user.setObject(true, forKey: "isActive")
-                                    user.saveInBackground { (error) in
-                                        if error != nil {
-                                            self.showOkAlert(title: "エラー", message: error!.localizedDescription)
-                                        }
-                                    }
-                                    let storyboard = UIStoryboard(name: "Questionnaire", bundle: Bundle.main)
-                                    let rootViewController = storyboard.instantiateViewController(identifier: "QuestionnaireController")
-                                    
-                                    UIApplication.shared.keyWindow?.rootViewController = rootViewController
-                                    
-                                    //ログイン状態の保持
-                                    let ud = UserDefaults.standard
-                                    ud.set(true, forKey: "isLogin")
-                                    ud.synchronize()
-                                }
-                            })
-                            
-                        }
+                    var error: NSError? = nil
+                    let mail = emailTextField.text!
+                    NCMBUser.requestAuthenticationMail(mail, error: &error)
+                    if(error == nil){
+                        self.showOkDismissAlert(title: "報告", message: "本人確認用のメールアドレスを送信いたします。しばらくお待ちください。")
+                    }
+                    else{
+                        showOkAlert(title: "Error", message: error!.localizedDescription)
                     }
                 } else {
                     showOkAlert(title: "エラー", message: "文理選択がされていません")
@@ -160,6 +97,16 @@ class SignUp2ViewController: UIViewController,UITextFieldDelegate, UIPickerViewD
             showOkAlert(title: "エラー", message: "パスワードが一致していません")
         }
 
+    }
+    
+    func showOkDismissAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alertOkAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            alertController.dismiss(animated: true, completion: nil)
+            self.navigationController?.popViewController(animated: true)
+        }
+        alertController.addAction(alertOkAction)
+        self.present(alertController, animated: true, completion: nil)
     }
 
 }

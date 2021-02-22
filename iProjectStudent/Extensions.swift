@@ -35,6 +35,7 @@ extension Double{
 }
 
 extension UIViewController{
+    
     func showOkAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let alertOkAction = UIAlertAction(title: "OK", style: .default) { (action) in
@@ -46,6 +47,7 @@ extension UIViewController{
     
     func setBackGround(_ isExistsNavigationBar: Bool, _ isExistsTabBar: Bool) {
         let _ = BackGrounvView(isExistsNavigationBar, isExistsTabBar, mainView: &self.view)
+        self.view.setFontColor()
         
         let size = getScreenSize(isExsistsNavigationBar: false, isExsistsTabBar: false)!
         if isExistsNavigationBar {
@@ -73,13 +75,19 @@ extension UIViewController{
 }
 
 extension UIView{
+    
     func setFontColor() {
         for view in self.subviews {
+            view.setFontColor()
             if view is UILabel{
                 let v = view as! UILabel
                 v.textColor = dColor.font
                 v.backgroundColor = .clear
             }
+//            if view is UIPickerView {
+//                let v = view as! UIPickerView
+//                v.backgroundColor = dColor.opening
+//            }
             if view is UITextField{
                 let v = view as! UITextField
                 v.textColor = dColor.font
@@ -90,6 +98,26 @@ extension UIView{
                 v.textColor = dColor.font
                 v.backgroundColor = .clear
             }
+            if view is UIButton {
+                let v = view as! UIButton
+                v.setTitleColor(UIColor(iRed: 255, iGreen: 255, iBlue: 255), for: .normal)
+                v.backgroundColor = dColor.concept
+                let h = min( v.frame.size.height / 2.f , 15.f )
+                v.layer.cornerRadius = h
+            }
+            if view is AccentButton {
+                let v = view as! AccentButton
+                v.setTitleColor(.red, for: .normal)
+                v.backgroundColor = dColor.accent
+                let h = min( v.frame.size.height / 2.f , 15.f )
+                v.layer.cornerRadius = h
+            }
+            if view is WeakButton {
+                let v = view as! WeakButton
+                v.setTitleColor(.blue, for: .normal)
+                v.backgroundColor = .clear
+            }
         }
     }
+    
 }
