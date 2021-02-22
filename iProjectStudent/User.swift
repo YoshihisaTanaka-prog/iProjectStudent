@@ -17,7 +17,7 @@ class User {
     var userName: String
     var userIdFurigana: String?
     var mailAddress: String?
-    var isTeacher: Bool
+//    var isTeacher: Bool
     var oneOnOneSerch: String
     var teacherParameter: TeacherParameter?
     var studentParameter: StudentParameter?
@@ -30,7 +30,7 @@ class User {
         self.mailAddress = user.mailAddress
         self.userIdFurigana = user.object(forKey: "furigana") as? String
         self.userName = user.object(forKey: "userName") as! String
-        self.isTeacher = user.object(forKey: "isTeacher") as! Bool
+//        self.isTeacher = user.object(forKey: "isTeacher") as! Bool
         
 //        個人チャットを検索するためのパラメータ
         if (NCMBUser.current()?.objectId)! < self.userId {
@@ -41,21 +41,23 @@ class User {
         }
         
 //        ユーザの詳細データ
-        let parameter = user.object(forKey: "parameter") as! NCMBObject
-        let param = NCMBObject(className: parameter.ncmbClassName, objectId: parameter.objectId)
-        var error: NSError? = nil
-        param?.fetch(&error)
-        if(error == nil && param != nil){
-            if(param!.ncmbClassName == "teacherParameter"){
-                self.teacherParameter = TeacherParameter(param!)
-            }
-            else{
-                self.studentParameter = StudentParameter(param!)
+        let parameter = user.object(forKey: "parameter") as? NCMBObject
+        if parameter == nil {
+            self.userName = ""
+        } else {
+            let param = NCMBObject(className: parameter!.ncmbClassName, objectId: parameter!.objectId)
+            var error: NSError? = nil
+            param?.fetch(&error)
+            if(error == nil && param != nil){
+                if(param!.ncmbClassName == "teacherParameter"){
+                    self.teacherParameter = TeacherParameter(param!)
+                }
+                else{
+                    self.studentParameter = StudentParameter(param!)
+                }
             }
         }
-        else{
-            fatalError(error!.localizedDescription)
-        }
+
         
 //        画像の設定
         let imageUrl = user.object(forKey: "imageURL") as? String
