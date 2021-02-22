@@ -25,7 +25,7 @@ class Questionnaire {
         self.numOfButton = numOfButton
         size = screenSizeG["NnNt"]!
         self.mainScrollView.frame = CGRect(x: 0.f, y: size.topMargin, width: size.width, height: size.viewHeight)
-        self.mainScrollView.backgroundColor = .white
+        self.mainScrollView.backgroundColor = dColor.base
         mainSVHeight = 20.f // mainScrollViewの高さなどを設定するための変数
 //        アンケートの一番上に表示する文章の設定
         let titleLabel = UILabel(frame: CGRect(x: 10.f, y: 10.f, width: size.width - 20.f, height: 0))
@@ -65,6 +65,7 @@ class Questionnaire {
         self.contentsView.frame = CGRect(x: 0.f, y: 0.f, width: size.width, height: mainSVHeight)
         self.mainScrollView.addSubview(self.contentsView)
         self.mainScrollView.contentSize = CGSize(width: size.width, height: mainSVHeight)
+        self.mainScrollView.setFontColor()
     }
     
     @objc func tappedAnswer(){
@@ -139,10 +140,11 @@ class QuestionView{
         self.mainView.addSubview(label1)
         self.mainView.addSubview(label2)
         for i in 0..<numOfButton {
-            self.buttons.append(UIButton(frame: CGRect(x: 0.f, y: 0.f, width: 30.f, height: 30.f)))
+            self.buttons.append(CheckRadioButton(frame: CGRect(x: 0.f, y: 0.f, width: 30.f, height: 30.f)))
             self.buttons[i].center = CGPoint(x: size.width / 2.f - 54.f + i.f * 36, y: height + 95.f)
-            self.buttons[i].setTitleColor(.darkGray, for: .normal)
             self.buttons[i].setTitle("○", for: .normal)
+            self.buttons[i].setTitleColor(dColor.font, for: .normal)
+            self.buttons[i].alpha = 0.9.f
             self.buttons[i].tag = i
             self.buttons[i].addTarget(self, action: #selector(self.selected(_:)), for: .touchUpInside)
             self.mainView.addSubview(buttons[i])
@@ -157,7 +159,7 @@ class QuestionView{
         for i in 0..<self.numOfButton {
             if(i == sender.tag){
                 buttons[i].setTitle("◉", for: .normal)
-                buttons[i].setTitleColor(.black, for: .normal)
+                buttons[i].alpha = 1.f
                 if(isNormal){
                     self.reslut = i
                 }
@@ -167,7 +169,7 @@ class QuestionView{
             }
             else{
                 buttons[i].setTitle("○", for: .normal)
-                buttons[i].setTitleColor(.lightGray, for: .normal)
+                buttons[i].alpha = 0.6.f
             }
         }
     }
