@@ -31,15 +31,23 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     @IBAction func signIn() {
         
         if passwordTextField.text!.count > 0 {
-            NCMBUser.logInWithUsername(inBackground: userIdTextField.text!, password: passwordTextField.text!) { (user, error) in
+            NCMBUser.logInWithMailAddress(inBackground: userIdTextField.text!, password: passwordTextField.text!) { (user, error) in
                 if error != nil{
                     //エラーがあった場合
                     self.showOkAlert(title: "Error", message: error!.localizedDescription)
                 } else {
                     //ログイン成功
-                    let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-                    let rootViewController = storyboard.instantiateViewController(identifier: "RootTabBarController")
-                    self.present(rootViewController, animated: true, completion: nil)
+                    let u = user?.object(forKey:"parameter") as? NCMBObject
+                    if u == nil {
+                        let storyboard = UIStoryboard(name: "Questionnaire", bundle: Bundle.main)
+                        let rootViewController = storyboard.instantiateViewController(withIdentifier: "QuestionnaireController")
+                        self.present(rootViewController, animated: false, completion: nil)
+                    } else {
+                        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                        let rootViewController = storyboard.instantiateViewController(identifier: "RootTabBarController")
+                        self.present(rootViewController, animated: true, completion: nil)
+                    }
+                
                     
 //                    let _ = User(NCMBUser.current())
                     
