@@ -97,7 +97,7 @@ class EventViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             
             
             
-            let object = NCMBObject(className:"ScheduleTeacher")
+            let object = NCMBObject(className:"ScheduleStudent")
             object?.setObject(NCMBUser.current().objectId,forKey:"teacherId")
             object?.setObject(subjectName, forKey:"subject" )
             object?.setObject(y_text.text, forKey: "whenDo")
