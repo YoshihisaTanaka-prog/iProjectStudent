@@ -38,17 +38,9 @@ class UserPageViewController: UIViewController, UITextFieldDelegate, UITextViewD
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let file = NCMBFile.file(withName: (NCMBUser.current()?.objectId)! + ".png", data: nil) as! NCMBFile
-        file.getDataInBackground { (data, error) in
-            if error != nil {
-                print(error!.localizedDescription)
-            } else {
-                if error != nil{
-                    let image = UIImage(data: data!)
-                    self.userImageView.image = image
-                }
-            }
-        }
+        
+        userImageView.image = userImagesCacheG[NCMBUser.current()!.objectId]
+        
         userImageView.layer.cornerRadius = userImageView.bounds.width / 2.0
         userImageView.layer.masksToBounds = true
         
@@ -63,16 +55,15 @@ class UserPageViewController: UIViewController, UITextFieldDelegate, UITextViewD
 //        pickerView1.dataSource = self
         introductionTextView.delegate = self
         
-        let userId = NCMBUser.current()?.userName
         let user = User(NCMBUser.current())
         //let userIdFurigana = NCMBUser.current()?.setObject(userIdFuriganaTextField.text, forKey: "furigana") as! String
         //let Introduction = NCMBUser.current()?.setObject(introductionTextView.text, forKey: "introduction") as! String
-        userIdTextField.text = userId
+        userIdTextField.text = user.userName
         emailTextField.text = NCMBUser.current()?.mailAddress
         userIdFuriganaTextField.text = user.userIdFurigana
         schoolTextField.text = user.studentParameter?.SchoolName
         gradeTextField.text = user.studentParameter?.grade
-        //choiceTextField.text = user.studentParameter?.choice
+        choiceTextField.text = user.studentParameter?.choice
         selectionTextField.text = user.studentParameter?.selection
         parentsEmailTextField.text = user.studentParameter?.parentEmailAdress
         introductionTextView.text = user.studentParameter?.introduction
@@ -83,7 +74,7 @@ class UserPageViewController: UIViewController, UITextFieldDelegate, UITextViewD
         let  signOutAction = UIAlertAction(title: "ログアウト", style: .default) { (action) in
             NCMBUser.logOutInBackground { (error) in
                 if error != nil {
-                    print(error)
+                    self.showOkAlert(title: "Error", message: error!.localizedDescription)
                 } else {
                     //ログアウト成功
                     let storyboard = UIStoryboard(name: "SignIn", bundle: Bundle.main)

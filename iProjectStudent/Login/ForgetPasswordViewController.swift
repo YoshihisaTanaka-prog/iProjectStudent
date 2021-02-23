@@ -16,22 +16,25 @@ class ForgetPasswordViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         ForgetemailTextField.delegate = self
+        setBackGround(false, false)
 
         // Do any additional setup after loading the view.
     }
     @IBAction func signUp() {
+        if(ForgetemailTextField.text == ""){
+            showOkAlert(title: "注意", message: "メールアドレスを入力してください。")
+        }
+        else{
+            let Forgetemail = ForgetemailTextField.text
+            
+            NCMBUser.requestPasswordResetForEmail(inBackground: Forgetemail, block: {(error) in
+                if (error != nil) {
+                    self.showOkAlert(title: "Error", message: error!.localizedDescription);
+                } else {
+                    self.showOkAlert(title: "報告", message: "メール送信完了")
+                }
+            })
+        }
+    }
     
-        let Forgetemail = ForgetemailTextField.text
-
-        NCMBUser.requestPasswordResetForEmail(inBackground: Forgetemail, block: {(error) in
-          if (error != nil) {
-            print(error);
-          } else {
-            print("メール送信完了")
-          }
-        })
-
-    
-}
-
 }

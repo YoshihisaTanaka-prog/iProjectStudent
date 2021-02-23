@@ -59,6 +59,7 @@ class QuestionnaireViewController: UIViewController {
             timer.invalidate()
             let object = NCMBObject(className: "StudentParameter")
             object?.setObject(questionaire.result, forKey: "personalityGroup")
+            object?.setObject(NCMBUser.current(), forKey: "user")
             object?.saveInBackground({ (error) in
                 if(error == nil){
                     NCMBUser.current()?.setObject(object, forKey: "parameter")

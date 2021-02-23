@@ -29,7 +29,7 @@ class User {
         self.userId = user.objectId
         self.mailAddress = user.mailAddress
         self.userIdFurigana = user.object(forKey: "furigana") as? String
-        self.userName = user.object(forKey: "userName") as! String
+        self.userName = user.object(forKey: "name") as? String ?? ""
 //        self.isTeacher = user.object(forKey: "isTeacher") as! Bool
         
 //        個人チャットを検索するためのパラメータ
@@ -43,10 +43,7 @@ class User {
 //        ユーザの詳細データ
         let parameter = user.object(forKey: "parameter") as? NCMBObject
         if parameter == nil {
-            self.userName = ""
-            user.userName = ""
-            var e: NSError? = nil
-            user.save(&e)
+            userImagesCacheG[self.userId] = UIImage(named: "studentNoImage.png")
         } else {
             let param = NCMBObject(className: parameter!.ncmbClassName, objectId: parameter!.objectId)
             var error: NSError? = nil
@@ -54,11 +51,15 @@ class User {
             if(error == nil && param != nil){
                 if(param!.ncmbClassName == "teacherParameter"){
                     self.teacherParameter = TeacherParameter(param!)
-                    userImagesG[self.userId] = UIImage("teacherNoImage.png")
+                    if(userImagesCacheG[self.userId] == nil){
+                        userImagesCacheG[self.userId] = UIImage(named: "teacherNoImage.png")
+                    }
                 }
                 else{
                     self.studentParameter = StudentParameter(param!)
-                    userImagesG[self.userId] = UIImage("studentNoImage.png")
+                    if(userImagesCacheG[self.userId] == nil){
+                        userImagesCacheG[self.userId] = UIImage(named: "studentNoImage.png")
+                    }
                 }
             }
         }
@@ -67,13 +68,13 @@ class User {
 //        画像の設定
         let imageName = user.object(forKey: "imageName") as? String
         if( imageName != nil ){
-            let file = NCMBFile.file(withName: imageUrl!, data: nil) as! NCMBFile
+            let file = NCMBFile.file(withName: imageName!, data: nil) as! NCMBFile
             file.getDataInBackground { (data, error) in
                 if error == nil {
                 } else {
                     if data != nil {
                         let image = UIImage(data: data!)
-                        userImagesG[self.userId] = image
+                        userImagesCacheG[self.userId] = image
                     }
                 }
             }
@@ -84,6 +85,17 @@ class User {
         let user = parameter.object(forKey: "user") as! NCMBUser
         self.init(user)
         self.teacherParameter = TeacherParameter(parameter)
+        let score = parameter.object(forKey: subject + "AverageScore") as? Double
+        if(score != nil){
+            self.teacherParameter!.score = score!
+        }
+        else{
+            parameter.setObject(0, forKey: subject + "AverageScore")
+            parameter.setObject(0, forKey: subject + "TotalScore")
+            parameter.setObject(0, forKey: subject + "TotalNum")
+            var e: NSError? = nil
+            parameter.save(&e)
+        }
     }
 }
 
@@ -92,7 +104,7 @@ class TeacherParameter{
     var ncmb: NCMBObject
     var objectId: String
     var departments: String
-    var score: Double?
+    var score: Double
     
     init(_ parameter: NCMBObject) {
         func fillS(_ s: String?) -> String{
@@ -130,12 +142,14 @@ class TeacherParameter{
 class StudentParameter{
     
     var ncmb: NCMBObject
+    var choice: String
     var objectId: String
     var SchoolName: String
     var selection: String
     var grade: String
     var parentEmailAdress: String
     var introduction: String
+    var youbi: String
     
     init(_ parameter: NCMBObject) {
         func fillS(_ s: String?) -> String{
@@ -165,12 +179,12 @@ class StudentParameter{
         
         self.ncmb = parameter
         self.objectId = parameter.objectId
+        self.choice = fillS(parameter.object(forKey: "choice") as? String)
         self.SchoolName = fillS(parameter.object(forKey: "SchoolName") as? String)
         self.selection = fillS(parameter.object(forKey: "selection") as? String)
         self.grade = fillS(parameter.object(forKey: "grade") as? String)
         self.parentEmailAdress = fillS(parameter.object(forKey: "parentEmailAdress") as? String)
-        
-        //ニフクラ上にデータがない場合があるので条件分岐
         self.introduction = fillS(parameter.object(forKey: "introduction") as? String)
+        self.youbi = fillS(parameter.object(forKey: "youbi") as? String)
     }
 }

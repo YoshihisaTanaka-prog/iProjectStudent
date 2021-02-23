@@ -26,6 +26,31 @@ class CheckBox {
         self.mainView.frame = CGRect(x: 0, y: 0, width: 0, height: self.height)
         print(height)
     }
+    
+    func getSelection() -> String{
+        var ret = ""
+        for c in checkBoxes {
+            if c.isSelected {
+                ret += "T"
+            } else {
+                ret += "F"
+            }
+        }
+        return ret
+    }
+    
+    func setSelection(_ selection: String) {
+        if selection.count == checkBoxes.count {
+            let cList = Array(selection)
+            for i in 0..<cList.count{
+                let s = String(cList[i])
+                if(s == "T"){
+                    checkBoxes[i].isSelected = true
+                    checkBoxes[i].button.setTitle("◉", for: .normal)
+                }
+            }
+        }
+    }
 }
 
 class CheckBoxButton {
@@ -35,11 +60,7 @@ class CheckBoxButton {
     init(_ c: CheckBoxInput, num: Int) {
         self.label = UILabel(frame: CGRect(x: 25.f, y: 25.f * num.f , width: 120.f, height: 20.f))
         self.label.text = c.title
-        if(c.color == nil){
-            self.label.textColor = .black
-        } else {
-            self.label.textColor = c.color!
-        }
+        self.label.textColor = c.color
         self.button = UIButton(frame: CGRect(x: 0.f, y: 25.f * num.f, width: 20.f, height: 20.f))
         self.button.setTitle("○", for: .normal)
         self.button.setTitleColor(UIColor(red: 0.f, green: 0.f, blue: 0.5.f, alpha: 1.f), for: .normal)
@@ -58,14 +79,14 @@ class CheckBoxButton {
 
 class CheckBoxInput{
     var title: String
-    var color: UIColor?
-    init(_ title: String, color: UIColor?){
+    var color: UIColor
+    init(_ title: String, color: UIColor){
         self.title = title
         self.color = color
     }
     
     init(_ title: String){
         self.title = title
-        self.color = nil
+        self.color = dColor.font
     }
 }

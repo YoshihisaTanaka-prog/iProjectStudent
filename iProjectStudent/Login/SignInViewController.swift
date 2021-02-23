@@ -39,22 +39,33 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                     //ログイン成功
                     let u = user?.object(forKey:"parameter") as? NCMBObject
                     if u == nil {
-                        let storyboard = UIStoryboard(name: "Questionnaire", bundle: Bundle.main)
-                        let rootViewController = storyboard.instantiateViewController(withIdentifier: "QuestionnaireController")
-                        self.present(rootViewController, animated: false, completion: nil)
+                        user!.acl = nil
+                        user?.saveInBackground({ (error) in
+                            if(error == nil){
+                                let storyboard = UIStoryboard(name: "Questionnaire", bundle: Bundle.main)
+                                let rootViewController = storyboard.instantiateViewController(withIdentifier: "QuestionnaireController")
+                                self.present(rootViewController, animated: false, completion: nil)
+                                
+                                //ログイン状態の保持
+                                let ud = UserDefaults.standard
+                                ud.set(true, forKey: "isLogin")
+                                ud.synchronize()
+                            }
+                            else{
+                                self.showOkAlert(title: "Error", message: error!.localizedDescription)
+                            }
+                        })
                     } else {
                         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
                         let rootViewController = storyboard.instantiateViewController(identifier: "RootTabBarController")
                         self.present(rootViewController, animated: true, completion: nil)
+                        let _ = User(NCMBUser.current())
+                        
+                        //ログイン状態の保持
+                        let ud = UserDefaults.standard
+                        ud.set(true, forKey: "isLogin")
+                        ud.synchronize()
                     }
-                
-                    
-//                    let _ = User(NCMBUser.current())
-                    
-                    //ログイン状態の保持
-                    let ud = UserDefaults.standard
-                    ud.set(true, forKey: "isLogin")
-                    ud.synchronize()
                 }
             }
         }
