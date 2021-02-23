@@ -52,6 +52,7 @@ class User {
             var error: NSError? = nil
             param?.fetch(&error)
             
+      /*
             if(error == nil && param != nil){
                 if(param!.ncmbClassName == "teacherParameter"){
                     self.teacherParameter = TeacherParameter(param!)
@@ -62,7 +63,7 @@ class User {
                     userImagesG[self.userId] = UIImage("studentNoImage.png")
                 }
             }
-            /*
+*/
              //2021/02/23修正
              if(error == nil && param != nil){
                              if(param!.ncmbClassName == "teacherParameter"){
@@ -77,9 +78,9 @@ class User {
                                      userImagesCacheG[self.userId] = UIImage(named: "studentNoImage.png")
                                  }
 
-             */
+             
         }
-
+     
         
 //        画像の設定
         let imageName = user.object(forKey: "imageName") as? String
@@ -104,6 +105,7 @@ class User {
     }
 }
 
+    
 class TeacherParameter{
     
     var ncmb: NCMBObject
