@@ -24,8 +24,11 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
     @IBOutlet var choiceTextField: UITextField!
     @IBOutlet var pickerView1: UIPickerView!
     @IBOutlet var introductionTextView: UITextView!
-
+    
     var selected: String?
+    
+    var filename: String?
+    
     let bunri = ["文理選択","文系","理系","その他"]
     var youbiCheckBox: CheckBox!
     let youbiList: [CheckBoxInput] = [
@@ -37,7 +40,7 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         CheckBoxInput("土曜日", color: .blue),
         CheckBoxInput("日曜日", color: .red)
     ]
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackGround(true, true)
@@ -53,38 +56,44 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         gradeTextField.delegate = self
         emailTextField.delegate = self
         parentsEmailTextField.delegate = self
-//        pickerView1.delegate = self
-//        pickerView1.dataSource = self
+        //        pickerView1.delegate = self
+        //        pickerView1.dataSource = self
         choiceTextField.delegate = self
         introductionTextView.delegate = self
         
-
         
+        let user = User(NCMBUser.current())
         let userId_ = NCMBUser.current()?.userName
         let mailAddress_ = NCMBUser.current()?.mailAddress
         let userIdFurigana = NCMBUser.current()?.setObject(userIdFuriganaTextField.text, forKey: "furigana")
         let user_ = User(NCMBUser.current())
         userIdTextField.text = userId_
         emailTextField.text = mailAddress_
-        //userIdFuriganaTextField.text = userIdFurigana!
+        //userIdFuriganaTextField.text = NCMBUser.current()?.setObject(userIdFuriganaTextField.text, forKey: "furigana") as? String
+        userIdFuriganaTextField.text = user.userIdFurigana
         schoolTextField.text = user_.studentParameter?.SchoolName
         gradeTextField.text = user_.studentParameter?.grade
+        choiceTextField.text = user_.studentParameter?.choice
         selectionTextField.text = user_.studentParameter?.selection
         parentsEmailTextField.text = user_.studentParameter?.parentEmailAdress
+        introductionTextView.text = user.studentParameter?.introduction
         
         
-        let file = NCMBFile.file(withName: (NCMBUser.current()?.objectId)! + ".png", data: nil) as! NCMBFile
-        file.getDataInBackground { (data, error) in
-            if error != nil {
-            print(error)
-        } else {
-            if error != nil{
-                let image = UIImage(data: data!)
-                self.userImageView.image = image
+        let imagename = NCMBUser.current()?.object(forKey: "imageName") as? String
+        if imagename != nil {
+            let file = NCMBFile.file(withName: (NCMBUser.current()?.objectId)!, data: nil) as! NCMBFile
+            file.getDataInBackground { (data, error) in
+                if error != nil {
+                    self.showOkAlert(title: "Error", message: error!.localizedDescription)
+                } else {
+                    
+                    let image = UIImage(data: data!)
+                    self.userImageView.image = image
+                    //self.showOkAlert(title: "ダウンロードできました", message: "ダウンロードできました")
+                }
             }
         }
-    }
-
+        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -104,21 +113,22 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         
         picker.dismiss(animated: true, completion: nil)
         
-        let data = UIImage.pngData(resizedImage!)
-        let file = NCMBFile.file(withName: NCMBUser.current()?.objectId, data: data()) as! NCMBFile
+        let data = resizedImage!.pngData()
+        let file = NCMBFile.file(withName: NCMBUser.current()?.objectId, data: data) as! NCMBFile
         file.saveInBackground { (error) in
             if error != nil{
                 print(error)
             } else {
                 self.userImageView.image = selectedImage
+                self.filename = NCMBUser.current()?.objectId
             }
         } progressBlock: { (progress) in
             print(progress)
         }
         
     }
-  
-
+    
+    
     // UIPickerViewの列の数
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -149,32 +159,44 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
             selected = nil
         }
     }
-
+    
     
     @IBAction func closeEditViewController(){
         self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func saveUserInfo(){
-        let user = NCMBUser.current()
-        user?.setObject(userIdTextField.text, forKey: "userName")
-        user?.setObject(userIdFuriganaTextField.text, forKey: "furigana")
-        user?.setObject(schoolTextField.text, forKey: "SchoolName")
-        user?.setObject(gradeTextField.text, forKey: "grade")
-        user?.setObject(choiceTextField.text, forKey: "choice")
-        user?.setObject(parentsEmailTextField.text, forKey: "parentEmailAdress")
+        let user = User(NCMBUser.current())
+        user.ncmb.setObject(userIdTextField.text, forKey: "userName")
+        user.studentParameter!.ncmb.setObject(userIdTextField.text, forKey: "userName")
+        user.ncmb.setObject(userIdFuriganaTextField.text, forKey: "furigana")
+        user.studentParameter!.ncmb.setObject(userIdFuriganaTextField.text, forKey: "furigana")
+        user.studentParameter!.ncmb.setObject(schoolTextField.text, forKey: "SchoolName")
+        user.studentParameter!.ncmb.setObject(gradeTextField.text, forKey: "grade")
+        user.studentParameter!.ncmb.setObject(choiceTextField.text, forKey: "choice")
+        user.studentParameter!.ncmb.setObject(selectionTextField.text, forKey: "selection")
+        user.studentParameter!.ncmb.setObject(parentsEmailTextField.text, forKey: "parentEmailAdress")
         //user?.setObject(selected!, forKey: "selection")
-        user?.mailAddress = emailTextField.text
-        user?.setObject(introductionTextView.text, forKey: "introduction")
-        user?.saveInBackground({ (error) in
+        user.ncmb.mailAddress = emailTextField.text
+        user.studentParameter!.ncmb.setObject(introductionTextView.text, forKey: "introduction")
+        
+        user.ncmb.setObject(filename, forKey: "imageName")
+        
+        user.ncmb.saveInBackground({ (error) in
             if error != nil {
-                print(error!.localizedDescription)
+                self.showOkAlert(title: "Error", message: error!.localizedDescription)
             } else {
-                self.navigationController?.popViewController(animated: true)
+                user.studentParameter!.ncmb.saveInBackground( { (error) in
+                    if error != nil{
+                        self.showOkAlert(title: "Error", message: error!.localizedDescription)
+                    } else {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                })
             }
-            })
-
-        }
+        })
+        
+    }
     
     @IBAction func selectImage() {
         let actionController = UIAlertController(title: "画像の選択", message: "選択して下さい", preferredStyle: .actionSheet)
@@ -220,9 +242,9 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         youbiCheckBox.mainView.frame = CGRect(x: width / 10.f, y: 50, width: width * 0.8, height: youbiCheckBox.height)
         alertController.view.addSubview(youbiCheckBox.mainView)
         alertController.addAction(alertOkAction)
-//        alertController.view.frame = CGRect(x: 0, y: 0, width: width, height: height)
-//        let size = getScreenSize(isExsistsNavigationBar: true, isExsistsTabBar: true)!
-//        alertController.view.center = CGPoint(x: size.width / 2.f, y: size.viewHeight / 2.f)
+        //        alertController.view.frame = CGRect(x: 0, y: 0, width: width, height: height)
+        //        let size = getScreenSize(isExsistsNavigationBar: true, isExsistsTabBar: true)!
+        //        alertController.view.center = CGPoint(x: size.width / 2.f, y: size.viewHeight / 2.f)
         self.present(alertController, animated: true, completion: nil)
     }
 }

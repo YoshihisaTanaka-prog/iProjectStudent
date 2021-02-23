@@ -38,14 +38,17 @@ class UserPageViewController: UIViewController, UITextFieldDelegate, UITextViewD
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let file = NCMBFile.file(withName: (NCMBUser.current()?.objectId)! + ".png", data: nil) as! NCMBFile
-        file.getDataInBackground { (data, error) in
-            if error != nil {
-                print(error!.localizedDescription)
-            } else {
-                if error != nil{
+        let imagename = NCMBUser.current()?.object(forKey: "imageName") as? String
+        if imagename != nil {
+            let file = NCMBFile.file(withName: (NCMBUser.current()?.objectId)!, data: nil) as! NCMBFile
+            file.getDataInBackground { (data, error) in
+                if error != nil {
+                    self.showOkAlert(title: "Error", message: error!.localizedDescription)
+                } else {
+                    
                     let image = UIImage(data: data!)
                     self.userImageView.image = image
+                    //self.showOkAlert(title: "ダウンロードできました", message: "ダウンロードできました")
                 }
             }
         }
@@ -72,7 +75,7 @@ class UserPageViewController: UIViewController, UITextFieldDelegate, UITextViewD
         userIdFuriganaTextField.text = user.userIdFurigana
         schoolTextField.text = user.studentParameter?.SchoolName
         gradeTextField.text = user.studentParameter?.grade
-        //choiceTextField.text = user.studentParameter?.choice
+        choiceTextField.text = user.studentParameter?.choice
         selectionTextField.text = user.studentParameter?.selection
         parentsEmailTextField.text = user.studentParameter?.parentEmailAdress
         introductionTextView.text = user.studentParameter?.introduction
