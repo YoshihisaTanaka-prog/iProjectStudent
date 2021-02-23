@@ -11,14 +11,14 @@ import NCMB
 
 class SignInViewController: UIViewController, UITextFieldDelegate {
     
-    @IBOutlet var userIdTextField: UITextField!
+    @IBOutlet var emailTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackGround(true, false)
 
-        userIdTextField.delegate = self
+        emailTextField.delegate = self
         passwordTextField.delegate = self
     }
     
@@ -31,7 +31,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     @IBAction func signIn() {
         
         if passwordTextField.text!.count > 0 {
-            NCMBUser.logInWithMailAddress(inBackground: userIdTextField.text!, password: passwordTextField.text!) { (user, error) in
+            NCMBUser.logInWithMailAddress(inBackground: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
                 if error != nil{
                     //エラーがあった場合
                     self.showOkAlert(title: "Error", message: error!.localizedDescription)

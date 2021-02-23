@@ -48,6 +48,8 @@ class User {
             let param = NCMBObject(className: parameter!.ncmbClassName, objectId: parameter!.objectId)
             var error: NSError? = nil
             param?.fetch(&error)
+            
+      /*
             if(error == nil && param != nil){
                 if(param!.ncmbClassName == "teacherParameter"){
                     self.teacherParameter = TeacherParameter(param!)
@@ -62,8 +64,24 @@ class User {
                     }
                 }
             }
-        }
+*/
+             //2021/02/23修正
+             if(error == nil && param != nil){
+                             if(param!.ncmbClassName == "teacherParameter"){
+                                 self.teacherParameter = TeacherParameter(param!)
+                                 if(userImagesCacheG[self.userId] == nil){
+                                     userImagesCacheG[self.userId] = UIImage(named: "teacherNoImage.png")
+                                 }
+                             }
+                             else{
+                                 self.studentParameter = StudentParameter(param!)
+                                 if(userImagesCacheG[self.userId] == nil){
+                                     userImagesCacheG[self.userId] = UIImage(named: "studentNoImage.png")
+                                 }
 
+             
+        }
+     
         
 //        画像の設定
         let imageName = user.object(forKey: "imageName") as? String
@@ -99,6 +117,7 @@ class User {
     }
 }
 
+    
 class TeacherParameter{
     
     var ncmb: NCMBObject
@@ -147,6 +166,7 @@ class StudentParameter{
     var SchoolName: String
     var selection: String
     var grade: String
+    var choice: String
     var parentEmailAdress: String
     var introduction: String
     var youbi: String
@@ -183,6 +203,7 @@ class StudentParameter{
         self.SchoolName = fillS(parameter.object(forKey: "SchoolName") as? String)
         self.selection = fillS(parameter.object(forKey: "selection") as? String)
         self.grade = fillS(parameter.object(forKey: "grade") as? String)
+        self.choice = fillS(parameter.object(forKey: "choice") as? String)
         self.parentEmailAdress = fillS(parameter.object(forKey: "parentEmailAdress") as? String)
         self.introduction = fillS(parameter.object(forKey: "introduction") as? String)
         self.youbi = fillS(parameter.object(forKey: "youbi") as? String)
