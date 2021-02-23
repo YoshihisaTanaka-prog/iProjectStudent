@@ -75,5 +75,6 @@ class AccentButton: UIButton {}
 class AccentLabel: UILabel {}
 
 class WeakButton: UIButton {}
+class CheckRadioButton: UIButton {}
 
 class PickerLabel: UILabel {}

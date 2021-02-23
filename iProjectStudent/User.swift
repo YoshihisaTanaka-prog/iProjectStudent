@@ -55,9 +55,11 @@ class User {
             if(error == nil && param != nil){
                 if(param!.ncmbClassName == "teacherParameter"){
                     self.teacherParameter = TeacherParameter(param!)
+                    userImagesG[self.userId] = UIImage("teacherNoImage.png")
                 }
                 else{
                     self.studentParameter = StudentParameter(param!)
+                    userImagesG[self.userId] = UIImage("studentNoImage.png")
                 }
             }
             /*
@@ -80,8 +82,8 @@ class User {
 
         
 //        画像の設定
-        let imageUrl = user.object(forKey: "imageURL") as? String
-        if( imageUrl != nil ){
+        let imageName = user.object(forKey: "imageName") as? String
+        if( imageName != nil ){
             let file = NCMBFile.file(withName: imageUrl!, data: nil) as! NCMBFile
             file.getDataInBackground { (data, error) in
                 if error == nil {

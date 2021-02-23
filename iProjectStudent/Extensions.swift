@@ -122,6 +122,11 @@ extension UIView{
                 v.setTitleColor(.blue, for: .normal)
                 v.backgroundColor = .clear
             }
+            if view is CheckRadioButton {
+                let v = view as! CheckRadioButton
+                v.setTitleColor(dColor.font, for: .normal)
+                v.backgroundColor = .clear
+            }
         }
     }
     
