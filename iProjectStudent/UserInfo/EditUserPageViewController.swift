@@ -64,6 +64,7 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         userIdFuriganaTextField.text = user_.userIdFurigana
         schoolTextField.text = user_.studentParameter?.SchoolName
         gradeTextField.text = user_.studentParameter?.grade
+        introductionTextView.text = user_.studentParameter?.introduction
         pickerView1.selectRow(getSelectionNum(selesction: user_.studentParameter?.selection), inComponent: 0, animated: false)
         choiceTextField.text = user_.studentParameter!.choice
         
