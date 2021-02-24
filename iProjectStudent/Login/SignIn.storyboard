@@ -72,8 +72,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="ログイン" id="1QU-9J-ZHR"/>
                     <connections>
+                        <outlet property="emailTextField" destination="gnM-l0-Vfe" id="60g-OW-9FH"/>
                         <outlet property="passwordTextField" destination="m4p-RK-e3w" id="E2F-e1-hg9"/>
-                        <outlet property="userIdTextField" destination="gnM-l0-Vfe" id="FZB-Iu-dGp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xTj-Lu-YA9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

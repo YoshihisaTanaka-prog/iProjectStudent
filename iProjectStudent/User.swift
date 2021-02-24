@@ -17,7 +17,7 @@ class User {
     var userName: String
     var userIdFurigana: String?
     var mailAddress: String?
-//    var isTeacher: Bool
+    //    var isTeacher: Bool
     var oneOnOneSerch: String
     var teacherParameter: TeacherParameter?
     var studentParameter: StudentParameter?
@@ -30,9 +30,9 @@ class User {
         self.mailAddress = user.mailAddress
         self.userIdFurigana = user.object(forKey: "furigana") as? String
         self.userName = user.object(forKey: "name") as? String ?? ""
-//        self.isTeacher = user.object(forKey: "isTeacher") as! Bool
+        //        self.isTeacher = user.object(forKey: "isTeacher") as! Bool
         
-//        個人チャットを検索するためのパラメータ
+        //        個人チャットを検索するためのパラメータ
         if (NCMBUser.current()?.objectId)! < self.userId {
             oneOnOneSerch = (NCMBUser.current()?.objectId)! + "-" + self.userId
         }
@@ -40,7 +40,7 @@ class User {
             oneOnOneSerch = self.userId + "-" + (NCMBUser.current()?.objectId)!
         }
         
-//        ユーザの詳細データ
+        //        ユーザの詳細データ
         let parameter = user.object(forKey: "parameter") as? NCMBObject
         if parameter == nil {
             userImagesCacheG[self.userId] = UIImage(named: "studentNoImage.png")
@@ -49,7 +49,6 @@ class User {
             var error: NSError? = nil
             param?.fetch(&error)
             
-      /*
             if(error == nil && param != nil){
                 if(param!.ncmbClassName == "teacherParameter"){
                     self.teacherParameter = TeacherParameter(param!)
@@ -63,27 +62,25 @@ class User {
                         userImagesCacheG[self.userId] = UIImage(named: "studentNoImage.png")
                     }
                 }
+            }             //2021/02/23修正
+            if(error == nil && param != nil){
+                if(param!.ncmbClassName == "teacherParameter"){
+                    self.teacherParameter = TeacherParameter(param!)
+                    if(userImagesCacheG[self.userId] == nil){
+                        userImagesCacheG[self.userId] = UIImage(named: "teacherNoImage.png")
+                    }
+                }
+                else{
+                    self.studentParameter = StudentParameter(param!)
+                    if(userImagesCacheG[self.userId] == nil){
+                        userImagesCacheG[self.userId] = UIImage(named: "studentNoImage.png")
+                    }
+                }
+                
             }
-*/
-             //2021/02/23修正
-             if(error == nil && param != nil){
-                             if(param!.ncmbClassName == "teacherParameter"){
-                                 self.teacherParameter = TeacherParameter(param!)
-                                 if(userImagesCacheG[self.userId] == nil){
-                                     userImagesCacheG[self.userId] = UIImage(named: "teacherNoImage.png")
-                                 }
-                             }
-                             else{
-                                 self.studentParameter = StudentParameter(param!)
-                                 if(userImagesCacheG[self.userId] == nil){
-                                     userImagesCacheG[self.userId] = UIImage(named: "studentNoImage.png")
-                                 }
-
-             
+            
         }
-     
-        
-//        画像の設定
+        //        画像の設定
         let imageName = user.object(forKey: "imageName") as? String
         if( imageName != nil ){
             let file = NCMBFile.file(withName: imageName!, data: nil) as! NCMBFile
@@ -117,7 +114,7 @@ class User {
     }
 }
 
-    
+
 class TeacherParameter{
     
     var ncmb: NCMBObject
@@ -166,7 +163,6 @@ class StudentParameter{
     var SchoolName: String
     var selection: String
     var grade: String
-    var choice: String
     var parentEmailAdress: String
     var introduction: String
     var youbi: String
