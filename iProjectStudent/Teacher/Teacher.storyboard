@@ -12,7 +12,7 @@
         <!--教師の詳細情報-->
         <scene sceneID="CQK-8P-LAL">
             <objects>
-                <viewController id="PzR-jO-w9S" customClass="ReviewTeacherViewController" customModule="iProjectStudent" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="PzR-jO-w9S" customClass="TeacherInfoViewController" customModule="iProjectStudent" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="15z-sh-9nJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -43,6 +43,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="教師の詳細情報" id="6Ua-PR-tEr"/>
                     <connections>
+                        <outlet property="tableView" destination="kIo-1w-gai" id="8Ti-3y-DbI"/>
                         <segue destination="0BY-RR-G5b" kind="show" id="BoB-Ed-GFi"/>
                     </connections>
                 </viewController>

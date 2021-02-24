@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-var userImagesG: [String:UIImage] = [:]
+var userImagesCacheG: [String:UIImage] = [:]
 var isLogInG: Bool = false
 let dColor = OriginalCollor()
 let pickerLabelG = PickerLabel()

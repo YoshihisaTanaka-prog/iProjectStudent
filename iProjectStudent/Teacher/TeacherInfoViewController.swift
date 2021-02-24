@@ -42,7 +42,9 @@ class TeacherInfoViewController: UIViewController, UITableViewDataSource, UITabl
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell1") as! TeacherInfoTableViewCell
-//            cell.averageScoreCosmosView.rating = teacher.teacherParameter
+            cell.averageScoreCosmosView.rating = teacher.teacherParameter!.score
+            cell.furiganaLabel.text = teacher.userIdFurigana
+            
             return cell
         }
         else {

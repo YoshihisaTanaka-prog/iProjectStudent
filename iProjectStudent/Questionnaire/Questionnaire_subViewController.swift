@@ -58,33 +58,26 @@ class QuestionnaireViewController: UIViewController {
 //            送信して画面を移動
             timer.invalidate()
             let object = NCMBObject(className: "StudentParameter")
-            //var error: NSError? = nil
-            //object?.fetch(&error)
-            //if(error == nil){
-                object?.setObject(questionaire.result, forKey: "personalityGroup")
-                object?.saveInBackground({ (error) in
-                    if(error == nil){
-                        NCMBUser.current()?.setObject(object, forKey: "parameter")
-                        NCMBUser.current()?.userName = ""
-                        NCMBUser.current()?.saveInBackground({ (error) in
-                            if(error == nil){
-                                let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-                                let rootViewController = storyboard.instantiateViewController(withIdentifier: "RootTabBarController")
-                                self.present(rootViewController, animated: false, completion: nil)
-                            }
-                            else{
-                                self.showOkAlert(title: "Error", message: error!.localizedDescription)
-                            }
-                        })
-                    }
-                    else{
-                        self.showOkAlert(title: "Error", message: error!.localizedDescription)
-                    }
-                })
- //           }
- //           else{
- //               showOkAlert(title: "Error", message: error!.localizedDescription)
- //           }
+            object?.setObject(questionaire.result, forKey: "personalityGroup")
+            object?.setObject(NCMBUser.current(), forKey: "user")
+            object?.saveInBackground({ (error) in
+                if(error == nil){
+                    NCMBUser.current()?.setObject(object, forKey: "parameter")
+                    NCMBUser.current()?.signUpInBackground({ (error) in
+                        if(error == nil){
+                            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                            let rootViewController = storyboard.instantiateViewController(withIdentifier: "RootTabBarController")
+                            self.present(rootViewController, animated: false, completion: nil)
+                        }
+                        else{
+                            self.showOkAlert(title: "Error", message: error!.localizedDescription)
+                        }
+                    })
+                }
+                else{
+                    self.showOkAlert(title: "Error", message: error!.localizedDescription)
+                }
+            })
         }
         if(questionaire.result == -2){
             questionaire.result = -1

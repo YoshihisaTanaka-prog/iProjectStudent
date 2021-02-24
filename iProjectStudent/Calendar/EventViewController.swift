@@ -20,12 +20,15 @@ class EventViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet var pickerView: UIPickerView!
     @IBOutlet var studentLabel: UILabel!
     
+    var teacher: User?
+    
     var subjectName = "教科を選択"
     var subjectNameList = ["教科を選択","国語","数学","理科","社会","英語"]
     var date: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setBackGround(true, true)
         
         eventText.text = ""
         eventText.layer.borderWidth = 1.f
@@ -65,7 +68,7 @@ class EventViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
 
     //日付フォーム
-    @IBAction func picker(_ sender:UIDatePicker){
+    @IBAction func picker(_ sender: UIDatePicker){
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy/MM/dd"
         y_text.text = formatter.string(from: sender.date)
@@ -82,30 +85,28 @@ class EventViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             eventText.backgroundColor = .yellow
         }
         else{
-            print("データ書き込み開始")
-            
-            let realm = try! Realm()
-            
-            try! realm.write {
-                //日付表示の内容とスケジュール入力の内容が書き込まれる。
-                let Events = [Event(value: ["date": y_text.text, "event": studentLabel.text! + "(" + subjectName + ")" + eventText.text])]
-                realm.add(Events)
-                print("データ書き込み中")
-            }
-            
-            print("データ書き込み完了")
-            
-            
-            
             let object = NCMBObject(className:"ScheduleStudent")
-            object?.setObject(NCMBUser.current().objectId,forKey:"teacherId")
+            object?.setObject(NCMBUser.current().objectId,forKey:"studentId")
+            object?.setObject(teacher?.userId,forKey:"teacherId")
             object?.setObject(subjectName, forKey:"subject" )
             object?.setObject(y_text.text, forKey: "whenDo")
             object?.setObject(eventText.text, forKey: "whatToDo")
             object?.saveInBackground({ (error) in
                 if(error == nil){
                     //前のページに戻る
-                    self.dismiss(animated: true, completion: nil)
+                    print("データ書き込み開始")
+                    
+                    let realm = try! Realm()
+                    
+                    try! realm.write {
+                        //日付表示の内容とスケジュール入力の内容が書き込まれる。
+                        let Events = [Event(value: ["date": self.y_text.text!, "event":self.eventText.text!, "teacherId": self.teacher?.userId, "studentId": NCMBUser.current()!.objectId, "kind": self.subjectName, "id": object!.objectId])]
+                        realm.add(Events)
+                        print("データ書き込み中")
+                    }
+                    
+                    print("データ書き込み完了")
+                    self.navigationController?.popViewController(animated: true)
                     
                 }else{
                     

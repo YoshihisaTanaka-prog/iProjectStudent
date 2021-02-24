@@ -38,20 +38,9 @@ class UserPageViewController: UIViewController, UITextFieldDelegate, UITextViewD
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let imagename = NCMBUser.current()?.object(forKey: "imageName") as? String
-        if imagename != nil {
-            let file = NCMBFile.file(withName: (NCMBUser.current()?.objectId)!, data: nil) as! NCMBFile
-            file.getDataInBackground { (data, error) in
-                if error != nil {
-                    self.showOkAlert(title: "Error", message: error!.localizedDescription)
-                } else {
-                    
-                    let image = UIImage(data: data!)
-                    self.userImageView.image = image
-                    //self.showOkAlert(title: "ダウンロードできました", message: "ダウンロードできました")
-                }
-            }
-        }
+        
+        userImageView.image = userImagesCacheG[NCMBUser.current()!.objectId]
+        
         userImageView.layer.cornerRadius = userImageView.bounds.width / 2.0
         userImageView.layer.masksToBounds = true
         
@@ -66,11 +55,10 @@ class UserPageViewController: UIViewController, UITextFieldDelegate, UITextViewD
 //        pickerView1.dataSource = self
         introductionTextView.delegate = self
         
-        let userId = NCMBUser.current()?.userName
         let user = User(NCMBUser.current())
         //let userIdFurigana = NCMBUser.current()?.setObject(userIdFuriganaTextField.text, forKey: "furigana") as! String
         //let Introduction = NCMBUser.current()?.setObject(introductionTextView.text, forKey: "introduction") as! String
-        userIdTextField.text = userId
+        userIdTextField.text = user.userName
         emailTextField.text = NCMBUser.current()?.mailAddress
         userIdFuriganaTextField.text = user.userIdFurigana
         schoolTextField.text = user.studentParameter?.SchoolName
@@ -86,7 +74,7 @@ class UserPageViewController: UIViewController, UITextFieldDelegate, UITextViewD
         let  signOutAction = UIAlertAction(title: "ログアウト", style: .default) { (action) in
             NCMBUser.logOutInBackground { (error) in
                 if error != nil {
-                    print(error)
+                    self.showOkAlert(title: "Error", message: error!.localizedDescription)
                 } else {
                     //ログアウト成功
                     let storyboard = UIStoryboard(name: "SignIn", bundle: Bundle.main)

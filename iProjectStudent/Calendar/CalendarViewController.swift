@@ -10,26 +10,50 @@ import UIKit
 import FSCalendar
 import CalculateCalendarLogic
 import RealmSwift
+import NCMB
 
 class CalendarViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
     
     var eventList: [Event] = []
     var selectedDate = Date()
+    var currentMonth: Int!
     
     @IBOutlet var tableView: UITableView!  //スケジュール内容
     @IBOutlet var labelTitle: UILabel!  //「主なスケジュール」の表示
     //カレンダー部分
     @IBOutlet var datelabel: UILabel!  //日付の表示
+    @IBOutlet var calenderView: FSCalendar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView()
+        setBackGround(true, true)
+        
+        calenderView.appearance.headerDateFormat = "YYYY年M月"
+        calenderView.appearance.headerTitleColor = dColor.font
+        calenderView.calendarWeekdayView.weekdayLabels[0].text = "日"
+        calenderView.calendarWeekdayView.weekdayLabels[0].textColor = .red
+        calenderView.calendarWeekdayView.weekdayLabels[1].text = "月"
+        calenderView.calendarWeekdayView.weekdayLabels[1].textColor = dColor.font
+        calenderView.calendarWeekdayView.weekdayLabels[2].text = "火"
+        calenderView.calendarWeekdayView.weekdayLabels[2].textColor = dColor.font
+        calenderView.calendarWeekdayView.weekdayLabels[3].text = "水"
+        calenderView.calendarWeekdayView.weekdayLabels[3].textColor = dColor.font
+        calenderView.calendarWeekdayView.weekdayLabels[4].text = "木"
+        calenderView.calendarWeekdayView.weekdayLabels[4].textColor = dColor.font
+        calenderView.calendarWeekdayView.weekdayLabels[5].text = "金"
+        calenderView.calendarWeekdayView.weekdayLabels[5].textColor = dColor.font
+        calenderView.calendarWeekdayView.weekdayLabels[6].text = "土"
+        calenderView.calendarWeekdayView.weekdayLabels[6].textColor = .blue
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         loadEvent(selectedDate)
+        let tmpCalendar = Calendar(identifier: .gregorian)
+        currentMonth = tmpCalendar.component(.month, from: Date())
     }
     
     @objc func onClick(){ let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -46,11 +70,11 @@ class CalendarViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.backgroundColor = .clear
         if(eventList.count == 0){
             cell.textLabel?.text = "予定はありません"
-            cell.textLabel?.textColor = .gray
+            cell.textLabel?.textColor = dColor.opening
         }
         else{
             cell.textLabel?.text = eventList[indexPath.row].event
-            cell.textLabel?.textColor = .black
+            cell.textLabel?.textColor = dColor.font
         }
         return cell
     }
@@ -60,9 +84,15 @@ class CalendarViewController: UIViewController, UITableViewDataSource, UITableVi
         if(eventList.count != 0){
             let alertController = UIAlertController(title: "確認", message: "このイベントを削除しますか？", preferredStyle: .actionSheet)
             let alertOkAction = UIAlertAction(title: "削除", style: .destructive) { (action) in
-                //            ここに'eventList[IndexPath.row]'を削除するコードを書く--------------------------------------------------------
+                
                 do {
                     let realm = try! Realm()
+                    let object = NCMBObject(className: "ScheduleStudent", objectId: self.eventList[indexPath.row].id)
+                    object?.deleteInBackground({ (error) in
+                        if error != nil{
+                            self.showOkAlert(title: "Error", message: error!.localizedDescription)
+                        }
+                    })
                     try realm.write {
                         realm.delete(self.eventList[indexPath.row])
                     }
@@ -122,21 +152,44 @@ class CalendarViewController: UIViewController, UITableViewDataSource, UITableVi
     
     // 土日や祝日の日の文字色を変える
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
-        //祝日判定をする
-        if self.judgeHoliday(date){
-            return UIColor.red
+        let tmpCalendar = Calendar(identifier: .gregorian)
+        let inputMonth = tmpCalendar.component(.month, from: date)
+        if(inputMonth == currentMonth){
+            //祝日判定をする
+            if self.judgeHoliday(date){
+                return UIColor(iRed: 255, iGreen: 0, iBlue: 0)
+            }
+            
+            //土日の判定
+            let weekday = self.getWeekIdx(date)
+            if weekday == 1 {
+                return UIColor(iRed: 255, iGreen: 0, iBlue: 0)
+            }
+            else if weekday == 7 {
+                return UIColor(iRed: 0, iGreen: 0, iBlue: 255)
+            }
+            else{
+                return dColor.font
+            }
         }
-        
-        //土日の判定
-        let weekday = self.getWeekIdx(date)
-        if weekday == 1 {
-            return UIColor.red
+        else{
+            //祝日判定をする
+            if self.judgeHoliday(date){
+                return UIColor(iRed: 255, iGreen: 127, iBlue: 127)
+            }
+            
+            //土日の判定
+            let weekday = self.getWeekIdx(date)
+            if weekday == 1 {
+                return UIColor(iRed: 255, iGreen: 127, iBlue: 127)
+            }
+            else if weekday == 7 {
+                return UIColor(iRed: 127, iGreen: 192, iBlue: 255)
+            }
+            else{
+                return nil
+            }
         }
-        else if weekday == 7 {
-            return UIColor.blue
-        }
-        
-        return nil
     }
     
     func loadEvent(_ date: Date) {
@@ -173,6 +226,11 @@ class CalendarViewController: UIViewController, UITableViewDataSource, UITableVi
     
     //カレンダー処理(スケジュール表示処理)
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition){
+        let tmpCalendar = Calendar(identifier: .gregorian)
+        let inputMonth = tmpCalendar.component(.month, from: date)
+        if(currentMonth != inputMonth){
+            calenderView.setCurrentPage(date, animated: true)
+        }
         selectedDate = date
         loadEvent(selectedDate)
     }
@@ -189,6 +247,12 @@ class CalendarViewController: UIViewController, UITableViewDataSource, UITableVi
         }else{
             return 0
         }
+    }
+    
+    func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
+        let tmpCalendar = Calendar(identifier: .gregorian)
+        currentMonth = tmpCalendar.component(.month, from: calendar.currentPage)
+        calenderView.reloadData()
     }
     
 }
