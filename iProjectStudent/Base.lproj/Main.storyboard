@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qYT-7a-7mL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qYT-7a-7mL">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -35,8 +35,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="保護者のメールアドレス" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WPu-J7-91D" customClass="CategoryLabel" customModule="iProjectStudent" customModuleProvider="target">
-                                <rect key="frame" x="101.5" y="498" width="211" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="保護者のメールアドレス" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WPu-J7-91D" customClass="CategoryLabel" customModule="iProjectStudent" customModuleProvider="target">
+                                <rect key="frame" x="101.5" y="509" width="211" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="211" id="04c-Xl-fYv"/>
                                     <constraint firstAttribute="height" constant="21" id="HoC-Nh-Jmb"/>
@@ -45,8 +45,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="志望校" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h1w-CE-p9p" customClass="CategoryLabel" customModule="iProjectStudent" customModuleProvider="target">
-                                <rect key="frame" x="188.5" y="383" width="37" height="14.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="志望校" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h1w-CE-p9p" customClass="CategoryLabel" customModule="iProjectStudent" customModuleProvider="target">
+                                <rect key="frame" x="188.5" y="381" width="37" height="14.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="37" id="QC1-sn-WTt"/>
                                     <constraint firstAttribute="height" constant="14.5" id="nos-HU-Fhw"/>
@@ -79,8 +79,8 @@
                                     <segue destination="pu2-Jx-xK8" kind="show" id="yTh-gY-ZmF"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="自分のメールアドレス" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="asQ-Qm-yg8">
-                                <rect key="frame" x="115.5" y="455" width="183.5" height="23"/>
+                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="自分のメールアドレス" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="asQ-Qm-yg8">
+                                <rect key="frame" x="45" y="455" width="324" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="23" id="uhH-5S-u0U"/>
                                 </constraints>
@@ -105,8 +105,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="通っている学校名" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lQ1-qw-F3k">
-                                <rect key="frame" x="87.5" y="283" width="239" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="通っている学校名" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lQ1-qw-F3k">
+                                <rect key="frame" x="87.5" y="279" width="239" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="29s-5B-UJK"/>
                                     <constraint firstAttribute="width" constant="239" id="a6f-3x-2gB"/>
@@ -131,8 +131,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="保護者のメールアドレス" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3CF-ef-P4g">
-                                <rect key="frame" x="102" y="519" width="210" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="保護者のメールアドレス" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3CF-ef-P4g">
+                                <rect key="frame" x="20" y="519" width="374" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="210" id="NLN-FU-SkS"/>
                                     <constraint firstAttribute="height" constant="34" id="sKY-dl-EtH"/>
