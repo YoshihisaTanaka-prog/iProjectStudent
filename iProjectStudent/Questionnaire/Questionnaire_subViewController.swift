@@ -49,6 +49,8 @@ class QuestionnaireViewController: UIViewController {
         
         self.view.addSubview(questionaire.mainScrollView)
         
+        self.setBackGround(false , false)
+        
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(QuestionnaireViewController.read), userInfo: nil, repeats: true)
         
     }
