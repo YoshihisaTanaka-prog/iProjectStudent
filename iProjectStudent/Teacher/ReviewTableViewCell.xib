@@ -11,46 +11,78 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" restorationIdentifier="ReviewTeacher" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell2" rowHeight="95" id="KGk-i7-Jjw" customClass="ReviewTableViewCell" customModule="iProjectStudent" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="ReviewTeacher" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell2" rowHeight="60" id="KGk-i7-Jjw" customClass="ReviewTableViewCell" customModule="iProjectStudent" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="554" height="95"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="Cell1" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="554" height="95"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n4F-9P-XnL">
-                        <rect key="frame" x="-6" y="-4" width="92" height="103"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="teacherNoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="n4F-9P-XnL">
+                        <rect key="frame" x="20" y="20" width="55" height="55"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="n4F-9P-XnL" secondAttribute="height" multiplier="68:68" id="HvP-b0-54O"/>
+                        </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P3N-5I-WrI">
-                        <rect key="frame" x="108" y="14" width="0.0" height="0.0"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPK-D9-o3R">
+                        <rect key="frame" x="83" y="20" width="57" height="29"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPK-D9-o3R">
-                        <rect key="frame" x="108" y="4" width="42" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BlM-36-iTA" customClass="CosmosView" customModule="Cosmos">
-                        <rect key="frame" x="375" y="6" width="179" height="82"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BlM-36-iTA" customClass="CosmosView" customModule="Cosmos">
+                        <rect key="frame" x="414" y="51" width="120" height="24"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="Jc9-d0-app"/>
+                            <constraint firstAttribute="width" constant="120" id="KLF-ag-GYw"/>
+                        </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUo-vP-zgM">
+                        <rect key="frame" x="83" y="54" width="323" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="EPD-xA-cXw"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ctD-z6-xSZ" customClass="AccentLabel" customModule="iProjectStudent" customModuleProvider="target">
+                        <rect key="frame" x="460" y="20" width="70" height="28"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="70" id="c6C-4f-fOO"/>
+                            <constraint firstAttribute="height" constant="28" id="t73-Rc-XrO"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="dUo-vP-zgM" firstAttribute="bottom" secondItem="n4F-9P-XnL" secondAttribute="bottom" id="15x-Fe-iSk"/>
+                    <constraint firstItem="n4F-9P-XnL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" symbolic="YES" id="1ee-FH-iKk"/>
+                    <constraint firstItem="dUo-vP-zgM" firstAttribute="leading" secondItem="gPK-D9-o3R" secondAttribute="leading" id="1hp-pL-LN9"/>
+                    <constraint firstAttribute="bottom" secondItem="n4F-9P-XnL" secondAttribute="bottom" constant="20" symbolic="YES" id="Bct-AN-6vP"/>
+                    <constraint firstAttribute="trailing" secondItem="BlM-36-iTA" secondAttribute="trailing" constant="20" symbolic="YES" id="Dty-vb-Vle"/>
+                    <constraint firstAttribute="trailing" secondItem="ctD-z6-xSZ" secondAttribute="trailing" constant="24" id="FwJ-f0-yGM"/>
+                    <constraint firstItem="BlM-36-iTA" firstAttribute="bottom" secondItem="dUo-vP-zgM" secondAttribute="bottom" id="L6p-6b-kik"/>
+                    <constraint firstItem="n4F-9P-XnL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" symbolic="YES" id="Sxm-Op-v47"/>
+                    <constraint firstItem="ctD-z6-xSZ" firstAttribute="top" secondItem="gPK-D9-o3R" secondAttribute="top" id="VIl-QA-50d"/>
+                    <constraint firstItem="BlM-36-iTA" firstAttribute="leading" secondItem="dUo-vP-zgM" secondAttribute="trailing" constant="8" symbolic="YES" id="cwj-B5-J6O"/>
+                    <constraint firstItem="gPK-D9-o3R" firstAttribute="leading" secondItem="n4F-9P-XnL" secondAttribute="trailing" constant="8" symbolic="YES" id="f1G-6o-gET"/>
+                    <constraint firstItem="gPK-D9-o3R" firstAttribute="top" secondItem="n4F-9P-XnL" secondAttribute="top" id="mzt-x0-btU"/>
+                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="backgroundView" destination="H2p-sc-9uM" id="mLQ-da-SJs"/>
                 <outlet property="cosmosView" destination="BlM-36-iTA" id="0H6-dJ-QlV"/>
+                <outlet property="score" destination="ctD-z6-xSZ" id="tKy-Wc-hmf"/>
+                <outlet property="title" destination="dUo-vP-zgM" id="Npo-aH-Gd6"/>
                 <outlet property="userNameLabel" destination="gPK-D9-o3R" id="ycs-mc-Tj1"/>
-                <outlet property="userimage" destination="n4F-9P-XnL" id="mSV-vN-zv8"/>
+                <outlet property="userimage" destination="n4F-9P-XnL" id="tf8-Ee-jCv"/>
             </connections>
-            <point key="canvasLocation" x="310.14492753623193" y="109.48660714285714"/>
+            <point key="canvasLocation" x="372.46376811594206" y="-1.0044642857142856"/>
         </tableViewCell>
     </objects>
     <designables>
@@ -59,6 +91,7 @@
         </designable>
     </designables>
     <resources>
+        <image name="teacherNoImage.png" width="512" height="512"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

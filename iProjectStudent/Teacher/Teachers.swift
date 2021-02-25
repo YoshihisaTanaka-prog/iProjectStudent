@@ -27,3 +27,16 @@ class Teachers {
         // listを並び替える
     }
 }
+
+class niseTeacher {
+    var name: String
+    var collage: String
+    var grade: Int
+    var score: Double
+    init(_ name: String, _ collage: String, _ grade: Int, _ score: Double){
+        self.name = name
+        self.collage = collage
+        self.grade = grade
+        self.score = score
+    }
+}

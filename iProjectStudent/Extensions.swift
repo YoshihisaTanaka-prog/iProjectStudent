@@ -30,7 +30,7 @@ extension Double{
         return CGFloat(self)
     }
     public var s: String {
-        return String(self)
+        return String(format: "%.2f", self)
     }
 }
 

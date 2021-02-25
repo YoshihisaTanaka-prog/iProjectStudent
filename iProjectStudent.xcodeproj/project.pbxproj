@@ -156,15 +156,15 @@
 			isa = PBXGroup;
 			children = (
 				0455EDB725DA8ECD00013330 /* ReviewTableViewCell.xib */,
+				0455EDBB25DA8ECD00013330 /* ReviewTableViewCell.swift */,
+				0455EDBE25DA8ECD00013330 /* TeacherInfoTableViewCell.xib */,
+				0455EDBA25DA8ECD00013330 /* TeacherInfoTableViewCell.swift */,
 				0455EDB825DA8ECD00013330 /* TeacherInfoViewController.swift */,
 				0455EDB925DA8ECD00013330 /* ReviewDetailViewController.swift */,
-				0455EDBA25DA8ECD00013330 /* TeacherInfoTableViewCell.swift */,
-				0455EDBB25DA8ECD00013330 /* ReviewTableViewCell.swift */,
-				0455EDBC25DA8ECD00013330 /* ReviewTeacher.swift */,
 				04AF5D4925E5415B00E2B385 /* SearchTeacherViewController.swift */,
+				0455EDBC25DA8ECD00013330 /* ReviewTeacher.swift */,
 				04AF5D4C25E5428100E2B385 /* Teachers.swift */,
 				0455EDBD25DA8ECD00013330 /* Teacher.storyboard */,
-				0455EDBE25DA8ECD00013330 /* TeacherInfoTableViewCell.xib */,
 			);
 			path = Teacher;
 			sourceTree = "<group>";

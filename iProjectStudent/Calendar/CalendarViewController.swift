@@ -29,7 +29,12 @@ class CalendarViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView()
+        tableView.layer.borderWidth = 1.f
+        tableView.layer.borderColor = dColor.concept.cgColor
         setBackGround(true, true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         
         calenderView.appearance.headerDateFormat = "YYYY年M月"
         calenderView.appearance.headerTitleColor = dColor.font
@@ -48,9 +53,6 @@ class CalendarViewController: UIViewController, UITableViewDataSource, UITableVi
         calenderView.calendarWeekdayView.weekdayLabels[6].text = "土"
         calenderView.calendarWeekdayView.weekdayLabels[6].textColor = .blue
         
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         loadEvent(selectedDate)
         let tmpCalendar = Calendar(identifier: .gregorian)
         currentMonth = tmpCalendar.component(.month, from: Date())

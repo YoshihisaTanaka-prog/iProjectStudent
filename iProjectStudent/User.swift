@@ -64,7 +64,7 @@ class User {
                 }
             }             //2021/02/23修正
             if(error == nil && param != nil){
-                if(param!.ncmbClassName == "teacherParameter"){
+                if(param!.ncmbClassName == "TeacherParameter"){
                     self.teacherParameter = TeacherParameter(param!)
                     if(userImagesCacheG[self.userId] == nil){
                         userImagesCacheG[self.userId] = UIImage(named: "teacherNoImage.png")

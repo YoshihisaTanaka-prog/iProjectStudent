@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import Cosmos
+import FSCalendar
 
 
 //    Color
@@ -124,77 +126,85 @@ extension UIViewController{
 extension UIView{
     
     func setFontColor() {
-        for view in self.subviews {
-            if !(view is IgnoreView){
-                view.setFontColor()
-            }
-            if view is UILabel{
-                let v = view as! UILabel
-                v.textColor = dColor.font
-                v.backgroundColor = .clear
-            }
-            if view is CategoryLabel{
-                let v = view as! CategoryLabel
-                v.textColor = dColor.concept
-            }
-            if view is AccentLabel {
-                let v = view as! AccentLabel
-                v.backgroundColor = .clear
-                let h = v.frame.size.height
-                let w = v.frame.size.width
-                let sv = IgnoreView(frame: CGRect(x: -12.f , y: h - 6.f, width: w + 24.f, height: 12.f))
-                let lv = UILabel(frame: CGRect(x: 0.f, y:0.f, width: w, height: h))
-                lv.text = v.text
-                lv.backgroundColor = .clear
-                lv.textAlignment = v.textAlignment
-                v.text = ""
-                sv.backgroundColor = dColor.accent
-                sv.layer.cornerRadius = 6.f
-                v.addSubview(sv)
-                v.sendSubviewToBack(sv)
-                v.addSubview(lv)
-            }
-//            if view is UIPickerView {
-//                let v = view as! UIPickerView
-//                v.backgroundColor = dColor.opening
-//            }
-            if view is UITextField{
-                let v = view as! UITextField
-                v.textColor = dColor.font
-                v.backgroundColor = .clear
-            }
-            if view is UITextView{
-                let v = view as! UITextView
-                v.textColor = dColor.font
-                v.backgroundColor = .clear
-            }
-            if view is UIButton {
-                let v = view as! UIButton
-                v.setTitleColor(UIColor(iRed: 255, iGreen: 255, iBlue: 255), for: .normal)
-                v.backgroundColor = dColor.concept
-                let h = min( v.frame.size.height / 2.f , 15.f )
-                v.layer.cornerRadius = h
-            }
-            if view is AccentButton {
-                let v = view as! AccentButton
-                v.setTitleColor(UIColor(iRed: 127, iGreen: 0, iBlue: 0), for: .normal)
-                v.backgroundColor = dColor.accent
-                let h = min( v.frame.size.height / 2.f , 15.f )
-                v.layer.cornerRadius = h
-            }
-            if view is WeakButton {
-                let v = view as! WeakButton
-                v.setTitleColor(.blue, for: .normal)
-                v.backgroundColor = .clear
-            }
-            if view is CheckRadioButton {
-                let v = view as! CheckRadioButton
-                v.setTitleColor(dColor.font, for: .normal)
-                v.backgroundColor = .clear
-            }
-            if view is UITableView{
-                let v = view as! UITableView
-                v.backgroundColor = .clear
+        if !(self is FSCalendar){
+            self.backgroundColor = dColor.base
+            for view in self.subviews {
+                if !(view is IgnoreView){
+                    view.setFontColor()
+                }
+                if view is UILabel{
+                    let v = view as! UILabel
+                    v.textColor = dColor.font
+                    v.backgroundColor = .clear
+                }
+                if view is CategoryLabel{
+                    let v = view as! CategoryLabel
+                    v.textColor = dColor.concept
+                    v.font = UIFont.boldSystemFont(ofSize: v.font.pointSize)
+                }
+                if view is AccentLabel {
+                    let v = view as! AccentLabel
+                    let addlength = 3.f
+                    v.backgroundColor = .clear
+                    let h = v.frame.size.height
+                    let w = v.frame.size.width
+                    let sv = IgnoreView(frame: CGRect(x: -addlength , y: h - 6.f, width: w + addlength * 2.f, height: 12.f))
+                    let lv = UILabel(frame: CGRect(x: addlength, y: 6.f - h, width: w, height: h))
+                    lv.text = v.text
+                    lv.font = UIFont.boldSystemFont(ofSize: v.font.pointSize)
+                    lv.backgroundColor = .clear
+                    lv.textAlignment = v.textAlignment
+                    v.textColor = .clear
+                    sv.backgroundColor = dColor.accent
+                    sv.layer.cornerRadius = 6.f
+                    v.addSubview(sv)
+                    v.sendSubviewToBack(sv)
+                    sv.addSubview(lv)
+                }
+                if view is UITextField{
+                    let v = view as! UITextField
+                    v.textColor = dColor.font
+                    v.backgroundColor = .clear
+                }
+                if view is UITextView{
+                    let v = view as! UITextView
+                    v.textColor = dColor.font
+                    v.backgroundColor = .clear
+                }
+                if view is UIButton {
+                    let v = view as! UIButton
+                    v.setTitleColor(UIColor(iRed: 255, iGreen: 255, iBlue: 255), for: .normal)
+                    v.backgroundColor = dColor.concept
+                    let h = min( v.frame.size.height / 2.f , 15.f )
+                    v.layer.cornerRadius = h
+                }
+                if view is AccentButton {
+                    let v = view as! AccentButton
+                    v.setTitleColor(UIColor(iRed: 127, iGreen: 0, iBlue: 0), for: .normal)
+                    v.backgroundColor = dColor.accent
+                    let h = min( v.frame.size.height / 2.f , 15.f )
+                    v.layer.cornerRadius = h
+                }
+                if view is WeakButton {
+                    let v = view as! WeakButton
+                    v.setTitleColor(.blue, for: .normal)
+                    v.backgroundColor = .clear
+                }
+                if view is CheckRadioButton {
+                    let v = view as! CheckRadioButton
+                    v.setTitleColor(dColor.font, for: .normal)
+                    v.backgroundColor = .clear
+                }
+                if view is UITableView{
+                    let v = view as! UITableView
+                    v.backgroundColor = .clear
+                }
+                if view is CosmosView{
+                    let v = view as! CosmosView
+                    v.settings.emptyBorderColor = dColor.font
+                    v.settings.filledColor = dColor.concept
+                    v.settings.filledBorderColor = dColor.font
+                }
             }
         }
     }
