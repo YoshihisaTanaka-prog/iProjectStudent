@@ -28,6 +28,9 @@ class SignUp2ViewController: UIViewController,UITextFieldDelegate, UIPickerViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setBackGround(true, true)
+        
+        
         userIdTextField.delegate = self
         userIdFuriganaTextField.delegate = self
         schoolTextField.delegate = self

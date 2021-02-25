@@ -31,6 +31,8 @@ class ReviewDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setBackGround(false, false)
+        
         //描画の設定
         // スター半分の評価ができるようにする(本人だけが編集できるよう設定してある）
         ratingScore.settings.fillMode = .half
