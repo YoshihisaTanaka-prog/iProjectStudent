@@ -17,13 +17,16 @@ class TeacherInfoViewController: UIViewController, UITableViewDataSource, UITabl
     var subject: String!
     
     private var reviewList: [ReviewTeacher] = []
-    
-    @IBOutlet var tableView: UITableView!
+    private var size: Size!
+    private var selectedReview: ReviewTeacher!
+    @IBOutlet private var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        size = getScreenSize(isExsistsNavigationBar: true, isExsistsTabBar: true)
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
@@ -33,6 +36,21 @@ class TeacherInfoViewController: UIViewController, UITableViewDataSource, UITabl
         // (「register(nib: UINib?, forCellReuseIdentifier: String)」を選ぶ。)
         tableView.register(nib1, forCellReuseIdentifier: "Cell1")
         tableView.register(nib2, forCellReuseIdentifier: "Cell2")
+        
+        setBackGround(true, true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        loadReview()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 0 {
+            return size.viewHeight
+        }
+        else{
+            return 100.f
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -44,25 +62,88 @@ class TeacherInfoViewController: UIViewController, UITableViewDataSource, UITabl
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell1") as! TeacherInfoTableViewCell
             cell.averageScoreCosmosView.rating = teacher.teacherParameter!.score
             cell.furiganaLabel.text = teacher.userIdFurigana
-            
+            cell.userImageView.image = userImagesCacheG[teacher.userId] ?? UIImage(named: "teacherNoImage.png")
+            cell.userNameLabel.text = teacher.userName + "　先生"
+            cell.collageInfoLabel.text = "東京大学   1年"
+            cell.averageTitleLabel.text = "平均評価：" + 4.9.s
+            cell.studentNumLabel.text = 10.s + "名"
+            cell.averageScoreCosmosView.rating = 4.91
+            cell.setFontColor()
             return cell
         }
         else {
-//            let indRow = indexPath.row - 1
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell2") as! ReviewTableViewCell
-            
+            let review = reviewList[indexPath.row - 1]
+            cell.userimage.image = UIImage(named: "studentNoImage.png")
+            cell.userNameLabel.text = ""
+            cell.title.text = review.title
+            cell.cosmosView.rating = review.score
+            for v in cell.score.subviews {
+                v.removeFromSuperview()
+            }
+            cell.score.text = review.score.s
+            cell.setFontColor()
             return cell
         }
     }
     
-    /*
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if(indexPath.row == 0){
+            let alert = UIAlertController(title: "選んでください。", message: "", preferredStyle: .actionSheet)
+            let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { (_) in
+                alert.dismiss(animated: true, completion: nil)
+            }
+            let goToChatAlertAction = UIAlertAction(title: "チャットを始める。", style: .default) { _ in
+                self.goToChat(userId: self.teacher.userId)
+            }
+            let goToScheduleAlertAction = UIAlertAction(title: "スケジュールを見る", style: .default) { _ in
+                self.performSegue(withIdentifier: "WatchSchedule", sender: nil)
+            }
+            alert.addAction(cancelAction)
+            alert.addAction(goToChatAlertAction)
+            alert.addAction(goToScheduleAlertAction)
+            self.present(alert, animated: true, completion: nil)
+        }
+        else{
+            selectedReview = reviewList[indexPath.row - 1]
+            self.performSegue(withIdentifier: "Detail", sender: nil)
+        }
+        tableView.reloadData()
+    }
+    
+    func loadReview(){
+        let query = NCMBQuery(className: "Review")
+        query?.whereKey("teacherId", equalTo: teacher.userId)
+        query?.findObjectsInBackground({ (result, error) in
+            if(error == nil){
+                self.reviewList = []
+                let objects = result as! [NCMBObject]
+                for object in objects {
+                    self.reviewList.append(ReviewTeacher(object))
+                }
+                self.tableView.reloadData()
+            }
+            else{
+                self.showOkAlert(title: "Error", message: error!.localizedDescription)
+            }
+        })
+    }
+    
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        switch segue.identifier {
+        case "Detail":
+            let nextVC = segue.destination as! ReviewDetailViewController
+            nextVC.subjectName = "japanese"
+            nextVC.review = selectedReview
+            nextVC.isAbletoEdit = false
+        default:
+            break
+        }
     }
-    */
+    
 
 }

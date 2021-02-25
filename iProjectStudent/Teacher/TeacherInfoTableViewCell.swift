@@ -23,6 +23,7 @@ class TeacherInfoTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         averageScoreCosmosView.settings.fillMode = .precise
+        userImageView.layer.cornerRadius = userImageView.frame.height / 2.f
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

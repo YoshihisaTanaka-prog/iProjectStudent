@@ -20,12 +20,12 @@ class ReviewTeacher{
 
     init (_ review:NCMBObject){
         self.objectId = review.object(forKey: "objectId") as! String
-        self.studentId = review.object(forKey: "studentId") as! String
+        self.studentId = review.object(forKey: "studentId") as? String ?? ""
         self.teacherId = review.object(forKey: "teacherId") as! String
         self.score = review.object(forKey: "Reviewscore") as! Double
-        self.comment = review.object(forKey: "Reviewcomment")as! String
-        self.title = review.object(forKey: "Reviewcomment") as! String
-        self.subject = review.object(forKey: "subject") as! String
+        self.comment = review.object(forKey: "Reviewcomment")as? String ?? ""
+        self.title = review.object(forKey: "title") as! String
+        self.subject = review.object(forKey: "subject") as? String ?? ""
     }
     
 }

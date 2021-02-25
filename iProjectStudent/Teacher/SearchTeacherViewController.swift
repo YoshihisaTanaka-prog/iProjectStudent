@@ -19,8 +19,8 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
     let subjectList = ["指導希望教科を選択","国語","数学","理科","社会","英語"]
     var teacherList: [niseTeacher] = []
     let teacherLists = [[
-        niseTeacher("清水彩加","東京大学",1,5.00),
-        niseTeacher("中村香織","東京大学",1,4.91),
+        niseTeacher("清水彩加","東京大学",1,5.0),
+        niseTeacher("中村香織","東京大学",1,4.9),
         niseTeacher("平岡龍聖","東京大学",3,4.17),
         niseTeacher("金井孝弘","東京大学",4,3.72),
         niseTeacher("福澤大喜","東京大学",1,3.71),
@@ -41,7 +41,7 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
         niseTeacher("前田優花","東京大学",3,3.22),
         niseTeacher("笹井翔","東京大学",2,2.03)
     ],[
-        niseTeacher("中村香織","東京大学",1,4.91),
+        niseTeacher("中村香織","東京大学",1,4.9),
         niseTeacher("黒岩秀嵩","東京大学",2,4.39),
         niseTeacher("佐野直希","東京大学",1,4.11),
         niseTeacher("大庭直哉","東京大学",1,3.81),
@@ -101,6 +101,10 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
         })
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return max(teacherList.count, 1)
     }
@@ -137,6 +141,7 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
         if teacherList.count != 0 {
             self.performSegue(withIdentifier: "Segue", sender: nil)
         }
+        tableView.reloadData()
     }
     
     

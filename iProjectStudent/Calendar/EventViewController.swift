@@ -21,10 +21,10 @@ class EventViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet var studentLabel: UILabel!
     
     var teacher: User?
+    let formatter = DateFormatter()
     
     var subjectName = "教科を選択"
     var subjectNameList = ["教科を選択","国語","数学","理科","社会","英語"]
-    var date: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,9 +38,9 @@ class EventViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         pickerView.dataSource = self
         pickerView.delegate = self
         
-        let formatter = DateFormatter()
         formatter.dateFormat = "yyyy/MM/dd"
         y_text.text = formatter.string(from: y.date)
+        
     }
 
     
@@ -61,17 +61,16 @@ class EventViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         subjectName = subjectNameList[row]
     }
     
-    
     //画面遷移(カレンダーページ)
     @IBAction func onbackClick(_: UIButton) {
         dismiss(animated: true, completion: nil)
     }
 
     //日付フォーム
-    @IBAction func picker(_ sender: UIDatePicker){
+    @IBAction func picker(){
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy/MM/dd"
-        y_text.text = formatter.string(from: sender.date)
+        y_text.text = formatter.string(from: y.date)
     }
 
     //DB書き込み処理
@@ -86,10 +85,13 @@ class EventViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         }
         else{
             let object = NCMBObject(className:"ScheduleStudent")
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy/MM/dd"
+            let date = formatter.string(from: y.date)
             object?.setObject(NCMBUser.current().objectId,forKey:"studentId")
             object?.setObject(teacher?.userId,forKey:"teacherId")
             object?.setObject(subjectName, forKey:"subject" )
-            object?.setObject(y_text.text, forKey: "whenDo")
+            object?.setObject(date, forKey: "whenDo")
             object?.setObject(eventText.text, forKey: "whatToDo")
             object?.saveInBackground({ (error) in
                 if(error == nil){
@@ -100,7 +102,7 @@ class EventViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
                     
                     try! realm.write {
                         //日付表示の内容とスケジュール入力の内容が書き込まれる。
-                        let Events = [Event(value: ["date": self.y_text.text!, "event":self.eventText.text!, "teacherId": self.teacher?.userId, "studentId": NCMBUser.current()!.objectId, "kind": self.subjectName, "id": object!.objectId])]
+                        let Events = [Event(value: ["date": self.y_text.text, "event":self.eventText.text!, "teacherId": self.teacher?.userId, "studentId": NCMBUser.current()!.objectId, "kind": self.subjectName, "id": object!.objectId])]
                         realm.add(Events)
                         print("データ書き込み中")
                     }

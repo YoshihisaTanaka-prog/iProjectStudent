@@ -50,7 +50,7 @@ class User {
             param?.fetch(&error)
             
             if(error == nil && param != nil){
-                if(param!.ncmbClassName == "teacherParameter"){
+                if(param!.ncmbClassName == "TeacherParameter"){
                     self.teacherParameter = TeacherParameter(param!)
                     if(userImagesCacheG[self.userId] == nil){
                         userImagesCacheG[self.userId] = UIImage(named: "teacherNoImage.png")

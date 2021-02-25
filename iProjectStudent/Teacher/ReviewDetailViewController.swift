@@ -55,8 +55,11 @@ class ReviewDetailViewController: UIViewController {
         
         if review != nil {
             numofBeforeScore = ( review!.score * 2 ).i
+            ratingScore.rating = review!.score
             studentId = review!.studentId
             teacherId = review!.teacherId
+            commentBox.text = review!.comment
+            titleField.text = review!.title
         }
         
         let tUser = NCMBUser.query()
@@ -72,6 +75,7 @@ class ReviewDetailViewController: UIViewController {
                 self.navigationController?.popViewController(animated: true)
             }
         })
+        setBackGround(true, true)
     }
     
     @IBAction func sendReview(){
