@@ -23,6 +23,8 @@ class TeacherInfoViewController: UIViewController, UITableViewDataSource, UITabl
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.title = teacher.userName + "先生の詳細情報"
 
         // Do any additional setup after loading the view.
         size = getScreenSize(isExsistsNavigationBar: true, isExsistsTabBar: true)
@@ -46,7 +48,7 @@ class TeacherInfoViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
-            return size.viewHeight
+            return size.viewHeight - 50.f
         }
         else{
             return 100.f
@@ -94,7 +96,7 @@ class TeacherInfoViewController: UIViewController, UITableViewDataSource, UITabl
                 alert.dismiss(animated: true, completion: nil)
             }
             let goToChatAlertAction = UIAlertAction(title: "チャットを始める。", style: .default) { _ in
-                self.goToChat(userId: self.teacher.userId)
+                self.performSegue(withIdentifier: "GoToChat", sender: nil)
             }
             let goToScheduleAlertAction = UIAlertAction(title: "スケジュールを見る", style: .default) { _ in
                 self.performSegue(withIdentifier: "WatchSchedule", sender: nil)
@@ -140,6 +142,12 @@ class TeacherInfoViewController: UIViewController, UITableViewDataSource, UITabl
             nextVC.subjectName = "japanese"
             nextVC.review = selectedReview
             nextVC.isAbletoEdit = false
+        case "GoToChat":
+            let nextVC = segue.destination as! ChatViewController
+            nextVC.selectedChatRoom = ChatRoom(teacher)
+        case "WatchSchedule":
+            let nextVC = segue.destination as! CalendarViewController
+            nextVC.teacher = teacher
         default:
             break
         }

@@ -216,7 +216,6 @@ class ChatRoom{
                     let ugQuery = NCMBQuery(className: "UserChatGroup")
                     ugQuery?.includeKey("user")
                     ugQuery?.whereKey("user", equalTo: NCMBUser.current()!)
-                    ugQuery?.whereKey("chatGroupId", equalTo: self.objectId)
                     ugQuery?.whereKey("isGroup", equalTo: false)
                     ugQuery?.findObjectsInBackground({ (result, error) in
                         if(error == nil){
@@ -229,7 +228,7 @@ class ChatRoom{
                         }
                     })
                 }
-                    //                    部屋がない時部屋を作る
+//                    部屋がない時部屋を作る
                 else{
                     self.isPermited = true
                     let userQuery = NCMBUser.query()

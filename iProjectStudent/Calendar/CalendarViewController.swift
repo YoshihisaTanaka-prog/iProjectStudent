@@ -14,15 +14,17 @@ import NCMB
 
 class CalendarViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
     
-    var eventList: [Event] = []
-    var selectedDate = Date()
-    var currentMonth: Int!
+    var teacher: User?
     
-    @IBOutlet var tableView: UITableView!  //スケジュール内容
-    @IBOutlet var labelTitle: UILabel!  //「主なスケジュール」の表示
+    private var eventList: [Event] = []
+    private var selectedDate = Date()
+    private var currentMonth: Int!
+    
+    @IBOutlet private var tableView: UITableView!  //スケジュール内容
+    @IBOutlet private var labelTitle: UILabel!  //「主なスケジュール」の表示
     //カレンダー部分
-    @IBOutlet var datelabel: UILabel!  //日付の表示
-    @IBOutlet var calenderView: FSCalendar!
+    @IBOutlet private var datelabel: UILabel!  //日付の表示
+    @IBOutlet private var calenderView: FSCalendar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +34,9 @@ class CalendarViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.layer.borderWidth = 1.f
         tableView.layer.borderColor = dColor.concept.cgColor
         setBackGround(true, true)
+        if teacher != nil {
+            self.navigationItem.title = teacher!.userName + "先生のスケジュール"
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

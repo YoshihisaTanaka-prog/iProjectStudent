@@ -15,8 +15,18 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
     @IBOutlet var pickerView: UIPickerView!
     var teachers = Teachers()
     var selectedTeacher: User!
-    var selectedSubject = "指導希望教科を選択"
-    let subjectList = ["指導希望教科を選択","国語","数学","理科","社会","英語"]
+    var numOfSelectedSubject = 0
+    var isSearching = true
+    var selectedSubject: String?
+    let mainSubjectList = ["5教科を選択","国語","数学","理科","社会","英語"]
+    let subSubjectList = [
+        ["------"],
+        ["詳細を選択","現代文","古文","漢文"],
+        ["詳細を選択","数学Ⅰ・A","数学Ⅱ・B","数学Ⅲ・C"],
+        ["詳細を選択","物理","化学","生物","地学"],
+        ["詳細を選択","地理","日本史","世界史","現代社会","倫理","政治・経済"],
+        ["詳細を選択",""]
+    ]
     var teacherList: [niseTeacher] = []
     let teacherLists = [[
         niseTeacher("清水彩加","東京大学",1,5.0),
@@ -30,8 +40,8 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
         niseTeacher("田中要","東京大学",3,2.68),
         niseTeacher("上園陸人","東京大学",4,2.47)
     ],[
-        niseTeacher("中川文馨","東京大学",2,4.85),
-        niseTeacher("黒木奈々","東京大学",2,4.50),
+        niseTeacher("中川文馨","東京大学",2,4.66),
+        niseTeacher("黒木奈々","東京大学",2,4.49),
         niseTeacher("長谷川詩峰","東京大学",2,4.08),
         niseTeacher("磯野友希","東京大学",2,3.81),
         niseTeacher("中尾勇太","東京大学",2,3.55),
@@ -113,10 +123,14 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
         if teacherList.count == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
             cell.backgroundColor = .clear
-            if(selectedSubject == "指導希望教科を選択"){
-                cell.textLabel?.text = "教科を選択してください"
+            if(selectedSubject == nil){
+                cell.textLabel?.text = "教科を選択してください。"
+            } else if(selectedSubject! == ""){
+                cell.textLabel?.text = "詳しく教科を選択してください。"
             }
-            else{
+            else if isSearching{
+                cell.textLabel?.text = "教師を検索中"
+            } else{
                 cell.textLabel?.text = "あなたの志望校に通う教師が\n見つかりませんでした。"
             }
             cell.textLabel?.numberOfLines = 0
@@ -146,29 +160,58 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
     
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+        return 2
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return subjectList.count
+        switch component{
+        case 0:
+            return mainSubjectList.count
+        default:
+            return subSubjectList[numOfSelectedSubject].count
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        let label = PickerLabel(text: subjectList[row], pickerView.frame.width)
-        return label
+        switch component {
+        case 0:
+            let label = PickerLabel(text: mainSubjectList[row], pickerView.frame.width / 2.f)
+            return label
+        default:
+            let label = PickerLabel(text: subSubjectList[numOfSelectedSubject][row], pickerView.frame.width / 2.f)
+            return label
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedSubject = subjectList[row]
-        if row == 0 {
+        switch component {
+        case 0:
+            numOfSelectedSubject = row
+            self.pickerView.selectRow(0, inComponent: 1, animated: true)
+            pickerView.reloadComponent(1)
             teacherList = []
+            if(row == 0){
+                selectedSubject = nil
+            } else{
+                selectedSubject = ""
+            }
+            tableView.reloadData()
+        default:
+            if(row == 0){
+                selectedSubject = ""
+            }
+            else{
+                selectedSubject = subSubjectList[numOfSelectedSubject][row - 1]
+                isSearching = true
+                teacherList = []
+                tableView.reloadData()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    self.isSearching = false
+                    self.teacherList = self.teacherLists[self.numOfSelectedSubject - 1]
+                    self.tableView.reloadData()
+                }
+            }
         }
-        else{
-            teacherList = teacherLists[row - 1]
-        }
-        tableView.reloadData()
-        let indexPath = IndexPath(row: 0, section: 0)
-        self.tableView.scrollToRow(at: indexPath, at: UITableView.ScrollPosition.top, animated: true)
     }
 
     // MARK: - Navigation
@@ -176,7 +219,7 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let nectVC = segue.destination as! TeacherInfoViewController
-        nectVC.subject = selectedSubject
+        nectVC.subject = selectedSubject!
         nectVC.teacher = selectedTeacher
     }
 

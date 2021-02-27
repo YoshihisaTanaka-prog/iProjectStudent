@@ -26,44 +26,6 @@ class ChatViewController: UIViewController{
             addBarButtonItem = UIBarButtonItem(title: "メンバーの追加", style: .done, target: self, action: #selector(addBarButtonTapped(_:)))
             self.navigationItem.rightBarButtonItems = [addBarButtonItem]
         }
-        if(!selectedChatRoom.isPermited){
-            let alertController = UIAlertController(title: "注意", message: "未参加のチャットルームです。このチャットルームに参加しますか？", preferredStyle: .alert)
-            let alertOkAction = UIAlertAction(title: "OK", style: .default) { (action) in
-                // OKボタンを押した後のアクション
-                alertController.dismiss(animated: true, completion: nil)
-                let query = NCMBQuery(className: "UserChatGroup")
-                query?.whereKey("user", equalTo: NCMBUser.current()!)
-                query?.whereKey("isGroup", equalTo: self.selectedChatRoom.isGroup)
-                query?.whereKey("chatGroupId", equalTo: self.selectedChatRoom.objectId)
-                query?.findObjectsInBackground({ (result, error) in
-                    if(error == nil){
-                        if(result!.count == 0){
-                            self.showOkAlert(title: "Error", message: "Could not update!")
-                        }
-                        else{
-                            let object = result!.first! as! NCMBObject
-                            object.setObject(true, forKey: "isPermited")
-                            object.saveInBackground { (error) in
-                                if(error != nil){
-                                    self.showOkAlert(title: "Error", message: error!.localizedDescription)
-                                }
-                            }
-                        }
-                    }
-                    else{
-                        self.showOkAlert(title: "Error", message: error!.localizedDescription)
-                    }
-                })
-            }
-            let alertCancelAction = UIAlertAction(title: "Cancel", style: .default) { (action) in
-                // OKボタンを押した後のアクション
-                alertController.dismiss(animated: true, completion: nil)
-                self.dismiss(animated: true, completion: nil)
-            }
-            alertController.addAction(alertOkAction)
-            alertController.addAction(alertCancelAction)
-            self.present(alertController, animated: true, completion: nil)
-        }
         tableView.dataSource = self
         tableView.delegate = self
         textView.layer.borderColor = CGColor(srgbRed: 0, green: 0, blue: 0, alpha: 1)
@@ -71,6 +33,48 @@ class ChatViewController: UIViewController{
         textView.layer.cornerRadius = 10
         setupUI()
         setBackGround(true, true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            //ここはRealmから取得する。ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+            self.loadChat()
+            if(!self.selectedChatRoom.isPermited){
+                let alertController = UIAlertController(title: "注意", message: "未参加のチャットルームです。このチャットルームに参加しますか？", preferredStyle: .alert)
+                let alertOkAction = UIAlertAction(title: "OK", style: .default) { (action) in
+                    // OKボタンを押した後のアクション
+                    alertController.dismiss(animated: true, completion: nil)
+                    let query = NCMBQuery(className: "UserChatGroup")
+                    query?.whereKey("user", equalTo: NCMBUser.current()!)
+                    query?.whereKey("isGroup", equalTo: self.selectedChatRoom.isGroup)
+                    query?.whereKey("chatGroupId", equalTo: self.selectedChatRoom.objectId)
+                    query?.findObjectsInBackground({ (result, error) in
+                        if(error == nil){
+                            if(result!.count == 0){
+                                self.showOkAlert(title: "Error", message: "Could not update!")
+                            }
+                            else{
+                                let object = result!.first! as! NCMBObject
+                                object.setObject(true, forKey: "isPermited")
+                                object.saveInBackground { (error) in
+                                    if(error != nil){
+                                        self.showOkAlert(title: "Error", message: error!.localizedDescription)
+                                    }
+                                }
+                            }
+                        }
+                        else{
+                            self.showOkAlert(title: "Error", message: error!.localizedDescription)
+                        }
+                    })
+                }
+                let alertCancelAction = UIAlertAction(title: "Cancel", style: .default) { (action) in
+                    // OKボタンを押した後のアクション
+                    alertController.dismiss(animated: true, completion: nil)
+                    self.dismiss(animated: true, completion: nil)
+                }
+                alertController.addAction(alertOkAction)
+                alertController.addAction(alertCancelAction)
+                self.present(alertController, animated: true, completion: nil)
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -188,11 +192,9 @@ class ChatViewController: UIViewController{
                 self.chats.makeChats(chatList)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     self.tableView.reloadData()
-                    DispatchQueue.main.async {
-                        if(self.chats.chats.last != nil){
-                            let indexPath = IndexPath(row: self.chats.chats.last!.count - 1, section: self.chats.chats.count - 1)
-                            self.tableView.scrollToRow(at: indexPath, at: UITableView.ScrollPosition.top, animated: false)
-                        }
+                    if(self.chats.chats.last != nil){
+                        let indexPath = IndexPath(row: self.chats.chats.last!.count - 1, section: self.chats.chats.count - 1)
+                        self.tableView.scrollToRow(at: indexPath, at: UITableView.ScrollPosition.top, animated: false)
                     }
                 }
             }
