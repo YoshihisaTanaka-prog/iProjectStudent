@@ -15,16 +15,16 @@ class Opening1ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
         self.view.backgroundColor = dColor.opening
-        
         label.alpha = 0.f
+        let _ = NCMBUser.current()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         if let user = NCMBUser.current() {
             let _ = User(user)
+            loadFollowlist()
             isLogInG = true
         }
         else{

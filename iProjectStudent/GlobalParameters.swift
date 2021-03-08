@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 
 var userImagesCacheG: [String:UIImage] = [:]
+var followUserListG: [User] = []
+var blockUserListG: [User] = []
 var isLogInG: Bool = false
 let dColor = OriginalCollor()
 let pickerLabelG = PickerLabel()

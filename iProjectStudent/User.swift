@@ -62,23 +62,7 @@ class User {
                         userImagesCacheG[self.userId] = UIImage(named: "studentNoImage.png")
                     }
                 }
-            }             //2021/02/23修正
-            if(error == nil && param != nil){
-                if(param!.ncmbClassName == "TeacherParameter"){
-                    self.teacherParameter = TeacherParameter(param!)
-                    if(userImagesCacheG[self.userId] == nil){
-                        userImagesCacheG[self.userId] = UIImage(named: "teacherNoImage.png")
-                    }
-                }
-                else{
-                    self.studentParameter = StudentParameter(param!)
-                    if(userImagesCacheG[self.userId] == nil){
-                        userImagesCacheG[self.userId] = UIImage(named: "studentNoImage.png")
-                    }
-                }
-                
             }
-            
         }
         //        画像の設定
         let imageName = user.object(forKey: "imageName") as? String

@@ -40,6 +40,7 @@
 		046872CD25DE0CB800A6ABBF /* GlobalParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046872CC25DE0CB800A6ABBF /* GlobalParameters.swift */; };
 		046872D125DE0E1C00A6ABBF /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046872D025DE0E1C00A6ABBF /* CheckBox.swift */; };
 		0473BF5625D2EA0900550EFB /* Questionnaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473BF5525D2EA0900550EFB /* Questionnaire.swift */; };
+		048188B925F66D26004F01D6 /* FollowingTeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048188B825F66D26004F01D6 /* FollowingTeacherViewController.swift */; };
 		049C83E425C6921000D4D380 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C83E325C6921000D4D380 /* AppDelegate.swift */; };
 		04A7E99425AF309900C0F43C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7E99325AF309900C0F43C /* SceneDelegate.swift */; };
 		04A7E99625AF309900C0F43C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7E99525AF309900C0F43C /* ViewController.swift */; };
@@ -122,6 +123,7 @@
 		046872CC25DE0CB800A6ABBF /* GlobalParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalParameters.swift; sourceTree = "<group>"; };
 		046872D025DE0E1C00A6ABBF /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		0473BF5525D2EA0900550EFB /* Questionnaire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questionnaire.swift; sourceTree = "<group>"; };
+		048188B825F66D26004F01D6 /* FollowingTeacherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingTeacherViewController.swift; sourceTree = "<group>"; };
 		049C83E325C6921000D4D380 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		049C83FA25C695A200D4D380 /* ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
 		049C83FB25C695A200D4D380 /* Opening1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Opening1ViewController.swift; sourceTree = "<group>"; };
@@ -193,9 +195,10 @@
 				0455EDBB25DA8ECD00013330 /* ReviewTableViewCell.swift */,
 				0455EDBE25DA8ECD00013330 /* TeacherInfoTableViewCell.xib */,
 				0455EDBA25DA8ECD00013330 /* TeacherInfoTableViewCell.swift */,
+				048188B825F66D26004F01D6 /* FollowingTeacherViewController.swift */,
+				04AF5D4925E5415B00E2B385 /* SearchTeacherViewController.swift */,
 				0455EDB825DA8ECD00013330 /* TeacherInfoViewController.swift */,
 				0455EDB925DA8ECD00013330 /* ReviewDetailViewController.swift */,
-				04AF5D4925E5415B00E2B385 /* SearchTeacherViewController.swift */,
 				0455EDBC25DA8ECD00013330 /* ReviewTeacher.swift */,
 				04AF5D4C25E5428100E2B385 /* Teachers.swift */,
 				0455EDBD25DA8ECD00013330 /* Teacher.storyboard */,
@@ -569,6 +572,7 @@
 				1F761FEA25D419C600FFB590 /* UserPageViewController.swift in Sources */,
 				04A7E99625AF309900C0F43C /* ViewController.swift in Sources */,
 				0460979325E8291200AC91BE /* CreateGroupViewController.swift in Sources */,
+				048188B925F66D26004F01D6 /* FollowingTeacherViewController.swift in Sources */,
 				04A7E99425AF309900C0F43C /* SceneDelegate.swift in Sources */,
 				1F0D91EA25E1380800503048 /* SignUpViewController.swift in Sources */,
 				0460978B25E8291200AC91BE /* ChatRoomInputView.swift in Sources */,

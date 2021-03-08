@@ -479,7 +479,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GKt-7K-dKF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1950.7246376811595" y="529.6875"/>
+            <point key="canvasLocation" x="2854" y="530"/>
         </scene>
         <!--先生を探す-->
         <scene sceneID="aI0-FN-sqm">
@@ -493,12 +493,60 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="R4P-Pb-rMT" kind="relationship" relationship="rootViewController" id="VYc-LO-gcU"/>
+                        <segue destination="dRp-zH-jza" kind="relationship" relationship="rootViewController" id="a6Y-sE-Ngj"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zPt-zy-CYu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1080" y="530"/>
+        </scene>
+        <!--教師一覧-->
+        <scene sceneID="tZz-Zk-qdK">
+            <objects>
+                <viewController id="dRp-zH-jza" customClass="FollowingTeacherViewController" customModule="iProjectStudent" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZsB-Yf-LdA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tn4-3z-W3a">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="HdH-qG-V3X">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HdH-qG-V3X" id="vab-4I-gGj">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="cuz-52-1wl"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="tn4-3z-W3a" firstAttribute="bottom" secondItem="cuz-52-1wl" secondAttribute="bottom" id="0N7-6k-xUp"/>
+                            <constraint firstItem="tn4-3z-W3a" firstAttribute="top" secondItem="cuz-52-1wl" secondAttribute="top" id="3BW-qg-OkF"/>
+                            <constraint firstItem="tn4-3z-W3a" firstAttribute="trailing" secondItem="cuz-52-1wl" secondAttribute="trailing" id="ac8-6N-EH8"/>
+                            <constraint firstItem="tn4-3z-W3a" firstAttribute="leading" secondItem="cuz-52-1wl" secondAttribute="leading" id="cwK-lA-ihi"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="教師一覧" id="eUv-SH-tfw">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="magnifyingglass" catalog="system" id="h0u-5u-okP">
+                            <connections>
+                                <segue destination="R4P-Pb-rMT" kind="show" id="vHD-Ni-B8G"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="tn4-3z-W3a" id="tAP-Ma-iNS"/>
+                        <segue destination="1CB-af-2wV" kind="show" identifier="Detail" id="f8h-6T-0ul"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uDQ-Uk-A6B" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1950.7246376811595" y="529.6875"/>
         </scene>
         <!--Calendar View Controller-->
         <scene sceneID="tFV-dO-Jac">
@@ -711,7 +759,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2AY-cz-mpp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2854" y="530"/>
+            <point key="canvasLocation" x="3757" y="530"/>
         </scene>
         <!--レビューの詳細-->
         <scene sceneID="T6X-kE-nEf">
@@ -779,7 +827,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ovC-Lo-GkW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3753.6231884057975" y="529.6875"/>
+            <point key="canvasLocation" x="4657" y="530"/>
         </scene>
         <!--チャット-->
         <scene sceneID="2bZ-w8-GZn">
@@ -1011,6 +1059,7 @@
     </designables>
     <inferredMetricsTieBreakers>
         <segue reference="873-Qu-0rY"/>
+        <segue reference="wOS-XS-SK6"/>
         <segue reference="gLW-7J-14o"/>
     </inferredMetricsTieBreakers>
     <resources>

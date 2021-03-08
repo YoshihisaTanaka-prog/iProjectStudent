@@ -95,15 +95,29 @@ class TeacherInfoViewController: UIViewController, UITableViewDataSource, UITabl
             let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { (_) in
                 alert.dismiss(animated: true, completion: nil)
             }
-            let goToChatAlertAction = UIAlertAction(title: "チャットを始める。", style: .default) { _ in
-                self.performSegue(withIdentifier: "GoToChat", sender: nil)
-            }
-            let goToScheduleAlertAction = UIAlertAction(title: "スケジュールを見る", style: .default) { _ in
-                self.performSegue(withIdentifier: "WatchSchedule", sender: nil)
-            }
             alert.addAction(cancelAction)
-            alert.addAction(goToChatAlertAction)
-            alert.addAction(goToScheduleAlertAction)
+            switch isNeedToCreateFollow(teacher.userId) {
+            case nil:
+                return
+            case true:
+                let createFollowAlertAction = UIAlertAction(title: "この先生を登録する", style: .default) { (action) in
+                    if let errorText = self.createFollow(self.teacher.userId){
+                        alert.dismiss(animated: true, completion: nil)
+                        self.showOkAlert(title: "Error", message: errorText)
+                    }
+                }
+                alert.addAction(createFollowAlertAction)
+            default:
+                let goToChatAlertAction = UIAlertAction(title: "チャットを始める。", style: .default) { _ in
+                    self.performSegue(withIdentifier: "GoToChat", sender: nil)
+                }
+                let goToScheduleAlertAction = UIAlertAction(title: "スケジュールを見る", style: .default) { _ in
+                    self.performSegue(withIdentifier: "WatchSchedule", sender: nil)
+                }
+                
+                alert.addAction(goToChatAlertAction)
+                alert.addAction(goToScheduleAlertAction)
+            }
             self.present(alert, animated: true, completion: nil)
         }
         else{

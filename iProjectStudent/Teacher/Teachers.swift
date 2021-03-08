@@ -12,8 +12,8 @@ import NCMB
 class Teachers {
     var list: [User] = []
     var count = 0
-    init(){
-    }
+    
+    init(){}
     
     init(_ objects: [NCMBObject], subject: String) {
         self.list = []
