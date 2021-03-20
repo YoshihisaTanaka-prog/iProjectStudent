@@ -41,9 +41,10 @@ class CheckBox {
     
     func setSelection(_ selection: String) {
         if selection.count == checkBoxes.count {
-            let cList = Array(selection)
-            for i in 0..<cList.count{
-                let s = String(cList[i])
+            let array = selection.sArray
+            
+            for i in 0..<array.count{
+                let s = array[i]
                 if(s == "T"){
                     checkBoxes[i].isSelected = true
                     checkBoxes[i].button.setTitle("◉", for: .normal)
@@ -57,6 +58,7 @@ class CheckBoxButton {
     var button: UIButton
     var label: UILabel
     var isSelected = false
+    
     init(_ c: CheckBoxInput, num: Int) {
         self.label = UILabel(frame: CGRect(x: 25.f, y: 25.f * num.f , width: 120.f, height: 20.f))
         self.label.text = c.title

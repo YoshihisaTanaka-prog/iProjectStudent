@@ -56,6 +56,8 @@
 		04C7A05E25CD7F720031281B /* Opening1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C83FB25C695A200D4D380 /* Opening1ViewController.swift */; };
 		04C7A06025CD7F750031281B /* Opening2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C83FC25C695A200D4D380 /* Opening2ViewController.swift */; };
 		04EA679125BC8A9C005F0D06 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EA679025BC8A9C005F0D06 /* User.swift */; };
+		04EE4A0026059A60002A42B7 /* SpiritCompatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE49FF26059A60002A42B7 /* SpiritCompatibility.swift */; };
+		04EE4A042605A6AD002A42B7 /* YoubiCompatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE4A032605A6AD002A42B7 /* YoubiCompatibility.swift */; };
 		1B0AD3AF25E401AD0061976F /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0AD3AC25E401A60061976F /* CalendarViewController.swift */; };
 		1B0AD3B025E401AD0061976F /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0AD3AD25E401A90061976F /* EventViewController.swift */; };
 		1B0AD3B125E401AD0061976F /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0AD3AE25E401AD0061976F /* Event.swift */; };
@@ -141,6 +143,8 @@
 		04AF5D4C25E5428100E2B385 /* Teachers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teachers.swift; sourceTree = "<group>"; };
 		04C7A05825CD7EC10031281B /* Opening.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Opening.storyboard; sourceTree = "<group>"; };
 		04EA679025BC8A9C005F0D06 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		04EE49FF26059A60002A42B7 /* SpiritCompatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiritCompatibility.swift; sourceTree = "<group>"; };
+		04EE4A032605A6AD002A42B7 /* YoubiCompatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoubiCompatibility.swift; sourceTree = "<group>"; };
 		1B0AD3AC25E401A60061976F /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		1B0AD3AD25E401A90061976F /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		1B0AD3AE25E401AD0061976F /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -201,6 +205,8 @@
 				0455EDB925DA8ECD00013330 /* ReviewDetailViewController.swift */,
 				0455EDBC25DA8ECD00013330 /* ReviewTeacher.swift */,
 				04AF5D4C25E5428100E2B385 /* Teachers.swift */,
+				04EE49FF26059A60002A42B7 /* SpiritCompatibility.swift */,
+				04EE4A032605A6AD002A42B7 /* YoubiCompatibility.swift */,
 				0455EDBD25DA8ECD00013330 /* Teacher.storyboard */,
 			);
 			path = Teacher;
@@ -580,6 +586,7 @@
 				04EA679125BC8A9C005F0D06 /* User.swift in Sources */,
 				04C7A06025CD7F750031281B /* Opening2ViewController.swift in Sources */,
 				1B0AD3B125E401AD0061976F /* Event.swift in Sources */,
+				04EE4A042605A6AD002A42B7 /* YoubiCompatibility.swift in Sources */,
 				0455EDC325DA8ECE00013330 /* ReviewTableViewCell.swift in Sources */,
 				0460979025E8291200AC91BE /* Chat.swift in Sources */,
 				1FA191B925CC1F56007B935B /* SignUp2ViewController.swift in Sources */,
@@ -595,6 +602,7 @@
 				0455EDC025DA8ECD00013330 /* TeacherInfoViewController.swift in Sources */,
 				046872D125DE0E1C00A6ABBF /* CheckBox.swift in Sources */,
 				0460978525E8291200AC91BE /* MyChatViewCell.swift in Sources */,
+				04EE4A0026059A60002A42B7 /* SpiritCompatibility.swift in Sources */,
 				0473BF5625D2EA0900550EFB /* Questionnaire.swift in Sources */,
 				0460979525E8291200AC91BE /* GoToChatExtension.swift in Sources */,
 				0460979125E8291200AC91BE /* ChatTableViewController.swift in Sources */,

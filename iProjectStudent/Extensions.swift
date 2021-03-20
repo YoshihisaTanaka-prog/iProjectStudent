@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 import NCMB
 
+
+//変換を省略するためのコード
 extension Int{
     public var d: Double {
         return Double(self)
@@ -21,7 +23,6 @@ extension Int{
         return String(self)
     }
 }
-
 extension Double{
     public var i: Int {
         return Int(self)
@@ -30,9 +31,23 @@ extension Double{
         return CGFloat(self)
     }
     public var s: String {
+        return String(self)
+    }
+    public var s2: String {
         return String(format: "%.2f", self)
     }
 }
+extension String{
+    public var sArray: [String] {
+        let cArray = Array(self)
+        var ret: [String] = []
+        for c in cArray {
+            ret.append(String(c))
+        }
+        return ret
+    }
+}
+
 
 extension UIViewController{
     func showOkAlert(title: String, message: String) {
