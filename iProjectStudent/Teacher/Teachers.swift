@@ -28,6 +28,7 @@ class Teachers {
     }
 }
 
+/*
 class niseTeacher {
     var name: String
     var collage: String
@@ -39,4 +40,6 @@ class niseTeacher {
         self.grade = grade
         self.score = score
     }
+ 
 }
+*/

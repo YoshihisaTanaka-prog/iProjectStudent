@@ -13,13 +13,13 @@ import NCMB
 class Questionnaire {
     var mainScrollView = UIScrollView()
     var result: Int = -1
-    private var numOfButton: Int!
-    private var questionViews: [[QuestionView]] = []
-    private var totalNumbers: [Int] = []
-    private var contentsView = UIView()
-    private var mainSVHeight = 0.f
-    private var size: Size!
-    private var answerButton: UIButton!
+    private var size: Size!                          // 画面サイズを代入するための変数
+    private var contentsView = UIView()              // スクロールさせるために必要なView
+    private var numOfButton: Int!                    // ボタンの個数
+    private var questionViews: [[QuestionView]] = [] // 質問1問ごとのView
+    private var totalNumbers: [Int] = []             // 各質問グループ毎の合計点
+    private var mainSVHeight = 0.f                   // contentsViewの高さ
+    private var answerButton: UIButton!              // 「質問に答える」ボタン
     
     init(questions: [[QuestionInputFormat]], onlyEven numOfButton: Int) {
         self.numOfButton = numOfButton
@@ -60,8 +60,9 @@ class Questionnaire {
         self.contentsView.addSubview(answerButton)
         mainSVHeight += 50.f
         
+        // 質問数を表示
         titleLabel.text = titleLabel.text! + "（全" + qNum.s + "問）"
-//        スクロールビューの高さを指定
+//        スクロールビューの設定
         self.contentsView.frame = CGRect(x: 0.f, y: 0.f, width: size.width, height: mainSVHeight)
         self.mainScrollView.addSubview(self.contentsView)
         self.mainScrollView.contentSize = CGSize(width: size.width, height: mainSVHeight)
@@ -70,19 +71,21 @@ class Questionnaire {
     
     @objc func tappedAnswer(){
         if(isAnsweredAllQuestions()){
-//            reslt に値を埋め込む
+//            reslt に値を埋め込む（性格Idを計算する）
             var res = 0
             var keta = 1
-                for i in 0..<self.totalNumbers.count {
-                    self.totalNumbers[i] = 0
-                    for j in 0..<questionViews[i].count {
-                        self.totalNumbers[i] += questionViews[i][j].reslut
-                    }
-                    if(self.totalNumbers[i] > questionViews[i].count * ( self.numOfButton - 1 ) / 2){
-                        res += keta
-                    }
-                    keta *= 2
+            for i in 0..<self.totalNumbers.count {
+                self.totalNumbers[i] = 0
+                // グループ毎の合計点を計算
+                for j in 0..<questionViews[i].count {
+                    self.totalNumbers[i] += questionViews[i][j].reslut
                 }
+                // グループ毎の合計点が高いか低いかを判定し、高ければ性格Idの値を変更
+                if(self.totalNumbers[i] > questionViews[i].count * ( self.numOfButton - 1 ) / 2){
+                    res += keta
+                }
+                keta *= 2
+            }
             self.result = res
         }
         else{
@@ -90,13 +93,15 @@ class Questionnaire {
         }
     }
     
+    
+    //  質問に全て答えたかどうか判定し、答えていない問題があればその質問の背景色を変える関数
     private func isAnsweredAllQuestions() -> Bool {
         var ret = true
         for questViews in self.questionViews {
             for questView in questViews {
                 if(questView.reslut == -1){
                     ret = false
-                    questView.mainView.backgroundColor = .yellow
+                    questView.mainView.backgroundColor = dColor.accent
                 }
             }
         }
@@ -128,15 +133,12 @@ class QuestionView{
         self.mainView.addSubview(questionLabel)
         
 //        選択肢の設定
-        let label1 = UILabel(frame: CGRect(x: 10, y: height + 40.f, width: 120.f, height: 30.f))
-        let label2 = UILabel(frame: CGRect(x: size.width - 130, y: height + 40.f, width: 120.f, height: 30.f))
+        let label1 = AccentLabel(frame: CGRect(x: 10, y: height + 40.f, width: 120.f, height: 30.f))
+        let label2 = AccentLabel(frame: CGRect(x: size.width - 130, y: height + 40.f, width: 120.f, height: 30.f))
         label1.text = "そう思う"
-        label1.backgroundColor = .lightGray
         label1.textAlignment = .center
         label2.text = "そうは思わない"
-        label2.backgroundColor = .lightGray
         label2.textAlignment = .center
-        
         self.mainView.addSubview(label1)
         self.mainView.addSubview(label2)
         for i in 0..<numOfButton {
