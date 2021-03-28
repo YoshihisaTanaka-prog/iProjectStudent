@@ -20,7 +20,9 @@ class MyChatViewCell: UITableViewCell {
 		super.awakeFromNib()
 		self.backgroundColor = UIColor.clear
 		self.textView.layer.cornerRadius = 15 // 角を丸める
-		addSubview(MyBalloonView(frame: CGRect(x: Int(frame.size.width+30), y: 0, width: 30, height: 30))) //吹き出しのようにするためにビューを重ねる
+        self.timeLabel.textColor = dColor.concept
+        self.readLabel.textColor = dColor.concept
+        addSubview(MyBalloonView(frame: CGRect(x: frame.size.width + 5.f, y: 0.f, width: 30.f, height: 30.f))) //吹き出しのようにするためにビューを重ねる
 	}
 	
 	override func setSelected(_ selected: Bool, animated: Bool) {

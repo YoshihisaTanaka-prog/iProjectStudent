@@ -15,6 +15,7 @@ class ChatViewController: UIViewController{
     var chats = ChatList()
     var timer: Timer!
     var addBarButtonItem: UIBarButtonItem!
+    private var size: Size!
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var textView: UITextView!
@@ -22,6 +23,9 @@ class ChatViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        size = getScreenSize(isExsistsNavigationBar: true, isExsistsTabBar: true)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         if(selectedChatRoom.isGroup){
             addBarButtonItem = UIBarButtonItem(title: "メンバーの追加", style: .done, target: self, action: #selector(addBarButtonTapped(_:)))
             self.navigationItem.rightBarButtonItems = [addBarButtonItem]
@@ -31,8 +35,8 @@ class ChatViewController: UIViewController{
         textView.layer.borderColor = CGColor(srgbRed: 0, green: 0, blue: 0, alpha: 1)
         textView.layer.borderWidth = 1
         textView.layer.cornerRadius = 10
-        setupUI()
         setBackGround(true, true)
+        setupUI()				
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             //ここはRealmから取得する。ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
             self.loadChat()
@@ -226,9 +230,10 @@ class ChatViewController: UIViewController{
     
 }
 
+//テーブルビューの設定
 extension ChatViewController {
     func setupUI() {
-        tableView.backgroundColor = UIColor(red: 113/255, green: 148/255, blue: 194/255, alpha: 1)
+        tableView.backgroundColor = dColor.base
         
         tableView.separatorColor = UIColor.clear // セルを区切る線を見えなくする
         tableView.estimatedRowHeight = 10000 // セルが高さ以上になった場合バインバインという動きをするが、それを防ぐために大きな値を設定
@@ -242,6 +247,7 @@ extension ChatViewController {
     }
 }
 
+// セルの表示
 extension ChatViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -287,11 +293,28 @@ extension ChatViewController: UITableViewDataSource {
         return chats.chats.count
     }
     //セクションのタイトル
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return chats.dates[section]
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView(frame: CGRect(x: 0.f, y: 0.f, width: size.width, height: 30))
+        view.backgroundColor = .clear
+        let label = UILabel()
+        label.backgroundColor = dColor.concept
+        label.text = chats.dates[section]
+        label.layer.cornerRadius = 10.5.f
+        label.layer.masksToBounds = true
+        label.textAlignment = .center
+        label.textColor = dColor.base
+        
+        let maxSize = CGSize(width: size.width, height: 21.f)
+        let fixedSize =  label.sizeThatFits(maxSize)
+        label.frame = CGRect(x: 0.f, y: 0.f, width: fixedSize.width + 21.f, height: fixedSize.height)
+        label.center = view.center
+        
+        view.addSubview(label)
+        return view
     }
 }
 
+// タップした時の処理
 extension ChatViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath)
@@ -300,4 +323,26 @@ extension ChatViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 10
     }
+}
+
+// キーボード関連
+extension ChatViewController {
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height
+            } else {
+                let suggestionHeight = self.view.frame.origin.y + keyboardSize.height
+                self.view.frame.origin.y -= suggestionHeight
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide() {
+            if self.view.frame.origin.y != 0 {
+                self.view.frame.origin.y = 0
+            }
+        }
+    
 }
