@@ -3,4 +3,84 @@
    uuid = "0AE9E93C-0078-4A29-8B9B-C69AAC19846B"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0B42BA2C-BD41-4BB7-86AC-97E21DED8337"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iProjectStudent/Chat/Chat.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "unknown"
+            landmarkType = "0">
+            <Locations>
+               <Location
+                  uuid = "0B42BA2C-BD41-4BB7-86AC-97E21DED8337 - 7920e9daac970aa3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "iProjectStudent.ChatList.deinit"
+                  moduleName = "iProjectStudent"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rt1/Pictures/iOS-Develop/iProjectStudent/iProjectStudent/Chat/Chat.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "0B42BA2C-BD41-4BB7-86AC-97E21DED8337 - da5fbb813d0a08d6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "iProjectStudent.ChatList.__deallocating_deinit"
+                  moduleName = "iProjectStudent"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rt1/Pictures/iOS-Develop/iProjectStudent/iProjectStudent/Chat/Chat.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "0B42BA2C-BD41-4BB7-86AC-97E21DED8337 - 4e06361cbf3975db"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "iProjectStudent.ChatList.__allocating_init() -&gt; iProjectStudent.ChatList"
+                  moduleName = "iProjectStudent"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rt1/Pictures/iOS-Develop/iProjectStudent/iProjectStudent/Chat/Chat.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "17">
+               </Location>
+               <Location
+                  uuid = "0B42BA2C-BD41-4BB7-86AC-97E21DED8337 - 5652a8187814e4c2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "iProjectStudent.ChatList.init() -&gt; iProjectStudent.ChatList"
+                  moduleName = "iProjectStudent"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rt1/Pictures/iOS-Develop/iProjectStudent/iProjectStudent/Chat/Chat.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "23">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
