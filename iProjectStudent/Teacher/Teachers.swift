@@ -28,7 +28,7 @@ class Teachers {
     }
 }
 
-/*
+
 class niseTeacher {
     var name: String
     var collage: String
@@ -42,4 +42,4 @@ class niseTeacher {
     }
  
 }
-*/
+
