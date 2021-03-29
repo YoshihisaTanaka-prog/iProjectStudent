@@ -664,53 +664,85 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8TN-a3-sSX">
-                                <rect key="frame" x="20" y="110" width="361" height="82"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8TN-a3-sSX">
+                                <rect key="frame" x="20" y="110" width="374" height="85"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="8TN-a3-sSX" secondAttribute="height" multiplier="361:82" id="SfV-cB-O79"/>
+                                </constraints>
                             </pickerView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kCV-nc-j01">
-                                <rect key="frame" x="115" y="329" width="184" height="129"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2SU-8S-cyd">
-                                <rect key="frame" x="115" y="655" width="175" height="46"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2SU-8S-cyd">
+                                <rect key="frame" x="119.5" y="661" width="175" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="81O-5b-QG2"/>
+                                    <constraint firstAttribute="width" constant="175" id="ipN-kq-Voh"/>
+                                </constraints>
                                 <state key="normal" title="書く！"/>
                                 <connections>
                                     <action selector="saveEvent:" destination="FrB-Hd-iha" eventType="touchUpInside" id="vuy-pE-sS7"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dt2-3h-qzg">
-                                <rect key="frame" x="115" y="722" width="175" height="46"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dt2-3h-qzg">
+                                <rect key="frame" x="119.5" y="727" width="175" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="175" id="EzZ-Jb-wMh"/>
+                                    <constraint firstAttribute="height" constant="46" id="L81-rU-5Xn"/>
+                                </constraints>
                                 <state key="normal" title="戻る"/>
                                 <connections>
                                     <action selector="onbackClick:" destination="FrB-Hd-iha" eventType="touchUpInside" id="8oi-6r-rdb"/>
                                 </connections>
                             </button>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="As7-pW-z10">
-                                <rect key="frame" x="20" y="214" width="374" height="100"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="As7-pW-z10">
+                                <rect key="frame" x="20" y="200" width="374" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="As7-pW-z10" secondAttribute="height" multiplier="187:50" id="XXg-9V-3q2"/>
+                                </constraints>
                             </pickerView>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fj8-9k-tj6">
-                                <rect key="frame" x="20" y="530" width="374" height="82"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fj8-9k-tj6">
+                                <rect key="frame" x="20" y="305" width="374" height="82"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="fj8-9k-tj6" secondAttribute="height" multiplier="187:41" id="Xa8-cq-JgH"/>
+                                </constraints>
                             </pickerView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kCV-nc-j01">
+                                <rect key="frame" x="115" y="417" width="184" height="214"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="184" id="vsr-fW-heA"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="XFZ-DF-d6p"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fj8-9k-tj6" firstAttribute="top" secondItem="As7-pW-z10" secondAttribute="bottom" constant="5" id="2vK-OE-OXT"/>
+                            <constraint firstItem="dt2-3h-qzg" firstAttribute="top" secondItem="2SU-8S-cyd" secondAttribute="bottom" constant="20" id="6M9-AV-DeW"/>
+                            <constraint firstItem="XFZ-DF-d6p" firstAttribute="trailing" secondItem="fj8-9k-tj6" secondAttribute="trailing" constant="20" id="7oE-JJ-qSK"/>
+                            <constraint firstItem="XFZ-DF-d6p" firstAttribute="trailing" secondItem="As7-pW-z10" secondAttribute="trailing" constant="20" id="HSa-6b-TtQ"/>
+                            <constraint firstItem="dt2-3h-qzg" firstAttribute="centerX" secondItem="s6Q-29-eUw" secondAttribute="centerX" id="KcS-Qy-6Fe"/>
+                            <constraint firstItem="8TN-a3-sSX" firstAttribute="top" secondItem="XFZ-DF-d6p" secondAttribute="top" constant="22" id="LZf-DN-VhZ"/>
+                            <constraint firstItem="As7-pW-z10" firstAttribute="top" secondItem="8TN-a3-sSX" secondAttribute="bottom" constant="5" id="R6z-b0-J7y"/>
+                            <constraint firstItem="As7-pW-z10" firstAttribute="leading" secondItem="XFZ-DF-d6p" secondAttribute="leading" constant="20" id="Tc8-Yx-Z4b"/>
+                            <constraint firstItem="XFZ-DF-d6p" firstAttribute="bottom" secondItem="dt2-3h-qzg" secondAttribute="bottom" constant="40" id="exf-Kg-b7D"/>
+                            <constraint firstItem="2SU-8S-cyd" firstAttribute="centerX" secondItem="s6Q-29-eUw" secondAttribute="centerX" id="g1q-wu-ZaF"/>
+                            <constraint firstItem="2SU-8S-cyd" firstAttribute="top" secondItem="kCV-nc-j01" secondAttribute="bottom" constant="30" id="hpe-YO-rfS"/>
+                            <constraint firstItem="kCV-nc-j01" firstAttribute="top" secondItem="fj8-9k-tj6" secondAttribute="bottom" constant="30" id="itu-aB-ZKC"/>
+                            <constraint firstItem="fj8-9k-tj6" firstAttribute="leading" secondItem="XFZ-DF-d6p" secondAttribute="leading" constant="20" id="jM3-PY-fQO"/>
+                            <constraint firstItem="XFZ-DF-d6p" firstAttribute="trailing" secondItem="8TN-a3-sSX" secondAttribute="trailing" constant="20" id="qcd-Zq-7kl"/>
+                            <constraint firstItem="kCV-nc-j01" firstAttribute="centerX" secondItem="s6Q-29-eUw" secondAttribute="centerX" id="v7I-Tb-Ol1"/>
+                            <constraint firstItem="8TN-a3-sSX" firstAttribute="leading" secondItem="XFZ-DF-d6p" secondAttribute="leading" constant="20" id="zXw-wn-sRy"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="q7U-Zp-vaz"/>
                     <connections>
-                        <outlet property="datePickerView" destination="fj8-9k-tj6" id="qmD-Is-TlC"/>
-                        <outlet property="eventText" destination="kCV-nc-j01" id="xCU-cy-syD"/>
-                        <outlet property="pickerView" destination="8TN-a3-sSX" id="cAr-OT-obI"/>
-                        <outlet property="subjectPickerView" destination="As7-pW-z10" id="V1o-2z-24G"/>
+                        <outlet property="datePickerView" destination="8TN-a3-sSX" id="2Mf-YU-pGJ"/>
+                        <outlet property="eventText" destination="kCV-nc-j01" id="EOG-kI-vPK"/>
+                        <outlet property="pickerView" destination="As7-pW-z10" id="P8X-Nq-taU"/>
+                        <outlet property="subjectPickerView" destination="fj8-9k-tj6" id="GVv-pT-kiF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tSg-ha-QIl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -970,7 +1002,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pno-4M-Cqp">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pno-4M-Cqp" customClass="AccentButton" customModule="iProjectStudent" customModuleProvider="target">
                                         <rect key="frame" x="351" y="30" width="46" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="46" id="F3W-Jx-079"/>
