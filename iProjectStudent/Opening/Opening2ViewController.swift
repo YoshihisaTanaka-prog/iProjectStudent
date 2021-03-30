@@ -21,6 +21,15 @@ class Opening2ViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+//        ログイン判定
+        if let user = NCMBUser.current() {
+            let _ = User(user)
+            loadFollowlist()
+            isLogInG = true
+        }
+        else{
+            isLogInG = false
+        }
 //        TabBarやNavigationBarがある時の画面サイズの取得
         let size = screenSizeG["NnNt"]!
         
@@ -38,7 +47,6 @@ class Opening2ViewController: UIViewController {
         UIView.animate(withDuration: 0.8, animations: {
             self.label.textColor = .red
         }) { _ in
-//            ログイン判定
             if isLogInG {
                 // ログイン中だったら
 //                let storyboard = UIStoryboard(name: "Questionnaire", bundle: Bundle.main)

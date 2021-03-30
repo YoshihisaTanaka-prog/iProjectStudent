@@ -39,8 +39,6 @@ class UserPageViewController: UIViewController, UITextFieldDelegate, UITextViewD
     
     override func viewWillAppear(_ animated: Bool) {
         
-        userImageView.image = userImagesCacheG[NCMBUser.current()!.objectId]
-        
         userImageView.layer.cornerRadius = userImageView.bounds.width / 2.0
         userImageView.layer.masksToBounds = true
         
@@ -67,6 +65,7 @@ class UserPageViewController: UIViewController, UITextFieldDelegate, UITextViewD
         selectionTextField.text = user.studentParameter?.selection
         parentsEmailTextField.text = user.studentParameter?.parentEmailAdress
         introductionTextView.text = user.studentParameter?.introduction
+        setUserImage(&userImageView, user)
     }
     
     @IBAction func showMenu(){

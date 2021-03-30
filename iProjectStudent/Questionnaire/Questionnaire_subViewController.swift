@@ -60,11 +60,19 @@ class QuestionnaireViewController: UIViewController {
 //            送信して画面を移動
             timer.invalidate()
             let object = NCMBObject(className: "StudentParameter")
+            object?.setObject(0, forKey: "grade")
             object?.setObject(questionaire.result, forKey: "personalityGroup")
             object?.setObject(NCMBUser.current(), forKey: "user")
+            object?.setObject(NCMBUser.current()!.objectId, forKey: "userId")
+            object?.setObject("FFFFFF", forKey: "youbi")
             object?.saveInBackground({ (error) in
                 if(error == nil){
                     NCMBUser.current()?.setObject(object, forKey: "parameter")
+                    NCMBUser.current()?.setObject(nil, forKey: "imageName")
+                    NCMBUser.current()?.setObject(nil, forKey: "peerId")
+                    NCMBUser.current()?.setObject(true, forKey: "isActive")
+                    NCMBUser.current()?.setObject("", forKey: "furigana")
+                    NCMBUser.current()?.setObject("", forKey: "name")
                     NCMBUser.current()?.signUpInBackground({ (error) in
                         if(error == nil){
                             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
