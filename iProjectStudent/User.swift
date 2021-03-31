@@ -105,6 +105,30 @@ class TeacherParameter{
     var objectId: String
     var departments: String
     var score: Double
+ 
+/*
+     let youbiList: [CheckBoxInput] = [
+         CheckBoxInput("月曜日"),
+         CheckBoxInput("火曜日"),
+         CheckBoxInput("水曜日"),
+         CheckBoxInput("木曜日"),
+         CheckBoxInput("金曜日"),
+         CheckBoxInput("土曜日", color: .blue),
+         CheckBoxInput("日曜日", color: .red)
+     ]
+    let querys:[NCMBQuery] = []
+    for 志望校 in 志望校の配列 {
+    let query = querys.append(query)
+    }
+    let query = NCMBQuery.orQuery(withSubqueries: querys)
+    query.wherekey()
+     
+     for youbi in youbiList {
+    query.whereKey("", notEqualto: youbi)
+     
+     }
+*/
+
     
     init(_ parameter: NCMBObject) {
         func fillS(_ s: String?) -> String{
