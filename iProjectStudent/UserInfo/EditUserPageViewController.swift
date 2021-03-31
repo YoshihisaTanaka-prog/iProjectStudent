@@ -70,7 +70,7 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         
         parentsEmailTextField.text = user_.studentParameter?.parentEmailAdress
         
-        userImageView.image = userImagesCacheG[NCMBUser.current()!.objectId]
+        setUserImage(&userImageView, user_)
         
         youbiCheckBox.setSelection(user_.studentParameter!.youbi)
     }
@@ -116,24 +116,19 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
     }
     
     // UIPickerViewの行数、リストの数
-    func pickerView(_ pickerView: UIPickerView,
-                    numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return bunri.count
         
     }
     
     // UIPickerViewの最初の表示
-    func pickerView(_ pickerView: UIPickerView,
-                    titleForRow row: Int,
-                    forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return bunri[row]
         
     }
     
     // UIPickerViewのRowが選択された時の挙動
-    func pickerView(_ pickerView: UIPickerView,
-                    didSelectRow row: Int,
-                    inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if row != 0 {
             selected = bunri[row]
         } else {

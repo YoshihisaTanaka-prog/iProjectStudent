@@ -18,5 +18,7 @@ target 'iProjectStudent' do
   pod 'RealmSwift'
   
   pod 'NYXImagesKit'
+
+  pod 'Kingfisher'
   
 end

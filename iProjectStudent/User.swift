@@ -17,7 +17,7 @@ class User {
     var userName: String
     var userIdFurigana: String?
     var mailAddress: String?
-    //    var isTeacher: Bool
+    var imageName: String?
     var oneOnOneSerch: String
     var teacherParameter: TeacherParameter?
     var studentParameter: StudentParameter?
@@ -30,7 +30,7 @@ class User {
         self.mailAddress = user.mailAddress
         self.userIdFurigana = user.object(forKey: "furigana") as? String
         self.userName = user.object(forKey: "name") as? String ?? ""
-        //        self.isTeacher = user.object(forKey: "isTeacher") as! Bool
+        self.imageName = user.object(forKey: "imageName") as? String
         
         //        個人チャットを検索するためのパラメータ
         if (NCMBUser.current()?.objectId)! < self.userId {
@@ -131,34 +131,10 @@ class TeacherParameter{
 
     
     init(_ parameter: NCMBObject) {
-        func fillS(_ s: String?) -> String{
-            if s == nil {
-                return ""
-            }
-            else{
-                return s!
-            }
-        }
-        func fillD(_ d: Double?) -> Double{
-            if d == nil {
-                return 0.d
-            }
-            else{
-                return d!
-            }
-        }
-        func fillI(_ i: Int?) -> Int{
-            if i == nil {
-                return 0
-            }
-            else{
-                return i!
-            }
-        }
         
         self.ncmb = parameter
         self.objectId = parameter.objectId
-        self.departments = fillS(parameter.object(forKey: "departments") as? String)
+        self.departments = parameter.object(forKey: "departments") as? String ?? ""
         self.score = 0.d// 一旦これで
     }
 }
@@ -176,40 +152,16 @@ class StudentParameter{
     var youbi: String
     
     init(_ parameter: NCMBObject) {
-        func fillS(_ s: String?) -> String{
-            if s == nil {
-                return ""
-            }
-            else{
-                return s!
-            }
-        }
-        func fillD(_ d: Double?) -> Double{
-            if d == nil {
-                return 0.d
-            }
-            else{
-                return d!
-            }
-        }
-        func fillI(_ i: Int?) -> Int{
-            if i == nil {
-                return 0
-            }
-            else{
-                return i!
-            }
-        }
         
         self.ncmb = parameter
         self.objectId = parameter.objectId
-        self.choice = fillS(parameter.object(forKey: "choice") as? String)
-        self.SchoolName = fillS(parameter.object(forKey: "SchoolName") as? String)
-        self.selection = fillS(parameter.object(forKey: "selection") as? String)
-        self.grade = fillS(parameter.object(forKey: "grade") as? String)
-        self.choice = fillS(parameter.object(forKey: "choice") as? String)
-        self.parentEmailAdress = fillS(parameter.object(forKey: "parentEmailAdress") as? String)
-        self.introduction = fillS(parameter.object(forKey: "introduction") as? String)
-        self.youbi = fillS(parameter.object(forKey: "youbi") as? String)
+        self.choice = parameter.object(forKey: "choice") as? String ?? ""
+        self.SchoolName = parameter.object(forKey: "SchoolName") as? String ?? ""
+        self.selection = parameter.object(forKey: "selection") as? String ?? ""
+        self.grade = parameter.object(forKey: "grade") as? String ?? ""
+        self.choice = parameter.object(forKey: "choice") as? String ?? ""
+        self.parentEmailAdress = parameter.object(forKey: "parentEmailAdress") as? String ?? ""
+        self.introduction = parameter.object(forKey: "introduction") as? String ?? ""
+        self.youbi = parameter.object(forKey: "youbi") as? String ?? ""
     }
 }

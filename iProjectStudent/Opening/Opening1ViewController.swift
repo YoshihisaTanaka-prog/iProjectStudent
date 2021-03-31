@@ -22,14 +22,7 @@ class Opening1ViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if let user = NCMBUser.current() {
-            let _ = User(user)
-            loadFollowlist()
-            isLogInG = true
-        }
-        else{
-            isLogInG = false
-        }
+        let _ = NCMBUser.current()
 //        画面サイズの取得
         screenSizeG["NnNt"] = Size(x: self.view.frame.size.width, y: self.view.frame.size.height, tm: self.view.safeAreaInsets.top, bm: self.view.safeAreaInsets.bottom)
         print("NnNt", screenSizeG["NnNt"]!.viewHeight)

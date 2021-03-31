@@ -64,7 +64,7 @@ class TeacherInfoViewController: UIViewController, UITableViewDataSource, UITabl
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell1") as! TeacherInfoTableViewCell
             cell.averageScoreCosmosView.rating = teacher.teacherParameter!.score
             cell.furiganaLabel.text = teacher.userIdFurigana
-            cell.userImageView.image = userImagesCacheG[teacher.userId] ?? UIImage(named: "teacherNoImage.png")
+            self.setUserImage(&cell.userImageView, teacher)
             cell.userNameLabel.text = teacher.userName + "　先生"
             cell.collageInfoLabel.text = "東京大学   1年"
             cell.averageTitleLabel.text = "平均評価：" + 4.9.s
