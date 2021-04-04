@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qYT-7a-7mL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qYT-7a-7mL">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -26,7 +26,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自分のメールアドレス" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7tW-Jc-33v" customClass="CategoryLabel" customModule="iProjectStudent" customModuleProvider="target">
-                                <rect key="frame" x="145.5" y="440.5" width="123" height="14.5"/>
+                                <rect key="frame" x="145.5" y="436.5" width="123" height="14.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14.5" id="nI4-if-XtG"/>
                                     <constraint firstAttribute="width" constant="123" id="ncd-TQ-3IA"/>
@@ -35,8 +35,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="保護者のメールアドレス" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WPu-J7-91D" customClass="CategoryLabel" customModule="iProjectStudent" customModuleProvider="target">
-                                <rect key="frame" x="101.5" y="509" width="211" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="保護者のメールアドレス" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WPu-J7-91D" customClass="CategoryLabel" customModule="iProjectStudent" customModuleProvider="target">
+                                <rect key="frame" x="101.5" y="494" width="211" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="211" id="04c-Xl-fYv"/>
                                     <constraint firstAttribute="height" constant="21" id="HoC-Nh-Jmb"/>
@@ -45,8 +45,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="志望校" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h1w-CE-p9p" customClass="CategoryLabel" customModule="iProjectStudent" customModuleProvider="target">
-                                <rect key="frame" x="188.5" y="381" width="37" height="14.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="志望校" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h1w-CE-p9p" customClass="CategoryLabel" customModule="iProjectStudent" customModuleProvider="target">
+                                <rect key="frame" x="188.5" y="379" width="37" height="14.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="37" id="QC1-sn-WTt"/>
                                     <constraint firstAttribute="height" constant="14.5" id="nos-HU-Fhw"/>
@@ -56,7 +56,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="LEb-oa-sgw">
-                                <rect key="frame" x="87" y="573" width="240" height="150"/>
+                                <rect key="frame" x="87" y="569" width="240" height="154"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="j7N-cP-YqE"/>
@@ -79,9 +79,10 @@
                                     <segue destination="pu2-Jx-xK8" kind="show" id="yTh-gY-ZmF"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="自分のメールアドレス" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="asQ-Qm-yg8">
-                                <rect key="frame" x="45" y="455" width="324" height="23"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="自分のメールアドレス" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="asQ-Qm-yg8">
+                                <rect key="frame" x="45" y="451" width="324" height="23"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="324" id="k55-j8-77d"/>
                                     <constraint firstAttribute="height" constant="23" id="uhH-5S-u0U"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -105,7 +106,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="通っている学校名" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lQ1-qw-F3k">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="通っている学校名" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lQ1-qw-F3k">
                                 <rect key="frame" x="87.5" y="279" width="239" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="29s-5B-UJK"/>
@@ -115,7 +116,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="学年" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oQ1-uN-FD1">
-                                <rect key="frame" x="158.5" y="317" width="97" height="23"/>
+                                <rect key="frame" x="158.5" y="313" width="97" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="23" id="22V-Rx-SfR"/>
                                     <constraint firstAttribute="width" constant="97" id="ttX-VF-add"/>
@@ -124,7 +125,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="文理選択" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rZ8-fC-kyn">
-                                <rect key="frame" x="170.5" y="350" width="73.5" height="23"/>
+                                <rect key="frame" x="170.5" y="346" width="73.5" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="23" id="wwg-7T-WCZ"/>
                                 </constraints>
@@ -141,7 +142,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="志望校" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nvx-Wt-R4v">
-                                <rect key="frame" x="147" y="397.5" width="120" height="23"/>
+                                <rect key="frame" x="147" y="393.5" width="120" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="23" id="t2e-Rc-MjV"/>
                                     <constraint firstAttribute="width" constant="120" id="vnl-CA-ELr"/>
@@ -153,13 +154,13 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="lQ1-qw-F3k" firstAttribute="top" secondItem="hVd-Wa-ug9" secondAttribute="bottom" constant="6" id="1Gb-sj-emX"/>
                             <constraint firstItem="oQ1-uN-FD1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3ZZ-AO-pvl"/>
                             <constraint firstItem="2R3-Di-T8d" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="3g0-cz-COd"/>
                             <constraint firstItem="rZ8-fC-kyn" firstAttribute="top" secondItem="oQ1-uN-FD1" secondAttribute="bottom" constant="10" id="AOv-pv-jwh"/>
                             <constraint firstItem="LEb-oa-sgw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Cjk-2E-37m"/>
                             <constraint firstItem="asQ-Qm-yg8" firstAttribute="top" secondItem="7tW-Jc-33v" secondAttribute="bottom" id="Ku5-VV-HuK"/>
                             <constraint firstItem="Pg8-3s-KDa" firstAttribute="top" secondItem="2R3-Di-T8d" secondAttribute="bottom" constant="10" id="LeK-dJ-twY"/>
-                            <constraint firstItem="lQ1-qw-F3k" firstAttribute="top" secondItem="hVd-Wa-ug9" secondAttribute="bottom" constant="10" id="M5Y-5A-unX"/>
                             <constraint firstItem="hVd-Wa-ug9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Nin-SC-If8"/>
                             <constraint firstItem="hVd-Wa-ug9" firstAttribute="top" secondItem="Pg8-3s-KDa" secondAttribute="bottom" id="PAs-2H-uHX"/>
                             <constraint firstItem="2R3-Di-T8d" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="T79-oK-PJA"/>
