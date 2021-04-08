@@ -61,6 +61,7 @@ class QuestionnaireViewController: UIViewController {
             timer.invalidate()
             let object = NCMBObject(className: "StudentParameter")
             object?.setObject(0, forKey: "grade")
+            object?.setObject(true, forKey: "isPermitted")
             object?.setObject(questionaire.result, forKey: "personalityGroup")
             object?.setObject(NCMBUser.current(), forKey: "user")
             object?.setObject(NCMBUser.current()!.objectId, forKey: "userId")
