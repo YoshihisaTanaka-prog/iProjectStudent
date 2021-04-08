@@ -67,7 +67,7 @@ class User {
                 }
             }
         }
-        //        画像の設定
+        //        画像の設定　　
         let imageName = user.object(forKey: "imageName") as? String
         if( imageName != nil ){
             let file = NCMBFile.file(withName: imageName!, data: nil) as! NCMBFile

@@ -42,7 +42,6 @@ class YoubiCompatibility{
 //            どうすればいい感じに上書きができるのか考えてみてください。　ヒント：getIgnoreStrings(i,ignoreInts.count)とignoreIntsを使います。
             
             
-            
 //            badsの各要素を結合し、一つの文字列badにする。
             var bad = ""
             for b in bads {
