@@ -41,8 +41,9 @@ class YoubiCompatibility{
             var bads = ["F","F","F","F","F","F","F"]  //  生徒の希望のうち"T"の部分は上書きしないので初期値は7個全て"F"にしておきます。
 //            どうすればいい感じに上書きができるのか考えてみてください。　ヒント：getIgnoreStrings(i,ignoreInts.count)とignoreIntsを使います。
             
-            
-            
+            for j in 0..<ignoreInts.count {
+                bads[ignoreInts[j]] = getIgnoreStrings(i,ignoreInts.count)[j]
+            }
 //            badsの各要素を結合し、一つの文字列badにする。
             var bad = ""
             for b in bads {
