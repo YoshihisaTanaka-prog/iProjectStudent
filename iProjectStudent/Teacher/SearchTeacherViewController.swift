@@ -17,16 +17,21 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
     var selectedTeacher: User!
     var numOfSelectedSubject = 0
     var isSearching = true
-    var selectedSubject: String?
-    let mainSubjectList = ["5教科を選択","国語","数学","理科","社会","英語"]
-    let subSubjectList = [
-        ["------"],
-        ["詳細を選択","現代文","古文","漢文"],
-        ["詳細を選択","数学Ⅰ・A","数学Ⅱ・B","数学Ⅲ・C"],
-        ["詳細を選択","物理","化学","生物","地学"],
-        ["詳細を選択","地理","日本史","世界史","現代社会","倫理","政治・経済"],
-        ["詳細を選択",""]
-    ]
+    var youbi: YoubiCompatibility!
+    var spirit: SpiritCompatibility!
+    let user = User(NCMBUser.current())
+    private var selectedSubject: String?
+    private var selectedSubjectList = [["------",""]]
+    private let mainSubjectList = [["教科を選択",""],["国語",""],["数学",""],["理科",""],["社会",""],["英語","English"]]
+    private let subSubjectList = [
+            [["------",""]],
+            [["詳細を選択",""],["現代文","modernWriting"],["古文","ancientWiting"],["漢文","chineseWriting"]],
+            [["詳細を選択",""],["数学Ⅰ・A","math1a"],["数学Ⅱ・B","math2b"],["数学Ⅲ・C","math3c"]],
+            [["詳細を選択",""],["物理","physics"],["化学","chemistry"],["生物","biology"],["地学","earthScience"]],
+            [["詳細を選択",""],["地理","geography"],["日本史","japaneseHistory"],["世界史","worldHistory"],
+             ["現代社会","modernSociety"],["倫理","ethics"],["政治・経済","politicalScienceAndEconomics"]],
+            [["-----","English"]]
+        ]
     var teacherList: [niseTeacher] = []
     let teacherLists = [[
         niseTeacher("清水彩加","東京大学",1,5.0),
@@ -112,7 +117,12 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        youbi = YoubiCompatibility(user.studentParameter!.youbi)
+        spirit = SpiritCompatibility()
         tableView.reloadData()
+        for y in youbi.badList {
+            print(y)
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -164,53 +174,41 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        switch component{
+        switch component {
         case 0:
             return mainSubjectList.count
+        case 1:
+            return selectedSubjectList.count
         default:
-            return subSubjectList[numOfSelectedSubject].count
+            return 0
         }
     }
     
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        switch component {
-        case 0:
-            let label = PickerLabel(text: mainSubjectList[row], pickerView.frame.width / 2.f)
-            return label
-        default:
-            let label = PickerLabel(text: subSubjectList[numOfSelectedSubject][row], pickerView.frame.width / 2.f)
-            return label
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+            switch component {
+            case 0:
+                return mainSubjectList[row][0]
+            case 1:
+                return selectedSubjectList[row][0]
+            default:
+                return ""
+            }
         }
-    }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch component {
         case 0:
-            numOfSelectedSubject = row
-            self.pickerView.selectRow(0, inComponent: 1, animated: true)
+            selectedSubjectList = subSubjectList[row]
             pickerView.reloadComponent(1)
-            teacherList = []
-            if(row == 0){
-                selectedSubject = nil
-            } else{
-                selectedSubject = ""
-            }
-            tableView.reloadData()
+            pickerView.selectRow(0, inComponent: 1, animated: true)
+            selectedSubject = mainSubjectList[row][1]
+            //print(selectedSubject)
+        case 1:
+            selectedSubject = selectedSubjectList[row][1]
+            //print(selectedSubject)
         default:
-            if(row == 0){
-                selectedSubject = ""
-            }
-            else{
-                selectedSubject = subSubjectList[numOfSelectedSubject][row - 1]
-                isSearching = true
-                teacherList = []
-                tableView.reloadData()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                    self.isSearching = false
-                    self.teacherList = self.teacherLists[self.numOfSelectedSubject - 1]
-                    self.tableView.reloadData()
-                }
-            }
+            break
         }
     }
 
