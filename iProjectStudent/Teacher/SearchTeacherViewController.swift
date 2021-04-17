@@ -117,7 +117,7 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        youbi = YoubiCompatibility(user.studentParameter!.youbi)
+        youbi = YoubiCompatibility((user.studentParameter?.youbi) ?? "FFFFFFF")
         spirit = SpiritCompatibility()
         tableView.reloadData()
         for y in youbi.badList {
@@ -203,10 +203,10 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
             pickerView.reloadComponent(1)
             pickerView.selectRow(0, inComponent: 1, animated: true)
             selectedSubject = mainSubjectList[row][1]
-            //print(selectedSubject)
+            print(selectedSubject)
         case 1:
             selectedSubject = selectedSubjectList[row][1]
-            //print(selectedSubject)
+            print(selectedSubject)
         default:
             break
         }
@@ -219,6 +219,27 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
         let nectVC = segue.destination as! TeacherInfoViewController
         nectVC.subject = selectedSubject!
         nectVC.teacher = selectedTeacher
+    }
+    
+    func loadUsers(searchText: String?, searchText2:String?, searchText3: String?){
+        let query = NCMBQuery(className: "TeacherParameter")
+        query?.whereKey(String?, equalTo: YoubiCompatibility.badList)
+        
+        if let text = searchText {
+            print(text)
+            query?.whereKey("", equalTo: text)
+        }
+        
+        query?.findObjectsInBackground({ (result, error) in
+            if error == nil {
+                let objects = result as? [NCMBObject] ?? []
+                self.teachers = Teachers(objects, subject: self.selectedSubject!)
+            }
+            else {
+            }
+            
+        })
+        
     }
 
 }

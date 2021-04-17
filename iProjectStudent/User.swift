@@ -50,7 +50,7 @@ class User {
             param?.fetch(&error)
             
             if(error == nil && param != nil){
-                let isPermitted = param?.object(forKey: "isPermitted") as? Bool ?? false
+                let isPermitted = param?.object(forKey: "isPermitted") as? Bool ?? true
                 if(isPermitted){
                     if(param!.ncmbClassName == "TeacherParameter"){
                         self.teacherParameter = TeacherParameter(param!)
