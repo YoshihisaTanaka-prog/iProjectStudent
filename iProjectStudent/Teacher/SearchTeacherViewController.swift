@@ -223,7 +223,7 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
     
     func loadUsers(searchText: String?, searchText2:String?, searchText3: String?){
         let query = NCMBQuery(className: "TeacherParameter")
-        query?.whereKey(String?, equalTo: YoubiCompatibility.badList)
+        //query?.whereKey(String?, equalTo: YoubiCompatibility.badList)
         
         if let text = searchText {
             print(text)
