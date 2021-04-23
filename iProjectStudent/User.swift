@@ -29,7 +29,7 @@ class User {
         self.userId = user.objectId
         self.mailAddress = user.mailAddress
         self.userIdFurigana = user.object(forKey: "furigana") as? String
-        self.userName = user.object(forKey: "name") as? String ?? ""
+        self.userName = user.object(forKey: "name") as? String ?? "a"
         self.imageName = user.object(forKey: "imageName") as? String
         
         //        個人チャットを検索するためのパラメータ
