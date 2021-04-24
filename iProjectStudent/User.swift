@@ -29,7 +29,7 @@ class User {
         self.userId = user.objectId
         self.mailAddress = user.mailAddress
         self.userIdFurigana = user.object(forKey: "furigana") as? String
-        self.userName = user.object(forKey: "name") as? String ?? ""
+        self.userName = user.object(forKey: "name") as? String ?? "a"
         self.imageName = user.object(forKey: "imageName") as? String
         
         //        個人チャットを検索するためのパラメータ
@@ -50,7 +50,7 @@ class User {
             param?.fetch(&error)
             
             if(error == nil && param != nil){
-                let isPermitted = param?.object(forKey: "isPermitted") as? Bool ?? false
+                let isPermitted = param?.object(forKey: "isPermitted") as? Bool ?? true
                 if(isPermitted){
                     if(param!.ncmbClassName == "TeacherParameter"){
                         self.teacherParameter = TeacherParameter(param!)

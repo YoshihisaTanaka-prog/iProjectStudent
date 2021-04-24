@@ -117,12 +117,13 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        youbi = YoubiCompatibility(user.studentParameter!.youbi)
+        youbi = YoubiCompatibility((user.studentParameter?.youbi) ?? "FFFFFFF")
         spirit = SpiritCompatibility()
         tableView.reloadData()
         for y in youbi.badList {
             print(y)
         }
+
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -168,11 +169,13 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
         tableView.reloadData()
     }
     
-    
+//学年はチェックボックスで選択
+//pickerViewの列の個数（return 2　のところ）
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 2
     }
-    
+  
+    //pickerViewの行の個数（return 　のところ）　component列目の個数
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch component {
         case 0:
@@ -184,7 +187,7 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
         }
     }
     
-    
+//picerViewに表示する内容
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
             switch component {
             case 0:
@@ -196,6 +199,7 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
             }
         }
     
+//選択されたときの処理
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch component {
         case 0:
@@ -203,12 +207,16 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
             pickerView.reloadComponent(1)
             pickerView.selectRow(0, inComponent: 1, animated: true)
             selectedSubject = mainSubjectList[row][1]
-            //print(selectedSubject)
+            print(selectedSubject)
         case 1:
             selectedSubject = selectedSubjectList[row][1]
-            //print(selectedSubject)
+            print(selectedSubject)
         default:
             break
+        }
+        
+        if selectedSubject! != "" {
+            loadUsers(searchText: "", searchText2: "", searchText3: "")
         }
     }
 
@@ -219,6 +227,52 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
         let nectVC = segue.destination as! TeacherInfoViewController
         nectVC.subject = selectedSubject!
         nectVC.teacher = selectedTeacher
+    }
+    
+    func loadUsers(searchText: String?, searchText2:String?, searchText3: String?){
+        let query = NCMBQuery(className: "TeacherParameter")
+        query?.whereKeyExists("user")
+        for i in 0..<youbi.badList.count {
+            query?.whereKey("youbi", notEqualTo: youbi.badList[i])
+        }
+        for s in spirit.getBad(user.studentParameter?.personalityGroup ?? -1) {
+            query?.whereKey("personalityGroup", notEqualTo: s)
+        }
+        if let text = searchText {
+            print(text)
+            //大学
+            //性格診断
+            //学年（int型）
+            //isableto
+            //andの=!
+            //曜日が合わない先生，先生が合わない先生のリストの呼び出し方=>
+
+
+        }
+        
+        if let text2 = searchText2 {
+            print(text2)
+            //大学
+            //性格診断
+            //学年（int型）
+            //isableto
+//            query?.whereKey("personalityGroup", equalTo: text2)
+        }
+        
+        
+        query?.findObjectsInBackground({ (result, error) in
+            if error == nil {
+                let objects = result as? [NCMBObject] ?? []
+                self.teachers = Teachers(objects, subject: self.selectedSubject!)
+                for i in self.teachers.list{
+                    print(i.userName)
+                }
+            }
+            else {
+            }
+            
+        })
+        
     }
 
 }
