@@ -19,6 +19,15 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
     var isSearching = true
     var youbi: YoubiCompatibility!
     var spirit: SpiritCompatibility!
+    var gradeCheckBox: CheckBox!
+    let gradeList: [CheckBoxInput] = [
+        CheckBoxInput("学部 1年生"),
+        CheckBoxInput("学部 2年生"),
+        CheckBoxInput("学部 3年生"),
+        CheckBoxInput("学部 4年生"),
+        CheckBoxInput("修士 1年生"),
+        CheckBoxInput("修士 2年生")
+    ]
     let user = User(NCMBUser.current())
     private var selectedSubject: String?
     private var selectedSubjectList = [["------",""]]
@@ -114,6 +123,8 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
                 self.selectedTeacher = User(user)
             }
         })
+        gradeCheckBox = CheckBox(gradeList,size: CGRect(x: 0, y: 0, width: 0, height: 0))
+        //gradeCheckBox.setSelection(user_.studentParameter!.youbi)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -273,6 +284,19 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
             
         })
         
+    }
+    
+    @IBAction func selectTeacherGrade(){
+        let alertController = UIAlertController(title: "先生の学年を選んでください。", message: "\n\n\n\n\n\n\n\n\n\n\n", preferredStyle: .alert)
+        let alertOkAction = UIAlertAction(title: "選択完了", style: .default) { (action) in
+            self.gradeCheckBox.mainView.removeFromSuperview()
+            alertController.dismiss(animated: true, completion: nil)
+        }
+        let width = alertController.view.frame.width
+        gradeCheckBox.mainView.frame = CGRect(x: width / 10.f, y: 50, width: width * 0.8, height: gradeCheckBox.height)
+        alertController.view.addSubview(gradeCheckBox.mainView)
+        alertController.addAction(alertOkAction)
+        self.present(alertController, animated: true, completion: nil)
     }
 
 }
