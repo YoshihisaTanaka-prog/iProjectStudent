@@ -458,8 +458,17 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="　　　先生の大学を入力してください。" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wsP-2E-jwC">
+                                <rect key="frame" x="0.0" y="657" width="414" height="56"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
+                            </searchBar>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWl-V8-et5">
-                                <rect key="frame" x="86" y="677" width="242" height="30"/>
+                                <rect key="frame" x="86" y="725" width="242" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="先生の学年を選択してください。"/>
                                 <connections>
@@ -482,6 +491,7 @@
                     <navigationItem key="navigationItem" title="先生を探す" id="tx8-2S-sPh"/>
                     <connections>
                         <outlet property="pickerView" destination="WQH-pS-ZmZ" id="Nb9-Sz-2Ht"/>
+                        <outlet property="searchBar1" destination="wsP-2E-jwC" id="9Wu-Zt-Xlf"/>
                         <outlet property="tableView" destination="MXd-qQ-S3L" id="mtR-2T-Sdr"/>
                         <segue destination="1CB-af-2wV" kind="show" identifier="Segue" id="wOS-XS-SK6"/>
                     </connections>

@@ -13,6 +13,7 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var pickerView: UIPickerView!
+    @IBOutlet var searchBar1: UISearchBar!
     var teachers = Teachers()
     var selectedTeacher: User!
     var numOfSelectedSubject = 0
@@ -227,7 +228,7 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
         }
         
         if selectedSubject! != "" {
-            loadUsers(searchText: "", searchText2: "", searchText3: "")
+            loadUsers(searchText: searchBar1.text, searchText2: "", searchText3: "")
         }
     }
 
@@ -243,18 +244,23 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
     func loadUsers(searchText: String?, searchText2:String?, searchText3: String?){
         let query = NCMBQuery(className: "TeacherParameter")
         query?.whereKeyExists("user")
+        query?.whereKey("isAbleToTeach", equalTo: true)
+        query?.whereKey("isPermitted", equalTo: true)
+        
         for i in 0..<youbi.badList.count {
             query?.whereKey("youbi", notEqualTo: youbi.badList[i])
         }
         for s in spirit.getBad(user.studentParameter?.personalityGroup ?? -1) {
             query?.whereKey("personalityGroup", notEqualTo: s)
         }
+        
         if let text = searchText {
             print(text)
+            query?.whereKey("collage", equalTo: text)
             //大学
             //性格診断
             //学年（int型）
-            //isableto
+            //isAbleTo
             //andの=!
             //曜日が合わない先生，先生が合わない先生のリストの呼び出し方=>
 
