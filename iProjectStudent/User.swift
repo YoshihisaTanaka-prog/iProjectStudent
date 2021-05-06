@@ -131,6 +131,7 @@ class StudentParameter{
     var introduction: String
     var youbi: String
     var personalityGroup: Int
+    var teacherGrade: String
     
     init(_ parameter: NCMBObject) {
         
@@ -145,5 +146,6 @@ class StudentParameter{
         self.introduction = parameter.object(forKey: "introduction") as? String ?? ""
         self.youbi = parameter.object(forKey: "youbi") as? String ?? ""
         self.personalityGroup = parameter.object(forKey: "personalityGroup") as? Int ?? -1
+        self.teacherGrade = parameter.object(forKey: "teacherGrade") as? String ?? ""
     }
 }

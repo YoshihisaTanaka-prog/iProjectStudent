@@ -21,6 +21,7 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
     var youbi: YoubiCompatibility!
     var spirit: SpiritCompatibility!
     var gradeCheckBox: CheckBox!
+    let gradeNameList = ["B1", "B2", "B3", "B4", "M1", "M2"]
     let gradeList: [CheckBoxInput] = [
         CheckBoxInput("学部 1年生"),
         CheckBoxInput("学部 2年生"),
@@ -125,6 +126,7 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
             }
         })
         gradeCheckBox = CheckBox(gradeList,size: CGRect(x: 0, y: 0, width: 0, height: 0))
+        gradeCheckBox.setSelection(user.studentParameter!.teacherGrade)
         //gradeCheckBox.setSelection(user_.studentParameter!.youbi)
     }
     
@@ -246,12 +248,19 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
         query?.whereKeyExists("user")
         query?.whereKey("isAbleToTeach", equalTo: true)
         query?.whereKey("isPermitted", equalTo: true)
-        
+        //曜日が合わない教師をはじく
         for i in 0..<youbi.badList.count {
             query?.whereKey("youbi", notEqualTo: youbi.badList[i])
         }
+        //性格の相性の悪い教師をはじく
         for s in spirit.getBad(user.studentParameter?.personalityGroup ?? -1) {
             query?.whereKey("personalityGroup", notEqualTo: s)
+        }
+        //希望した学年以外をはじく
+        for i in 0..<gradeCheckBox.checkBoxes.count {
+            if !gradeCheckBox.checkBoxes[i].isSelected {
+                query?.whereKey("grade", notEqualTo: gradeNameList[i])
+            }
         }
         
         if let text = searchText {
@@ -260,11 +269,7 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
             //大学
             //性格診断
             //学年（int型）
-            //isAbleTo
             //andの=!
-            //曜日が合わない先生，先生が合わない先生のリストの呼び出し方=>
-
-
         }
         
         if let text2 = searchText2 {
@@ -280,9 +285,10 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
         query?.findObjectsInBackground({ (result, error) in
             if error == nil {
                 let objects = result as? [NCMBObject] ?? []
+                print(objects.count)
                 self.teachers = Teachers(objects, subject: self.selectedSubject!)
                 for i in self.teachers.list{
-                    print(i.userName)
+                    print("name:"+i.userName)
                 }
             }
             else {
@@ -297,6 +303,18 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
         let alertOkAction = UIAlertAction(title: "選択完了", style: .default) { (action) in
             self.gradeCheckBox.mainView.removeFromSuperview()
             alertController.dismiss(animated: true, completion: nil)
+            //アプリ内に保存
+            self.user.studentParameter!.teacherGrade = self.gradeCheckBox.getSelection()
+            //ニフクラに保存
+            self.user.studentParameter!.ncmb.setObject(self.gradeCheckBox.getSelection(), forKey: "teacherGrade")
+            self.user.studentParameter!.ncmb.saveInBackground { (error) in
+                if error == nil {
+                    
+                } else {
+                    self.showOkAlert(title: "Error", message: error!.localizedDescription)
+                }
+            }
+
         }
         let width = alertController.view.frame.width
         gradeCheckBox.mainView.frame = CGRect(x: width / 10.f, y: 50, width: width * 0.8, height: gradeCheckBox.height)
