@@ -145,7 +145,7 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if teacherList.count == 0 {
+        if teachers.count == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
             cell.backgroundColor = .clear
             if(selectedSubject == nil){
@@ -156,7 +156,7 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
             else if isSearching{
                 cell.textLabel?.text = "教師を検索中"
             } else{
-                cell.textLabel?.text = "あなたの志望校に通う教師が\n見つかりませんでした。"
+                cell.textLabel?.text = "希望する条件を満たす教師が\n見つかりませんでした。"
             }
             cell.textLabel?.numberOfLines = 0
             cell.textLabel?.textColor = dColor.font
@@ -164,13 +164,12 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell2") as! ReviewTableViewCell
-            cell.cosmosView.rating = teacherList[indexPath.row].score
-            for v in cell.score.subviews {
-                v.removeFromSuperview()
-            }
-            cell.score.text = teacherList[indexPath.row].score.s
-            cell.title.text = teacherList[indexPath.row].collage + "   " + teacherList[indexPath.row].grade.s + "年"
-            cell.userNameLabel.text = teacherList[indexPath.row].name
+            let teacher = teachers.list[indexPath.row]
+            
+//            ここに教師の情報を表示するコードを書いてください。
+            
+            
+            
             cell.setFontColor()
             return cell
         }
@@ -244,6 +243,11 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func loadUsers(searchText: String?, searchText2:String?, searchText3: String?){
+//        まず、教師の情報をリセットして「教師を検索中」に表示を変える。
+        teachers.list = []
+        isSearching = true
+        tableView.reloadData()
+        
         let query = NCMBQuery(className: "TeacherParameter")
         query?.whereKeyExists("user")
         query?.whereKey("isAbleToTeach", equalTo: true)
@@ -288,14 +292,16 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
             if error == nil {
                 let objects = result as? [NCMBObject] ?? []
                 self.teachers = Teachers(objects, subject: self.selectedSubject!)
-                for i in self.teachers.list{
-                    print("name:"+i.userName)
+//                5秒待った後に（検索に時間がかかるから）レビューの高い順に並び替えて検索結果を反映する。
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+                    self.isSearching = false
+                    self.teachers.sort()  //.sort()でレビューの高い順に並び替える（未完成）
+                    self.tableView.reloadData()
                 }
             }
             else {
                 self.showOkAlert(title: "Error", message: error!.localizedDescription)
             }
-            
         })
         
     }

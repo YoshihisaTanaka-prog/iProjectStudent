@@ -34,8 +34,10 @@ class Teachers {
             q?.whereKey("objectId", equalTo: u.objectId)
             q?.findObjectsInBackground({ result, error in
                 if(error == nil){
-                    let user = result!.first as! NCMBUser
-                    self.list.append( User(user, score: score!) )
+                    DispatchQueue.main.async {
+                        let user = result!.first as! NCMBUser
+                        self.list.append( User(user, score: score!) )
+                    }
                 }
             })
         }
