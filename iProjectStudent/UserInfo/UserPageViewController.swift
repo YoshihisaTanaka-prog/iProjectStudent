@@ -53,19 +53,18 @@ class UserPageViewController: UIViewController, UITextFieldDelegate, UITextViewD
 //        pickerView1.dataSource = self
         introductionTextView.delegate = self
         
-        let user = User(NCMBUser.current())
         //let userIdFurigana = NCMBUser.current()?.setObject(userIdFuriganaTextField.text, forKey: "furigana") as! String
         //let Introduction = NCMBUser.current()?.setObject(introductionTextView.text, forKey: "introduction") as! String
-        userIdTextField.text = user.userName
-        emailTextField.text = NCMBUser.current()?.mailAddress
-        userIdFuriganaTextField.text = user.userIdFurigana
-        schoolTextField.text = user.studentParameter?.SchoolName
-        gradeTextField.text = user.studentParameter?.grade
-        choiceTextField.text = user.studentParameter?.choice
-        selectionTextField.text = user.studentParameter?.selection
-        parentsEmailTextField.text = user.studentParameter?.parentEmailAdress
-        introductionTextView.text = user.studentParameter?.introduction
-        setUserImage(&userImageView, user)
+        userIdTextField.text = currentUserG.userName
+        emailTextField.text = currentUserG.mailAddress
+        userIdFuriganaTextField.text = currentUserG.userIdFurigana
+        schoolTextField.text = currentUserG.studentParameter?.SchoolName
+        gradeTextField.text = currentUserG.studentParameter?.grade
+        choiceTextField.text = currentUserG.studentParameter?.choice
+        selectionTextField.text = currentUserG.studentParameter?.selection
+        parentsEmailTextField.text = currentUserG.studentParameter?.parentEmailAdress
+        introductionTextView.text = currentUserG.studentParameter?.introduction
+        setUserImage(&userImageView, currentUserG)
     }
     
     @IBAction func showMenu(){

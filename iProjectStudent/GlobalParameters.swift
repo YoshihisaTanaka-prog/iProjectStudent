@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import NCMB
 
 //ユーザー画像を保存するための変数
 var userImagesCacheG: [String:UIImage] = [:]
@@ -20,6 +21,8 @@ var blockUserListG: [User] = []
 
 //ログインしているのかを判定するための変数
 var isLogInG: Bool = false
+
+var currentUserG: User!
 
 //デザイン用の色を保存する定数
 let dColor = OriginalCollor()

@@ -265,7 +265,9 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
         
         if let text = searchText {
             print(text)
-            query?.whereKey("collage", equalTo: text)
+            if text != ""{
+                query?.whereKey("collage", equalTo: text)
+            }
             //大学
             //性格診断
             //学年（int型）
@@ -285,13 +287,13 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
         query?.findObjectsInBackground({ (result, error) in
             if error == nil {
                 let objects = result as? [NCMBObject] ?? []
-                print(objects.count)
                 self.teachers = Teachers(objects, subject: self.selectedSubject!)
                 for i in self.teachers.list{
                     print("name:"+i.userName)
                 }
             }
             else {
+                self.showOkAlert(title: "Error", message: error!.localizedDescription)
             }
             
         })

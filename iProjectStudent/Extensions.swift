@@ -69,10 +69,10 @@ extension UIViewController{
         }
         if user.imageName != nil {
             if user.teacherParameter == nil{
-                imageView.kf.setImage(with: URL(string: "https://mbaas.api.nifcloud.com/2013-09-01/applications/LEaF9q0Coe9T8EYl/publicFiles/" + user.userId), placeholder: UIImage(named: "studentNoImage.png"))
+                imageView.kf.setImage(with: URL(string: "https://mbaas.api.nifcloud.com/2013-09-01/applications/LEaF9q0Coe9T8EYl/publicFiles/" + user.userId), placeholder: userImagesCacheG[user.userId] ?? UIImage(named: "studentNoImage.png"))
             }
             else{
-                imageView.kf.setImage(with: URL(string: "https://mbaas.api.nifcloud.com/2013-09-01/applications/LEaF9q0Coe9T8EYl/publicFiles/" + user.userId), placeholder: UIImage(named: "teacherNoImage.png"))
+                imageView.kf.setImage(with: URL(string: "https://mbaas.api.nifcloud.com/2013-09-01/applications/LEaF9q0Coe9T8EYl/publicFiles/" + user.userId), placeholder: userImagesCacheG[user.userId] ?? UIImage(named: "teacherNoImage.png"))
             }
         }
     }

@@ -30,13 +30,19 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func signIn() {
         
-        if passwordTextField.text!.count > 0 {
+        if passwordTextField.text!.count * emailTextField.text!.count != 0 {
             NCMBUser.logInWithMailAddress(inBackground: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
                 if error != nil{
                     //エラーがあった場合
                     self.showOkAlert(title: "Error", message: error!.localizedDescription)
                 } else {
                     //ログイン成功
+                    
+                    let ud = UserDefaults.standard
+                    ud.set(self.passwordTextField.text!, forKey: self.emailTextField.text!)
+                    ud.set(Date(), forKey: self.emailTextField.text! + "time")
+                    ud.synchronize()
+                    
                     let u = user?.object(forKey:"parameter") as? NCMBObject
                     if u == nil {
                         //初回ログイン
@@ -78,31 +84,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                     }
                 }
             }
+        } else {
+            showOkAlert(title: "注意", message: "メールアドレスとパスワードを入力してください。")
         }
-        
-        /*
-         if userIdTextField.text!.count > 0 && passwordTextField.text!.count > 0 {
-             NCMBUser.logInWithUsername(inBackground: userIdTextField.text!, password: passwordTextField.text!) { (user, error) in
-                 if error != nil{
-                     //エラーがあった場合
-                     self.showOkAlert(title: "Error", message: error!.localizedDescription)
-                 } else {
-                     //ログイン成功
-                     let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-                     let rootViewController = storyboard.instantiateViewController(identifier: "RootTabBarController")
-                     self.present(rootViewController, animated: true, completion: nil)
-                     
- //                    let _ = User(NCMBUser.current())
-                     
-                     //ログイン状態の保持
-                     let ud = UserDefaults.standard
-                     ud.set(true, forKey: "isLogin")
-                     ud.synchronize()
-                 }
-             }
-         }
-         */
-        
     }
     
     @IBAction func forgetPassword(){

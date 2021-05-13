@@ -17,8 +17,6 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
         super.viewDidLoad()
         setBackGround(true, false)
         emailTextField.delegate = self
-        
-        
     }
     @IBAction func signUp() {
         if(emailTextField.text!.count == 0){

@@ -142,28 +142,28 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
     }
     
     @IBAction func saveUserInfo(){
-        let user = User(NCMBUser.current())
-        user.ncmb.setObject(userIdTextField.text, forKey: "name")
-        user.studentParameter!.ncmb.setObject(userIdTextField.text, forKey: "userName")
-        user.ncmb.setObject(userIdFuriganaTextField.text, forKey: "furigana")
-        user.studentParameter!.ncmb.setObject(userIdFuriganaTextField.text, forKey: "furigana")
-        user.studentParameter!.ncmb.setObject(schoolTextField.text, forKey: "SchoolName")
-        user.ncmb.setObject(gradeTextField.text, forKey: "grade")
-        user.studentParameter!.ncmb.setObject(gradeTextField.text, forKey: "grade")
-        user.studentParameter!.ncmb.setObject(choiceTextField.text, forKey: "choice")
-        user.studentParameter!.ncmb.setObject(parentsEmailTextField.text, forKey: "parentEmailAdress")
+        currentUserG.ncmb.setObject(userIdTextField.text, forKey: "name")
+        currentUserG.studentParameter!.ncmb.setObject(userIdTextField.text, forKey: "userName")
+        currentUserG.ncmb.setObject(userIdFuriganaTextField.text, forKey: "furigana")
+        currentUserG.studentParameter!.ncmb.setObject(userIdFuriganaTextField.text, forKey: "furigana")
+        currentUserG.studentParameter!.ncmb.setObject(schoolTextField.text, forKey: "SchoolName")
+        currentUserG.ncmb.setObject(gradeTextField.text, forKey: "grade")
+        currentUserG.studentParameter!.ncmb.setObject(gradeTextField.text, forKey: "grade")
+        currentUserG.studentParameter!.ncmb.setObject(choiceTextField.text, forKey: "choice")
+        currentUserG.studentParameter!.ncmb.setObject(parentsEmailTextField.text, forKey: "parentEmailAdress")
         if(selected != nil){
-            user.studentParameter!.ncmb.setObject(selected!, forKey: "selection")
+            currentUserG.studentParameter!.ncmb.setObject(selected!, forKey: "selection")
         }
-        user.ncmb.mailAddress = emailTextField.text
-        user.studentParameter!.ncmb.setObject(introductionTextView.text, forKey: "introduction")
-        user.studentParameter!.ncmb.setObject(youbiCheckBox.getSelection(), forKey: "youbi")
-        user.ncmb.saveInBackground{ (error) in
+        currentUserG.ncmb.mailAddress = emailTextField.text
+        currentUserG.studentParameter!.ncmb.setObject(introductionTextView.text, forKey: "introduction")
+        currentUserG.studentParameter!.ncmb.setObject(youbiCheckBox.getSelection(), forKey: "youbi")
+        currentUserG.ncmb.saveInBackground{ (error) in
             if error != nil {
                 self.showOkAlert(title: "Error", message: error!.localizedDescription)
             } else {
-                user.studentParameter!.ncmb.saveInBackground { (error) in
+                currentUserG.studentParameter!.ncmb.saveInBackground { (error) in
                     if error == nil{
+                        currentUserG = User(NCMBUser.current()!)
                         self.navigationController?.popViewController(animated: true)
                     }
                     else{
@@ -172,7 +172,6 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
                 }
             }
         }
-        
     }
     
     @IBAction func selectImage() {
