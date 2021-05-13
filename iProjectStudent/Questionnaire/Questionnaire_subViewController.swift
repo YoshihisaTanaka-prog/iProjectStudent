@@ -78,6 +78,7 @@ class QuestionnaireViewController: UIViewController {
                         if(error == nil){
                             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
                             let rootViewController = storyboard.instantiateViewController(withIdentifier: "RootTabBarController")
+                            currentUserG = User(user!)
                             self.present(rootViewController, animated: false, completion: nil)
                         }
                         else{

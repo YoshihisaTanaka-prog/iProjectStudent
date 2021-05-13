@@ -66,11 +66,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                         //２回目以降のログイン
                         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
                         let rootViewController = storyboard.instantiateViewController(identifier: "RootTabBarController")
+                        currentUserG = User(user!)
                         self.loadFollowlist()
                         let alertController = UIAlertController(title: "ユーザ情報取得中", message: "しばらくお待ちください。", preferredStyle: .alert)
                         self.present(alertController, animated: true, completion: nil)
-                        //画像をダウンロードする。
-                        let _ = User(NCMBUser.current())
                         //画像のダウンロードに時間がかかるので、2秒待機
                         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                             alertController.dismiss(animated: true, completion: nil)

@@ -83,21 +83,9 @@ class User {
         }
     }
     
-    convenience init(_ parameter: NCMBObject, subject: String){
-        let user = parameter.object(forKey: "user") as! NCMBUser
+    convenience init(_ user: NCMBUser, score: Double){
         self.init(user)
-        self.teacherParameter = TeacherParameter(parameter)
-        let score = parameter.object(forKey: subject + "AverageScore") as? Double
-        if(score != nil){
-            self.teacherParameter!.score = score!
-        }
-        else{
-            parameter.setObject(0, forKey: subject + "AverageScore")
-            parameter.setObject(0, forKey: subject + "TotalScore")
-            parameter.setObject(0, forKey: subject + "TotalNum")
-            var e: NSError? = nil
-            parameter.save(&e)
-        }
+        self.teacherParameter!.score = score
     }
 }
 

@@ -11,16 +11,34 @@ import NCMB
 
 class Teachers {
     var list: [User] = []
-    var count = 0
+    var count: Int{
+        return self.list.count
+    }
     
     init(){}
     
     init(_ objects: [NCMBObject], subject: String) {
         self.list = []
         for o in objects{
-            list.append( User(o, subject: subject) )
+            var score = o.object(forKey: subject + "AverageScore") as? Double
+            if(score == nil){
+                o.setObject(0, forKey: subject + "AverageScore")
+                o.setObject(0, forKey: subject + "TotalScore")
+                o.setObject(0, forKey: subject + "TotalNum")
+                var e: NSError? = nil
+                o.save(&e)
+                score = 0.d
+            }
+            let u = o.object(forKey: "user") as! NCMBUser
+            let q = NCMBUser.query()
+            q?.whereKey("objectId", equalTo: u.objectId)
+            q?.findObjectsInBackground({ result, error in
+                if(error == nil){
+                    let user = result!.first as! NCMBUser
+                    self.list.append( User(user, score: score!) )
+                }
+            })
         }
-        self.count = list.count
     }
     
     func sort() {
