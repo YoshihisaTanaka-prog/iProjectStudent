@@ -74,6 +74,14 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         
         youbiCheckBox.setSelection(user_.studentParameter!.youbi)
     }
+    //上書きしたかどうかを判定する関数
+    func isChanged () -> Bool {
+        //currentUserG = 保存押すまで変わらないもの
+        if userIdTextField.text != currentUserG.userName {
+            return true
+        }
+        return false
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -156,7 +164,7 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         }
         currentUserG.ncmb.mailAddress = emailTextField.text
         currentUserG.studentParameter!.ncmb.setObject(introductionTextView.text, forKey: "introduction")
-        currentUserG.studentParameter!.ncmb.setObject(youbiCheckBox.getSelection(), forKey: "youbi")
+        currentUserG.studentParameter!.ncmb.setObject(youbiCheckBox.selectionText, forKey: "youbi")
         currentUserG.ncmb.saveInBackground{ (error) in
             if error != nil {
                 self.showOkAlert(title: "Error", message: error!.localizedDescription)

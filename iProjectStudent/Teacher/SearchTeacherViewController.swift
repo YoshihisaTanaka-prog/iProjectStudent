@@ -21,14 +21,13 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
     var youbi: YoubiCompatibility!
     var spirit: SpiritCompatibility!
     var gradeCheckBox: CheckBox!
-    let gradeNameList = ["B1", "B2", "B3", "B4", "M1", "M2"]
     let gradeList: [CheckBoxInput] = [
-        CheckBoxInput("学部 1年生"),
-        CheckBoxInput("学部 2年生"),
-        CheckBoxInput("学部 3年生"),
-        CheckBoxInput("学部 4年生"),
-        CheckBoxInput("修士 1年生"),
-        CheckBoxInput("修士 2年生")
+        CheckBoxInput("学部 1年生", key: "B1"),
+        CheckBoxInput("学部 2年生", key: "B2"),
+        CheckBoxInput("学部 3年生", key: "B3"),
+        CheckBoxInput("学部 4年生", key: "B4"),
+        CheckBoxInput("修士 1年生", key: "M1"),
+        CheckBoxInput("修士 2年生", key: "M2")
     ]
     let user = User(NCMBUser.current())
     private var selectedSubject: String?
@@ -126,7 +125,7 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
             }
         })
         gradeCheckBox = CheckBox(gradeList,size: CGRect(x: 0, y: 0, width: 0, height: 0))
-        gradeCheckBox.setSelection(user.studentParameter!.teacherGrade)
+        gradeCheckBox.setSelectedKey(user.studentParameter!.teacherGrades)
         //gradeCheckBox.setSelection(user_.studentParameter!.youbi)
     }
     
@@ -260,10 +259,11 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
         for s in spirit.getBad(user.studentParameter?.personalityGroup ?? -1) {
             query?.whereKey("personalityGroup", notEqualTo: s)
         }
+        
         //希望した学年以外をはじく
-        for i in 0..<gradeCheckBox.checkBoxes.count {
-            if !gradeCheckBox.checkBoxes[i].isSelected {
-                query?.whereKey("grade", notEqualTo: gradeNameList[i])
+        for g in gradeCheckBox.checkBoxes {
+            if !g.isSelected {
+                query?.whereKey("grade", notEqualTo: g.key)
             }
         }
         
@@ -312,9 +312,9 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
             self.gradeCheckBox.mainView.removeFromSuperview()
             alertController.dismiss(animated: true, completion: nil)
             //アプリ内に保存
-            self.user.studentParameter!.teacherGrade = self.gradeCheckBox.getSelection()
+            self.user.studentParameter!.teacherGrades = self.gradeCheckBox.selectedKeys
             //ニフクラに保存
-            self.user.studentParameter!.ncmb.setObject(self.gradeCheckBox.getSelection(), forKey: "teacherGrade")
+            self.user.studentParameter!.ncmb.setObject(self.gradeCheckBox.selectedKeys, forKey: "teacherGrades")
             self.user.studentParameter!.ncmb.saveInBackground { (error) in
                 if error == nil {
                     
