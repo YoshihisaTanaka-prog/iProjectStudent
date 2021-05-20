@@ -83,6 +83,15 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         return false
     }
     
+    //上書きしたかどうかを判定する関数
+    func isChanged () -> Bool {
+        //currentUserG = 保存押すまで変わらないもの
+        if userIdTextField.text != currentUserG.userName {
+            return true
+        }
+        return false
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
