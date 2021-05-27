@@ -106,16 +106,7 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         }
         return false
     }
-/*
-    //上書きしたかどうかを判定する関数
-    func isChanged () -> Bool {
-        //currentUserG = 保存押すまで変わらないもの
-        if userIdTextField.text != currentUserG.userName {
-            return true
-        }
-        return false
-    }
- */
+
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -182,7 +173,24 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
     @IBAction func closeEditViewController(){
         
         if isChanged() == true {
-            showOkAlert(title: "エラー", message: "変更内容は保存されませんが，よろしいですか？")
+            let alert = UIAlertController(title: "注意！", message: "変更内容は保存されませんが，よろしいですか？", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+                //OKボタンを押したときのアクション
+                alert.dismiss(animated: true, completion: nil)
+                self.navigationController?.popViewController(animated: true)
+            }
+            let cancelAction = UIAlertAction(title: "キャンセル", style: .default) { (action) in
+                //キャンセルボタンを押したときのアクション
+                alert.dismiss(animated: true, completion: nil)
+            }
+            alert.addAction(okAction)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
+
+
+
+            
+            
             //はい，いいえで戻るか否か設定
         } else {
             self.navigationController?.popViewController(animated: true)
@@ -278,5 +286,8 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         }
         return i!
     }
+    
+
+
     
 }
