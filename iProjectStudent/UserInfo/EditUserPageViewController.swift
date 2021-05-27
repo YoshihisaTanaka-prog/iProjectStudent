@@ -18,7 +18,7 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
     @IBOutlet var userIdFuriganaTextField: UITextField!
     @IBOutlet var schoolTextField: UITextField!
     @IBOutlet var gradeTextField: UITextField!
-    @IBOutlet var emailTextField: UITextField!
+    //@IBOutlet var emailTextField: UITextField!
     @IBOutlet var parentsEmailTextField: UITextField!
     @IBOutlet var choiceTextField: UITextField!
     @IBOutlet var pickerView1: UIPickerView!
@@ -50,7 +50,7 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         userIdFuriganaTextField.delegate = self
         schoolTextField.delegate = self
         gradeTextField.delegate = self
-        emailTextField.delegate = self
+        //emailTextField.delegate = self
         parentsEmailTextField.delegate = self
         pickerView1.delegate = self
         pickerView1.dataSource = self
@@ -60,13 +60,13 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         let mailAddress_ = NCMBUser.current()?.mailAddress
         let user_ = User(NCMBUser.current())
         userIdTextField.text = user_.userName
-        emailTextField.text = mailAddress_
+        //emailTextField.text = mailAddress_
         userIdFuriganaTextField.text = user_.userIdFurigana
         schoolTextField.text = user_.studentParameter?.SchoolName
         gradeTextField.text = user_.studentParameter?.grade
         introductionTextView.text = user_.studentParameter?.introduction
         pickerView1.selectRow(getSelectionNum(selesction: user_.studentParameter?.selection), inComponent: 0, animated: false)
-        choiceTextField.text = user_.studentParameter!.choice
+        choiceTextField.text = user_.studentParameter?.choice
         
         parentsEmailTextField.text = user_.studentParameter?.parentEmailAdress
         
@@ -78,6 +78,30 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
     func isChanged () -> Bool {
         //currentUserG = 保存押すまで変わらないもの
         if userIdTextField.text != currentUserG.userName {
+            return true
+        }
+        if userIdFuriganaTextField.text != currentUserG.userIdFurigana {
+            return true
+        }
+        if schoolTextField.text != currentUserG.studentParameter?.SchoolName {
+            return true
+        }
+        if gradeTextField.text != currentUserG.studentParameter?.grade {
+            return true
+        }
+        if introductionTextView.text != currentUserG.studentParameter?.introduction {
+            return true
+        }
+        if choiceTextField.text != currentUserG.studentParameter?.choice {
+            return true
+        }
+        if parentsEmailTextField.text != currentUserG.studentParameter?.parentEmailAdress {
+            return true
+        }
+        if youbiCheckBox.selectionText != currentUserG.studentParameter?.youbi {
+            return true
+        }
+        if selected != currentUserG.studentParameter?.selection {
             return true
         }
         return false
@@ -156,11 +180,12 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
 
     
     @IBAction func closeEditViewController(){
-        self.navigationController?.popViewController(animated: true)
+        
         if isChanged() == true {
             showOkAlert(title: "エラー", message: "変更内容は保存されませんが，よろしいですか？")
+            //はい，いいえで戻るか否か設定
         } else {
-            
+            self.navigationController?.popViewController(animated: true)
         }
     }
     
@@ -177,7 +202,7 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         if(selected != nil){
             currentUserG.studentParameter!.ncmb.setObject(selected!, forKey: "selection")
         }
-        currentUserG.ncmb.mailAddress = emailTextField.text
+        //currentUserG.ncmb.mailAddress = emailTextField.text
         currentUserG.studentParameter!.ncmb.setObject(introductionTextView.text, forKey: "introduction")
         currentUserG.studentParameter!.ncmb.setObject(youbiCheckBox.selectionText, forKey: "youbi")
         currentUserG.ncmb.saveInBackground{ (error) in

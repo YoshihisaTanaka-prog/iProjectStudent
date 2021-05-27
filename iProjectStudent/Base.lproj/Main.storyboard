@@ -282,16 +282,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="自分のメールアドレス" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LgB-2h-SoG">
-                                <rect key="frame" x="100" y="483" width="214" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="xXG-la-WIh"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="保護者のメールアドレス" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oYK-NK-iNB">
-                                <rect key="frame" x="100" y="522" width="214" height="34"/>
+                                <rect key="frame" x="100" y="487" width="214" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="syM-oi-q2A"/>
                                 </constraints>
@@ -299,7 +291,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="ここに自己紹介文" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="yGC-vQ-RoH">
-                                <rect key="frame" x="100" y="576" width="214" height="157"/>
+                                <rect key="frame" x="100" y="541" width="214" height="192"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -328,9 +320,7 @@
                             <constraint firstItem="awL-dg-5bX" firstAttribute="top" secondItem="Jvm-vH-xuj" secondAttribute="bottom" constant="5" id="1mc-Ve-brk"/>
                             <constraint firstItem="GEh-57-D9i" firstAttribute="leading" secondItem="Z5m-hW-eCl" secondAttribute="leading" id="45h-kg-Ssa"/>
                             <constraint firstItem="GEh-57-D9i" firstAttribute="trailing" secondItem="Z5m-hW-eCl" secondAttribute="trailing" id="6RI-I9-0Ot"/>
-                            <constraint firstItem="LgB-2h-SoG" firstAttribute="leading" secondItem="Z5m-hW-eCl" secondAttribute="leading" id="APK-Vh-eWb"/>
                             <constraint firstItem="8SQ-gg-I5g" firstAttribute="leading" secondItem="Z5m-hW-eCl" secondAttribute="leading" id="Dz8-lF-c4A"/>
-                            <constraint firstItem="LgB-2h-SoG" firstAttribute="top" secondItem="8SQ-gg-I5g" secondAttribute="bottom" constant="5" id="FL2-2e-fxI"/>
                             <constraint firstItem="yGC-vQ-RoH" firstAttribute="leading" secondItem="Z5m-hW-eCl" secondAttribute="leading" id="FOW-ox-GDN"/>
                             <constraint firstItem="IKp-j9-FZY" firstAttribute="trailing" secondItem="Z5m-hW-eCl" secondAttribute="trailing" id="GIH-Dk-dRj"/>
                             <constraint firstItem="dfF-7z-xrL" firstAttribute="leading" secondItem="Z5m-hW-eCl" secondAttribute="leading" id="JLo-1W-8Fr"/>
@@ -338,7 +328,6 @@
                             <constraint firstItem="awL-dg-5bX" firstAttribute="centerX" secondItem="yRO-qh-Oiq" secondAttribute="centerX" id="Lhp-Nb-itV"/>
                             <constraint firstItem="hLL-Fh-g87" firstAttribute="leading" secondItem="Z5m-hW-eCl" secondAttribute="leading" id="NyN-j5-BPq"/>
                             <constraint firstItem="vXW-pv-gyj" firstAttribute="top" secondItem="yGC-vQ-RoH" secondAttribute="bottom" constant="20" id="WSa-BN-clw"/>
-                            <constraint firstItem="LgB-2h-SoG" firstAttribute="trailing" secondItem="Z5m-hW-eCl" secondAttribute="trailing" id="Wb8-F2-8qx"/>
                             <constraint firstItem="IKp-j9-FZY" firstAttribute="top" secondItem="Z5m-hW-eCl" secondAttribute="bottom" constant="5" id="b1w-45-eCT"/>
                             <constraint firstItem="oYK-NK-iNB" firstAttribute="leading" secondItem="Z5m-hW-eCl" secondAttribute="leading" id="bGD-4h-MPC"/>
                             <constraint firstItem="vXW-pv-gyj" firstAttribute="leading" secondItem="yGC-vQ-RoH" secondAttribute="leading" id="cV9-Gq-2ox"/>
@@ -348,11 +337,11 @@
                             <constraint firstItem="Z5m-hW-eCl" firstAttribute="top" secondItem="awL-dg-5bX" secondAttribute="bottom" constant="20" id="gM7-FK-b9w"/>
                             <constraint firstItem="Jvm-vH-xuj" firstAttribute="top" secondItem="WGZ-FB-9Xa" secondAttribute="top" id="hgu-FW-DqV"/>
                             <constraint firstItem="oYK-NK-iNB" firstAttribute="trailing" secondItem="Z5m-hW-eCl" secondAttribute="trailing" id="i6V-PE-DXO"/>
-                            <constraint firstItem="oYK-NK-iNB" firstAttribute="top" secondItem="LgB-2h-SoG" secondAttribute="bottom" constant="5" id="j8v-1h-csD"/>
                             <constraint firstItem="Z5m-hW-eCl" firstAttribute="centerX" secondItem="yRO-qh-Oiq" secondAttribute="centerX" id="jG4-WT-3Nn"/>
                             <constraint firstItem="dfF-7z-xrL" firstAttribute="top" secondItem="hLL-Fh-g87" secondAttribute="bottom" id="kwQ-aY-aFC"/>
                             <constraint firstItem="Jvm-vH-xuj" firstAttribute="centerX" secondItem="yRO-qh-Oiq" secondAttribute="centerX" id="lpL-DF-dEV"/>
                             <constraint firstItem="hLL-Fh-g87" firstAttribute="top" secondItem="GEh-57-D9i" secondAttribute="bottom" constant="5" id="mPD-wP-Agp"/>
+                            <constraint firstItem="oYK-NK-iNB" firstAttribute="top" secondItem="8SQ-gg-I5g" secondAttribute="bottom" constant="9" id="piW-fV-ncC"/>
                             <constraint firstItem="hLL-Fh-g87" firstAttribute="trailing" secondItem="Z5m-hW-eCl" secondAttribute="trailing" id="rXK-vO-XKS"/>
                             <constraint firstItem="yGC-vQ-RoH" firstAttribute="top" secondItem="oYK-NK-iNB" secondAttribute="bottom" constant="20" id="riB-0g-hsg"/>
                             <constraint firstItem="vXW-pv-gyj" firstAttribute="trailing" secondItem="yGC-vQ-RoH" secondAttribute="trailing" id="umH-fh-5fC"/>
@@ -375,7 +364,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="choiceTextField" destination="8SQ-gg-I5g" id="dMO-di-dfZ"/>
-                        <outlet property="emailTextField" destination="LgB-2h-SoG" id="2hR-qx-o9G"/>
                         <outlet property="gradeTextField" destination="hLL-Fh-g87" id="7wX-hR-nL3"/>
                         <outlet property="introductionTextView" destination="yGC-vQ-RoH" id="qZD-xO-5oR"/>
                         <outlet property="parentsEmailTextField" destination="oYK-NK-iNB" id="dU3-KW-Gk1"/>
