@@ -82,6 +82,16 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         }
         return false
     }
+/*
+    //上書きしたかどうかを判定する関数
+    func isChanged () -> Bool {
+        //currentUserG = 保存押すまで変わらないもの
+        if userIdTextField.text != currentUserG.userName {
+            return true
+        }
+        return false
+    }
+ */
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -147,6 +157,11 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
     
     @IBAction func closeEditViewController(){
         self.navigationController?.popViewController(animated: true)
+        if isChanged() == true {
+            showOkAlert(title: "エラー", message: "変更内容は保存されませんが，よろしいですか？")
+        } else {
+            
+        }
     }
     
     @IBAction func saveUserInfo(){

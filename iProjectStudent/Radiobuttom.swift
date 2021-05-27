@@ -1,9 +1,8 @@
 //
 //  Radiobuttom.swift
-//  iProjectStudent
+//  Radiobuttomtest
 //
-//  Created by Kaori Nakamura on 3/10/21.
-//  Copyright © 2021 Tanaka_Yoshihisa_4413. All rights reserved.
+//  Created by Kaori Nakamura on 3/13/21.
 //
 
 import Foundation
@@ -14,10 +13,11 @@ class RadiobuttomBox {
     var mainView: UIView
     var radiobuttomBoxes: [UIButton]
     var radiobuttomlabel: [UILabel]
+    //選ばれているか状態を見たい
     var radiobuttombool: [Bool]
     var height = 5.f
     
-    init(_ list: [RadioBoxInput], size: CGRect) {
+    init(_ list: [RadioBoxInput], size: CGRect, selected:String?) {
         self.mainView = UIView()
         //radiobuttomBoxes = []
         radiobuttomBoxes = []
@@ -27,19 +27,48 @@ class RadiobuttomBox {
            // self.radiobuttomBoxes.append(RadioBoxButton(list[i], num: i))
           //  self.mainView.addSubview(self.radiobuttomBoxes[i].button)
           //  self.mainView.addSubview(self.radiobuttomBoxes[i].label)
-            self.radiobuttombool.append(false)
             
             
-            let label = UILabel()
+            
+            
             //ラベルの設定
+            
+            
+            let label = UILabel(frame: CGRect(x: 25.f, y: height , width: 120.f, height: 20.f))
+            label.text = list[i].title
+            label.textColor = list[i].color
             
             radiobuttomlabel.append(label)
             
-            let button = UIButton()
+            //let button = UIButton()
             //ボタンの設定
+            let button = UIButton(frame: CGRect(x: 0.f, y: height, width: 20.f, height: 20.f))
+            //button.setTitle("○", for: .normal)
+            //self.radiobuttombool.append(false)
+            if selected != nil {
+                if selected! == list[i].title {
+                    button.setTitle("●", for: .normal)
+                    self.radiobuttombool.append(true)
+                } else {
+                    button.setTitle("○", for: .normal)
+                    self.radiobuttombool.append(false)
+                }
+            } else {
+                button.setTitle("○", for: .normal)
+                self.radiobuttombool.append(false)
+            }
+            
+            
+            button.setTitleColor(UIColor(red: 0.f, green: 0.f, blue: 0.5.f, alpha: 1.f), for: .normal)
+            button.tag = i
+            button.addTarget(self, action: #selector(tapped(sender:)), for: .touchUpInside)
             
             radiobuttomBoxes.append(button)
+            //addSubviewは，mainViewにbuttonを追加する
+            //addSubviewは，その前に（）内を追加する
             self.mainView.addSubview(button)
+            self.mainView.addSubview(label)
+
             
             height += 25.f
         }
@@ -51,18 +80,49 @@ class RadiobuttomBox {
         
     }
     
-    func getSelection() -> String{
-        var ret = ""
-        for c in radiobuttomBoxes {
-            if c.isSelected {
-                ret += "T"
+    @objc private func tapped(sender:UIButton){
+        for i in 0..<radiobuttomBoxes.count {
+            if i == sender.tag{
+                radiobuttomBoxes[i].setTitle("◉", for: .normal)
+                radiobuttombool[i] = true
+                
             } else {
+                radiobuttomBoxes[i].setTitle("○", for: .normal)
+                radiobuttombool[i] = false
+                
+            }
+        }
+        
+        /*
+        if(self.isSelected){
+            self.button.setTitle("○", for: .normal)
+        }else{
+            self.button.setTitle("◉", for: .normal)
+        }
+        self.isSelected = !self.isSelected
+   */
+    }
+    
+    
+    func getSelection() -> String?{
+        var ret: String?
+        //tureのとき==trueはいらない。fasleのときは!変数で否定演算子
+        
+        for i in  0..<radiobuttomBoxes.count {
+            if radiobuttombool[i] {
+                ret = radiobuttomlabel[i].text
+       //         ret += "T"
+            }
+            /*
+            else {
                 ret += "F"
             }
+ */
         }
         return ret
     }
     
+    /*
     func setSelection(_ selection: String) {
         if selection.count == radiobuttomBoxes.count {
             let cList = Array(selection)
@@ -79,6 +139,7 @@ class RadiobuttomBox {
             }
         }
     }
+ */
 }
 //使わない。参考にはできる
 class RadioBoxButton {
