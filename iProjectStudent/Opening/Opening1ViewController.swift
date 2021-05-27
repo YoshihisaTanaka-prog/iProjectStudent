@@ -35,6 +35,7 @@ class Opening1ViewController: UIViewController {
                             if error == nil{
 //                                次回のログイン判定のために「以前ログインした時間」を保存する部分を今の時間に上書きする。
                                 ud.set(now, forKey: u.mailAddress + "time")
+                                ud.set(true, forKey: "isLogin")
                                 ud.synchronize()
 //                                フォロワーを読み込む
                                 self.loadFollowlist()

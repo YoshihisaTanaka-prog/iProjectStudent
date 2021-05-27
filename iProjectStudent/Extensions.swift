@@ -47,6 +47,22 @@ extension String{
         }
         return ret
     }
+    
+    public var upperHead: String{
+        if self == ""{
+            return self
+        }
+        let array = self.sArray
+        var ret = array[0]
+        
+        if self.count != 1{
+            for i in 1..<array.count{
+                ret += array[i]
+            }
+        }
+        
+        return ret
+    }
 }
 
 
@@ -59,6 +75,10 @@ extension UIViewController{
         alertController.addAction(alertOkAction)
         self.present(alertController, animated: true, completion: nil)
     }
+}
+
+
+extension UIViewController{
     
     func setUserImage(_ imageView: inout UIImageView, _ user: User){
         if user.teacherParameter == nil{
@@ -76,6 +96,10 @@ extension UIViewController{
             }
         }
     }
+}
+
+
+extension UIViewController{
     
     func sendToRailsServer(message: String, path: String){
         let url = URL(string: "https://telecture.herokuapp.com/" + path)!
@@ -85,6 +109,10 @@ extension UIViewController{
         URLSession.shared.dataTask(with: request) { (data, response, error) in
         }.resume()
     }
+}
+
+
+extension UIViewController{
     
     func loadFollowlist(){
         let query = NCMBQuery(className: "Follow")
@@ -106,6 +134,10 @@ extension UIViewController{
             }
         })
     }
+}
+
+
+extension UIViewController{
     
     func isNeedToCreateFollow(_ userId: String) -> Bool?{
         let userQuery = NCMBUser.query()
@@ -132,6 +164,9 @@ extension UIViewController{
         }
         return false
     }
+}
+
+extension UIViewController{
     
     func createFollow(_ userId: String) -> String?{
         let userQuery = NCMBUser.query()

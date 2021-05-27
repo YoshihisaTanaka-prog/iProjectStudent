@@ -56,6 +56,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                                 //ログイン状態の保持
                                 let ud = UserDefaults.standard
                                 ud.set(true, forKey: "isLogin")
+                                ud.set(self.passwordTextField.text!, forKey: self.emailTextField.text!)
+                                ud.set(Date(), forKey: self.emailTextField.text! + "time")
                                 ud.synchronize()
                             }
                             else{
@@ -79,6 +81,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                         //ログイン状態の保持
                         let ud = UserDefaults.standard
                         ud.set(true, forKey: "isLogin")
+                        ud.set(self.passwordTextField.text!, forKey: self.emailTextField.text!)
+                        ud.set(Date(), forKey: self.emailTextField.text! + "time")
                         ud.synchronize()
                     }
                 }
