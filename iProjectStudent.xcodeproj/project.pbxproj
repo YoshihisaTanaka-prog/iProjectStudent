@@ -81,6 +81,7 @@
 		1BA0D05125E7DF160008FF43 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BA0D03D25E7DF160008FF43 /* iTunesArtwork@2x.png */; };
 		1BA0D05225E7DF160008FF43 /* iTunesArtwork@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BA0D03E25E7DF160008FF43 /* iTunesArtwork@3x.png */; };
 		1F0D91EA25E1380800503048 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0D91E925E1380800503048 /* SignUpViewController.swift */; };
+		1F18521F265F90BF005666DE /* Radiobuttom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F18521E265F90BF005666DE /* Radiobuttom.swift */; };
 		1F3343F125D1500A00A090DA /* Questionnaire.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F3343F025D1500A00A090DA /* Questionnaire.storyboard */; };
 		1F3343F525D151C400A090DA /* Questionnaire_subViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3343F425D151C400A090DA /* Questionnaire_subViewController.swift */; };
 		1F761FEA25D419C600FFB590 /* UserPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F761FE925D419C600FFB590 /* UserPageViewController.swift */; };
@@ -169,6 +170,7 @@
 		1BA0D03E25E7DF160008FF43 /* iTunesArtwork@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@3x.png"; sourceTree = "<group>"; };
 		1E933D9E06614E36D1EB6CA6 /* Pods-iProjectStudent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iProjectStudent.debug.xcconfig"; path = "Target Support Files/Pods-iProjectStudent/Pods-iProjectStudent.debug.xcconfig"; sourceTree = "<group>"; };
 		1F0D91E925E1380800503048 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		1F18521E265F90BF005666DE /* Radiobuttom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Radiobuttom.swift; sourceTree = "<group>"; };
 		1F3343F025D1500A00A090DA /* Questionnaire.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Questionnaire.storyboard; sourceTree = "<group>"; };
 		1F3343F425D151C400A090DA /* Questionnaire_subViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questionnaire_subViewController.swift; sourceTree = "<group>"; };
 		1F761FE925D419C600FFB590 /* UserPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageViewController.swift; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 				049C83E325C6921000D4D380 /* AppDelegate.swift */,
 				04A7E99525AF309900C0F43C /* ViewController.swift */,
 				046872D025DE0E1C00A6ABBF /* CheckBox.swift */,
+				1F18521E265F90BF005666DE /* Radiobuttom.swift */,
 				0424576E25DFE34F00F613FB /* Design.swift */,
 				04EA679025BC8A9C005F0D06 /* User.swift */,
 				046872CC25DE0CB800A6ABBF /* GlobalParameters.swift */,
@@ -599,6 +602,7 @@
 				1B0AD3B025E401AD0061976F /* EventViewController.swift in Sources */,
 				046872CD25DE0CB800A6ABBF /* GlobalParameters.swift in Sources */,
 				1FA191B625CACE3F007B935B /* SignInViewController.swift in Sources */,
+				1F18521F265F90BF005666DE /* Radiobuttom.swift in Sources */,
 				0455EDC025DA8ECD00013330 /* TeacherInfoViewController.swift in Sources */,
 				046872D125DE0E1C00A6ABBF /* CheckBox.swift in Sources */,
 				0460978525E8291200AC91BE /* MyChatViewCell.swift in Sources */,
