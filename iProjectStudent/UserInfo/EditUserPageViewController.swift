@@ -157,6 +157,11 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
     
     @IBAction func closeEditViewController(){
         self.navigationController?.popViewController(animated: true)
+        if isChanged() == true {
+            showOkAlert(title: "エラー", message: "変更内容は保存されませんが，よろしいですか？")
+        } else {
+            
+        }
     }
     
     @IBAction func saveUserInfo(){
