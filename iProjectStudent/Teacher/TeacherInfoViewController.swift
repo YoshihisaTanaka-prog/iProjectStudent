@@ -16,9 +16,9 @@ class TeacherInfoViewController: UIViewController, UITableViewDataSource, UITabl
     var teacher: User!
     var subject: String!
     
-    private var reviewList: [ReviewTeacher] = []
+    private var reviewList: [Review] = []
     private var size: Size!
-    private var selectedReview: ReviewTeacher!
+    private var selectedReview: Review!
     @IBOutlet private var tableView: UITableView!
 
     override func viewDidLoad() {
@@ -63,7 +63,7 @@ class TeacherInfoViewController: UIViewController, UITableViewDataSource, UITabl
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell1") as! TeacherInfoTableViewCell
             cell.averageScoreCosmosView.rating = teacher.teacherParameter!.score
-            cell.furiganaLabel.text = teacher.userIdFurigana
+            cell.furiganaLabel.text = teacher.furigana
             self.setUserImage(&cell.userImageView, teacher)
             cell.userNameLabel.text = teacher.userName + "　先生"
             cell.collageInfoLabel.text = "東京大学   1年"
@@ -96,28 +96,17 @@ class TeacherInfoViewController: UIViewController, UITableViewDataSource, UITabl
                 alert.dismiss(animated: true, completion: nil)
             }
             alert.addAction(cancelAction)
-            switch isNeedToCreateFollow(teacher.userId) {
-            case nil:
-                return
-            case true:
-                let createFollowAlertAction = UIAlertAction(title: "この先生を登録する", style: .default) { (action) in
-                    if let errorText = self.createFollow(self.teacher.userId){
-                        alert.dismiss(animated: true, completion: nil)
-                        self.showOkAlert(title: "Error", message: errorText)
-                    }
-                }
-                alert.addAction(createFollowAlertAction)
-            default:
-                let goToChatAlertAction = UIAlertAction(title: "チャットを始める。", style: .default) { _ in
-                    self.performSegue(withIdentifier: "GoToChat", sender: nil)
-                }
-                let goToScheduleAlertAction = UIAlertAction(title: "スケジュールを見る", style: .default) { _ in
-                    self.performSegue(withIdentifier: "WatchSchedule", sender: nil)
-                }
-                
-                alert.addAction(goToChatAlertAction)
-                alert.addAction(goToScheduleAlertAction)
+            let goToChatAlertAction = UIAlertAction(title: "チャットを始める。", style: .default) { _ in
+                self.createFollow(self.teacher.ncmb)
+                self.performSegue(withIdentifier: "GoToChat", sender: nil)
             }
+            let goToScheduleAlertAction = UIAlertAction(title: "スケジュールを見る", style: .default) { _ in
+                self.createFollow(self.teacher.ncmb)
+                self.performSegue(withIdentifier: "WatchSchedule", sender: nil)
+            }
+            
+            alert.addAction(goToChatAlertAction)
+            alert.addAction(goToScheduleAlertAction)
             self.present(alert, animated: true, completion: nil)
         }
         else{
@@ -129,13 +118,13 @@ class TeacherInfoViewController: UIViewController, UITableViewDataSource, UITabl
     
     func loadReview(){
         let query = NCMBQuery(className: "Review")
-        query?.whereKey("teacherId", equalTo: teacher.userId)
+        query?.whereKey("teacherId", equalTo: teacher.ncmb.objectId)
         query?.findObjectsInBackground({ (result, error) in
             if(error == nil){
                 self.reviewList = []
                 let objects = result as! [NCMBObject]
                 for object in objects {
-                    self.reviewList.append(ReviewTeacher(object))
+                    self.reviewList.append(Review(object))
                 }
                 self.tableView.reloadData()
             }

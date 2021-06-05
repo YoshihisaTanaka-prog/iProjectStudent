@@ -38,7 +38,7 @@ class FollowingTeacherViewController: UIViewController, UITableViewDataSource, U
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
         cell.textLabel?.text = followUserListG[indexPath.row].userName + "先生"
-        cell.imageView?.image = userImagesCacheG[followUserListG[indexPath.row].userId]!
+        cell.imageView?.image = userImagesCacheG[followUserListG[indexPath.row].ncmb.objectId]!
         cell.imageView?.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
         cell.imageView?.center = CGPoint(x: 50, y: 50)
         cell.imageView?.layer.cornerRadius = 50.f

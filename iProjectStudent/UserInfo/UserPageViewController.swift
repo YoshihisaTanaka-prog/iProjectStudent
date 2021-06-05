@@ -12,19 +12,17 @@ import NYXImagesKit
 
 class UserPageViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
-    @IBOutlet var userImageView: UIImageView!
+    @IBOutlet private var userImageView: UIImageView!
     
-    @IBOutlet var userIdTextField: UITextField!
-    @IBOutlet var userIdFuriganaTextField: UITextField!
-    @IBOutlet var schoolTextField: UITextField!
-    @IBOutlet var gradeTextField: UITextField!
-    @IBOutlet var choiceTextField: UITextField!
-    @IBOutlet var selectionTextField: UITextField!
-    @IBOutlet var emailTextField: UITextField!
-    @IBOutlet var parentsEmailTextField: UITextField!
-    @IBOutlet var introductionTextView: UITextView!
-
-    
+    @IBOutlet private var userIdTextField: UITextField!
+    @IBOutlet private var userIdFuriganaTextField: UITextField!
+    @IBOutlet private var schoolTextField: UITextField!
+    @IBOutlet private var gradeTextField: UITextField!
+    @IBOutlet private var choiceTextField: UITextField!
+    @IBOutlet private var selectionTextField: UITextField!
+    @IBOutlet private var emailTextField: UITextField!
+    @IBOutlet private var parentsEmailTextField: UITextField!
+    @IBOutlet private var introductionTextView: UITextView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,22 +47,47 @@ class UserPageViewController: UIViewController, UITextFieldDelegate, UITextViewD
         choiceTextField.delegate = self
         emailTextField.delegate = self
         parentsEmailTextField.delegate = self
-//        pickerView1.delegate = self
-//        pickerView1.dataSource = self
         introductionTextView.delegate = self
         
-        //let userIdFurigana = NCMBUser.current()?.setObject(userIdFuriganaTextField.text, forKey: "furigana") as! String
-        //let Introduction = NCMBUser.current()?.setObject(introductionTextView.text, forKey: "introduction") as! String
         userIdTextField.text = currentUserG.userName
         emailTextField.text = currentUserG.mailAddress
-        userIdFuriganaTextField.text = currentUserG.userIdFurigana
-        schoolTextField.text = currentUserG.studentParameter?.SchoolName
-        gradeTextField.text = currentUserG.studentParameter?.grade
-        choiceTextField.text = currentUserG.studentParameter?.choice
+        userIdFuriganaTextField.text = currentUserG.furigana
+        schoolTextField.text = currentUserG.studentParameter!.schoolName
+        gradeTextField.text = transformGrade(currentUserG.grade)
+        choiceTextField.text = (currentUserG.studentParameter?.choice.first ?? []).first ?? ""
         selectionTextField.text = currentUserG.studentParameter?.selection
         parentsEmailTextField.text = currentUserG.studentParameter?.parentEmailAdress
         introductionTextView.text = currentUserG.studentParameter?.introduction
-        setUserImage(&userImageView, currentUserG)
+        userImageView.image = userImagesCacheG[currentUserG.ncmb.objectId] ?? UIImage(named: "studentNoImage.png")
+    }
+    
+    private func transformGrade(_ grade: String) -> String {
+        let grades = grade.ary
+        var gradeText = "？？？？？"
+        if( grades.count != 0 ){
+            switch grades[0] {
+            case "E":
+                gradeText = "小学 "
+            case "J":
+                gradeText = "中学 "
+            case "H":
+                gradeText = "高校・高専"
+            case "R":
+                gradeText = "浪人生"
+            case "B":
+                gradeText = "学部 "
+            case "M":
+                gradeText = "修士 "
+            case "D":
+                gradeText = "博士 "
+            default:
+                break
+            }
+            if grades.count != 1{
+                gradeText += grades[1] + "年生"
+            }
+        }
+        return gradeText
     }
     
     @IBAction func showMenu(){

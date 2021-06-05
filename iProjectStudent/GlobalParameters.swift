@@ -27,5 +27,6 @@ var currentUserG: User!
 //デザイン用の色を保存する定数
 let dColor = OriginalCollor()
 
+let token = "fN4BnkumjMvnbZd47gFLYL7JpVn283eaZwxEpT8NYyhYMPUaRDzR3dQZxTUT2eQYz7gqG9UMjAm8VaM26fhH7ueN7fJbXPsfCpM8"
 
 let pickerLabelG = PickerLabel()

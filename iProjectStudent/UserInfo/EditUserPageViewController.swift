@@ -23,7 +23,9 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
     @IBOutlet var choiceTextField: UITextField!
     @IBOutlet var pickerView1: UIPickerView!
     @IBOutlet var introductionTextView: UITextView!
+    
 
+    private var imageName: String?
     var selected: String?
     let bunri = ["文理選択","文系","理系","その他"]
     var youbiCheckBox: CheckBox!
@@ -37,11 +39,12 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         CheckBoxInput("日曜日", color: .red)
     ]
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackGround(true, true)
         
-        youbiCheckBox = CheckBox(youbiList,size: CGRect(x: 0, y: 0, width: 0, height: 0))
+        youbiCheckBox = CheckBox(youbiList)
         
         userImageView.layer.cornerRadius = userImageView.bounds.width / 2.0
         userImageView.layer.masksToBounds = true
@@ -57,54 +60,21 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         choiceTextField.delegate = self
         introductionTextView.delegate = self
         
-        let mailAddress_ = NCMBUser.current()?.mailAddress
-        let user_ = User(NCMBUser.current())
-        userIdTextField.text = user_.userName
+        userIdTextField.text = currentUserG.userName
         //emailTextField.text = mailAddress_
-        userIdFuriganaTextField.text = user_.userIdFurigana
-        schoolTextField.text = user_.studentParameter?.SchoolName
-        gradeTextField.text = user_.studentParameter?.grade
-        introductionTextView.text = user_.studentParameter?.introduction
-        pickerView1.selectRow(getSelectionNum(selesction: user_.studentParameter?.selection), inComponent: 0, animated: false)
-        choiceTextField.text = user_.studentParameter?.choice
+        userIdFuriganaTextField.text = currentUserG.furigana
+        schoolTextField.text = currentUserG.studentParameter?.schoolName
+        gradeTextField.text = currentUserG.grade
+        introductionTextView.text = currentUserG.studentParameter?.introduction
+        pickerView1.selectRow(getSelectionNum(selesction: currentUserG.studentParameter?.selection), inComponent: 0, animated: false)
+        selected = currentUserG.studentParameter?.selection
+        choiceTextField.text = (currentUserG.studentParameter?.choice.first ?? []).first ?? ""
         
-        parentsEmailTextField.text = user_.studentParameter?.parentEmailAdress
+        parentsEmailTextField.text = currentUserG.studentParameter?.parentEmailAdress
         
-        setUserImage(&userImageView, user_)
+        userImageView.image = userImagesCacheG[currentUserG.ncmb.objectId] ?? UIImage(named: "studentNoImage.png")
         
-        youbiCheckBox.setSelection(user_.studentParameter!.youbi)
-    }
-    //上書きしたかどうかを判定する関数
-    func isChanged () -> Bool {
-        //currentUserG = 保存押すまで変わらないもの
-        if userIdTextField.text != currentUserG.userName {
-            return true
-        }
-        if userIdFuriganaTextField.text != currentUserG.userIdFurigana {
-            return true
-        }
-        if schoolTextField.text != currentUserG.studentParameter?.SchoolName {
-            return true
-        }
-        if gradeTextField.text != currentUserG.studentParameter?.grade {
-            return true
-        }
-        if introductionTextView.text != currentUserG.studentParameter?.introduction {
-            return true
-        }
-        if choiceTextField.text != currentUserG.studentParameter?.choice {
-            return true
-        }
-        if parentsEmailTextField.text != currentUserG.studentParameter?.parentEmailAdress {
-            return true
-        }
-        if youbiCheckBox.selectionText != currentUserG.studentParameter?.youbi {
-            return true
-        }
-        if selected != currentUserG.studentParameter?.selection {
-            return true
-        }
-        return false
+        youbiCheckBox.setSelection(currentUserG.studentParameter!.youbi)
     }
 
     
@@ -133,13 +103,13 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
             if error != nil{
                 self.showOkAlert(title: "Error", message: error!.localizedDescription)
             } else {
+                self.imageName = NCMBUser.current()!.objectId
                 self.userImageView.image = selectedImage
-                userImagesCacheG[NCMBUser.current()!.objectId] = selectedImage
+                userImagesCacheG[NCMBUser.current()!.objectId] = resizedImage
             }
         } progressBlock: { (progress) in
             print(progress)
         }
-        
     }
   
 
@@ -171,8 +141,8 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
 
     
     @IBAction func closeEditViewController(){
-        
         if isChanged() == true {
+            //はい，いいえで戻るか否か設定
             let alert = UIAlertController(title: "注意！", message: "変更内容は保存されませんが，よろしいですか？", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
                 //OKボタンを押したときのアクション
@@ -186,43 +156,72 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
             alert.addAction(okAction)
             alert.addAction(cancelAction)
             self.present(alert, animated: true, completion: nil)
-
-
-
-            
-            
-            //はい，いいえで戻るか否か設定
         } else {
             self.navigationController?.popViewController(animated: true)
         }
     }
+    //上書きしたかどうかを判定する関数
+    func isChanged () -> Bool {
+        //currentUserG = 保存押すまで変わらないもの
+        if userIdTextField.text != currentUserG.userName {
+            return true
+        }
+        if userIdFuriganaTextField.text != currentUserG.furigana {
+            return true
+        }
+        if schoolTextField.text != currentUserG.studentParameter?.schoolName {
+            return true
+        }
+        if gradeTextField.text != currentUserG.grade {
+            return true
+        }
+        if introductionTextView.text != currentUserG.studentParameter?.introduction {
+            return true
+        }
+        if parentsEmailTextField.text != currentUserG.studentParameter?.parentEmailAdress {
+            return true
+        }
+        if youbiCheckBox.selectionText != currentUserG.studentParameter?.youbi {
+            return true
+        }
+        if selected != currentUserG.studentParameter?.selection {
+            return true
+        }
+        // 一旦この形式で。（志望校は1つとは限らない　＆　後々のアップデートで大学・学部・学科は分けられるようにしといた方がいいと思うので、二重配列として保存します。）
+        // e.g. [[(第一志望の)大学名,学部,学科],[(第二志望の)大学名,学部,学科],...]
+        if [[choiceTextField.text!]] != currentUserG.studentParameter?.choice {
+            return true
+        }
+        return false
+    }
     
     @IBAction func saveUserInfo(){
-        currentUserG.ncmb.setObject(userIdTextField.text, forKey: "name")
-        currentUserG.studentParameter!.ncmb.setObject(userIdTextField.text, forKey: "userName")
-        currentUserG.ncmb.setObject(userIdFuriganaTextField.text, forKey: "furigana")
-        currentUserG.studentParameter!.ncmb.setObject(userIdFuriganaTextField.text, forKey: "furigana")
-        currentUserG.studentParameter!.ncmb.setObject(schoolTextField.text, forKey: "SchoolName")
-        currentUserG.ncmb.setObject(gradeTextField.text, forKey: "grade")
-        currentUserG.studentParameter!.ncmb.setObject(gradeTextField.text, forKey: "grade")
-        currentUserG.studentParameter!.ncmb.setObject(choiceTextField.text, forKey: "choice")
-        currentUserG.studentParameter!.ncmb.setObject(parentsEmailTextField.text, forKey: "parentEmailAdress")
-        if(selected != nil){
-            currentUserG.studentParameter!.ncmb.setObject(selected!, forKey: "selection")
+        let user = currentUserG.ncmb
+        let param = currentUserG.studentParameter!.ncmb
+        let im = user.object(forKey: "imageName")
+        if im == nil{
+            user.setObject(imageName, forKey: "imageName")
         }
-        //currentUserG.ncmb.mailAddress = emailTextField.text
-        currentUserG.studentParameter!.ncmb.setObject(introductionTextView.text, forKey: "introduction")
-        currentUserG.studentParameter!.ncmb.setObject(youbiCheckBox.selectionText, forKey: "youbi")
-        currentUserG.ncmb.saveInBackground{ (error) in
+        param.setObject(userIdTextField.text, forKey: "userName")
+        param.setObject(userIdFuriganaTextField.text, forKey: "furigana")
+        param.setObject(schoolTextField.text, forKey: "schoolName")
+        param.setObject(gradeTextField.text, forKey: "grade")
+        param.setObject([[choiceTextField.text]], forKey: "choice")
+        param.setObject(parentsEmailTextField.text, forKey: "parentEmailAdress")
+        if(selected != nil){
+            param.setObject(selected!, forKey: "selection")
+        }
+        param.setObject(introductionTextView.text, forKey: "introduction")
+        param.setObject(youbiCheckBox.selectionText, forKey: "youbi")
+        user.saveInBackground{ (error) in
             if error != nil {
                 self.showOkAlert(title: "Error", message: error!.localizedDescription)
             } else {
-                currentUserG.studentParameter!.ncmb.saveInBackground { (error) in
+                param.saveInBackground { (error) in
                     if error == nil{
                         currentUserG = User(NCMBUser.current()!)
                         self.navigationController?.popViewController(animated: true)
-                    }
-                    else{
+                    } else{
                         self.showOkAlert(title: "Error", message: error!.localizedDescription)
                     }
                 }
@@ -269,8 +268,6 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
             self.youbiCheckBox.mainView.removeFromSuperview()
             alertController.dismiss(animated: true, completion: nil)
         }
-        let width = alertController.view.frame.width
-        youbiCheckBox.mainView.frame = CGRect(x: width / 10.f, y: 50, width: width * 0.8, height: youbiCheckBox.height)
         alertController.view.addSubview(youbiCheckBox.mainView)
         alertController.addAction(alertOkAction)
         self.present(alertController, animated: true, completion: nil)

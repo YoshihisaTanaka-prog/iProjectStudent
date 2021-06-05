@@ -9,8 +9,8 @@
 import Foundation
 import NCMB
 
-class ReviewTeacher{
-    var objectId: String
+class Review{
+    var ncmb: NCMBObject
     var studentId: String
     var teacherId: String
     var score: Double
@@ -19,11 +19,11 @@ class ReviewTeacher{
     var subject: String
 
     init (_ review:NCMBObject){
-        self.objectId = review.object(forKey: "objectId") as! String
+        self.ncmb = review
         self.studentId = review.object(forKey: "studentId") as? String ?? ""
-        self.teacherId = review.object(forKey: "teacherId") as! String
-        self.score = review.object(forKey: "Reviewscore") as! Double
-        self.comment = review.object(forKey: "Reviewcomment")as? String ?? ""
+        self.teacherId = review.object(forKey: "teacherId") as? String ?? ""
+        self.score = review.object(forKey: "score") as! Double
+        self.comment = review.object(forKey: "comment")as? String ?? ""
         self.title = review.object(forKey: "title") as! String
         self.subject = review.object(forKey: "subject") as? String ?? ""
     }

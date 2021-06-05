@@ -191,8 +191,7 @@ class EventViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             switch component {
             case 0:
                 let date = Date()
-                let calendar = Calendar.current
-                let year = calendar.component(.year, from: date)
+                let year = date.y
                 selectedTimeList[0] = year + row - 1
                 if(isLeapYear( year + row - 1 )){
                     maxDateList[1] = 29
@@ -285,10 +284,10 @@ class EventViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             showOkAlert(title: "注意", message: "日時を入力してください。")
         }
         else{
-            let object = NCMBObject(className:"ScheduleStudent")
+            let object = NCMBObject(className:"Schedule")
             let date = selectedTimeList[0].s + "/" + String(format: "%02d", selectedTimeList[1]) + "/" + selectedTimeList[2].s + selectedTimeList[3].s
             object?.setObject(NCMBUser.current().objectId,forKey:"studentId")
-            object?.setObject(teacher?.userId,forKey:"teacherId")
+            object?.setObject(teacher?.ncmb.objectId,forKey:"teacherId")
             object?.setObject(selectedSubject, forKey:"subject" )
             object?.setObject(date, forKey: "whenDo")
             object?.setObject(selectedTimeList[4], forKey: "time")

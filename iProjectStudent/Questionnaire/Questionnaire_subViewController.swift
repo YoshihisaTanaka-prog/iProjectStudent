@@ -60,20 +60,30 @@ class QuestionnaireViewController: UIViewController {
 //            送信して画面を移動
             timer.invalidate()
             let object = NCMBObject(className: "StudentParameter")
-            object?.setObject(0, forKey: "grade")
+            object?.setObject([], forKey: "choice")
+            object?.setObject("", forKey: "furigana")
+            object?.setObject("0", forKey: "grade")
+            object?.setObject("", forKey: "introduction")
+            object?.setObject(true, forKey: "isActive")
             object?.setObject(true, forKey: "isPermitted")
+            object?.setObject("", forKey: "parentEmailAdress")
             object?.setObject(questionaire.result, forKey: "personalityGroup")
+            object?.setObject("", forKey: "schoolName")
+            object?.setObject("", forKey: "selection")
+            object?.setObject([], forKey: "teacherGrades")
             object?.setObject(NCMBUser.current(), forKey: "user")
-            object?.setObject(NCMBUser.current()!.objectId, forKey: "userId")
-            object?.setObject("FFFFFF", forKey: "youbi")
+            object?.setObject("", forKey: "userName")
+            object?.setObject("FFFFFFF", forKey: "youbi")
+            let week = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"]
+            for w in week{
+                object?.setValue(0, forKey: w + "StartTime")
+                object?.setValue(0, forKey: w + "EndTime")
+            }
             object?.saveInBackground({ (error) in
                 if(error == nil){
                     NCMBUser.current()?.setObject(object, forKey: "parameter")
                     NCMBUser.current()?.setObject(nil, forKey: "imageName")
                     NCMBUser.current()?.setObject(nil, forKey: "peerId")
-                    NCMBUser.current()?.setObject(true, forKey: "isActive")
-                    NCMBUser.current()?.setObject("", forKey: "furigana")
-                    NCMBUser.current()?.setObject("", forKey: "name")
                     NCMBUser.current()?.signUpInBackground({ (error) in
                         if(error == nil){
                             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)

@@ -57,9 +57,9 @@ class YoubiCompatibility{
     private func getIgnoreInts(myYoubiSchedule: String) -> [Int]{
         var ret: [Int] = []
         // String型.sArrayで１文字ずつに分割できる（ように「Extensions.swift」で設定した。）
-        let sArray = myYoubiSchedule.sArray
-        for i in 0..<sArray.count {
-            if sArray[i] == "F" {
+        let array = myYoubiSchedule.ary
+        for i in 0..<array.count {
+            if array[i] == "F" {
                 ret.append(i)
             }
         }

@@ -37,11 +37,11 @@ class Opening1ViewController: UIViewController {
                                 ud.set(now, forKey: u.mailAddress + "time")
                                 ud.set(true, forKey: "isLogin")
                                 ud.synchronize()
-//                                フォロワーを読み込む
-                                self.loadFollowlist()
 //                                ログインしていることを次のViewに伝える、ログイン中のユーザーの情報を保存する。
                                 isLogInG = true
                                 currentUserG = User(user!)
+//                                フォロワーを読み込む
+                                self.loadFollowList()
                             }
                         }
                     }
@@ -54,7 +54,7 @@ class Opening1ViewController: UIViewController {
 //        画面サイズの取得
         screenSizeG["NnNt"] = Size(x: self.view.frame.size.width, y: self.view.frame.size.height, tm: self.view.safeAreaInsets.top, bm: self.view.safeAreaInsets.bottom)
         print("NnNt", screenSizeG["NnNt"]!.viewHeight)
-        UIView.animate(withDuration: 0.8, animations: {
+        UIView.animate(withDuration: 1.5, animations: {
             self.label.alpha = 1.f
         }) { _ in
 //            ナビゲーションバーがある場合の画面サイズを取得するために画面遷移を行う

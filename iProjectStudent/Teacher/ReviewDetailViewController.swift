@@ -13,7 +13,7 @@ import Cosmos
 class ReviewDetailViewController: UIViewController {
     
     var isAbletoEdit: Bool!
-    var review: ReviewTeacher?
+    var review: Review?
     var teacherId: String!
     var studentId: String!
     var subjectName: String!
@@ -86,23 +86,21 @@ class ReviewDetailViewController: UIViewController {
             else{
                 var object: NCMBObject?
                 if review == nil {
-                    object = NCMBObject(className: "Review",objectId: self.review!.objectId)
-                }else{
                     object = NCMBObject(className: "Review")
+                }else{
+                    object = review?.ncmb
                 }
-                object?.setObject(numofAfterScore, forKey: "Reviewscore")
-                object?.setObject(commentBox.text!, forKey: "Reviewcomment")
-                object?.setObject(titleField.text!, forKey: "Reviewtitle")
+                object?.setObject(numofAfterScore, forKey: "score")
+                object?.setObject(commentBox.text!, forKey: "comment")
+                object?.setObject(titleField.text!, forKey: "z title")
                 object?.setObject(self.studentId!, forKey: "studentId")
                 object?.setObject(self.teacherId!, forKey: "teacherId")
                 object?.saveInBackground({ (error) in
                     if error == nil{
                         if self.review == nil {
-                            let object2 = NCMBObject(className: "TeacherParameter", objectId: self.teacher.teacherParameter!.objectId)
-                            object2?.setObject(self.numofAfterScore, forKey: self.subjectName + "AverageScore")
-                            object2?.setObject(self.numofAfterScore, forKey: self.subjectName + "TotalScore")
-                            object2?.setObject(1, forKey: self.subjectName + "TotalNum")
-                            object2?.saveInBackground({ (error) in
+                            self.teacher.teacherParameter!.ncmb.setObject(self.numofAfterScore, forKey: self.subjectName + "TotalScore")
+                            self.teacher.teacherParameter!.ncmb.setObject(1, forKey: self.subjectName + "TotalNum")
+                            self.teacher.teacherParameter!.ncmb.saveInBackground({ (error) in
                                 if error == nil{
                                     self.dismiss(animated: true, completion: nil)
                                 }
@@ -111,11 +109,9 @@ class ReviewDetailViewController: UIViewController {
                                 }
                             })
                         }else{
-                            let object2 = NCMBObject(className: "TeacherParameter", objectId: self.teacher.teacherParameter!.objectId)
-                            object2?.setObject(self.numofAfterScore, forKey: self.subjectName + "AverageScore")
-                            object2?.setObject(self.numofAfterScore, forKey: self.subjectName + "TotalScore")
-                            object2?.setObject(1, forKey: self.subjectName + "TotalNum")
-                            object2?.saveInBackground({ (error) in
+                            self.teacher.teacherParameter!.ncmb.setObject(self.numofAfterScore, forKey: self.subjectName + "TotalScore")
+                            self.teacher.teacherParameter!.ncmb.setObject(1, forKey: self.subjectName + "TotalNum")
+                            self.teacher.teacherParameter!.ncmb.saveInBackground({ (error) in
                                 if error == nil{
                                     self.navigationController?.popViewController(animated: true)
                                 }

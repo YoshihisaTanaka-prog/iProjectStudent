@@ -233,7 +233,7 @@ class ChatRoom{
                     self.isPermited = true
                     let userQuery = NCMBUser.query()
                     userQuery?.whereKey("isActive", notEqualTo: false)
-                    userQuery?.whereKey("objectId", equalTo: user.userId)
+                    userQuery?.whereKey("objectId", equalTo: user.ncmb.objectId)
                     userQuery?.findObjectsInBackground({ (result2, error2) in
                         if(error2 == nil){
                             if(result2!.count == 0){
@@ -244,11 +244,11 @@ class ChatRoom{
                                 let opUser = result2!.first as! NCMBUser
                                 //チャットルームの作成
                                 var userIds: String!
-                                if (NCMBUser.current()?.objectId)! < user.userId {
-                                    userIds = (NCMBUser.current()?.objectId)! + "-" + user.userId
+                                if (NCMBUser.current()?.objectId)! < user.ncmb.objectId {
+                                    userIds = (NCMBUser.current()?.objectId)! + "-" + user.ncmb.objectId
                                 }
                                 else{
-                                    userIds = user.userId + "-" + (NCMBUser.current()?.objectId)!
+                                    userIds = user.ncmb.objectId + "-" + (NCMBUser.current()?.objectId)!
                                 }
                                 let object = NCMBObject(className: "OneOnOneChat")
                                 object?.setObject(userIds, forKey: "userIds")

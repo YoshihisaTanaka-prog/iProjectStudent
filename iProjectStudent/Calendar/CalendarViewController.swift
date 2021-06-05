@@ -18,7 +18,7 @@ class CalendarViewController: UIViewController, UITableViewDataSource, UITableVi
     
     private var eventList: [Event] = []
     private var selectedDate = Date()
-    private var currentMonth: Int!
+    private var currentMonth = Date().m
     
     @IBOutlet private var tableView: UITableView!  //スケジュール内容
     @IBOutlet private var labelTitle: UILabel!  //「主なスケジュール」の表示
@@ -44,8 +44,7 @@ class CalendarViewController: UIViewController, UITableViewDataSource, UITableVi
         calenderView.setToJapanise()
         
         loadEvent(selectedDate)
-        let tmpCalendar = Calendar(identifier: .gregorian)
-        currentMonth = tmpCalendar.component(.month, from: Date())
+        currentMonth = Date().m
     }
     
     @objc func onClick(){ let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -105,35 +104,16 @@ class CalendarViewController: UIViewController, UITableViewDataSource, UITableVi
         self.tableView.reloadData()
     }
     
-    fileprivate let gregorian: Calendar = Calendar(identifier: .gregorian)
-    fileprivate lazy var dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        return formatter
-    }()
-    
     // 祝日判定を行い結果を返すメソッド
     func judgeHoliday(_ date : Date) -> Bool {
-        //祝日判定用のカレンダークラスのインスタンス
-        let tmpCalendar = Calendar(identifier: .gregorian)
-        
-        // 祝日判定を行う日にちの年、月、日を取得
-        let year = tmpCalendar.component(.year, from: date)
-        let month = tmpCalendar.component(.month, from: date)
-        let day = tmpCalendar.component(.day, from: date)
         
         let holiday = CalculateCalendarLogic()
-        
-        return holiday.judgeJapaneseHoliday(year: year, month: month, day: day)
+        return holiday.judgeJapaneseHoliday(year: date.y, month: date.m, day: date.d)
     }
     
     // date型 -> 年月日をIntで取得
     func getDay(_ date:Date) -> (Int,Int,Int){
-        let tmpCalendar = Calendar(identifier: .gregorian)
-        let year = tmpCalendar.component(.year, from: date)
-        let month = tmpCalendar.component(.month, from: date)
-        let day = tmpCalendar.component(.day, from: date)
-        return (year,month,day)
+        return (date.y,date.m,date.d)
     }
     
     //曜日判定
@@ -144,8 +124,7 @@ class CalendarViewController: UIViewController, UITableViewDataSource, UITableVi
     
     // 土日や祝日の日の文字色を変える
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
-        let tmpCalendar = Calendar(identifier: .gregorian)
-        let inputMonth = tmpCalendar.component(.month, from: date)
+        let inputMonth = date.m
         if(inputMonth == currentMonth){
             //祝日判定をする
             if self.judgeHoliday(date){
@@ -186,9 +165,7 @@ class CalendarViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func loadEvent(_ date: Date) {
         //予定がある場合、スケジュールをDBから取得・表示する。
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy/MM/dd"
-        let da = formatter.string(from: date)
+        let da = date.ymdJp
         datelabel.text = da
         
         switch getWeekIdx(date) {
@@ -218,8 +195,7 @@ class CalendarViewController: UIViewController, UITableViewDataSource, UITableVi
     
     //カレンダー処理(スケジュール表示処理)
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition){
-        let tmpCalendar = Calendar(identifier: .gregorian)
-        let inputMonth = tmpCalendar.component(.month, from: date)
+        let inputMonth = date.m
         if(currentMonth != inputMonth){
             calenderView.setCurrentPage(date, animated: true)
         }
@@ -228,9 +204,7 @@ class CalendarViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy/MM/dd"
-        let da = formatter.string(from: date)
+        let da = date.ymd
         let realm = try! Realm()
         var result = realm.objects(Event.self)
         result = result.filter("date = '\(da)'")

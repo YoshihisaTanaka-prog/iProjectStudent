@@ -7,7 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04192FF3266A9322004F6C3D /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04192FF2266A9322004F6C3D /* RadioButton.swift */; };
 		0424576F25DFE34F00F613FB /* Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0424576E25DFE34F00F613FB /* Design.swift */; };
+		043079B0266A3F0300247080 /* TransformateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043079AF266A3F0300247080 /* TransformateExtensions.swift */; };
+		043079B8266A49A900247080 /* AlertExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043079B7266A49A900247080 /* AlertExtensions.swift */; };
+		043079BA266A49C300247080 /* NCMBUserExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043079B9266A49C300247080 /* NCMBUserExtensions.swift */; };
+		043079BC266A49D000247080 /* RailsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043079BB266A49D000247080 /* RailsExtensions.swift */; };
+		043079BE266A49DE00247080 /* SetImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043079BD266A49DE00247080 /* SetImageExtensions.swift */; };
+		043079C0266A4B1000247080 /* FollowExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043079BF266A4B1000247080 /* FollowExtensions.swift */; };
 		044BD1C3265D2C9800A169FC /* CalenderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BD1C2265D2C9800A169FC /* CalenderExtension.swift */; };
 		0455EDBF25DA8ECD00013330 /* ReviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0455EDB725DA8ECD00013330 /* ReviewTableViewCell.xib */; };
 		0455EDC025DA8ECD00013330 /* TeacherInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0455EDB825DA8ECD00013330 /* TeacherInfoViewController.swift */; };
@@ -48,7 +55,6 @@
 		04A7E99925AF309900C0F43C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A7E99725AF309900C0F43C /* Main.storyboard */; };
 		04A7E99B25AF309900C0F43C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04A7E99A25AF309900C0F43C /* Assets.xcassets */; };
 		04A7E99E25AF309900C0F43C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A7E99C25AF309900C0F43C /* LaunchScreen.storyboard */; };
-		04A7E9A625AF327B00C0F43C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7E9A525AF327B00C0F43C /* Extensions.swift */; };
 		04A841EC25C57B1E00469B5E /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A841EB25C57B1E00469B5E /* SignIn.storyboard */; };
 		04AF5D4A25E5415B00E2B385 /* SearchTeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AF5D4925E5415B00E2B385 /* SearchTeacherViewController.swift */; };
 		04AF5D4D25E5428100E2B385 /* Teachers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AF5D4C25E5428100E2B385 /* Teachers.swift */; };
@@ -82,7 +88,6 @@
 		1BA0D05125E7DF160008FF43 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BA0D03D25E7DF160008FF43 /* iTunesArtwork@2x.png */; };
 		1BA0D05225E7DF160008FF43 /* iTunesArtwork@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BA0D03E25E7DF160008FF43 /* iTunesArtwork@3x.png */; };
 		1F0D91EA25E1380800503048 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0D91E925E1380800503048 /* SignUpViewController.swift */; };
-		1F18521F265F90BF005666DE /* Radiobuttom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F18521E265F90BF005666DE /* Radiobuttom.swift */; };
 		1F3343F125D1500A00A090DA /* Questionnaire.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F3343F025D1500A00A090DA /* Questionnaire.storyboard */; };
 		1F3343F525D151C400A090DA /* Questionnaire_subViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3343F425D151C400A090DA /* Questionnaire_subViewController.swift */; };
 		1F761FEA25D419C600FFB590 /* UserPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F761FE925D419C600FFB590 /* UserPageViewController.swift */; };
@@ -94,7 +99,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04192FF2266A9322004F6C3D /* RadioButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		0424576E25DFE34F00F613FB /* Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Design.swift; sourceTree = "<group>"; };
+		043079AF266A3F0300247080 /* TransformateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformateExtensions.swift; sourceTree = "<group>"; };
+		043079B7266A49A900247080 /* AlertExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertExtensions.swift; sourceTree = "<group>"; };
+		043079B9266A49C300247080 /* NCMBUserExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NCMBUserExtensions.swift; sourceTree = "<group>"; };
+		043079BB266A49D000247080 /* RailsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RailsExtensions.swift; sourceTree = "<group>"; };
+		043079BD266A49DE00247080 /* SetImageExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetImageExtensions.swift; sourceTree = "<group>"; };
+		043079BF266A4B1000247080 /* FollowExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowExtensions.swift; sourceTree = "<group>"; };
 		044BD1C2265D2C9800A169FC /* CalenderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderExtension.swift; sourceTree = "<group>"; };
 		0455EDB725DA8ECD00013330 /* ReviewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewTableViewCell.xib; sourceTree = "<group>"; };
 		0455EDB825DA8ECD00013330 /* TeacherInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherInfoViewController.swift; sourceTree = "<group>"; };
@@ -140,7 +152,6 @@
 		04A7E99A25AF309900C0F43C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04A7E99D25AF309900C0F43C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04A7E99F25AF309900C0F43C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		04A7E9A525AF327B00C0F43C /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		04A841EB25C57B1E00469B5E /* SignIn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		04AF5D4925E5415B00E2B385 /* SearchTeacherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTeacherViewController.swift; sourceTree = "<group>"; };
 		04AF5D4C25E5428100E2B385 /* Teachers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teachers.swift; sourceTree = "<group>"; };
@@ -172,7 +183,6 @@
 		1BA0D03E25E7DF160008FF43 /* iTunesArtwork@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@3x.png"; sourceTree = "<group>"; };
 		1E933D9E06614E36D1EB6CA6 /* Pods-iProjectStudent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iProjectStudent.debug.xcconfig"; path = "Target Support Files/Pods-iProjectStudent/Pods-iProjectStudent.debug.xcconfig"; sourceTree = "<group>"; };
 		1F0D91E925E1380800503048 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		1F18521E265F90BF005666DE /* Radiobuttom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Radiobuttom.swift; sourceTree = "<group>"; };
 		1F3343F025D1500A00A090DA /* Questionnaire.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Questionnaire.storyboard; sourceTree = "<group>"; };
 		1F3343F425D151C400A090DA /* Questionnaire_subViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questionnaire_subViewController.swift; sourceTree = "<group>"; };
 		1F761FE925D419C600FFB590 /* UserPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageViewController.swift; sourceTree = "<group>"; };
@@ -339,12 +349,17 @@
 				049C83E325C6921000D4D380 /* AppDelegate.swift */,
 				04A7E99525AF309900C0F43C /* ViewController.swift */,
 				046872D025DE0E1C00A6ABBF /* CheckBox.swift */,
-				1F18521E265F90BF005666DE /* Radiobuttom.swift */,
+				04192FF2266A9322004F6C3D /* RadioButton.swift */,
 				0424576E25DFE34F00F613FB /* Design.swift */,
 				04EA679025BC8A9C005F0D06 /* User.swift */,
 				046872CC25DE0CB800A6ABBF /* GlobalParameters.swift */,
-				04A7E9A525AF327B00C0F43C /* Extensions.swift */,
+				043079B7266A49A900247080 /* AlertExtensions.swift */,
 				044BD1C2265D2C9800A169FC /* CalenderExtension.swift */,
+				043079BF266A4B1000247080 /* FollowExtensions.swift */,
+				043079B9266A49C300247080 /* NCMBUserExtensions.swift */,
+				043079BB266A49D000247080 /* RailsExtensions.swift */,
+				043079BD266A49DE00247080 /* SetImageExtensions.swift */,
+				043079AF266A3F0300247080 /* TransformateExtensions.swift */,
 				04A7E99725AF309900C0F43C /* Main.storyboard */,
 				04A7E99A25AF309900C0F43C /* Assets.xcassets */,
 				04A7E99C25AF309900C0F43C /* LaunchScreen.storyboard */,
@@ -577,6 +592,7 @@
 			files = (
 				04AF5D4D25E5428100E2B385 /* Teachers.swift in Sources */,
 				1B0AD3AF25E401AD0061976F /* CalendarViewController.swift in Sources */,
+				043079BA266A49C300247080 /* NCMBUserExtensions.swift in Sources */,
 				0455EDC425DA8ECE00013330 /* ReviewTeacher.swift in Sources */,
 				0455EDC225DA8ECE00013330 /* TeacherInfoTableViewCell.swift in Sources */,
 				04AF5D4A25E5415B00E2B385 /* SearchTeacherViewController.swift in Sources */,
@@ -592,6 +608,8 @@
 				04EA679125BC8A9C005F0D06 /* User.swift in Sources */,
 				04C7A06025CD7F750031281B /* Opening2ViewController.swift in Sources */,
 				1B0AD3B125E401AD0061976F /* Event.swift in Sources */,
+				043079B8266A49A900247080 /* AlertExtensions.swift in Sources */,
+				043079BC266A49D000247080 /* RailsExtensions.swift in Sources */,
 				04EE4A042605A6AD002A42B7 /* YoubiCompatibility.swift in Sources */,
 				0455EDC325DA8ECE00013330 /* ReviewTableViewCell.swift in Sources */,
 				0460979025E8291200AC91BE /* Chat.swift in Sources */,
@@ -599,15 +617,17 @@
 				0460978E25E8291200AC91BE /* YourBalloonView.swift in Sources */,
 				1F3343F525D151C400A090DA /* Questionnaire_subViewController.swift in Sources */,
 				04C7A05C25CD7F6F0031281B /* ScreenSize.swift in Sources */,
+				04192FF3266A9322004F6C3D /* RadioButton.swift in Sources */,
 				049C83E425C6921000D4D380 /* AppDelegate.swift in Sources */,
 				0424576F25DFE34F00F613FB /* Design.swift in Sources */,
+				043079B0266A3F0300247080 /* TransformateExtensions.swift in Sources */,
 				1F806AC925D81336001BF41B /* EditUserPageViewController.swift in Sources */,
 				1B0AD3B025E401AD0061976F /* EventViewController.swift in Sources */,
 				046872CD25DE0CB800A6ABBF /* GlobalParameters.swift in Sources */,
 				1FA191B625CACE3F007B935B /* SignInViewController.swift in Sources */,
-				1F18521F265F90BF005666DE /* Radiobuttom.swift in Sources */,
 				0455EDC025DA8ECD00013330 /* TeacherInfoViewController.swift in Sources */,
 				046872D125DE0E1C00A6ABBF /* CheckBox.swift in Sources */,
+				043079C0266A4B1000247080 /* FollowExtensions.swift in Sources */,
 				0460978525E8291200AC91BE /* MyChatViewCell.swift in Sources */,
 				04EE4A0026059A60002A42B7 /* SpiritCompatibility.swift in Sources */,
 				0473BF5625D2EA0900550EFB /* Questionnaire.swift in Sources */,
@@ -615,12 +635,12 @@
 				0460979125E8291200AC91BE /* ChatTableViewController.swift in Sources */,
 				0460978A25E8291200AC91BE /* YourGroupChatViewCell.swift in Sources */,
 				0460978725E8291200AC91BE /* YourChatViewCell.swift in Sources */,
+				043079BE266A49DE00247080 /* SetImageExtensions.swift in Sources */,
 				0460979425E8291200AC91BE /* SearchUserForCreateGroupViewController.swift in Sources */,
 				0455EDC125DA8ECE00013330 /* ReviewDetailViewController.swift in Sources */,
 				1FB58C2E25E3ED29009CFCD0 /* ForgetPasswordViewController.swift in Sources */,
 				0460978425E8291200AC91BE /* ChatViewController.swift in Sources */,
 				044BD1C3265D2C9800A169FC /* CalenderExtension.swift in Sources */,
-				04A7E9A625AF327B00C0F43C /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

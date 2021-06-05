@@ -35,16 +35,18 @@ class Opening2ViewController: UIViewController {
         print("EnEt", screenSizeG["EnEt"]!.viewHeight)
         
         label.textColor = .black
-        UIView.animate(withDuration: 0.8, animations: {
+        UIView.animate(withDuration: 1.5, animations: {
             self.label.textColor = .red
         }) { _ in
             if isLogInG {
                 // ログイン中だったら
 //                let storyboard = UIStoryboard(name: "Questionnaire", bundle: Bundle.main)
 //                let rootViewController = storyboard.instantiateViewController(withIdentifier: "QuestionnaireController")
+                self.loadFollowList()
                 let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-                let rootViewController = storyboard.instantiateViewController(withIdentifier: "RootTabBarController")
-                self.present(rootViewController, animated: false, completion: nil)
+                let rootViewController = storyboard.instantiateViewController(identifier: "RootTabBarController")
+                self.present(rootViewController, animated: true, completion: nil)
+
             } else {
                 // ログインしていなかったら
 //                let storyboard = UIStoryboard(name: "Questionnaire", bundle: Bundle.main)

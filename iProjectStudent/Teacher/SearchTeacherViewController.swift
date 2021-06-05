@@ -32,7 +32,7 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
     let user = User(NCMBUser.current())
     private var selectedSubject: String?
     private var selectedSubjectList = [["------",""]]
-    private let mainSubjectList = [["教科を選択",""],["国語",""],["数学",""],["理科",""],["社会",""],["英語","English"]]
+    private let mainSubjectList = [["教科を選択",""],["国語",""],["数学",""],["理科",""],["社会",""],["英語",""]]
     private let subSubjectList = [
             [["------",""]],
             [["詳細を選択",""],["現代文","modernWriting"],["古文","ancientWiting"],["漢文","chineseWriting"]],
@@ -40,66 +40,9 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
             [["詳細を選択",""],["物理","physics"],["化学","chemistry"],["生物","biology"],["地学","earthScience"]],
             [["詳細を選択",""],["地理","geography"],["日本史","japaneseHistory"],["世界史","worldHistory"],
              ["現代社会","modernSociety"],["倫理","ethics"],["政治・経済","politicalScienceAndEconomics"]],
-            [["-----","English"]]
+            [["詳細を選択",""],["高校英語","hsEnglish"]]
         ]
-    var teacherList: [niseTeacher] = []
-    let teacherLists = [[
-        niseTeacher("清水彩加","東京大学",1,5.0),
-        niseTeacher("中村香織","東京大学",1,4.9),
-        niseTeacher("平岡龍聖","東京大学",3,4.17),
-        niseTeacher("金井孝弘","東京大学",4,3.72),
-        niseTeacher("福澤大喜","東京大学",1,3.71),
-        niseTeacher("鹿島彩美","東京大学",2,3.53),
-        niseTeacher("有川翔真","東京大学",2,3.29),
-        niseTeacher("田中義久","東京大学",3,2.93),
-        niseTeacher("田中要","東京大学",3,2.68),
-        niseTeacher("上園陸人","東京大学",4,2.47)
-    ],[
-        niseTeacher("中川文馨","東京大学",2,4.66),
-        niseTeacher("黒木奈々","東京大学",2,4.49),
-        niseTeacher("長谷川詩峰","東京大学",2,4.08),
-        niseTeacher("磯野友希","東京大学",2,3.81),
-        niseTeacher("中尾勇太","東京大学",2,3.55),
-        niseTeacher("藤田浩輔","東京大学",4,3.50),
-        niseTeacher("後藤達哉","東京大学",4,3.43),
-        niseTeacher("田中琴子","東京大学",1,3.24),
-        niseTeacher("前田優花","東京大学",3,3.22),
-        niseTeacher("笹井翔","東京大学",2,2.03)
-    ],[
-        niseTeacher("中村香織","東京大学",1,4.9),
-        niseTeacher("黒岩秀嵩","東京大学",2,4.39),
-        niseTeacher("佐野直希","東京大学",1,4.11),
-        niseTeacher("大庭直哉","東京大学",1,3.81),
-        niseTeacher("能美雅貴","東京大学",1,3.81),
-        niseTeacher("前田直人","東京大学",2,3.50),
-        niseTeacher("萬治大典","東京大学",3,3.28),
-        niseTeacher("吉行謙","東京大学",2,3.05),
-        niseTeacher("外丸遼太","東京大学",3,2.92),
-        niseTeacher("原田鞠愛","東京大学",2,2.72)
-    ],[
-        niseTeacher("木村亮太","東京大学",1,4.41),
-        niseTeacher("大庭優実子","東京大学",3,4.36),
-        niseTeacher("永田光一","東京大学",4,4.05),
-        niseTeacher("田中空","東京大学",4,3.99),
-        niseTeacher("河野佑輔","東京大学",1,3.68),
-        niseTeacher("松本陽子","東京大学",2,3.55),
-        niseTeacher("川崎理聖","東京大学",1,2.52),
-        niseTeacher("山口嵩洋","東京大学",1,2.50),
-        niseTeacher("平岡龍聖","東京大学",3,2.32),
-        niseTeacher("上園陸人","東京大学",4,2.25)
-    ],[
-        niseTeacher("安永匡志","東京大学",4,4.35),
-        niseTeacher("鹿島里美","東京大学",2,4.01),
-        niseTeacher("佐藤尚弥","東京大学",2,3.86),
-        niseTeacher("柿並遼","東京大学",1,3.73),
-        niseTeacher("波多野護","東京大学",3,3.09),
-        niseTeacher("中上まゆ","東京大学",3,3.06),
-        niseTeacher("高永美歩","東京大学",1,2.98),
-        niseTeacher("小畠俊哉","東京大学",4,2.63),
-        niseTeacher("浅田翔","東京大学",3,2.55),
-        niseTeacher("木嶋マイキ","東京大学",4,2.39)
-    ]]
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -124,7 +67,7 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
                 self.selectedTeacher = User(user)
             }
         })
-        gradeCheckBox = CheckBox(gradeList,size: CGRect(x: 0, y: 0, width: 0, height: 0))
+        gradeCheckBox = CheckBox(gradeList)
         gradeCheckBox.setSelectedKey(user.studentParameter!.teacherGrades)
         //gradeCheckBox.setSelection(user_.studentParameter!.youbi)
     }
@@ -140,7 +83,7 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return max(teacherList.count, 1)
+        return max(teachers.count, 1)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -164,7 +107,6 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell2") as! ReviewTableViewCell
             let teacher = teachers.list[indexPath.row]
-            
 //            ここに教師の情報を表示するコードを書いてください。
             
             
@@ -175,7 +117,7 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if teacherList.count != 0 {
+        if teachers.count != 0 {
             self.performSegue(withIdentifier: "Segue", sender: nil)
         }
         tableView.reloadData()
@@ -219,15 +161,15 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
             pickerView.reloadComponent(1)
             pickerView.selectRow(0, inComponent: 1, animated: true)
             selectedSubject = mainSubjectList[row][1]
-            print(selectedSubject)
+            print(selectedSubject!)
         case 1:
             selectedSubject = selectedSubjectList[row][1]
-            print(selectedSubject)
+            print(selectedSubject!)
         default:
             break
         }
         
-        if selectedSubject! != "" {
+        if selectedSubject! != "" && selectedSubject != nil {
             loadUsers(searchText: searchBar1.text, searchText2: "", searchText3: "")
         }
     }
@@ -249,8 +191,12 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
         
         let query = NCMBQuery(className: "TeacherParameter")
         query?.whereKeyExists("user")
+        // 垢BANや面接前の教師や退会した教師をはじく
+        query?.whereKey("isActive", equalTo: true)
         query?.whereKey("isAbleToTeach", equalTo: true)
         query?.whereKey("isPermitted", equalTo: true)
+        // 選んだ教科を教えられない先生をはじく
+        query?.whereKey("isAbleToTeach" + selectedSubject!.upHead, equalTo: true)
         //曜日が合わない教師をはじく
         for i in 0..<youbi.badList.count {
             query?.whereKey("youbi", notEqualTo: youbi.badList[i])
@@ -316,16 +262,12 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
             //ニフクラに保存
             self.user.studentParameter!.ncmb.setObject(self.gradeCheckBox.selectedKeys, forKey: "teacherGrades")
             self.user.studentParameter!.ncmb.saveInBackground { (error) in
-                if error == nil {
-                    
-                } else {
+                if error != nil {
                     self.showOkAlert(title: "Error", message: error!.localizedDescription)
                 }
             }
 
         }
-        let width = alertController.view.frame.width
-        gradeCheckBox.mainView.frame = CGRect(x: width / 10.f, y: 50, width: width * 0.8, height: gradeCheckBox.height)
         alertController.view.addSubview(gradeCheckBox.mainView)
         alertController.addAction(alertOkAction)
         self.present(alertController, animated: true, completion: nil)
