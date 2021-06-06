@@ -24,12 +24,7 @@ class Teachers {
             let ts = o.object(forKey: subject + "TotalScore") as? Double ?? 0
             let tn = o.object(forKey: subject + "TotalNum") as? Double ?? 0
             
-            if(tn == 0){
-                o.setObject(0, forKey: subject + "TotalScore")
-                o.setObject(0, forKey: subject + "TotalNum")
-                o.saveInBackground { error in
-                }
-            } else {
+            if (tn != 0) {
                 score = ts / tn / 2.d
             }
             let u = o.object(forKey: "user") as! NCMBUser

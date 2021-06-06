@@ -108,8 +108,12 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell2") as! ReviewTableViewCell
             let teacher = teachers.list[indexPath.row]
 //            ここに教師の情報を表示するコードを書いてください。
-            
-            
+            cell.cosmosView.rating = teacher.teacherParameter!.score
+            cell.score.text = teacher.teacherParameter!.score.s2
+            cell.userNameLabel.text = teacher.userName
+            cell.userimage.image = userImagesCacheG[teacher.ncmb.objectId]
+            cell.title.text = teacher.teacherParameter!.collage
+            cell.title.numberOfLines = 0
             
             cell.setFontColor()
             return cell

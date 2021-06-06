@@ -7,7 +7,7 @@ target 'iProjectStudent' do
 
   # Pods for iProjectStudent iProjectTeacher
 
-  pod 'NCMB', :git => 'https://github.com/NIFCLOUD-mbaas/ncmb_ios.git'
+  pod 'NCMB', :git => 'https://github.com/NIFTYCloud-mbaas/ncmb_ios.git', :branch => 'develop'
 	
   pod 'Cosmos'
   
