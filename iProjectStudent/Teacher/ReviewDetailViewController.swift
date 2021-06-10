@@ -23,10 +23,12 @@ class ReviewDetailViewController: UIViewController {
     private var numofAfterScore: Int = 2
     private var teacher: User!
     
-    @IBOutlet var ratingScore: CosmosView!
-    @IBOutlet var commentBox: UITextView!
-    @IBOutlet var sendButton: UIButton!
-    @IBOutlet var titleField: UITextField!
+
+    @IBOutlet var ratingScore: CosmosView!  //星
+    @IBOutlet var titleField: UITextField!  //タイトル
+    @IBOutlet var commentBox: UITextView!   //コメント
+    @IBOutlet var sendButton: UIButton!     //送信ボタン
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,7 +94,7 @@ class ReviewDetailViewController: UIViewController {
                 }
                 object?.setObject(numofAfterScore, forKey: "score")
                 object?.setObject(commentBox.text!, forKey: "comment")
-                object?.setObject(titleField.text!, forKey: "z title")
+                object?.setObject(titleField.text!, forKey: "title")
                 object?.setObject(self.studentId!, forKey: "studentId")
                 object?.setObject(self.teacherId!, forKey: "teacherId")
                 object?.saveInBackground({ (error) in

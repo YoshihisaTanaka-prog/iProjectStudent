@@ -85,6 +85,11 @@
             <point key="canvasLocation" x="372.46376811594206" y="-1.0044642857142856"/>
         </tableViewCell>
     </objects>
+    <designables>
+        <designable name="BlM-36-iTA">
+            <size key="intrinsicContentSize" width="120" height="20"/>
+        </designable>
+    </designables>
     <resources>
         <image name="teacherNoImage.png" width="512" height="512"/>
         <systemColor name="systemBackgroundColor">
