@@ -14,6 +14,7 @@ class CheckBox {
     var checkBoxes: [CheckBoxButton]
     var height = 5.f
     var width = 0.f
+    var msg = ""
     
     init(_ list: [CheckBoxInput]) {
         self.mainView = UIView()
@@ -25,7 +26,10 @@ class CheckBox {
             height += 25.f
         }
         self.mainView.frame = CGRect(x: 0, y: 60, width: self.width, height: self.height)
-        print(height)
+        let length = Int(height / 17.f + 0.5.f) + 1
+        for _ in 0..<length{
+            msg += "\n"
+        }
     }
     
     public var selectionText: String{
@@ -73,6 +77,12 @@ class CheckBox {
         }
     }
     
+    func setSelectedAll(){
+        for c in checkBoxes{
+            c.isSelected = true
+            c.button.setTitle("◉", for: .normal)
+        }
+    }
 }
 
 class CheckBoxButton {

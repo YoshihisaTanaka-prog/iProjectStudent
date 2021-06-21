@@ -23,6 +23,9 @@ class FollowingTeacherViewController: UIViewController, UITableViewDataSource, U
         tableView.tableFooterView = UIView()
         tableView.rowHeight = 100.f
         
+        let nib = UINib(nibName: "ReviewTableViewCell", bundle: Bundle.main)
+        tableView.register(nib, forCellReuseIdentifier: "Cell2")
+//        /Users/tanakayoshihisa/iProjectStudent/iProjectStudent/Teacher
         setBackGround(true, true)
         
     }
@@ -36,13 +39,14 @@ class FollowingTeacherViewController: UIViewController, UITableViewDataSource, U
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
-        cell.textLabel?.text = followUserListG[indexPath.row].userName + "先生"
-        cell.imageView?.image = userImagesCacheG[followUserListG[indexPath.row].ncmb.objectId]!
-        cell.imageView?.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
-        cell.imageView?.center = CGPoint(x: 50, y: 50)
-        cell.imageView?.layer.cornerRadius = 50.f
-        cell.imageView?.clipsToBounds = true
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell2") as! ReviewTableViewCell
+        cell.cosmosView.alpha = 0.f
+        cell.score.alpha = 0.f
+        cell.title.text = followUserListG[indexPath.row].teacherParameter!.collage + " " + transformGrade(followUserListG[indexPath.row].grade)
+        cell.title.numberOfLines = 0
+        cell.userNameLabel.text = followUserListG[indexPath.row].userName + "先生"
+        cell.userimage.image = userImagesCacheG[followUserListG[indexPath.row].userId]
+        
         cell.setFontColor()
         return cell
     }

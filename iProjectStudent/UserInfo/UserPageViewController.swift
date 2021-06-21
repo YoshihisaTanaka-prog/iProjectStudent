@@ -55,10 +55,10 @@ class UserPageViewController: UIViewController, UITextFieldDelegate, UITextViewD
         schoolTextField.text = currentUserG.studentParameter!.schoolName
         gradeTextField.text = transformGrade(currentUserG.grade)
         choiceTextField.text = (currentUserG.studentParameter?.choice.first ?? []).first ?? ""
-        selectionTextField.text = currentUserG.studentParameter?.selection
+        selectionTextField.text = currentUserG.selection
         parentsEmailTextField.text = currentUserG.studentParameter?.parentEmailAdress
-        introductionTextView.text = currentUserG.studentParameter?.introduction
-        userImageView.image = userImagesCacheG[currentUserG.ncmb.objectId] ?? UIImage(named: "studentNoImage.png")
+        introductionTextView.text = currentUserG.introduction
+        userImageView.image = userImagesCacheG[currentUserG.userId] ?? UIImage(named: "studentNoImage.png")
     }
     
     @IBAction func showMenu(){

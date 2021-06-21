@@ -22,22 +22,17 @@ class Teachers {
         for o in objects{
             var score = 0.0
             let ts = o.object(forKey: subject + "TotalScore") as? Double ?? 0
-            let tn = o.object(forKey: subject + "TotalNum") as? Double ?? 0
+            let tn = o.object(forKey: subject + "TotalNum") as? Int ?? 0
             
             if (tn != 0) {
-                score = ts / tn / 2.d
+                score = ts / tn.d / 2.d
             }
-            let u = o.object(forKey: "user") as! NCMBUser
-            let q = NCMBUser.query()
-            q?.whereKey("objectId", equalTo: u.objectId)
-            q?.findObjectsInBackground({ result, error in
-                if(error == nil){
-                    DispatchQueue.main.async {
-                        let user = result!.first as! NCMBUser
-                        self.list.append( User(user, score: score) )
-                    }
-                }
-            })
+            let id = o.object(forKey: "userId") as! String
+            let u = User(userId: id, isNeedParameter: false, viewController: UIViewController())
+            u.teacherParameter = TeacherParameter(o, userId: id, userName: &u.userName, furigana: &u.furigana, grade: &u.grade, selection: &u.selection, introduction: &u.introduction, youbiTimeList: &u.youbiTimeList)
+            u.teacherParameter?.score = score
+            u.teacherParameter?.subjectNum = tn
+            self.list.append(u)
         }
     }
     

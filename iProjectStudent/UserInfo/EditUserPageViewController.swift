@@ -65,14 +65,14 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         userIdFuriganaTextField.text = currentUserG.furigana
         schoolTextField.text = currentUserG.studentParameter?.schoolName
         gradeTextField.text = currentUserG.grade
-        introductionTextView.text = currentUserG.studentParameter?.introduction
-        pickerView1.selectRow(getSelectionNum(selesction: currentUserG.studentParameter?.selection), inComponent: 0, animated: false)
-        selected = currentUserG.studentParameter?.selection
+        introductionTextView.text = currentUserG.introduction
+        pickerView1.selectRow(getSelectionNum(selesction: currentUserG.selection), inComponent: 0, animated: false)
+        selected = currentUserG.selection
         choiceTextField.text = (currentUserG.studentParameter?.choice.first ?? []).first ?? ""
         
         parentsEmailTextField.text = currentUserG.studentParameter?.parentEmailAdress
         
-        userImageView.image = userImagesCacheG[currentUserG.ncmb.objectId] ?? UIImage(named: "studentNoImage.png")
+        userImageView.image = userImagesCacheG[currentUserG.userId] ?? UIImage(named: "studentNoImage.png")
         
         youbiCheckBox.setSelection(currentUserG.studentParameter!.youbi)
     }
@@ -175,7 +175,7 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         if gradeTextField.text != currentUserG.grade {
             return true
         }
-        if introductionTextView.text != currentUserG.studentParameter?.introduction {
+        if introductionTextView.text != currentUserG.introduction {
             return true
         }
         if parentsEmailTextField.text != currentUserG.studentParameter?.parentEmailAdress {
@@ -184,7 +184,7 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         if youbiCheckBox.selectionText != currentUserG.studentParameter?.youbi {
             return true
         }
-        if selected != currentUserG.studentParameter?.selection {
+        if selected != currentUserG.selection {
             return true
         }
         // 一旦この形式で。（志望校は1つとは限らない　＆　後々のアップデートで大学・学部・学科は分けられるようにしといた方がいいと思うので、二重配列として保存します。）
@@ -196,11 +196,10 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
     }
     
     @IBAction func saveUserInfo(){
-        let user = currentUserG.ncmb
         let param = currentUserG.studentParameter!.ncmb
-        let im = user.object(forKey: "imageName")
+        let im = param.object(forKey: "imageName")
         if im == nil{
-            user.setObject(imageName, forKey: "imageName")
+            param.setObject(imageName, forKey: "imageName")
         }
         param.setObject(userIdTextField.text, forKey: "userName")
         param.setObject(userIdFuriganaTextField.text, forKey: "furigana")
@@ -213,18 +212,12 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         }
         param.setObject(introductionTextView.text, forKey: "introduction")
         param.setObject(youbiCheckBox.selectionText, forKey: "youbi")
-        user.saveInBackground{ (error) in
-            if error != nil {
+        param.saveInBackground { (error) in
+            if error == nil{
+                currentUserG = User(NCMBUser.current()!)
+                self.navigationController?.popViewController(animated: true)
+            } else{
                 self.showOkAlert(title: "Error", message: error!.localizedDescription)
-            } else {
-                param.saveInBackground { (error) in
-                    if error == nil{
-                        currentUserG = User(NCMBUser.current()!)
-                        self.navigationController?.popViewController(animated: true)
-                    } else{
-                        self.showOkAlert(title: "Error", message: error!.localizedDescription)
-                    }
-                }
             }
         }
     }

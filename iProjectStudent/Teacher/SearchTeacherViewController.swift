@@ -27,9 +27,13 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
         CheckBoxInput("学部 3年生", key: "B3"),
         CheckBoxInput("学部 4年生", key: "B4"),
         CheckBoxInput("修士 1年生", key: "M1"),
-        CheckBoxInput("修士 2年生", key: "M2")
+        CheckBoxInput("修士 2年生", key: "M2"),
+        CheckBoxInput("博士 1年生", key: "D1"),
+        CheckBoxInput("博士 2年生", key: "D2"),
+        CheckBoxInput("博士 3年生", key: "D3"),
+        CheckBoxInput("博士 4年生", key: "D4"),
+        CheckBoxInput("博士 5年生", key: "D5")
     ]
-    let user = User(NCMBUser.current())
     private var selectedSubject: String?
     private var selectedSubjectList = [["------",""]]
     private let mainSubjectList = [["教科を選択",""],["国語",""],["数学",""],["理科",""],["社会",""],["英語",""]]
@@ -59,21 +63,15 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
         let nib1 = UINib(nibName: "ReviewTableViewCell", bundle: Bundle.main)
         // (「register(nib: UINib?, forCellReuseIdentifier: String)」を選ぶ。)
         tableView.register(nib1, forCellReuseIdentifier: "Cell2")
-        let quely = NCMBUser.query()
-        quely?.whereKey("objectId", equalTo: "Yz4FWnQdSmIhUn48")
-        quely?.findObjectsInBackground({ (result, error) in
-            if(error == nil && result?.count == 1){
-                let user = result?.first as! NCMBUser
-                self.selectedTeacher = User(user)
-            }
-        })
         gradeCheckBox = CheckBox(gradeList)
-        gradeCheckBox.setSelectedKey(user.studentParameter!.teacherGrades)
+        gradeCheckBox.setSelectedKey(currentUserG.studentParameter!.teacherGrades)
         //gradeCheckBox.setSelection(user_.studentParameter!.youbi)
+        
+        print(NCMBUser.current()!.objectId)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        youbi = YoubiCompatibility((user.studentParameter?.youbi) ?? "FFFFFFF")
+        youbi = YoubiCompatibility((currentUserG.studentParameter?.youbi) ?? "FFFFFFF")
         spirit = SpiritCompatibility()
         tableView.reloadData()
         for y in youbi.badList {
@@ -111,8 +109,8 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
             cell.cosmosView.rating = teacher.teacherParameter!.score
             cell.score.text = teacher.teacherParameter!.score.s2
             cell.userNameLabel.text = teacher.userName
-            cell.userimage.image = userImagesCacheG[teacher.ncmb.objectId]
-            cell.title.text = teacher.teacherParameter!.collage
+            cell.userimage.image = userImagesCacheG[teacher.userId]
+            cell.title.text = teacher.teacherParameter!.collage + " " + transformGrade(teacher.grade)
             cell.title.numberOfLines = 0
             
             cell.setFontColor()
@@ -122,6 +120,7 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if teachers.count != 0 {
+            self.selectedTeacher = teachers.list[indexPath.row]
             self.performSegue(withIdentifier: "Segue", sender: nil)
         }
         tableView.reloadData()
@@ -194,78 +193,99 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
         tableView.reloadData()
         
         let query = NCMBQuery(className: "TeacherParameter")
-        query?.whereKeyExists("user")
         // 垢BANや面接前の教師や退会した教師をはじく
         query?.whereKey("isActive", equalTo: true)
         query?.whereKey("isAbleToTeach", equalTo: true)
         query?.whereKey("isPermitted", equalTo: true)
+        
         // 選んだ教科を教えられない先生をはじく
         query?.whereKey("isAbleToTeach" + selectedSubject!.upHead, equalTo: true)
+        
         //曜日が合わない教師をはじく
-        for i in 0..<youbi.badList.count {
-            query?.whereKey("youbi", notEqualTo: youbi.badList[i])
-        }
+        query?.whereKey("youbi", notContainedIn: youbi.badList)
+        
         //性格の相性の悪い教師をはじく
-        for s in spirit.getBad(user.studentParameter?.personalityGroup ?? -1) {
-            query?.whereKey("personalityGroup", notEqualTo: s)
-        }
+        query?.whereKey("personalityGroup", notContainedIn: spirit.getBad(currentUserG.studentParameter?.personalityGroup ?? -1))
         
-        //希望した学年以外をはじく
+        //希望した学年のみ選ぶ
+        var goodGrades:[String] = []
         for g in gradeCheckBox.checkBoxes {
-            if !g.isSelected {
-                query?.whereKey("grade", notEqualTo: g.key)
+            if g.isSelected {
+                goodGrades.append(g.key)
             }
         }
-        
-        if let text = searchText {
-            print(text)
-            if text != ""{
-                query?.whereKey("collage", equalTo: text)
+        if goodGrades.count != 0{
+            query?.whereKey("grade", containedIn: goodGrades)
+            
+            //        もうすでに登録してある教師やブロックした教師をはじく
+            var knownTeacherIds: [String] = []
+            //        登録済み
+            for u in mixFollowList(){
+                knownTeacherIds.append(u.userId)
             }
-            //大学
-            //性格診断
-            //学年（int型）
-            //andの=!
-        }
-        
-        if let text2 = searchText2 {
-            print(text2)
-            //大学
-            //性格診断
-            //学年（int型）
-            //isableto
-//            query?.whereKey("personalityGroup", equalTo: text2)
-        }
-        
-        
-        query?.findObjectsInBackground({ (result, error) in
-            if error == nil {
-                let objects = result as? [NCMBObject] ?? []
-                self.teachers = Teachers(objects, subject: self.selectedSubject!)
-//                5秒待った後に（検索に時間がかかるから）レビューの高い順に並び替えて検索結果を反映する。
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-                    self.isSearching = false
-                    self.teachers.sort()  //.sort()でレビューの高い順に並び替える（未完成）
-                    self.tableView.reloadData()
+            //        ブロック済み
+            for id in blockedUserIdListG{
+                knownTeacherIds.append(id)
+            }
+            if(knownTeacherIds.count != 0){
+                query?.whereKey("userId", notContainedIn: knownTeacherIds)
+            }
+            
+            if let text = searchText {
+                print(text)
+                if text != ""{
+                    query?.whereKey("collage", equalTo: text)
                 }
+                //大学
+                //性格診断
+                //学年（int型）
+                //andの=!
             }
-            else {
-                self.showOkAlert(title: "Error", message: error!.localizedDescription)
+            
+            if let text2 = searchText2 {
+                print(text2)
+                //大学
+                //性格診断
+                //学年（int型）
+                //isableto
+                //            query?.whereKey("personalityGroup", equalTo: text2)
             }
-        })
-        
+            
+            
+            query?.findObjectsInBackground({ (result, error) in
+                if error == nil {
+                    let objects = result as? [NCMBObject] ?? []
+                    print(objects.count)
+                    self.teachers = Teachers(objects, subject: self.selectedSubject!)
+                    //                5秒待った後に（検索に時間がかかるから）レビューの高い順に並び替えて検索結果を反映する。
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+                        self.isSearching = false
+                        self.teachers.sort()  //.sort()でレビューの高い順に並び替える（未完成）
+                        self.tableView.reloadData()
+                    }
+                }
+                else {
+                    self.showOkAlert(title: "Search Teacher Error", message: error!.localizedDescription)
+                }
+            })
+        } else{
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+                self.isSearching = false
+                self.tableView.reloadData()
+            }
+        }
     }
     
     @IBAction func selectTeacherGrade(){
-        let alertController = UIAlertController(title: "先生の学年を選んでください。", message: "\n\n\n\n\n\n\n\n\n\n\n", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "先生の学年を選んでください。", message: "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", preferredStyle: .alert)
         let alertOkAction = UIAlertAction(title: "選択完了", style: .default) { (action) in
             self.gradeCheckBox.mainView.removeFromSuperview()
             alertController.dismiss(animated: true, completion: nil)
             //アプリ内に保存
-            self.user.studentParameter!.teacherGrades = self.gradeCheckBox.selectedKeys
+            currentUserG.studentParameter!.teacherGrades = self.gradeCheckBox.selectedKeys
             //ニフクラに保存
-            self.user.studentParameter!.ncmb.setObject(self.gradeCheckBox.selectedKeys, forKey: "teacherGrades")
-            self.user.studentParameter!.ncmb.saveInBackground { (error) in
+            currentUserG.studentParameter!.ncmb.setObject(self.gradeCheckBox.selectedKeys, forKey: "teacherGrades")
+            currentUserG.studentParameter!.ncmb.saveInBackground { (error) in
                 if error != nil {
                     self.showOkAlert(title: "Error", message: error!.localizedDescription)
                 }

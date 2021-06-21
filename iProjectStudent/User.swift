@@ -12,145 +12,189 @@ import NCMB
 
 class User {
     
-    var ncmb: NCMBUser
-    var userName: String
-    var furigana: String
-    var grade: String
-    var mailAddress: String
-    var imageName: String?
+    var userId: String
+    var userName = ""
+    var furigana = ""
+    var grade = "0"
+    var mailAddress = ""
     var oneOnOneSerch: String
+    var selection = ""
+    var introduction = ""
+    var youbiTimeList: [[String]] = []
     var teacherParameter: TeacherParameter?
     var studentParameter: StudentParameter?
     
     
-    init(_ user: NCMBUser) {
+    init(userId: String, isNeedParameter: Bool, viewController: UIViewController) {
         
-        self.ncmb = user
-        self.mailAddress = user.mailAddress
-        self.furigana = ""
-        self.userName = ""
-        self.grade = ""
-        self.imageName = user.object(forKey: "imageName") as? String
+        self.userId = userId
         
         //        個人チャットを検索するためのパラメータ
-        if (NCMBUser.current()?.objectId)! < self.ncmb.objectId {
-            oneOnOneSerch = (NCMBUser.current()?.objectId)! + "-" + self.ncmb.objectId
+        if (NCMBUser.current()?.objectId)! < self.userId {
+            oneOnOneSerch = (NCMBUser.current()?.objectId)! + "-" + self.userId
         }
         else{
-            oneOnOneSerch = self.ncmb.objectId + "-" + (NCMBUser.current()?.objectId)!
+            oneOnOneSerch = self.userId + "-" + (NCMBUser.current()?.objectId)!
         }
         
         //        ユーザの詳細データ
-        let parameter = user.object(forKey: "parameter") as? NCMBObject
-        if parameter == nil {
-            userImagesCacheG[self.ncmb.objectId] = UIImage(named: "studentNoImage.png")
-        } else {
-            let param = NCMBObject(className: parameter!.ncmbClassName, objectId: parameter!.objectId)
-            var error: NSError? = nil
-            param?.fetch(&error)
-            
-            if(error == nil && param != nil){
-                let isPermitted = param?.object(forKey: "isPermitted") as? Bool ?? true
-                if(isPermitted){
-                    if(param!.ncmbClassName == "TeacherParameter"){
-                        self.teacherParameter = TeacherParameter(param!, userName: &userName, furigana: &furigana, grade: &grade)
+        if isNeedParameter{
+            let query1 = NCMBQuery(className: "TeacherParameter")
+            query1?.whereKey("userId", equalTo: self.userId)
+            query1?.findObjectsInBackground({ result, error in
+                if error == nil{
+                    if(result!.count > 0){
+                        let param = result!.first! as! NCMBObject
+                        self.teacherParameter = TeacherParameter(param, userId: self.userId, userName: &self.userName, furigana: &self.furigana, grade: &self.grade, selection: &self.selection, introduction: &self.introduction, youbiTimeList: &self.youbiTimeList)
                     }
-                    else{
-                        self.studentParameter = StudentParameter(param!, userName: &userName, furigana: &furigana, grade: &grade)
-                    }
+                } else {
+                    viewController.showOkAlert(title: "Error", message: error!.localizedDescription)
                 }
-            }
+            })
+            let query2 = NCMBQuery(className: "StudentParameter")
+            query2?.whereKey("userId", equalTo: self.userId)
+            query2?.findObjectsInBackground({ result, error in
+                if error == nil{
+                    if(result!.count > 0){
+                        let param = result!.first! as! NCMBObject
+                        self.studentParameter = StudentParameter(param, userId: self.userId, userName: &self.userName, furigana: &self.furigana, grade: &self.grade, selection: &self.selection, introduction: &self.introduction, youbiTimeList: &self.youbiTimeList)
+                    }
+                } else {
+                    viewController.showOkAlert(title: "User Class Error", message: error!.localizedDescription)
+                }
+            })
         }
-        //        画像の設定　　
-        let imageName = user.object(forKey: "imageName") as? String
-        //　負荷軽減のため、一回しかユーザーの画像はロードしないようにする。
-        if( !userImagesCacheG.keys.contains(self.ncmb.objectId) ){
-            if( imageName != nil ){
-                print("Loading " + self.ncmb.objectId + "'s image")
-                let file = NCMBFile.file(withName: imageName!, data: nil) as! NCMBFile
+    }
+    
+    convenience init(_ user: NCMBUser) {
+        self.init(userId: user.objectId, isNeedParameter: true, viewController: ViewController())
+    }
+    
+}
+
+class Parameter{
+    var ncmb: NCMBObject
+    init(_ parameter: NCMBObject){
+        self.ncmb = parameter
+        
+        let imageName = parameter.object(forKey: "imageName") as? String
+        let userId = parameter.object(forKey: "userId") as! String
+        
+        
+        if userImagesCacheG[userId] == nil{
+            if imageName == nil {
+                setNoImage(userId)
+            } else {
+                let file =  NCMBFile.file(withName: userId,data:nil) as! NCMBFile
                 file.getDataInBackground { (data, error) in
                     if error == nil {
-                        if data != nil {
+                        if data == nil {
+                            self.setNoImage(userId)
+                        } else {
                             let image = UIImage(data: data!)
-                            userImagesCacheG[self.ncmb.objectId] = image
-                            print("Loaded image")
+                            userImagesCacheG[userId] = image
                         }
                     } else {
-                        self.setNoImage()
+                        self.setNoImage(userId)
                     }
                 }
-            } else{
-                setNoImage()
             }
         }
     }
     
-    convenience init(_ user: NCMBUser, score: Double){
-        self.init(user)
-        self.teacherParameter!.score = score
-    }
-    
-    private func setNoImage(){
-        if self.teacherParameter == nil{
-            userImagesCacheG[self.ncmb.objectId] = UIImage(named: "studentNoImage.png")
+    private func setNoImage(_ userId: String){
+        if self.ncmb.ncmbClassName == "TeacherParameter" {
+            userImagesCacheG[userId] = UIImage(named: "teacherNoImage.png")
         } else {
-            userImagesCacheG[self.ncmb.objectId] = UIImage(named: "teacherNoImage.png")
+            userImagesCacheG[userId] = UIImage(named: "studentNoImage.png")
         }
-        print("no image")
     }
 }
 
-
-class TeacherParameter{
+class TeacherParameter: Parameter{
     
-    var ncmb: NCMBObject
-    var selection: String
-    var introduction: String
-    var score: Double
+    var score = 0.d
+    var subjectNum = 0
     var collage: String
+    var totalNum = 0
     
-
-    
-    init(_ parameter: NCMBObject, userName: inout String, furigana: inout String, grade: inout String) {
+    override init(_ parameter: NCMBObject){
+        print("teacher")
         
-        self.ncmb = parameter
-        self.selection = parameter.object(forKey: "selection") as? String ?? ""
-        self.introduction = parameter.object(forKey: "introduction") as? String ?? ""
-        self.score = 0.d// 一旦これで
         self.collage = parameter.object(forKey: "collage") as? String ?? ""
+        
+        let subjectList = [
+            ["modernWriting","ancientWiting","chineseWriting"],
+            ["math1a","math2b","math3c"],
+            ["physics","chemistry","biology","earthScience"],
+            ["geography","japaneseHistory","worldHistory","modernSociety","ethics","politicalScienceAndEconomics"],
+            ["hsEnglish"]
+        ]
+        for sList in subjectList{
+            for s in sList{
+                let num = parameter.object(forKey: s + "TotalNum") as? Int ?? 0
+                totalNum += num
+            }
+        }
+        super.init(parameter)
+    }
+    
+    convenience init(_ parameter: NCMBObject, userId: String, userName: inout String, furigana: inout String, grade: inout String, selection: inout String, introduction: inout String, youbiTimeList: inout [[String]]) {
+        
+        self.init(parameter)
         
         userName = parameter.object(forKey: "userName") as? String ?? ""
         furigana = parameter.object(forKey: "furigana") as? String ?? ""
         grade = parameter.object(forKey: "grade") as? String ?? "0"
+        selection = parameter.object(forKey: "selection") as? String ?? ""
+        introduction = parameter.object(forKey: "introduction") as? String ?? ""
+        
+        let youbiList = ["Monday","Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+        for y in youbiList{
+            let youbi = parameter.object(forKey: y + "Time") as? [String] ?? []
+            
+            youbiTimeList.append(youbi)
+        }
     }
 }
 
-class StudentParameter{
+class StudentParameter: Parameter{
     
-    var ncmb: NCMBObject
     var choice: [[String]]
     var schoolName: String
-    var selection: String
     var parentEmailAdress: String
-    var introduction: String
     var youbi: String
     var personalityGroup: Int
     var teacherGrades: [String]
     
-    init(_ parameter: NCMBObject, userName: inout String, furigana: inout String, grade: inout String) {
+    override init(_ parameter: NCMBObject){
+        print("student")
         
-        self.ncmb = parameter
         self.choice = parameter.object(forKey: "choice") as? [[String]] ?? [[""]]
         self.schoolName = parameter.object(forKey: "schoolName") as? String ?? ""
-        self.selection = parameter.object(forKey: "selection") as? String ?? ""
         self.parentEmailAdress = parameter.object(forKey: "parentEmailAdress") as? String ?? ""
-        self.introduction = parameter.object(forKey: "introduction") as? String ?? ""
         self.youbi = parameter.object(forKey: "youbi") as? String ?? "FFFFFFF"
         self.personalityGroup = parameter.object(forKey: "personalityGroup") as? Int ?? -1
         self.teacherGrades = parameter.object(forKey: "teacherGrades") as? [String] ?? []
         
+        super.init(parameter)
+    }
+    
+    convenience init(_ parameter: NCMBObject, userId: String, userName: inout String, furigana: inout String, grade: inout String, selection: inout String, introduction: inout String, youbiTimeList: inout [[String]]) {
+        
+        self.init(parameter)
+        
         userName = parameter.object(forKey: "userName") as? String ?? ""
         furigana = parameter.object(forKey: "furigana") as? String ?? ""
         grade = parameter.object(forKey: "grade") as? String ?? "0"
+        selection = parameter.object(forKey: "selection") as? String ?? ""
+        introduction = parameter.object(forKey: "introduction") as? String ?? ""
+        
+        let youbiList = ["Monday","Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+        for y in youbiList{
+            let youbi = parameter.object(forKey: y + "Time") as? [String] ?? []
+            
+            youbiTimeList.append(youbi)
+        }
     }
 }

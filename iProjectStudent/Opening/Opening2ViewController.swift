@@ -18,9 +18,11 @@ class Opening2ViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.view.backgroundColor = dColor.opening
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.alpha = 0.f
-        self.navigationController?.navigationBar.alpha = 0.f
+        self.navigationController?.navigationBar.backgroundColor = dColor.base
     }
     
     override func viewDidAppear(_ animated: Bool) {
