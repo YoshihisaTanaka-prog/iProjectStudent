@@ -1,2 +1,2 @@
-/Pods/Realm/*
-!/Pods/Realm/
+/Pods/*
+!/Pods/
