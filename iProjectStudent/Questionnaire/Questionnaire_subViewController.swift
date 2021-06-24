@@ -74,6 +74,7 @@ class QuestionnaireViewController: UIViewController {
             object?.setObject("", forKey: "selection")
             object?.setObject([], forKey: "teacherGrades")
             object?.setObject(NCMBUser.current(), forKey: "user")
+            object?.setObject(NCMBUser.current()!.objectId ,forKey: "userId")
             object?.setObject("", forKey: "userName")
             object?.setObject("FFFFFFF", forKey: "youbi")
 //            指導希望時間の初期値

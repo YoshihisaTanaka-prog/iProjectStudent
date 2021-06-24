@@ -43,8 +43,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                     ud.set(Date(), forKey: self.emailTextField.text! + "time")
                     ud.synchronize()
                     
-                    let u = user?.object(forKey:"parameter") as? NCMBObject
-                    if u == nil {
+                    let p = user?.object(forKey:"parameter") as? NCMBObject
+                    if p == nil {
                         //初回ログイン
                         user!.acl = nil
                         user?.saveInBackground({ (error) in
@@ -66,9 +66,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                         })
                     } else {
                         //２回目以降のログイン
-                        currentUserG = User(userId: user!.objectId, isNeedParameter: true, viewController: self)
-                        let o = user?.object(forKey: "parameter") as! NCMBObject
-                        if( o.ncmbClassName == "TeacherParameter" ){
+                        currentUserG = User(user!)
+                        if( p!.ncmbClassName == "TeacherParameter" ){
                             //教師垢の場合
                             NCMBUser.logOutInBackground { (error) in
                                 if error != nil {
