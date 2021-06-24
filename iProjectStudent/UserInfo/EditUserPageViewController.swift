@@ -29,22 +29,37 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
     var selected: String?
     let bunri = ["文理選択","文系","理系","その他"]
     var youbiCheckBox: CheckBox!
-    let youbiList: [CheckBoxInput] = [
-        CheckBoxInput("月曜日"),
-        CheckBoxInput("火曜日"),
-        CheckBoxInput("水曜日"),
-        CheckBoxInput("木曜日"),
-        CheckBoxInput("金曜日"),
-        CheckBoxInput("土曜日", color: .blue),
-        CheckBoxInput("日曜日", color: .red)
-    ]
+//    let youbiList: [CheckBoxInput] = [
+//        CheckBoxInput("月曜日"),
+//        CheckBoxInput("火曜日"),
+//        CheckBoxInput("水曜日"),
+//        CheckBoxInput("木曜日"),
+//        CheckBoxInput("金曜日"),
+//        CheckBoxInput("土曜日", color: .blue),
+//        CheckBoxInput("日曜日", color: .red)
+//    ]
+    var youbiCheckBoxList: [CheckBox] = []
+    var youbiList_: [[CheckBoxInput]] = []
+    let youbiAlertController = UIAlertController(title: "曜日を選んでください。", message: "", preferredStyle: .actionSheet)
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackGround(true, true)
         
-        youbiCheckBox = CheckBox(youbiList)
+        //youbiCheckBox = CheckBox(youbiList)
+        for i in 0..<7{
+            youbiList_.append([])
+            for j in businessHoursG[i].first..<businessHoursG[i].last{
+                youbiList_[i].append(CheckBoxInput(j.s02+":00-"+(j+1).s02+":00", key: j.s02+":00"))
+            }
+        }
+        
+        for i in 0..<youbiList_.count{
+            let youbiCheckBox = CheckBox(youbiList_[i])
+            youbiCheckBox.setSelectedKey(currentUserG.youbiTimeList[i])
+            youbiCheckBoxList.append(youbiCheckBox)
+        }
         
         userImageView.layer.cornerRadius = userImageView.bounds.width / 2.0
         userImageView.layer.masksToBounds = true
@@ -74,7 +89,7 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         
         userImageView.image = userImagesCacheG[currentUserG.userId] ?? UIImage(named: "studentNoImage.png")
         
-        youbiCheckBox.setSelection(currentUserG.studentParameter!.youbi)
+        //youbiCheckBox.setSelection(currentUserG.studentParameter?.youbi ?? "")
     }
 
     
@@ -211,7 +226,21 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
             param.setObject(selected!, forKey: "selection")
         }
         param.setObject(introductionTextView.text, forKey: "introduction")
-        param.setObject(youbiCheckBox.selectionText, forKey: "youbi")
+        //param.setObject(youbiCheckBox.selectionText, forKey: "youbi")
+        
+        var youbi = ""
+        let youbiList = ["Monday","Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+        for i in 0..<youbiCheckBoxList.count {
+            param.setObject(youbiCheckBoxList[i].selectedKeys, forKey: youbiList[i]+"Time")
+            if youbiCheckBoxList[i].selectedKeys.count == 0 {
+                youbi += "F"
+            } else {
+                youbi += "T"
+            }
+        }
+        param.setObject(youbi, forKey: "youbi")
+        
+        
         param.saveInBackground { (error) in
             if error == nil{
                 currentUserG = User(NCMBUser.current()!)
@@ -255,14 +284,56 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         self.present(actionController, animated: true, completion: nil)
     }
     
+//    @IBAction func selectWeek(){
+//        let alertController = UIAlertController(title: "曜日を選んでください。", message: "\n\n\n\n\n\n\n\n\n\n\n", preferredStyle: .alert)
+//        let alertOkAction = UIAlertAction(title: "選択完了", style: .default) { (action) in
+//            self.youbiCheckBox.mainView.removeFromSuperview()
+//            alertController.dismiss(animated: true, completion: nil)
+//        }
+//        alertController.view.addSubview(youbiCheckBox.mainView)
+//        alertController.addAction(alertOkAction)
+//        self.present(alertController, animated: true, completion: nil)
+//    }
+    
     @IBAction func selectWeek(){
-        let alertController = UIAlertController(title: "曜日を選んでください。", message: "\n\n\n\n\n\n\n\n\n\n\n", preferredStyle: .alert)
-        let alertOkAction = UIAlertAction(title: "選択完了", style: .default) { (action) in
-            self.youbiCheckBox.mainView.removeFromSuperview()
+        var alertOkActionList = [UIAlertAction(title: "終了", style: .cancel) { (action) in
+            self.youbiAlertController.dismiss(animated: true, completion: nil)
+        }]
+        for i in 0..<youbiList_.count{
+            alertOkActionList.append( makeAlertAction2(i) )
+        }
+        if youbiAlertController.actions.count == 0{
+            for action in alertOkActionList{
+                youbiAlertController.addAction(action)
+            }
+        }
+        self.present(youbiAlertController, animated: true, completion: nil)
+    }
+    
+    func makeAlertAction2(_ i : Int) -> UIAlertAction{
+        let youbiList = ["月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日", "日曜日"]
+        return UIAlertAction(title: youbiList[i], style: .default) { (action) in
+            self.youbiAlertController.dismiss(animated: true, completion: nil)
+            self.selectDetailYoubi(i)
+        }
+    }
+    
+    func selectDetailYoubi(_ i : Int) {
+ 
+        let alertController = UIAlertController(title: "時間帯を選んでください。", message: youbiCheckBoxList[i].msg, preferredStyle: .alert)
+        let action1 = UIAlertAction(title: "他の曜日も設定する", style: .default) { (action) in
+            alertController.dismiss(animated: true, completion: nil)
+            self.present(self.youbiAlertController, animated: true, completion: nil)
+        }
+        let action2 = UIAlertAction(title: "選択完了", style: .default) { (action) in
+            self.youbiCheckBoxList[i].mainView.removeFromSuperview()
             alertController.dismiss(animated: true, completion: nil)
         }
-        alertController.view.addSubview(youbiCheckBox.mainView)
-        alertController.addAction(alertOkAction)
+        
+        alertController.view.addSubview(youbiCheckBoxList[i].mainView)
+        
+        alertController.addAction(action1)
+        alertController.addAction(action2)
         self.present(alertController, animated: true, completion: nil)
     }
     
