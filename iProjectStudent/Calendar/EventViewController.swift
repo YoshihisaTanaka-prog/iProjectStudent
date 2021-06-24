@@ -287,7 +287,7 @@ class EventViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             let object = NCMBObject(className:"Schedule")
             let date = selectedTimeList[0].s + "/" + String(format: "%02d", selectedTimeList[1]) + "/" + selectedTimeList[2].s + selectedTimeList[3].s
             object?.setObject(NCMBUser.current().objectId,forKey:"studentId")
-            object?.setObject(teacher?.ncmb.objectId,forKey:"teacherId")
+            object?.setObject(teacher?.userId,forKey:"teacherId")
             object?.setObject(selectedSubject, forKey:"subject" )
             object?.setObject(date, forKey: "whenDo")
             object?.setObject(selectedTimeList[4], forKey: "time")

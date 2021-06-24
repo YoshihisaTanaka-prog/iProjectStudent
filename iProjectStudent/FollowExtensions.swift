@@ -16,19 +16,29 @@ extension UIViewController{
     func loadFollowList(){
         if NCMBUser.current() != nil{
             let query = NCMBQuery(className: "Follow")
-            query?.includeKey("fromUser")
-            query?.includeKey("toUser")
-            query?.whereKey("fromUser", equalTo: NCMBUser.current()!)
+            query?.whereKey("fromUserId", equalTo: NCMBUser.current()!.objectId)
             query?.findObjectsInBackground({ (result, error) in
                 if(error == nil){
+                    blockedUserIdListG = []
+                    waitingUserListG = []
+                    followUserListG = []
+                    favoriteUserListG = []
                     for follow in result as! [NCMBObject]{
-                        let user = follow.object(forKey: "toUser") as! NCMBUser
+                        let userId = follow.object(forKey: "toUserId") as! String
                         let status = follow.object(forKey: "status") as! Int
                         if(status < 0){
-                            blockUserListG.append(User(user))
-                        }
-                        else{
-                            followUserListG.append(User(user))
+                            blockedUserIdListG.append(userId)
+                        } else {
+                            switch status {
+                            case 0:
+                                waitingUserListG.append(User(userId: userId, isNeedParameter: true, viewController: self))
+                            case 1:
+                                followUserListG.append(User(userId: userId, isNeedParameter: true, viewController: self))
+                            case 2:
+                                favoriteUserListG.append(User(userId: userId, isNeedParameter: true, viewController: self))
+                            default:
+                                break
+                            }
                         }
                     }
                 }
@@ -36,27 +46,38 @@ extension UIViewController{
         }
     }
     
-    func createFollow(_ ncmbUser: NCMBUser){
+    func mixFollowList() -> [User]{
+        var ret = waitingUserListG
+        for f in favoriteUserListG{
+            ret.append(f)
+        }
+        for f in followUserListG{
+            ret.append(f)
+        }
+        return ret
+    }
+    
+    func createFollow(_ userId: String){
         
         let query = NCMBQuery(className: "Follow")
-        query?.whereKey("fromUser", equalTo: NCMBUser.current()!)
-        query?.whereKey("toUser", equalTo: ncmbUser)
+        query?.whereKey("fromUserId", equalTo: NCMBUser.current()!.objectId)
+        query?.whereKey("toUserId", equalTo: userId)
         query?.findObjectsInBackground({ result, error in
             if error == nil {
                 if result!.count == 0 {
                     let object1 = NCMBObject(className: "Follow")
-                    object1?.setObject(NCMBUser.current()!, forKey: "fromUser")
-                    object1?.setObject(ncmbUser, forKey: "toUser")
+                    object1?.setObject(NCMBUser.current()!.objectId, forKey: "fromUserId")
+                    object1?.setObject(userId, forKey: "toUserId")
                     object1?.setObject(1, forKey: "status")
                     object1?.saveInBackground({ error in
                         if error == nil {
                             let object2 = NCMBObject(className: "Follow")
-                            object2?.setObject(NCMBUser.current()!, forKey: "toUser")
-                            object2?.setObject(ncmbUser, forKey: "fromUser")
+                            object2?.setObject(NCMBUser.current()!, forKey: "toUserId")
+                            object2?.setObject(userId, forKey: "fromUserId")
                             object2?.setObject(0, forKey: "status")
                             object2?.saveInBackground({ error in
                                 if error == nil{
-                                    followUserListG.append(User(ncmbUser))
+                                    followUserListG.append(User(userId: userId, isNeedParameter: true, viewController: self))
                                 } else {
                                     self.showOkAlert(title: "Error", message: error!.localizedDescription)
                                 }

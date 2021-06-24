@@ -8,16 +8,28 @@
 
 import UIKit
 import Cosmos
+import NCMB
+
+protocol TeacherInfoTableViewCellDelegate {
+    func didTapCellButton(tableViewCell: UITableViewCell, button: UIButton)
+}
 
 class TeacherInfoTableViewCell: UITableViewCell {
+    
+    var delegate: TeacherInfoTableViewCellDelegate?
     
     @IBOutlet var userImageView: UIImageView!
     @IBOutlet var furiganaLabel: UILabel!
     @IBOutlet var userNameLabel: UILabel!
     @IBOutlet var collageInfoLabel: UILabel!
     @IBOutlet var averageTitleLabel: UILabel!
+    @IBOutlet var avarageNumLabel: UILabel!
     @IBOutlet var averageScoreCosmosView: CosmosView!
-    @IBOutlet var studentNumLabel: UILabel!
+    @IBOutlet var studentSubjectTitleLabel: UILabel!
+    @IBOutlet var studentSubjectNumLabel: UILabel!
+    @IBOutlet var studentTotalNumLabel: UILabel!
+    @IBOutlet var introductionTextView: UITextView!
+    @IBOutlet var followButton: UIButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,6 +42,11 @@ class TeacherInfoTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    @IBAction func tappedFollowButton(button: UIButton){
+        print("tapped")
+        self.delegate?.didTapCellButton(tableViewCell: self, button: button)
     }
     
 }

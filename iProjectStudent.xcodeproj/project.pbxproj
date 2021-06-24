@@ -49,7 +49,10 @@
 		046872D125DE0E1C00A6ABBF /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046872D025DE0E1C00A6ABBF /* CheckBox.swift */; };
 		0473BF5625D2EA0900550EFB /* Questionnaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473BF5525D2EA0900550EFB /* Questionnaire.swift */; };
 		048188B925F66D26004F01D6 /* FollowingTeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048188B825F66D26004F01D6 /* FollowingTeacherViewController.swift */; };
+		048D1A68267B3DD300F88973 /* ReviewTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048D1A66267B3DD300F88973 /* ReviewTitleTableViewCell.swift */; };
+		048D1A69267B3DD300F88973 /* ReviewTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 048D1A67267B3DD300F88973 /* ReviewTitleTableViewCell.xib */; };
 		049C83E425C6921000D4D380 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C83E325C6921000D4D380 /* AppDelegate.swift */; };
+		049D82BB2678F58A00745680 /* ScheduleAndLecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049D82BA2678F58A00745680 /* ScheduleAndLecture.swift */; };
 		04A7E99425AF309900C0F43C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7E99325AF309900C0F43C /* SceneDelegate.swift */; };
 		04A7E99625AF309900C0F43C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7E99525AF309900C0F43C /* ViewController.swift */; };
 		04A7E99925AF309900C0F43C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A7E99725AF309900C0F43C /* Main.storyboard */; };
@@ -65,6 +68,7 @@
 		04EA679125BC8A9C005F0D06 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EA679025BC8A9C005F0D06 /* User.swift */; };
 		04EE4A0026059A60002A42B7 /* SpiritCompatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE49FF26059A60002A42B7 /* SpiritCompatibility.swift */; };
 		04EE4A042605A6AD002A42B7 /* YoubiCompatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE4A032605A6AD002A42B7 /* YoubiCompatibility.swift */; };
+		04F2792E2679C35500138955 /* TimeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F2792D2679C35500138955 /* TimeRange.swift */; };
 		1B0AD3AF25E401AD0061976F /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0AD3AC25E401A60061976F /* CalendarViewController.swift */; };
 		1B0AD3B025E401AD0061976F /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0AD3AD25E401A90061976F /* EventViewController.swift */; };
 		1B0AD3B125E401AD0061976F /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0AD3AE25E401AD0061976F /* Event.swift */; };
@@ -144,10 +148,13 @@
 		046872D025DE0E1C00A6ABBF /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		0473BF5525D2EA0900550EFB /* Questionnaire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questionnaire.swift; sourceTree = "<group>"; };
 		048188B825F66D26004F01D6 /* FollowingTeacherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingTeacherViewController.swift; sourceTree = "<group>"; };
+		048D1A66267B3DD300F88973 /* ReviewTitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTitleTableViewCell.swift; sourceTree = "<group>"; };
+		048D1A67267B3DD300F88973 /* ReviewTitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewTitleTableViewCell.xib; sourceTree = "<group>"; };
 		049C83E325C6921000D4D380 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		049C83FA25C695A200D4D380 /* ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
 		049C83FB25C695A200D4D380 /* Opening1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Opening1ViewController.swift; sourceTree = "<group>"; };
 		049C83FC25C695A200D4D380 /* Opening2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Opening2ViewController.swift; sourceTree = "<group>"; };
+		049D82BA2678F58A00745680 /* ScheduleAndLecture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleAndLecture.swift; sourceTree = "<group>"; };
 		04A7E98E25AF309900C0F43C /* iProjectStudent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iProjectStudent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A7E99325AF309900C0F43C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		04A7E99525AF309900C0F43C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -162,6 +169,7 @@
 		04EA679025BC8A9C005F0D06 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		04EE49FF26059A60002A42B7 /* SpiritCompatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiritCompatibility.swift; sourceTree = "<group>"; };
 		04EE4A032605A6AD002A42B7 /* YoubiCompatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoubiCompatibility.swift; sourceTree = "<group>"; };
+		04F2792D2679C35500138955 /* TimeRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRange.swift; sourceTree = "<group>"; };
 		1B0AD3AC25E401A60061976F /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		1B0AD3AD25E401A90061976F /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		1B0AD3AE25E401AD0061976F /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -217,6 +225,8 @@
 			children = (
 				0455EDB725DA8ECD00013330 /* ReviewTableViewCell.xib */,
 				0455EDBB25DA8ECD00013330 /* ReviewTableViewCell.swift */,
+				048D1A67267B3DD300F88973 /* ReviewTitleTableViewCell.xib */,
+				048D1A66267B3DD300F88973 /* ReviewTitleTableViewCell.swift */,
 				0455EDBE25DA8ECD00013330 /* TeacherInfoTableViewCell.xib */,
 				0455EDBA25DA8ECD00013330 /* TeacherInfoTableViewCell.swift */,
 				048188B825F66D26004F01D6 /* FollowingTeacherViewController.swift */,
@@ -361,6 +371,7 @@
 				04192FF2266A9322004F6C3D /* RadioButton.swift */,
 				0424576E25DFE34F00F613FB /* Design.swift */,
 				04EA679025BC8A9C005F0D06 /* User.swift */,
+				04F2792D2679C35500138955 /* TimeRange.swift */,
 				046872CC25DE0CB800A6ABBF /* GlobalParameters.swift */,
 				043079B7266A49A900247080 /* AlertExtensions.swift */,
 				044BD1C2265D2C9800A169FC /* CalenderExtension.swift */,
@@ -383,6 +394,7 @@
 				1B0AD3AC25E401A60061976F /* CalendarViewController.swift */,
 				1B0AD3AD25E401A90061976F /* EventViewController.swift */,
 				1B0AD3AE25E401AD0061976F /* Event.swift */,
+				049D82BA2678F58A00745680 /* ScheduleAndLecture.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -543,6 +555,7 @@
 				1BA0D04925E7DF160008FF43 /* Icon-App-29x29@3x.png in Resources */,
 				04A841EC25C57B1E00469B5E /* SignIn.storyboard in Resources */,
 				1BA0D04025E7DF160008FF43 /* Icon-App-76x76@2x.png in Resources */,
+				048D1A69267B3DD300F88973 /* ReviewTitleTableViewCell.xib in Resources */,
 				0455EDC625DA8ECE00013330 /* TeacherInfoTableViewCell.xib in Resources */,
 				0459388225D1497300A0E3C8 /* creating.png in Resources */,
 				1BA0D03F25E7DF160008FF43 /* iTunesArtwork@1x.png in Resources */,
@@ -600,6 +613,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				048D1A68267B3DD300F88973 /* ReviewTitleTableViewCell.swift in Sources */,
 				04AF5D4D25E5428100E2B385 /* Teachers.swift in Sources */,
 				1B0AD3AF25E401AD0061976F /* CalendarViewController.swift in Sources */,
 				043079BA266A49C300247080 /* NCMBUserExtensions.swift in Sources */,
@@ -652,6 +666,8 @@
 				1F2A698E2670E03500A3ACC4 /* Review.swift in Sources */,
 				1FB58C2E25E3ED29009CFCD0 /* ForgetPasswordViewController.swift in Sources */,
 				0460978425E8291200AC91BE /* ChatViewController.swift in Sources */,
+				049D82BB2678F58A00745680 /* ScheduleAndLecture.swift in Sources */,
+				04F2792E2679C35500138955 /* TimeRange.swift in Sources */,
 				044BD1C3265D2C9800A169FC /* CalenderExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
