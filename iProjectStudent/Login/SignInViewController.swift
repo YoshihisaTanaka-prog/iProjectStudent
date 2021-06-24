@@ -67,7 +67,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                     } else {
                         //２回目以降のログイン
                         currentUserG = User(user!)
-                        if( currentUserG.studentParameter == nil ){
+                        let o = user?.object(forKey: "parameter") as! NCMBObject
+                        if( o.ncmbClassName == "TeacherParameter" ){
                             //教師垢の場合
                             NCMBUser.logOutInBackground { (error) in
                                 if error != nil {
