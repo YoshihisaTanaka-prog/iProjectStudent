@@ -52,7 +52,7 @@ class UserPageViewController: UIViewController, UITextFieldDelegate, UITextViewD
         userIdTextField.text = currentUserG.userName
         emailTextField.text = currentUserG.mailAddress
         userIdFuriganaTextField.text = currentUserG.furigana
-        schoolTextField.text = currentUserG.studentParameter!.schoolName
+        schoolTextField.text = currentUserG.studentParameter?.schoolName
         gradeTextField.text = transformGrade(currentUserG.grade)
         choiceTextField.text = (currentUserG.studentParameter?.choice.first ?? []).first ?? ""
         selectionTextField.text = currentUserG.selection

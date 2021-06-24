@@ -66,7 +66,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                         })
                     } else {
                         //２回目以降のログイン
-                        currentUserG = User(user!)
+                        currentUserG = User(userId: user!.objectId, isNeedParameter: true, viewController: self)
                         let o = user?.object(forKey: "parameter") as! NCMBObject
                         if( o.ncmbClassName == "TeacherParameter" ){
                             //教師垢の場合
@@ -74,7 +74,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                                 if error != nil {
                                     self.showOkAlert(title: "Error", message: error!.localizedDescription)
                                 } else {
-                                    self.showOkAlert(title: "注意", message: "このアカウントは生徒用のアカウントとして登録されています。\n教師用アカウントと生徒用アカウントは併用することができません。")
+                                    self.showOkAlert(title: "注意", message: "このアカウントは教師用のアカウントとして登録されています。\n教師用アカウントと生徒用アカウントは併用することができません。")
                                 }
                             }
                         } else {

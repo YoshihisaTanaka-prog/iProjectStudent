@@ -74,7 +74,7 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         
         userImageView.image = userImagesCacheG[currentUserG.userId] ?? UIImage(named: "studentNoImage.png")
         
-        youbiCheckBox.setSelection(currentUserG.studentParameter!.youbi)
+        youbiCheckBox.setSelection(currentUserG.studentParameter?.youbi ?? "")
     }
 
     
