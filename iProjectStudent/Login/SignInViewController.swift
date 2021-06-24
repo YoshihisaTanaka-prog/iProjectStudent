@@ -43,8 +43,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                     ud.set(Date(), forKey: self.emailTextField.text! + "time")
                     ud.synchronize()
                     
-                    let u = user?.object(forKey:"parameter") as? NCMBObject
-                    if u == nil {
+                    let p = user?.object(forKey:"parameter") as? NCMBObject
+                    if p == nil {
                         //初回ログイン
                         user!.acl = nil
                         user?.saveInBackground({ (error) in
@@ -67,14 +67,13 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                     } else {
                         //２回目以降のログイン
                         currentUserG = User(user!)
-                        let o = user?.object(forKey: "parameter") as! NCMBObject
-                        if( o.ncmbClassName == "TeacherParameter" ){
+                        if( p!.ncmbClassName == "TeacherParameter" ){
                             //教師垢の場合
                             NCMBUser.logOutInBackground { (error) in
                                 if error != nil {
                                     self.showOkAlert(title: "Error", message: error!.localizedDescription)
                                 } else {
-                                    self.showOkAlert(title: "注意", message: "このアカウントは生徒用のアカウントとして登録されています。\n教師用アカウントと生徒用アカウントは併用することができません。")
+                                    self.showOkAlert(title: "注意", message: "このアカウントは教師用のアカウントとして登録されています。\n教師用アカウントと生徒用アカウントは併用することができません。")
                                 }
                             }
                         } else {

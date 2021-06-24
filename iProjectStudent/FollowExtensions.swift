@@ -72,7 +72,7 @@ extension UIViewController{
                     object1?.saveInBackground({ error in
                         if error == nil {
                             let object2 = NCMBObject(className: "Follow")
-                            object2?.setObject(NCMBUser.current()!, forKey: "toUserId")
+                            object2?.setObject(NCMBUser.current()!.objectId, forKey: "toUserId")
                             object2?.setObject(userId, forKey: "fromUserId")
                             object2?.setObject(0, forKey: "status")
                             object2?.saveInBackground({ error in
