@@ -13,6 +13,8 @@ class FollowingTeacherViewController: UIViewController, UITableViewDataSource, U
     @IBOutlet private var tableView: UITableView!
     
     private var selectedTeacher: User!
+    
+    private var teachers = [User]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +29,7 @@ class FollowingTeacherViewController: UIViewController, UITableViewDataSource, U
         tableView.register(nib, forCellReuseIdentifier: "Cell2")
 //        /Users/tanakayoshihisa/iProjectStudent/iProjectStudent/Teacher
         setBackGround(true, true)
-        
+        teachers = mixFollowList()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,24 +37,24 @@ class FollowingTeacherViewController: UIViewController, UITableViewDataSource, U
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return followUserListG.count
+        return teachers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell2") as! ReviewTableViewCell
-        cell.cosmosView.alpha = 0.f
-        cell.score.alpha = 0.f
-        cell.title.text = followUserListG[indexPath.row].teacherParameter!.collage + " " + transformGrade(followUserListG[indexPath.row].grade)
+        cell.cosmosView.alpha = 0.f // 教師の評価部分（生徒は平均評価が存在しないので不要）
+        cell.score.alpha = 0.f      // 教師の評価部分（生徒は平均評価が存在しないので不要）
+        cell.title.text = teachers[indexPath.row].teacherParameter!.collage + " " + transformGrade(teachers[indexPath.row].grade)
         cell.title.numberOfLines = 0
-        cell.userNameLabel.text = followUserListG[indexPath.row].userName + "先生"
-        cell.userimage.image = userImagesCacheG[followUserListG[indexPath.row].userId]
+        cell.userNameLabel.text = teachers[indexPath.row].userName + "先生"
+        cell.userimage.image = userImagesCacheG[teachers[indexPath.row].userId]  //ユーザー画像を設定
         
         cell.setFontColor()
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedTeacher = followUserListG[indexPath.row]
+        selectedTeacher = teachers[indexPath.row]
         self.performSegue(withIdentifier: "Detail", sender: nil)
     }
     
