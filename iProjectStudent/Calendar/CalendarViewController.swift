@@ -106,7 +106,6 @@ class CalendarViewController: UIViewController, UITableViewDataSource, UITableVi
     
     // 祝日判定を行い結果を返すメソッド
     func judgeHoliday(_ date : Date) -> Bool {
-        
         let holiday = CalculateCalendarLogic()
         return holiday.judgeJapaneseHoliday(year: date.y, month: date.m, day: date.d)
     }
