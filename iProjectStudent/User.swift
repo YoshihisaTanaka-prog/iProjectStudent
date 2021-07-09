@@ -109,6 +109,24 @@ class Parameter{
             userImagesCacheG[userId] = UIImage(named: "studentNoImage.png")
         }
     }
+    
+    func setUserFromProperties(userId: String, userName: inout String, furigana: inout String, grade: inout String, selection: inout String, introduction: inout String, youbiTimeList: inout [[String]]){
+        userName = ncmb.object(forKey: "userName") as! String
+        furigana = ncmb.object(forKey: "furigana") as! String
+        grade = ncmb.object(forKey: "grade") as! String
+        selection = ncmb.object(forKey: "selection") as! String
+        introduction = ncmb.object(forKey: "introduction") as! String
+        let youbiList = ["Monday","Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+        for y in youbiList{
+            let youbi = ncmb.object(forKey: y + "Time") as? [String] ?? []
+            youbiTimeList.append(youbi)
+        }
+    }
+    
+    func setUser(user: inout User){
+        setUserFromProperties(userId: user.userId, userName: &user.userName, furigana: &user.furigana, grade: &user.grade, selection: &user.selection, introduction: &user.introduction, youbiTimeList: &user.youbiTimeList)
+    }
+    
 }
 
 class TeacherParameter: Parameter{
@@ -140,21 +158,14 @@ class TeacherParameter: Parameter{
     }
     
     convenience init(_ parameter: NCMBObject, userId: String, userName: inout String, furigana: inout String, grade: inout String, selection: inout String, introduction: inout String, youbiTimeList: inout [[String]]) {
-        
         self.init(parameter)
-        
-        userName = parameter.object(forKey: "userName") as? String ?? ""
-        furigana = parameter.object(forKey: "furigana") as? String ?? ""
-        grade = parameter.object(forKey: "grade") as? String ?? "0"
-        selection = parameter.object(forKey: "selection") as? String ?? ""
-        introduction = parameter.object(forKey: "introduction") as? String ?? ""
-        
-        let youbiList = ["Monday","Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-        for y in youbiList{
-            let youbi = parameter.object(forKey: y + "Time") as? [String] ?? []
-            
-            youbiTimeList.append(youbi)
-        }
+        setUserFromProperties(userId: userId, userName: &userName, furigana: &furigana, grade: &grade, selection: &selection, introduction: &introduction, youbiTimeList: &youbiTimeList)
+    }
+    
+    convenience init(_ parameter: NCMBObject, user: inout User) {
+        self.init(parameter)
+        user.teacherParameter = self
+        setUser(user: &user)
     }
 }
 
@@ -181,20 +192,13 @@ class StudentParameter: Parameter{
     }
     
     convenience init(_ parameter: NCMBObject, userId: String, userName: inout String, furigana: inout String, grade: inout String, selection: inout String, introduction: inout String, youbiTimeList: inout [[String]]) {
-        
         self.init(parameter)
-        
-        userName = parameter.object(forKey: "userName") as? String ?? ""
-        furigana = parameter.object(forKey: "furigana") as? String ?? ""
-        grade = parameter.object(forKey: "grade") as? String ?? "0"
-        selection = parameter.object(forKey: "selection") as? String ?? ""
-        introduction = parameter.object(forKey: "introduction") as? String ?? ""
-        
-        let youbiList = ["Monday","Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-        for y in youbiList{
-            let youbi = parameter.object(forKey: y + "Time") as? [String] ?? []
-            
-            youbiTimeList.append(youbi)
-        }
+        setUserFromProperties(userId: userId, userName: &userName, furigana: &furigana, grade: &grade, selection: &selection, introduction: &introduction, youbiTimeList: &youbiTimeList)
+    }
+    
+    convenience init(_ parameter: NCMBObject, user: inout User) {
+        self.init(parameter)
+        user.studentParameter = self
+        setUser(user: &user)
     }
 }
