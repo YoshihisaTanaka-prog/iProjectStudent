@@ -10,7 +10,7 @@ import UIKit
 import NCMB
 import NYXImagesKit
 
-class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource,UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate {
     
     
     @IBOutlet var userImageView: UIImageView!
@@ -20,10 +20,10 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
     @IBOutlet var gradeTextField: UITextField!
     //@IBOutlet var emailTextField: UITextField!
     @IBOutlet var parentsEmailTextField: UITextField!
-    @IBOutlet var choiceTextField: UITextField!
+    //@IBOutlet var choiceTextField: UITextField!
     @IBOutlet var pickerView1: UIPickerView!
     @IBOutlet var introductionTextView: UITextView!
-    
+    @IBOutlet private var choicetableView: UITableView!
 
     private var imageName: String?
     var selected: String?
@@ -41,7 +41,12 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
     var youbiCheckBoxList: [CheckBox] = []
     var youbiList_: [[CheckBoxInput]] = []
     let youbiAlertController = UIAlertController(title: "曜日を選んでください。", message: "", preferredStyle: .actionSheet)
-
+    
+    var choice = [[String]]()
+    //var selectedchoice:
+    private var selectedIndex: Int!
+    var selectedchoice: [String]!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,7 +77,7 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         parentsEmailTextField.delegate = self
         pickerView1.delegate = self
         pickerView1.dataSource = self
-        choiceTextField.delegate = self
+        //choiceTextField.delegate = self
         introductionTextView.delegate = self
         
         userIdTextField.text = currentUserG.userName
@@ -83,13 +88,29 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         introductionTextView.text = currentUserG.introduction
         pickerView1.selectRow(getSelectionNum(selesction: currentUserG.selection), inComponent: 0, animated: false)
         selected = currentUserG.selection
-        choiceTextField.text = (currentUserG.studentParameter?.choice.first ?? []).first ?? ""
+        //choiceTextField.text = (currentUserG.studentParameter?.choice.first ?? []).first ?? ""
         
         parentsEmailTextField.text = currentUserG.studentParameter?.parentEmailAdress
         
         userImageView.image = userImagesCacheG[currentUserG.userId] ?? UIImage(named: "studentNoImage.png")
         
         //youbiCheckBox.setSelection(currentUserG.studentParameter?.youbi ?? "")
+        
+        choicetableView.delegate = self
+        choicetableView.dataSource = self
+        choicetableView.tableFooterView = UIView()
+        choicetableView.rowHeight = 44.f
+        
+        let nib = UINib(nibName: "ChoiceTableViewCell", bundle: Bundle.main)
+        choicetableView.register(nib, forCellReuseIdentifier: "Cell")
+
+        setBackGround(true, true)
+        choice = currentUserG.studentParameter?.choice ?? []
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        choicetableView.reloadData()
     }
 
     
@@ -102,6 +123,7 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         textView.resignFirstResponder()
         return true
     }
+    
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
@@ -126,7 +148,7 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
             print(progress)
         }
     }
-  
+    
 
     // UIPickerViewの列の数
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -204,7 +226,7 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         }
         // 一旦この形式で。（志望校は1つとは限らない　＆　後々のアップデートで大学・学部・学科は分けられるようにしといた方がいいと思うので、二重配列として保存します。）
         // e.g. [[(第一志望の)大学名,学部,学科],[(第二志望の)大学名,学部,学科],...]
-        if [[choiceTextField.text!]] != currentUserG.studentParameter?.choice {
+        if choice != currentUserG.studentParameter!.choice {
             return true
         }
         return false
@@ -220,7 +242,8 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         param.setObject(userIdFuriganaTextField.text, forKey: "furigana")
         param.setObject(schoolTextField.text, forKey: "schoolName")
         param.setObject(gradeTextField.text, forKey: "grade")
-        param.setObject([[choiceTextField.text]], forKey: "choice")
+        //param.setObject([[choiceTextField.text]], forKey: "choice")
+        param.setObject(choice, forKey: "choice")
         param.setObject(parentsEmailTextField.text, forKey: "parentEmailAdress")
         if(selected != nil){
             param.setObject(selected!, forKey: "selection")
@@ -348,7 +371,62 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         return i!
     }
     
+    //セルの個数
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return choice.count + 1
+    }
+    
+    //表示する内容
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //PlusCell
+        if indexPath.row == choice.count{
+            let cell = choicetableView.dequeueReusableCell(withIdentifier: "PlusCell")!
+            cell.textLabel?.text = "+"
+            cell.textLabel?.textAlignment = .center
+            cell.setFontColor()
+            return cell
+        }
+        let cell = choicetableView.dequeueReusableCell(withIdentifier: "Cell") as! ChoiceTableViewCell
+        cell.choiceTextField.text = choice[indexPath.row][0]
+        cell.choiceLabel.text = "第" + (indexPath.row + 1).s + "志望"
+        cell.setFontColor()
+        return cell
+    }
+    
+    //タップされたときの処理
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == choice.count{
+            choice.append([""])
+        }
+        else {
+        selectedchoice = choice[indexPath.row]
+        selectedIndex = indexPath.row
+        self.performSegue(withIdentifier: "Detail", sender: nil)
+        }
+        tableView.reloadData()
+    }
+    
+    //セルの編集許可
+     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
+     {
+         return true
+     }
 
+     //スワイプしたセルを削除　※arrayNameは変数名に変更してください
+     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+         if editingStyle == UITableViewCell.EditingStyle.delete {
+             choice.remove(at: indexPath.row)
+             tableView.deleteRows(at: [indexPath as IndexPath], with: UITableView.RowAnimation.automatic)
+            tableView.reloadData()
+         }
+     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let preVC = segue.destination as! DetailChoiceViewController
+        preVC.selectedIndex = self.selectedIndex
+        preVC.choice = selectedchoice
+    }
+    
 
     
 }

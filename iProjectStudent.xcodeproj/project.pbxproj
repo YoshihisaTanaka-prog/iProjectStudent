@@ -102,6 +102,9 @@
 		1FA191B625CACE3F007B935B /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA191B525CACE3F007B935B /* SignInViewController.swift */; };
 		1FA191B925CC1F56007B935B /* SignUp2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA191B825CC1F56007B935B /* SignUp2ViewController.swift */; };
 		1FB58C2E25E3ED29009CFCD0 /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB58C2D25E3ED29009CFCD0 /* ForgetPasswordViewController.swift */; };
+		1FF0559526A056BD0009E19B /* ChoiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF0559326A056BD0009E19B /* ChoiceTableViewCell.swift */; };
+		1FF0559626A056BD0009E19B /* ChoiceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FF0559426A056BD0009E19B /* ChoiceTableViewCell.xib */; };
+		1FF055A326A06E390009E19B /* DetailChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF055A226A06E390009E19B /* DetailChoiceViewController.swift */; };
 		340713FEDEBF163EE86F1551 /* Pods_iProjectStudent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DE0601A6454D98F09896370 /* Pods_iProjectStudent.framework */; };
 /* End PBXBuildFile section */
 
@@ -204,6 +207,9 @@
 		1FA191B525CACE3F007B935B /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		1FA191B825CC1F56007B935B /* SignUp2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp2ViewController.swift; sourceTree = "<group>"; };
 		1FB58C2D25E3ED29009CFCD0 /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
+		1FF0559326A056BD0009E19B /* ChoiceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceTableViewCell.swift; sourceTree = "<group>"; };
+		1FF0559426A056BD0009E19B /* ChoiceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChoiceTableViewCell.xib; sourceTree = "<group>"; };
+		1FF055A226A06E390009E19B /* DetailChoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailChoiceViewController.swift; sourceTree = "<group>"; };
 		6DE0601A6454D98F09896370 /* Pods_iProjectStudent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iProjectStudent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D422194F92E40D78F265E371 /* Pods-iProjectStudent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iProjectStudent.release.xcconfig"; path = "Target Support Files/Pods-iProjectStudent/Pods-iProjectStudent.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -299,6 +305,9 @@
 			children = (
 				1F761FE925D419C600FFB590 /* UserPageViewController.swift */,
 				1F806AC825D81336001BF41B /* EditUserPageViewController.swift */,
+				1FF0559326A056BD0009E19B /* ChoiceTableViewCell.swift */,
+				1FF0559426A056BD0009E19B /* ChoiceTableViewCell.xib */,
+				1FF055A226A06E390009E19B /* DetailChoiceViewController.swift */,
 			);
 			path = UserInfo;
 			sourceTree = "<group>";
@@ -528,6 +537,7 @@
 				1F2A69882670DABB00A3ACC4 /* Teacher_review.storyboard in Resources */,
 				0460978D25E8291200AC91BE /* ChatRoomInputView.xib in Resources */,
 				0459388425D1497600A0E3C8 /* teacherNoImage.png in Resources */,
+				1FF0559626A056BD0009E19B /* ChoiceTableViewCell.xib in Resources */,
 				0459388625D1497900A0E3C8 /* studentNoImage.png in Resources */,
 				0455EDBF25DA8ECD00013330 /* ReviewTableViewCell.xib in Resources */,
 				1BA0D04525E7DF160008FF43 /* Icon-App-20x20@3x.png in Resources */,
@@ -613,6 +623,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FF055A326A06E390009E19B /* DetailChoiceViewController.swift in Sources */,
 				048D1A68267B3DD300F88973 /* ReviewTitleTableViewCell.swift in Sources */,
 				04AF5D4D25E5428100E2B385 /* Teachers.swift in Sources */,
 				1B0AD3AF25E401AD0061976F /* CalendarViewController.swift in Sources */,
@@ -665,6 +676,7 @@
 				0455EDC125DA8ECE00013330 /* ReviewDetailViewController.swift in Sources */,
 				1F2A698E2670E03500A3ACC4 /* Review.swift in Sources */,
 				1FB58C2E25E3ED29009CFCD0 /* ForgetPasswordViewController.swift in Sources */,
+				1FF0559526A056BD0009E19B /* ChoiceTableViewCell.swift in Sources */,
 				0460978425E8291200AC91BE /* ChatViewController.swift in Sources */,
 				049D82BB2678F58A00745680 /* ScheduleAndLecture.swift in Sources */,
 				04F2792E2679C35500138955 /* TimeRange.swift in Sources */,
