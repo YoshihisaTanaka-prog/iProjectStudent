@@ -13,12 +13,11 @@ import NYXImagesKit
 class UserPageViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     @IBOutlet private var userImageView: UIImageView!
-    
     @IBOutlet private var userIdTextField: UITextField!
     @IBOutlet private var userIdFuriganaTextField: UITextField!
     @IBOutlet private var schoolTextField: UITextField!
     @IBOutlet private var gradeTextField: UITextField!
-    @IBOutlet private var choiceTextField: UITextField!
+    //@IBOutlet private var choiceTextField: UITextField!
     @IBOutlet private var selectionTextField: UITextField!
     @IBOutlet private var emailTextField: UITextField!
     @IBOutlet private var parentsEmailTextField: UITextField!
@@ -44,7 +43,7 @@ class UserPageViewController: UIViewController, UITextFieldDelegate, UITextViewD
         userIdFuriganaTextField.delegate = self
         schoolTextField.delegate = self
         gradeTextField.delegate = self
-        choiceTextField.delegate = self
+        //choiceTextField.delegate = self
         emailTextField.delegate = self
         parentsEmailTextField.delegate = self
         introductionTextView.delegate = self
@@ -54,7 +53,7 @@ class UserPageViewController: UIViewController, UITextFieldDelegate, UITextViewD
         userIdFuriganaTextField.text = currentUserG.furigana
         schoolTextField.text = currentUserG.studentParameter?.schoolName
         gradeTextField.text = transformGrade(currentUserG.grade)
-        choiceTextField.text = (currentUserG.studentParameter?.choice.first ?? []).first ?? ""
+        //choiceTextField.text = (currentUserG.studentParameter?.choice.first ?? []).first ?? ""
         selectionTextField.text = currentUserG.selection
         parentsEmailTextField.text = currentUserG.studentParameter?.parentEmailAdress
         introductionTextView.text = currentUserG.introduction
