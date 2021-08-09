@@ -5,11 +5,11 @@ PODS:
   - Kingfisher (6.3.0)
   - NCMB (3.1.0)
   - NYXImagesKit (2.3)
-  - Realm (10.10.0):
-    - Realm/Headers (= 10.10.0)
-  - Realm/Headers (10.10.0)
-  - RealmSwift (10.10.0):
-    - Realm (= 10.10.0)
+  - Realm (10.11.0):
+    - Realm/Headers (= 10.11.0)
+  - Realm/Headers (10.11.0)
+  - RealmSwift (10.11.0):
+    - Realm (= 10.11.0)
 
 DEPENDENCIES:
   - CalculateCalendarLogic
@@ -47,8 +47,8 @@ SPEC CHECKSUMS:
   Kingfisher: 6c3df386db71d82c0817a429d2c9421a77396529
   NCMB: c308972109137bf523ec1830bac16de6a31c25f4
   NYXImagesKit: 8163e3335a40eaa173ca5bbbf81fafb57d3947eb
-  Realm: f501df41a4222c67850c77cf135d472192ecf294
-  RealmSwift: c69aadfc7db0d60075178d037c2f34ada73d5201
+  Realm: 39ff23f0f709cd4ed93eb47ee6593c2158945b38
+  RealmSwift: 42713e09a8631070d6c12c3c5fb22b8edc1daa41
 
 PODFILE CHECKSUM: d2f7d60b485b4e8d9bb78715232f5f263d65b1ca
 

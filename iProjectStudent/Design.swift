@@ -129,7 +129,7 @@ extension UIView{
         if !(self is FSCalendar){
             self.backgroundColor = dColor.base
             for view in self.subviews {
-                if !((view is IgnoreView)||(view is UITextField)){
+                if !((view is IgnoreView)||(view is UITextField)||(view is UISwitch)){
                     view.setFontColor()
                 }
                 if view is UILabel{
@@ -210,6 +210,11 @@ extension UIView{
                     v.settings.emptyBorderColor = dColor.font
                     v.settings.filledColor = dColor.concept
                     v.settings.filledBorderColor = dColor.font
+                }
+                if view is UISwitch{
+                    let v = view as! UISwitch
+                    v.onTintColor = dColor.accent
+                    v.thumbTintColor = dColor.opening
                 }
             }
         }

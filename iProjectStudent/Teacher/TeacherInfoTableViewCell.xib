@@ -91,7 +91,6 @@
                         <rect key="frame" x="16" y="198" width="193" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="BBn-wK-hOy"/>
-                            <constraint firstAttribute="height" constant="21" id="E24-Eb-NgX"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -160,7 +159,6 @@
                     <constraint firstItem="g6j-ld-r1o" firstAttribute="leading" secondItem="zzg-Zy-aiZ" secondAttribute="leading" id="BTc-RD-syu"/>
                     <constraint firstItem="lUS-de-95V" firstAttribute="top" secondItem="EmF-Op-DFR" secondAttribute="bottom" constant="10" id="BdQ-Qb-2I7"/>
                     <constraint firstItem="oyD-Pv-uPj" firstAttribute="leading" secondItem="zqT-ki-3z9" secondAttribute="leading" id="CCm-Ew-0Tp"/>
-                    <constraint firstItem="1ZB-b7-vRi" firstAttribute="top" secondItem="B5z-8B-zdd" secondAttribute="bottom" constant="15" id="CcH-FN-7Wg"/>
                     <constraint firstItem="VjP-z5-mQs" firstAttribute="leading" secondItem="zqT-ki-3z9" secondAttribute="trailing" constant="15" id="Cq0-ox-D9O"/>
                     <constraint firstItem="YsH-Fw-crs" firstAttribute="top" secondItem="1ZB-b7-vRi" secondAttribute="bottom" constant="20" id="G0N-Wj-u8j"/>
                     <constraint firstAttribute="trailing" secondItem="zzg-Zy-aiZ" secondAttribute="trailing" constant="16" id="GRz-s9-8aK"/>

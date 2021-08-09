@@ -58,8 +58,8 @@ class ReviewDetailViewController: UIViewController {
         if review != nil {
             numofBeforeScore = ( review!.score * 2 ).i
             ratingScore.rating = review!.score
-            studentId = review!.studentId
-            teacherId = review!.teacherId
+            studentId = review!.student.userId
+            teacherId = review!.teacher.userId
             commentBox.text = review!.comment
             titleField.text = review!.title
         }

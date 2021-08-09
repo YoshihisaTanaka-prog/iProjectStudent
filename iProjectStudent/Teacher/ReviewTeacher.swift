@@ -11,8 +11,8 @@ import NCMB
 
 class Review{
     var ncmb: NCMBObject
-    var studentId: String
-    var teacherId: String
+    var student: User
+    var teacher: User
     var score: Double
     var comment: String
     var title: String
@@ -20,8 +20,10 @@ class Review{
 
     init (_ review:NCMBObject){
         self.ncmb = review
-        self.studentId = review.object(forKey: "studentId") as? String ?? ""
-        self.teacherId = review.object(forKey: "teacherId") as? String ?? ""
+        let studentId = review.object(forKey: "studentId") as? String ?? ""
+        self.student = User(userId: studentId, isNeedParameter: true, viewController: UIViewController())
+        let teacherId = review.object(forKey: "teacherId") as? String ?? ""
+        self.teacher = User(userId: teacherId, isNeedParameter: true, viewController: UIViewController())
         self.score = review.object(forKey: "score") as! Double
         self.comment = review.object(forKey: "comment")as? String ?? ""
         self.title = review.object(forKey: "title") as! String
@@ -29,4 +31,4 @@ class Review{
     }
     
 }
-    
+
