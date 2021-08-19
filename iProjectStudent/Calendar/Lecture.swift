@@ -44,6 +44,18 @@ class Lecture {
         student = User(userId: studentId, isNeedParameter: true, viewController: vc)
     }
     
+    func save(_ vc: UIViewController){
+        let object = self.ncmb
+        object.setObject(timeList, forKey: "timeList")
+        object.setObject(subject, forKey: "subject")
+        object.setObject(detail, forKey: "detail")
+        object.saveInBackground { error in
+            if error != nil{
+                vc.showOkAlert(title: "Uploading data error", message: error!.localizedDescription)
+            }
+        }
+    }
+    
 }
 
 //コマ生成用
@@ -82,5 +94,18 @@ extension Lecture{
             }
         }
         return ret
+    }
+}
+
+
+class LectureTimeObject{
+    let id: String
+    let startTime: Date
+    let endTime: Date
+    init(id: String, startTime: Date){
+        self.id = id
+        self.startTime = startTime
+        let c = Calendar(identifier: .gregorian)
+        endTime = c.date(from: DateComponents(year: startTime.y, month: startTime.m, day: startTime.d, hour: startTime.h + 1, minute: startTime.min))!
     }
 }

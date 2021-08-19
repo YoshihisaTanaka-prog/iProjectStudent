@@ -6,19 +6,13 @@ target 'iProjectStudent' do
   use_frameworks!
 
   # Pods for iProjectStudent iProjectTeacher
-
   pod 'NCMB', :git => 'https://github.com/NIFTYCloud-mbaas/ncmb_ios.git', :branch => 'develop'
-	
   pod 'Cosmos'
-  
   pod 'FSCalendar'
-  
   pod 'CalculateCalendarLogic'
-  
   pod 'RealmSwift'
-  
   pod 'NYXImagesKit'
-
   pod 'Kingfisher'
+  pod 'SkyWay'
   
 end

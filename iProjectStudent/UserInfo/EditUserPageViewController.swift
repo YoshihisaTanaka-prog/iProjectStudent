@@ -28,7 +28,7 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
     private var imageName: String?
     var selected: String?
     let bunri = ["文理選択","文系","理系","その他"]
-    var youbiCheckBox: CheckBox!
+//    var youbiCheckBox: CheckBox!
 //    let youbiList: [CheckBoxInput] = [
 //        CheckBoxInput("月曜日"),
 //        CheckBoxInput("火曜日"),
@@ -218,9 +218,9 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         if parentsEmailTextField.text != currentUserG.studentParameter?.parentEmailAdress {
             return true
         }
-        if youbiCheckBox.selectionText != currentUserG.studentParameter?.youbi {
-            return true
-        }
+//        if youbiCheckBox.selectionText != currentUserG.studentParameter?.youbi {
+//            return true
+//        }
         if selected != currentUserG.selection {
             return true
         }

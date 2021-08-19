@@ -28,4 +28,9 @@ extension UIViewController{
             }
         }.resume()
     }
+    
+    func reportToRailsServer(className: String, objectId: String){
+        let message = "classname=" + className + "&objectid=" + objectId
+        sendToRailsServer(message: message, path: "")
+    }
 }

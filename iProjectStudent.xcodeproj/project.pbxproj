@@ -83,8 +83,13 @@
 		04A7E99B25AF309900C0F43C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04A7E99A25AF309900C0F43C /* Assets.xcassets */; };
 		04A7E99E25AF309900C0F43C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A7E99C25AF309900C0F43C /* LaunchScreen.storyboard */; };
 		04A841EC25C57B1E00469B5E /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A841EB25C57B1E00469B5E /* SignIn.storyboard */; };
+		04AB3AF826C54A7300990F43 /* OriginalTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AB3AF726C54A7300990F43 /* OriginalTabBarController.swift */; };
 		04AF5D4A25E5415B00E2B385 /* SearchTeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AF5D4925E5415B00E2B385 /* SearchTeacherViewController.swift */; };
 		04AF5D4D25E5428100E2B385 /* Teachers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AF5D4C25E5428100E2B385 /* Teachers.swift */; };
+		04B4344C26CBFCE5005A56BC /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B4344B26CBFCE5005A56BC /* GlobalFunctions.swift */; };
+		04B4344F26CBFF4D005A56BC /* Lecture.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04B4344E26CBFF4D005A56BC /* Lecture.storyboard */; };
+		04B4345326CBFF7E005A56BC /* LectureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B4345226CBFF7E005A56BC /* LectureViewController.swift */; };
+		04C34BD226CCE59B0028D8DF /* Uitl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C34BD126CCE59B0028D8DF /* Uitl.swift */; };
 		04C7A05A25CD7F0F0031281B /* Opening.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04C7A05825CD7EC10031281B /* Opening.storyboard */; };
 		04C7A05C25CD7F6F0031281B /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C83FA25C695A200D4D380 /* ScreenSize.swift */; };
 		04C7A05E25CD7F720031281B /* Opening1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C83FB25C695A200D4D380 /* Opening1ViewController.swift */; };
@@ -211,8 +216,13 @@
 		04A7E99D25AF309900C0F43C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04A7E99F25AF309900C0F43C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04A841EB25C57B1E00469B5E /* SignIn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
+		04AB3AF726C54A7300990F43 /* OriginalTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginalTabBarController.swift; sourceTree = "<group>"; };
 		04AF5D4925E5415B00E2B385 /* SearchTeacherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTeacherViewController.swift; sourceTree = "<group>"; };
 		04AF5D4C25E5428100E2B385 /* Teachers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teachers.swift; sourceTree = "<group>"; };
+		04B4344B26CBFCE5005A56BC /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
+		04B4344E26CBFF4D005A56BC /* Lecture.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Lecture.storyboard; sourceTree = "<group>"; };
+		04B4345226CBFF7E005A56BC /* LectureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureViewController.swift; sourceTree = "<group>"; };
+		04C34BD126CCE59B0028D8DF /* Uitl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Uitl.swift; sourceTree = "<group>"; };
 		04C7A05825CD7EC10031281B /* Opening.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Opening.storyboard; sourceTree = "<group>"; };
 		04EA679025BC8A9C005F0D06 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		04EE49FF26059A60002A42B7 /* SpiritCompatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiritCompatibility.swift; sourceTree = "<group>"; };
@@ -436,15 +446,18 @@
 				0455EDB625DA8ECD00013330 /* Teacher */,
 				046872CF25DE0D5000A6ABBF /* UserInfo */,
 				1B0AD3A925E401010061976F /* Calendar */,
-				04A7E99325AF309900C0F43C /* SceneDelegate.swift */,
+				04B4344D26CBFF1E005A56BC /* Lecture */,
 				049C83E325C6921000D4D380 /* AppDelegate.swift */,
+				04A7E99325AF309900C0F43C /* SceneDelegate.swift */,
 				04A7E99525AF309900C0F43C /* ViewController.swift */,
+				04AB3AF726C54A7300990F43 /* OriginalTabBarController.swift */,
 				046872D025DE0E1C00A6ABBF /* CheckBox.swift */,
 				04192FF2266A9322004F6C3D /* RadioButton.swift */,
 				0424576E25DFE34F00F613FB /* Design.swift */,
 				04EA679025BC8A9C005F0D06 /* User.swift */,
 				04F2792D2679C35500138955 /* TimeRange.swift */,
 				046872CC25DE0CB800A6ABBF /* GlobalParameters.swift */,
+				04B4344B26CBFCE5005A56BC /* GlobalFunctions.swift */,
 				043079B7266A49A900247080 /* AlertExtensions.swift */,
 				044BD1C2265D2C9800A169FC /* CalenderExtension.swift */,
 				043079BF266A4B1000247080 /* FollowExtensions.swift */,
@@ -458,6 +471,16 @@
 				04A7E99F25AF309900C0F43C /* Info.plist */,
 			);
 			path = iProjectStudent;
+			sourceTree = "<group>";
+		};
+		04B4344D26CBFF1E005A56BC /* Lecture */ = {
+			isa = PBXGroup;
+			children = (
+				04C34BD126CCE59B0028D8DF /* Uitl.swift */,
+				04B4345226CBFF7E005A56BC /* LectureViewController.swift */,
+				04B4344E26CBFF4D005A56BC /* Lecture.storyboard */,
+			);
+			path = Lecture;
 			sourceTree = "<group>";
 		};
 		1B0AD3A925E401010061976F /* Calendar */ = {
@@ -615,6 +638,7 @@
 				1BA0D04525E7DF160008FF43 /* Icon-App-20x20@3x.png in Resources */,
 				043F1ABA26B6AC5D00389B8D /* DateTableViewCell.xib in Resources */,
 				1BA0D04A25E7DF160008FF43 /* Icon-App-40x40@2x.png in Resources */,
+				04B4344F26CBFF4D005A56BC /* Lecture.storyboard in Resources */,
 				0488FB3826BD1A790028070E /* BookingTableViewCell.xib in Resources */,
 				1BA0D04225E7DF160008FF43 /* Icon-App-40x40@1x.png in Resources */,
 				1BA0D04125E7DF160008FF43 /* Icon-App-29x29@1x.png in Resources */,
@@ -716,6 +740,7 @@
 				1F761FEA25D419C600FFB590 /* UserPageViewController.swift in Sources */,
 				04A7E99625AF309900C0F43C /* ViewController.swift in Sources */,
 				0460979325E8291200AC91BE /* CreateGroupViewController.swift in Sources */,
+				04C34BD226CCE59B0028D8DF /* Uitl.swift in Sources */,
 				048188B925F66D26004F01D6 /* FollowingTeacherViewController.swift in Sources */,
 				042DBC7B26B790200091E6B9 /* FollowedTeacherInfoTableViewCell.swift in Sources */,
 				0488FB3726BD1A790028070E /* BookingTableViewCell.swift in Sources */,
@@ -734,6 +759,7 @@
 				0460979025E8291200AC91BE /* Chat.swift in Sources */,
 				1FA191B925CC1F56007B935B /* SignUp2ViewController.swift in Sources */,
 				0460978E25E8291200AC91BE /* YourBalloonView.swift in Sources */,
+				04AB3AF826C54A7300990F43 /* OriginalTabBarController.swift in Sources */,
 				1F3343F525D151C400A090DA /* Questionnaire_subViewController.swift in Sources */,
 				04C7A05C25CD7F6F0031281B /* ScreenSize.swift in Sources */,
 				04192FF3266A9322004F6C3D /* RadioButton.swift in Sources */,
@@ -761,6 +787,7 @@
 				0488FB3226BD01E80028070E /* BookingData.swift in Sources */,
 				041B7E7C26B7D52600F9FD60 /* ReviewListViewController.swift in Sources */,
 				0460979125E8291200AC91BE /* ChatTableViewController.swift in Sources */,
+				04B4345326CBFF7E005A56BC /* LectureViewController.swift in Sources */,
 				0460978A25E8291200AC91BE /* YourGroupChatViewCell.swift in Sources */,
 				0460978725E8291200AC91BE /* YourChatViewCell.swift in Sources */,
 				043079BE266A49DE00247080 /* SetImageExtensions.swift in Sources */,
@@ -770,6 +797,7 @@
 				1FB58C2E25E3ED29009CFCD0 /* ForgetPasswordViewController.swift in Sources */,
 				1FF0559526A056BD0009E19B /* ChoiceTableViewCell.swift in Sources */,
 				0460978425E8291200AC91BE /* ChatViewController.swift in Sources */,
+				04B4344C26CBFCE5005A56BC /* GlobalFunctions.swift in Sources */,
 				043F1ABF26B6AC7500389B8D /* ScheduleObject.swift in Sources */,
 				04F2792E2679C35500138955 /* TimeRange.swift in Sources */,
 				044BD1C3265D2C9800A169FC /* CalenderExtension.swift in Sources */,
@@ -918,6 +946,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 939YVKTKUP;
 				INFOPLIST_FILE = iProjectStudent/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -937,6 +966,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 939YVKTKUP;
 				INFOPLIST_FILE = iProjectStudent/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (

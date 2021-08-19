@@ -10,35 +10,49 @@ import UIKit
 import NCMB
 import Cosmos
 
-class ReviewDetailViewController: UIViewController {
+class ReviewDetailViewController: UIViewController, UITextFieldDelegate {
     
     var isAbletoEdit: Bool!
+    var lecture: Lecture?
     var review: Review?
-    var teacherId: String!
-    var studentId: String!
-    var subjectName: String!
     
+    var isExistsNavigationbar = true
+    var isExistingTabbar = true
+    
+    private var subjectName: String!
+    private var student: User!
+    private var teacher: User!
     private var isEditted: Bool = false
     private var numofBeforeScore: Int = 2
     private var numofAfterScore: Int = 2
-    private var teacher: User!
     
 
-    @IBOutlet var ratingScore: CosmosView!  //星
-    @IBOutlet var titleField: UITextField!  //タイトル
-    @IBOutlet var commentBox: UITextView!   //コメント
-    @IBOutlet var sendButton: UIButton!     //送信ボタン
+    @IBOutlet private var userImageView: UIImageView?
+    @IBOutlet private var userNameLabel: UILabel?
+    @IBOutlet private var ratingScore: CosmosView!  //星
+    @IBOutlet private var titleField: UITextField!  //タイトル
+    @IBOutlet private var commentBox: UITextView!   //コメント
+    @IBOutlet private var sendButton: UIButton!     //送信・通報ボタン
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        userImageView?.layer.cornerRadius = 64.f
         
-        setBackGround(false, false)
+        titleField.delegate = self
+        
+        if review == nil || review!.student.userId == currentUserG.userId{
+            isAbletoEdit = true
+        } else {
+            isAbletoEdit = false
+        }
         
         //描画の設定
         // スター半分の評価ができるようにする(本人だけが編集できるよう設定してある）
         ratingScore.settings.fillMode = .half
         if isAbletoEdit {
+            userImageView?.image = userImagesCacheG[currentUserG.userId]
+            userNameLabel?.text = currentUserG.userName
             // ビューから指を離した時に呼ばれる
             ratingScore.didFinishTouchingCosmos = { rating in
                 // ratingでレートの値（Double）が受け取れる
@@ -47,7 +61,10 @@ class ReviewDetailViewController: UIViewController {
             }
 
         } else{
-            sendButton.setTitle("編集不可", for: .normal)
+            let student = review!.student
+            userImageView?.image = userImagesCacheG[student.userId]
+            userNameLabel?.text = student.userName
+            sendButton.setTitle("通報", for: .normal)
             ratingScore.settings.updateOnTouch = false
         }
         
@@ -55,37 +72,43 @@ class ReviewDetailViewController: UIViewController {
         self.commentBox.isSelectable = isAbletoEdit
         self.titleField.isEnabled = isAbletoEdit
         
-        if review != nil {
+        if review == nil {
+            teacher = lecture!.teacher
+            student = lecture!.student
+            subjectName = lecture!.subject
+        } else{
             numofBeforeScore = ( review!.score * 2 ).i
             ratingScore.rating = review!.score
-            studentId = review!.student.userId
-            teacherId = review!.teacher.userId
+            teacher = review!.teacher
+            student = review!.student
             commentBox.text = review!.comment
+            subjectName = review!.subject
             titleField.text = review!.title
         }
         
-        let tUser = NCMBUser.query()
-        tUser?.whereKeyExists("parameter")
-        tUser?.whereKey("objectId", equalTo: teacherId)
-        tUser?.findObjectsInBackground({ (result, error) in
-            if( error == nil ){
-                let user = result!.first! as! NCMBUser
-                self.teacher = User(user)
-            }
-            else{
-                self.showOkAlert(title: "Error", message: error!.localizedDescription)
-                self.navigationController?.popViewController(animated: true)
-            }
-        })
-        setBackGround(true, true)
+        setBackGround(isExistsNavigationbar, isExistingTabbar)
     }
     
-    @IBAction func sendReview(){
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    @IBAction private func tappedReport(){
+        if !isAbletoEdit{
+            showOkAlert(title: "通報", message: "このレビューを通報しますか？"){
+                self.reportToRailsServer(className: "Review", objectId: self.review!.ncmb.objectId)
+            }
+        }
+    }
+    
+    @IBAction private func sendReview(){
         if (isAbletoEdit){
             if(review == nil && !isEditted){
                 showOkAlert(title: "注意", message: "評価をしてください。")
-            }
-            else{
+            } else if titleField.text!.count * commentBox.text!.count == 0 {
+                showOkAlert(title: "注意", message: "タイトルと感想を記入してください。")
+            } else{
                 var object: NCMBObject?
                 if review == nil {
                     object = NCMBObject(className: "Review")
@@ -95,8 +118,8 @@ class ReviewDetailViewController: UIViewController {
                 object?.setObject(numofAfterScore, forKey: "score")
                 object?.setObject(commentBox.text!, forKey: "comment")
                 object?.setObject(titleField.text!, forKey: "title")
-                object?.setObject(self.studentId!, forKey: "studentId")
-                object?.setObject(self.teacherId!, forKey: "teacherId")
+                object?.setObject(self.student.userId, forKey: "studentId")
+                object?.setObject(self.teacher.userId, forKey: "teacherId")
                 object?.saveInBackground({ (error) in
                     if error == nil{
                         if self.review == nil {
@@ -104,7 +127,10 @@ class ReviewDetailViewController: UIViewController {
                             self.teacher.teacherParameter!.ncmb.setObject(1, forKey: self.subjectName + "TotalNum")
                             self.teacher.teacherParameter!.ncmb.saveInBackground({ (error) in
                                 if error == nil{
-                                    self.dismiss(animated: true, completion: nil)
+//                                    メイン画面へ
+                                    let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                                    let rootViewController = storyboard.instantiateViewController(identifier: "RootTabBarController")
+                                    self.present(rootViewController, animated: true, completion: nil)
                                 }
                                 else{
                                     self.showOkAlert(title: "Error", message: error!.localizedDescription)

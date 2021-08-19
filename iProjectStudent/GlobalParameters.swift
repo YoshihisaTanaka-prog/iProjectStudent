@@ -46,3 +46,11 @@ var cachedScheduleG = [String: Schedule]()
 var cachedLectureG = [String: Lecture]()
 var myScheduleG = Schedules()
 var mixedScheduleG = Schedules()
+
+//授業ページに自動遷移するための変数
+var lectureTimeListG = [LectureTimeObject]()
+var lectureCheckTimerG: Timer?
+var timeIntervalG = 0.0
+var isAbleToStartTimerG = true
+var currentVC: UIViewController?
+var today = Date()

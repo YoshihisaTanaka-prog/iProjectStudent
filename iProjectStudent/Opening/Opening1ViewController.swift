@@ -44,6 +44,20 @@ class Opening1ViewController: UIViewController {
                                 self.loadFollowList()
                             }
                         }
+                    } else {
+                        NCMBUser.logOutInBackground { error in
+                            if error == nil{
+                                ud.set(false, forKey: "isLogin")
+                                ud.synchronize()
+                            }
+                        }
+                    }
+                } else {
+                    NCMBUser.logOutInBackground { error in
+                        if error == nil{
+                            ud.set(false, forKey: "isLogin")
+                            ud.synchronize()
+                        }
                     }
                 }
             }

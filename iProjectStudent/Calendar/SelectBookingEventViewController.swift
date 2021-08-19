@@ -27,9 +27,16 @@ class SelectBookingEventViewController: UIViewController {
         tableView.register(nib, forCellReuseIdentifier: "Cell")
         
         setBackGround(true, true)
+        for b in beforeVC.bookingList{
+            print("\n" + b.id)
+            for t in b.timeList{
+                print(t)
+            }
+        }
     }
     
     @IBAction private func tappedSave(){
+        beforeVC.didSelectBookingSchedule = true
         self.navigationController?.popViewController(animated: true)
     }
 
@@ -55,6 +62,5 @@ extension SelectBookingEventViewController: UITableViewDataSource, UITableViewDe
     func tappedBookingSelection(cell: UITableViewCell, button: UIButton) {
         beforeVC.bookingList[cell.tag].isSelectFirst = button.tag == 1
         tableView.reloadData()
-        beforeVC.didSelectBookingSchedule = true
     }
 }

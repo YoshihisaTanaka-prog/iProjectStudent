@@ -113,6 +113,7 @@ extension UIViewController{
             self.tabBarController!.tabBar.barTintColor = dColor.concept
             self.tabBarController!.tabBar.tintColor = dColor.font
             self.tabBarController!.tabBar.unselectedItemTintColor = dColor.base
+            currentVC = self
         }
         else{
             let safeAreaView = UIView(frame: CGRect(x: 0.f, y: size.viewHeight + size.topMargin, width: size.width, height: size.bottomMargin))

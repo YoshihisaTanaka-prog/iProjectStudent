@@ -213,6 +213,8 @@ class Schedules: ScheduleMonthDelegate {
     
     func schedulesDidLoaded(date: Date) {
         if index == 0 {
+            getTodaysLectureTimeList()
+            judgeIsNeedToGoLecturePage()
             self.delegate?.schedulesDidLoaded()
         }
         index += 1

@@ -26,7 +26,7 @@ class Review{
         self.teacher = User(userId: teacherId, isNeedParameter: true, viewController: UIViewController())
         self.score = review.object(forKey: "score") as! Double
         self.comment = review.object(forKey: "comment")as? String ?? ""
-        self.title = review.object(forKey: "title") as! String
+        self.title = review.object(forKey: "title") as? String ?? ""
         self.subject = review.object(forKey: "subject") as? String ?? ""
     }
     

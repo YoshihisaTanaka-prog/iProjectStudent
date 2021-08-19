@@ -171,22 +171,30 @@ extension NormalEventViewController: ScheduleClassDelegate{
     
     private func saveBookingSchedule(){
         if didSelectBookingSchedule{
+            let c = Calendar(identifier: .gregorian)
             var detailTimeList = [[Date]]()
             var savedIndexList = [Int]()
             for b in bookingList{
-                if !b.isSelectFirst{
+                if b.isSelectFirst{
+//                    元々あるスケジュールが優先された時は新しいスケジュールの時間を分割する。
+                    for i in b.index{
+                        let d1 = Date().mixDateAndTime(date: savedDate[i][0], time: savedDate[i][1])
+                        let d2 = Date().mixDateAndTime(date: savedDate[i][0], time: savedDate[i][2])
+                        let detailTimes = [d1,d2]
+                        if savedIndexList.contains(i){
+                            
+                        } else{
+                            savedIndexList.append(i)
+                            detailTimeList.append(detailTimes)
+                        }
+                    }
+                } else{
+//                    元々あるスケジュールより新しいスケジュールが優先されたとき、古いスケジュールのデータを削除して追加する。
                     if b.isFirstSchedule{
                         for i in b.index{
-                            var detailTimes = [Date]()
-                            if isShownTableView{
-                                let d1 = Date().mixDateAndTime(date: savedDate[i][0], time: savedDate[i][1])
-                                let d2 = Date().mixDateAndTime(date: savedDate[i][0], time: savedDate[i][2])
-                                detailTimes = [d1,d2]
-                            } else{
-                                let first = firstDate.mixDateAndTime(date: firstDate, time: firstTime)
-                                let end = endDate.mixDateAndTime(date: endDate, time: endTime)
-                                detailTimes = [first,end]
-                            }
+                            let d1 = Date().mixDateAndTime(date: savedDate[i][0], time: savedDate[i][1])
+                            let d2 = Date().mixDateAndTime(date: savedDate[i][0], time: savedDate[i][2])
+                            let detailTimes = [d1,d2]
                             let schedule = cachedScheduleG[b.id]!
                             var scheduleDetailTimeList = [[Date]]()
                             for dTimes in schedule.detailTimeList{
@@ -194,7 +202,20 @@ extension NormalEventViewController: ScheduleClassDelegate{
                                     scheduleDetailTimeList.append(dTimes)
                                 }
                             }
-                            schedule.detailTimeList = scheduleDetailTimeList
+                            if scheduleDetailTimeList.count == 0{
+                                let id = schedule.ncmb.objectId ?? ""
+                                let object = NCMBObject(className: "Schedule", objectId: id)
+                                object?.deleteInBackground({ error in
+                                    if error == nil{
+                                        cachedScheduleG[id] = nil
+                                    } else {
+                                        print("Deleting schedule data error!", error!.localizedDescription)
+                                    }
+                                })
+                            } else{
+                                schedule.detailTimeList = scheduleDetailTimeList
+                                schedule.save(self)
+                            }
                             if !savedIndexList.contains(i){
                                 savedIndexList.append(i)
                                 detailTimeList.append(detailTimes)
@@ -202,28 +223,32 @@ extension NormalEventViewController: ScheduleClassDelegate{
                         }
                     } else {
                         for i in b.index{
-                            var detailTimes = [Date]()
-                            if isShownTableView{
-                                let d1 = Date().mixDateAndTime(date: savedDate[i][0], time: savedDate[i][1])
-                                let d2 = Date().mixDateAndTime(date: savedDate[i][0], time: savedDate[i][2])
-                                detailTimes = [d1,d2]
-                            } else{
-                                let first = firstDate.mixDateAndTime(date: firstDate, time: firstTime)
-                                let end = endDate.mixDateAndTime(date: endDate, time: endTime)
-                                detailTimes = [first,end]
-                            }
+                            let d1 = Date().mixDateAndTime(date: savedDate[i][0], time: savedDate[i][1])
+                            let d2 = Date().mixDateAndTime(date: savedDate[i][0], time: savedDate[i][2])
+                            let detailTimes = [d1,d2]
                             let lecture = cachedLectureG[b.id]!
                             var lectureDetailTimeList = [Date]()
                             for dTime in lecture.timeList{
-    //                                    スケジュールと構造が違うので注意
-                                let c = Calendar(identifier: .gregorian)
                                 let start = dTime
                                 let end = c.date(byAdding: .hour, value: 1, to: start)!
                                 if (detailTimes[1] < start || end < detailTimes[0] ){
                                     lectureDetailTimeList.append(dTime)
                                 }
                             }
-                            lecture.timeList = lectureDetailTimeList
+                            if lectureDetailTimeList.count == 0{
+                                let id = lecture.ncmb.objectId ?? ""
+                                let object = NCMBObject(className: "Lecture", objectId: id)
+                                object?.deleteInBackground({ error in
+                                    if error == nil{
+                                        cachedLectureG[id] = nil
+                                    } else {
+                                        print("Deleting lecture data error!", error!.localizedDescription)
+                                    }
+                                })
+                            } else{
+                                lecture.timeList = lectureDetailTimeList
+                                lecture.save(self)
+                            }
                             if !savedIndexList.contains(i){
                                 savedIndexList.append(i)
                                 detailTimeList.append(detailTimes)
@@ -232,9 +257,17 @@ extension NormalEventViewController: ScheduleClassDelegate{
                     }
                 }
             }
-            if detailTimeList.count != 0{
+            if detailTimeList.count == 0{
+                self.navigationController?.popViewController(animated: true)
+            } else{
                 if isShownTableView{
-                    savedDate = detailTimeList
+                    savedDate = []
+                    for dTimes in detailTimeList{
+                        let d = c.date(from: DateComponents(year: dTimes[0].y, month: dTimes[0].m, day: dTimes[0].d))!
+                        let s = c.date(from: DateComponents(hour: dTimes[0].h, minute: dTimes[0].min))!
+                        let e = c.date(from: DateComponents(hour: dTimes[1].h, minute: dTimes[1].min))!
+                        savedDate.append([d,s,e])
+                    }
                 }
                 save()
             }
@@ -269,14 +302,17 @@ extension NormalEventViewController: ScheduleClassDelegate{
                     }
                 } else{
 //                    予定がブッキングしている時
-                    self.performSegue(withIdentifier: "Select", sender: nil)
+                    showOkAlert(title: "注意", message: "予定が重複しています。\n重複している予定を削除してから\n保存し直してください。") {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+//                    self.performSegue(withIdentifier: "Select", sender: nil)
                 }
             } else{
                 let first = firstDate.mixDateAndTime(date: firstDate, time: firstTime)
                 let end = endDate.mixDateAndTime(date: endDate, time: endTime)
                 let detailTimeList = [[first,end]]
                 bookingList = searchBookingList(dateList: detailTimeList)
-                if bookingList.count == 0 || didSelectBookingSchedule {
+                if bookingList.count == 0{
 //                    予定がブッキングしていない時
                     showWaitingAlert()
                     if schedule == nil{
@@ -291,8 +327,10 @@ extension NormalEventViewController: ScheduleClassDelegate{
                         schedule!.save(self)
                     }
                 } else{
-//                    予定がブッキングしている時
-                    self.performSegue(withIdentifier: "Select", sender: nil)
+//                    予定がブッキングしている時は強制終了
+                    showOkAlert(title: "注意", message: "予定が重複しています。\n重複している予定を削除してから\n保存し直してください。") {
+                        self.navigationController?.popViewController(animated: true)
+                    }
                 }
             }
         }
@@ -338,8 +376,7 @@ extension NormalEventViewController: ScheduleClassDelegate{
                                         ret[k].title2 = titleTextField.text!
                                     }
                                     ret[k].index.append(dateListIndex)
-                                    ret[k].timeList.append([[start.h*100+start.min, end.h*100+end.min],
-                                                            [dList[0].h*100+dList[0].min,dList[1].h*100+dList[1].min]])
+                                    ret[k].timeList.append([[start.h*100+start.min, end.h*100+end.min], [dList[0].h*100+dList[0].min, dList[1].h*100+dList[1].min]])
                                 }
                             }
                         }
@@ -365,8 +402,7 @@ extension NormalEventViewController: ScheduleClassDelegate{
                                     ret[k].title2 = titleTextField.text!
                                 }
                                 ret[k].index.append(dateListIndex)
-                                ret[k].timeList.append([[start.h*100+start.min, end.h*100+end.min],
-                                                        [dList[0].h*100+dList[0].min,dList[1].h*100+dList[1].min]])
+                                ret[k].timeList.append([[start.h*100+start.min, end.h*100+end.min], [dList[0].h*100+dList[0].min, dList[1].h*100+dList[1].min]])
                             }
                         }
                     }
@@ -504,11 +540,11 @@ extension NormalEventViewController: UITableViewDataSource, UITableViewDelegate,
 //                    必要なら変更されたデータを前方に移動させる。
                     var i = cellId
                     while i>0 {
-                        if(savedDate[i][0] < savedDate[i-1][0]){
+                        if(savedDate[i][0] < savedDate[i-1][0] || ( savedDate[i][0] == savedDate[i-1][0] && savedDate[i-1][1] > savedDate[i][2] ) ){
                             isNeedToBack = false
                             shuffle(i: i, j: i-1)
                             showIndexPath.row = i-1
-                        }else if(savedDate[i][0] == savedDate[i-1][0]){
+                        }else if(savedDate[i][0] == savedDate[i-1][0] && savedDate[i][1] < savedDate[i-1][2] && savedDate[i][2] < savedDate[i-1][1] ){
                             mix(i: i-1)
                             showIndexPath.row = i-1
                             break
@@ -522,10 +558,10 @@ extension NormalEventViewController: UITableViewDataSource, UITableViewDelegate,
 //                    必要なら変更されたデータを後方に移動させる
                     var i = cellId
                     while i<savedDate.count - 1 {
-                        if(savedDate[i][0] > savedDate[i+1][0]){
+                        if(savedDate[i][0] > savedDate[i+1][0] || ( savedDate[i][0] == savedDate[i-1][0] && savedDate[i+1][2] > savedDate[i][1] )){
                             shuffle(i: i, j: i+1)
                             showIndexPath.row = i+1
-                        }else if(savedDate[i][0] == savedDate[i+1][0]){
+                        }else if(savedDate[i][0] == savedDate[i+1][0] && savedDate[i][1] < savedDate[i+1][2] && savedDate[i][2] < savedDate[i+1][1] ){
                             mix(i: i)
                             showIndexPath.row = i
                             break

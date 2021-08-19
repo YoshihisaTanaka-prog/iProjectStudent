@@ -475,7 +475,6 @@ extension TeacherInfoViewController{
         switch segue.identifier {
         case "Detail":
             let nextVC = segue.destination as! ReviewDetailViewController
-            nextVC.subjectName = "japanese"
             nextVC.review = selectedReview
             nextVC.isAbletoEdit = false
         case "GoToChat":
