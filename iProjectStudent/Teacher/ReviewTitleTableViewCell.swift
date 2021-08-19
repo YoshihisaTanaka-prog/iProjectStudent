@@ -72,6 +72,12 @@ class ReviewTitleTableViewCell: UITableViewCell {
     
     @IBAction func tappedButton(button: UIButton){
         self.delegate?.didTapTitleCellButton(tableViewCell: self, button: button)
+        for v in self.subviews{
+            if v is UIButton{
+                let b = v as! UIButton
+                b.isSelected = false
+            }
+        }
     }
     
     @objc func tappedSubjectButton(_ sender : UIButton){

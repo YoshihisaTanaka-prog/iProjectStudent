@@ -30,7 +30,7 @@ class UserPageViewController: UIViewController, UITextFieldDelegate, UITextViewD
         userImageView.layer.masksToBounds = true
         
         setBackGround(true, true)
-
+        myScheduleG.loadSchedule(date: Date(), userIds: [currentUserG.userId], self)
         // Do any additional setup after loading the view.
     }
     
@@ -49,7 +49,7 @@ class UserPageViewController: UIViewController, UITextFieldDelegate, UITextViewD
         introductionTextView.delegate = self
         
         userIdTextField.text = currentUserG.userName
-        emailTextField.text = currentUserG.mailAddress
+        emailTextField.text = NCMBUser.current().mailAddress
         userIdFuriganaTextField.text = currentUserG.furigana
         schoolTextField.text = currentUserG.studentParameter?.schoolName
         gradeTextField.text = transformGrade(currentUserG.grade)

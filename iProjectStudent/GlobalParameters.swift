@@ -24,13 +24,11 @@ let businessHoursG = [
 //ユーザー画像を保存するための変数
 var userImagesCacheG: [String: UIImage] = [:]
 
-//フォロー中のユーザリストを保存するための変数
-var followUserListG: [User] = []
-var favoriteUserListG: [User] = []
-var waitingUserListG: [User] = []
-
-//ブロック中のユーザーリストを保存するための変数
-var blockedUserIdListG: [String] = []
+//フォロー中などのユーザリストを保存するための変数
+var blockedUserIdListG = [String]()
+var followUserListG = [User]()
+var favoriteUserListG = [User]()
+var waitingUserListG = [User]()
 
 //ログインしているのかを判定するための変数
 var isLogInG: Bool = false
@@ -44,5 +42,7 @@ let token = "fN4BnkumjMvnbZd47gFLYL7JpVn283eaZwxEpT8NYyhYMPUaRDzR3dQZxTUT2eQYz7g
 
 let pickerLabelG = PickerLabel()
 
-let singleSchedule = Schedules()
-let mixedSchedule = Schedules()
+var cachedScheduleG = [String: Schedule]()
+var cachedLectureG = [String: Lecture]()
+var myScheduleG = Schedules()
+var mixedScheduleG = Schedules()

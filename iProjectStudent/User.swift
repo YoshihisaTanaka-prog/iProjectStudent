@@ -16,6 +16,7 @@ class User {
     var userName = ""
     var furigana = ""
     var grade = "0"
+    var status = 0
     var mailAddress = ""
     var oneOnOneSerch: String
     var selection = ""

@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-//import CalculateCalendarLogic
+import CalculateCalendarLogic
 
 
 extension Int{
@@ -23,6 +23,12 @@ extension Int{
     }
     public var s02: String {
         return String(format: "%02d", self)
+    }
+    public var jp: String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .spellOut
+        formatter.locale = .init(identifier: "ja-JP")
+        return formatter.string(from: NSNumber(value: self)) ?? ""
     }
 }
 
@@ -69,16 +75,36 @@ extension String{
 
 extension Date{
     public var ymd: String{
-        let f = DateFormatter()
-        f.locale = Locale.current
-        f.dateFormat = "yyyy/MM/dd"
-        return f.string(from: self)
+        return self.y.s + "/" + self.m.s02 + "/" + self.d.s02
     }
     public var ymdJp: String{
-        let f = DateFormatter()
-        f.locale = Locale.current
-        f.dateFormat = "yyyy年MM月dd日"
-        return f.string(from: self)
+        return self.y.s + "年" + self.m.s02 + "月" + self.d.s02 + "日"
+    }
+    public var hms: String{
+        let c = Calendar.current
+        let h = c.component(.hour, from: self)
+        let m = c.component(.minute, from: self)
+        let s = c.component(.second, from: self)
+        return h.s02 + ":" + m.s02 + ":" + s.s02
+    }
+    public var hmsJp: String{
+        let c = Calendar.current
+        let h = c.component(.hour, from: self)
+        let m = c.component(.minute, from: self)
+        let s = c.component(.second, from: self)
+        return h.s02 + "時" + m.s02 + "分" + s.s02 + "秒"
+    }
+    public var hm: String{
+        let c = Calendar.current
+        let h = c.component(.hour, from: self)
+        let m = c.component(.minute, from: self)
+        return h.s02 + ":" + m.s02
+    }
+    public var hmJp: String{
+        let c = Calendar.current
+        let h = c.component(.hour, from: self)
+        let m = c.component(.minute, from: self)
+        return h.s02 + "時" + m.s02 + "分"
     }
     public var y: Int{
         let c = Calendar.current
@@ -87,6 +113,46 @@ extension Date{
     public var m: Int{
         let c = Calendar.current
         return c.component(.month, from: self)
+    }
+    public var maxDate: Int{
+        switch self.m {
+        case 1:
+            return 31
+        case 2:
+            let y = self.y
+            if y % 400 == 0{
+                return 29
+            }
+            if y % 100 == 0{
+                return 28
+            }
+            if y % 4 == 0{
+                return 29
+            }
+            return 28
+        case 3:
+            return 31
+        case 4:
+            return 30
+        case 5:
+            return 31
+        case 6:
+            return 30
+        case 7:
+            return 31
+        case 8:
+            return 31
+        case 9:
+            return 30
+        case 10:
+            return 31
+        case 11:
+            return 30
+        case 12:
+            return 31
+        default:
+            return 0
+        }
     }
     public var d: Int{
         let c = Calendar.current
@@ -100,9 +166,21 @@ extension Date{
         let c = Calendar.current
         return c.component(.minute, from: self)
     }
-    public var s: Int{
-        let c = Calendar.current
-        return c.component(.second, from: self)
+    public var weekId: Int{
+        let holiday = CalculateCalendarLogic()
+        if (holiday.judgeJapaneseHoliday(year: self.y, month: self.m, day: self.d)){
+            return 6
+        }
+        let tmpCalendar = Calendar(identifier: .gregorian)
+        return (tmpCalendar.component(.weekday, from: self) + 5) % 7
+    }
+    
+    func mixDateAndTime(date: Date, time: Date) -> Date {
+        let hour = time.h
+        let minute = time.min
+        let c = Calendar(identifier: .gregorian)
+        let d = c.date(from: DateComponents(year: date.y, month: date.m, day: date.d))!
+        return c.date(byAdding: .minute, value: 60 * hour + minute, to: d)!
     }
 }
 

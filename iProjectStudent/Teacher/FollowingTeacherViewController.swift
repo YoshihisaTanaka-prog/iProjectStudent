@@ -25,14 +25,13 @@ class FollowingTeacherViewController: UIViewController, UITableViewDataSource, U
         tableView.tableFooterView = UIView()
         tableView.rowHeight = 100.f
         
-        let nib = UINib(nibName: "ReviewTableViewCell", bundle: Bundle.main)
-        tableView.register(nib, forCellReuseIdentifier: "Cell2")
-//        /Users/tanakayoshihisa/iProjectStudent/iProjectStudent/Teacher
+        let nib = UINib(nibName: "TeacherListTableViewCell", bundle: Bundle.main)
+        tableView.register(nib, forCellReuseIdentifier: "Cell")
         setBackGround(true, true)
-        teachers = mixFollowList()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        teachers = mixFollowList()
         tableView.reloadData()
     }
     
@@ -41,13 +40,22 @@ class FollowingTeacherViewController: UIViewController, UITableViewDataSource, U
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell2") as! ReviewTableViewCell
-        cell.cosmosView.alpha = 0.f // 教師の評価部分（生徒は平均評価が存在しないので不要）
-        cell.score.alpha = 0.f      // 教師の評価部分（生徒は平均評価が存在しないので不要）
-        cell.title.text = teachers[indexPath.row].teacherParameter!.collage + " " + transformGrade(teachers[indexPath.row].grade)
-        cell.title.numberOfLines = 0
-        cell.userNameLabel.text = teachers[indexPath.row].userName + "先生"
-        cell.userimage.image = userImagesCacheG[teachers[indexPath.row].userId]  //ユーザー画像を設定
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! TeacherListTableViewCell
+        let teacher = teachers[indexPath.row]
+        cell.teacherImageView.image = userImagesCacheG[teacher.userId]
+        cell.teacherNameLabel.text = teacher.userName
+        cell.teacherCollageLabel.text = teacher.teacherParameter!.collage + teacher.selection + self.transformGrade(teacher.grade)
+        switch teacher.status {
+        case -1:
+            cell.teacherStatusLabel.text = "ブロック中"
+        case 1:
+            cell.teacherStatusLabel.text = "未固定"
+        case 2:
+            cell.teacherStatusLabel.text = "固定済み"
+        default:
+            cell.teacherStatusLabel.text = "???"
+        }
+        
         
         cell.setFontColor()
         return cell
@@ -67,15 +75,5 @@ class FollowingTeacherViewController: UIViewController, UITableViewDataSource, U
             break
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

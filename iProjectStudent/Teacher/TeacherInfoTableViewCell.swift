@@ -47,6 +47,7 @@ class TeacherInfoTableViewCell: UITableViewCell {
     @IBAction func tappedFollowButton(button: UIButton){
         print("tapped")
         self.delegate?.didTapCellButton(tableViewCell: self, button: button)
+        followButton.isEnabled = false
     }
     
 }

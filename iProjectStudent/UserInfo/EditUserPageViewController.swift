@@ -267,7 +267,9 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         param.saveInBackground { (error) in
             if error == nil{
                 currentUserG = User(NCMBUser.current()!)
-                self.navigationController?.popViewController(animated: true)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    self.navigationController?.popViewController(animated: true)
+                }
             } else{
                 self.showOkAlert(title: "Error", message: error!.localizedDescription)
             }
