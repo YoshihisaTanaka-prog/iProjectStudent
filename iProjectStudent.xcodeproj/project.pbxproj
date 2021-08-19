@@ -66,6 +66,7 @@
 		046872CD25DE0CB800A6ABBF /* GlobalParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046872CC25DE0CB800A6ABBF /* GlobalParameters.swift */; };
 		046872D125DE0E1C00A6ABBF /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046872D025DE0E1C00A6ABBF /* CheckBox.swift */; };
 		0473BF5625D2EA0900550EFB /* Questionnaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473BF5525D2EA0900550EFB /* Questionnaire.swift */; };
+		047E0AF026CE86A600BFCAB6 /* Main2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 047E0AEF26CE86A600BFCAB6 /* Main2.storyboard */; };
 		048188B925F66D26004F01D6 /* FollowingTeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048188B825F66D26004F01D6 /* FollowingTeacherViewController.swift */; };
 		0488FB2F26BCD9A40028070E /* TeacherListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0488FB2D26BCD9A40028070E /* TeacherListTableViewCell.swift */; };
 		0488FB3026BCD9A40028070E /* TeacherListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0488FB2E26BCD9A40028070E /* TeacherListTableViewCell.xib */; };
@@ -194,6 +195,7 @@
 		046872CC25DE0CB800A6ABBF /* GlobalParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalParameters.swift; sourceTree = "<group>"; };
 		046872D025DE0E1C00A6ABBF /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		0473BF5525D2EA0900550EFB /* Questionnaire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questionnaire.swift; sourceTree = "<group>"; };
+		047E0AEF26CE86A600BFCAB6 /* Main2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main2.storyboard; sourceTree = "<group>"; };
 		048188B825F66D26004F01D6 /* FollowingTeacherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingTeacherViewController.swift; sourceTree = "<group>"; };
 		0488FB2D26BCD9A40028070E /* TeacherListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherListTableViewCell.swift; sourceTree = "<group>"; };
 		0488FB2E26BCD9A40028070E /* TeacherListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeacherListTableViewCell.xib; sourceTree = "<group>"; };
@@ -466,6 +468,7 @@
 				043079BD266A49DE00247080 /* SetImageExtensions.swift */,
 				043079AF266A3F0300247080 /* TransformateExtensions.swift */,
 				04A7E99725AF309900C0F43C /* Main.storyboard */,
+				047E0AEF26CE86A600BFCAB6 /* Main2.storyboard */,
 				04A7E99A25AF309900C0F43C /* Assets.xcassets */,
 				04A7E99C25AF309900C0F43C /* LaunchScreen.storyboard */,
 				04A7E99F25AF309900C0F43C /* Info.plist */,
@@ -662,6 +665,7 @@
 				0460979225E8291200AC91BE /* Chat.storyboard in Resources */,
 				0460978825E8291200AC91BE /* YourGroupChatViewCell.xib in Resources */,
 				0488FB3026BCD9A40028070E /* TeacherListTableViewCell.xib in Resources */,
+				047E0AF026CE86A600BFCAB6 /* Main2.storyboard in Resources */,
 				1BA0D04925E7DF160008FF43 /* Icon-App-29x29@3x.png in Resources */,
 				04A841EC25C57B1E00469B5E /* SignIn.storyboard in Resources */,
 				1BA0D04025E7DF160008FF43 /* Icon-App-76x76@2x.png in Resources */,
