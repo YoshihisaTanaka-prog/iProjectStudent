@@ -95,6 +95,7 @@
 		04B4344C26CBFCE5005A56BC /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B4344B26CBFCE5005A56BC /* GlobalFunctions.swift */; };
 		04B4344F26CBFF4D005A56BC /* Lecture.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04B4344E26CBFF4D005A56BC /* Lecture.storyboard */; };
 		04B4345326CBFF7E005A56BC /* LectureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B4345226CBFF7E005A56BC /* LectureViewController.swift */; };
+		04B6C96A26D7B531003CDDCB /* ExtensionsForChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B6C96926D7B530003CDDCB /* ExtensionsForChat.swift */; };
 		04C34BD226CCE59B0028D8DF /* Uitl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C34BD126CCE59B0028D8DF /* Uitl.swift */; };
 		04C7A05A25CD7F0F0031281B /* Opening.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04C7A05825CD7EC10031281B /* Opening.storyboard */; };
 		04C7A05C25CD7F6F0031281B /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C83FA25C695A200D4D380 /* ScreenSize.swift */; };
@@ -234,6 +235,7 @@
 		04B4344B26CBFCE5005A56BC /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
 		04B4344E26CBFF4D005A56BC /* Lecture.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Lecture.storyboard; sourceTree = "<group>"; };
 		04B4345226CBFF7E005A56BC /* LectureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureViewController.swift; sourceTree = "<group>"; };
+		04B6C96926D7B530003CDDCB /* ExtensionsForChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionsForChat.swift; sourceTree = "<group>"; };
 		04C34BD126CCE59B0028D8DF /* Uitl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Uitl.swift; sourceTree = "<group>"; };
 		04C7A05825CD7EC10031281B /* Opening.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Opening.storyboard; sourceTree = "<group>"; };
 		04EA679025BC8A9C005F0D06 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 				0460978025E8291200AC91BE /* Chat.storyboard */,
 				0460977E25E8291200AC91BE /* Chat.swift */,
 				0479909326D78694000E0332 /* ChatRoom.swift */,
+				04B6C96926D7B530003CDDCB /* ExtensionsForChat.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -787,6 +790,7 @@
 				1F3343F525D151C400A090DA /* Questionnaire_subViewController.swift in Sources */,
 				04C7A05C25CD7F6F0031281B /* ScreenSize.swift in Sources */,
 				0479909426D78694000E0332 /* ChatRoom.swift in Sources */,
+				04B6C96A26D7B531003CDDCB /* ExtensionsForChat.swift in Sources */,
 				04192FF3266A9322004F6C3D /* RadioButton.swift in Sources */,
 				0488FB3426BD15A70028070E /* SelectBookingEventViewController.swift in Sources */,
 				048A839F26B7F3FB00C7C78E /* ShowNormalEventViewController.swift in Sources */,

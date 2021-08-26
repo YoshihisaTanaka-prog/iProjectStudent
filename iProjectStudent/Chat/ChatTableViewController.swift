@@ -55,14 +55,14 @@ extension ChatTableViewController: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedChatRoom = chatRoomsG[indexPath.row]
-        self.performSegue(withIdentifier: "GoToChatRoom", sender: nil)
+        self.performSegue(withIdentifier: "GoToRoom", sender: nil)
     }
 }
 
 extension ChatTableViewController{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
-        case "GoToChatRoom":
+        case "GoToRoom":
             let nextVC = segue.destination as! ChatViewController
             nextVC.sentChatRoom = selectedChatRoom
             nextVC.sentChatRoom.loadChats()
