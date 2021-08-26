@@ -1546,14 +1546,9 @@
             <point key="canvasLocation" x="5795.652173913044" y="529.6875"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="Jyv-2r-czy">
-            <size key="intrinsicContentSize" width="120" height="20"/>
-        </designable>
-    </designables>
     <inferredMetricsTieBreakers>
         <segue reference="3hZ-zQ-ywP"/>
-        <segue reference="873-Qu-0rY"/>
+        <segue reference="w4E-Kc-P0E"/>
         <segue reference="pyF-Jg-0II"/>
         <segue reference="wOS-XS-SK6"/>
     </inferredMetricsTieBreakers>
