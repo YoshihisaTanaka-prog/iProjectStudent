@@ -54,3 +54,7 @@ var timeIntervalG = 0.0
 var isAbleToStartTimerG = true
 var currentVC: UIViewController?
 var today = Date()
+
+//チャット関連
+var chatRoomsG = [ChatRoom]()
+var cachedJoinedTimeG:[String: Date] = [:]

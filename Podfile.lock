@@ -2,14 +2,15 @@ PODS:
   - CalculateCalendarLogic (0.5.0)
   - Cosmos (23.0.0)
   - FSCalendar (2.8.2)
-  - Kingfisher (6.3.0)
+  - Kingfisher (6.3.1)
   - NCMB (3.1.0)
   - NYXImagesKit (2.3)
-  - Realm (10.11.0):
-    - Realm/Headers (= 10.11.0)
-  - Realm/Headers (10.11.0)
-  - RealmSwift (10.11.0):
-    - Realm (= 10.11.0)
+  - Realm (10.12.0):
+    - Realm/Headers (= 10.12.0)
+  - Realm/Headers (10.12.0)
+  - RealmSwift (10.12.0):
+    - Realm (= 10.12.0)
+  - SkyWay (4.0.0)
 
 DEPENDENCIES:
   - CalculateCalendarLogic
@@ -19,6 +20,7 @@ DEPENDENCIES:
   - NCMB (from `https://github.com/NIFTYCloud-mbaas/ncmb_ios.git`, branch `develop`)
   - NYXImagesKit
   - RealmSwift
+  - SkyWay
 
 SPEC REPOS:
   trunk:
@@ -29,6 +31,7 @@ SPEC REPOS:
     - NYXImagesKit
     - Realm
     - RealmSwift
+    - SkyWay
 
 EXTERNAL SOURCES:
   NCMB:
@@ -37,19 +40,20 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   NCMB:
-    :commit: 8abc6e8708f1ab306e1dcaf13da4019257e91fb1
+    :commit: 262f556918acc06399ae896485fb3be4781846d8
     :git: https://github.com/NIFTYCloud-mbaas/ncmb_ios.git
 
 SPEC CHECKSUMS:
   CalculateCalendarLogic: d14189787cd47766e64281b2686608afea07ae4d
   Cosmos: b5c6a9a637e28a061b54c8f8b1d8529d7d4db73f
   FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
-  Kingfisher: 6c3df386db71d82c0817a429d2c9421a77396529
+  Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
   NCMB: c308972109137bf523ec1830bac16de6a31c25f4
   NYXImagesKit: 8163e3335a40eaa173ca5bbbf81fafb57d3947eb
-  Realm: 39ff23f0f709cd4ed93eb47ee6593c2158945b38
-  RealmSwift: 42713e09a8631070d6c12c3c5fb22b8edc1daa41
+  Realm: 32488213acb44660539c619d620cec1bac046166
+  RealmSwift: 0abdca6231d5ff8a4f84cef9c1121ef95a483faf
+  SkyWay: 24cd00112f673b3f72b47b399838151407501446
 
-PODFILE CHECKSUM: d2f7d60b485b4e8d9bb78715232f5f263d65b1ca
+PODFILE CHECKSUM: 97397d581d1a24aa7cfa424129afdd8d1843153c
 
 COCOAPODS: 1.10.1

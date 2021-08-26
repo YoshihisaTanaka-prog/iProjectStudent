@@ -56,17 +56,23 @@
 		0460978C25E8291200AC91BE /* MyBalloonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0460977A25E8291200AC91BE /* MyBalloonView.swift */; };
 		0460978D25E8291200AC91BE /* ChatRoomInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0460977B25E8291200AC91BE /* ChatRoomInputView.xib */; };
 		0460978E25E8291200AC91BE /* YourBalloonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0460977C25E8291200AC91BE /* YourBalloonView.swift */; };
-		0460978F25E8291200AC91BE /* Memo.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0460977D25E8291200AC91BE /* Memo.strings */; };
 		0460979025E8291200AC91BE /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0460977E25E8291200AC91BE /* Chat.swift */; };
 		0460979125E8291200AC91BE /* ChatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0460977F25E8291200AC91BE /* ChatTableViewController.swift */; };
 		0460979225E8291200AC91BE /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0460978025E8291200AC91BE /* Chat.storyboard */; };
 		0460979325E8291200AC91BE /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0460978125E8291200AC91BE /* CreateGroupViewController.swift */; };
-		0460979425E8291200AC91BE /* SearchUserForCreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0460978225E8291200AC91BE /* SearchUserForCreateGroupViewController.swift */; };
-		0460979525E8291200AC91BE /* GoToChatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0460978325E8291200AC91BE /* GoToChatExtension.swift */; };
 		046872CD25DE0CB800A6ABBF /* GlobalParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046872CC25DE0CB800A6ABBF /* GlobalParameters.swift */; };
 		046872D125DE0E1C00A6ABBF /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046872D025DE0E1C00A6ABBF /* CheckBox.swift */; };
 		0473BF5625D2EA0900550EFB /* Questionnaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473BF5525D2EA0900550EFB /* Questionnaire.swift */; };
-		047E0AF026CE86A600BFCAB6 /* Main2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 047E0AEF26CE86A600BFCAB6 /* Main2.storyboard */; };
+		0479908F26D784F9000E0332 /* iconN.png in Resources */ = {isa = PBXBuildFile; fileRef = 0479908D26D784F8000E0332 /* iconN.png */; };
+		0479909026D784F9000E0332 /* iconS.png in Resources */ = {isa = PBXBuildFile; fileRef = 0479908E26D784F9000E0332 /* iconS.png */; };
+		0479909226D78675000E0332 /* AddUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0479909126D78675000E0332 /* AddUserViewController.swift */; };
+		0479909426D78694000E0332 /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0479909326D78694000E0332 /* ChatRoom.swift */; };
+		0479909726D786CA000E0332 /* InviteUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0479909526D786CA000E0332 /* InviteUserTableViewCell.swift */; };
+		0479909826D786CA000E0332 /* InviteUserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0479909626D786CA000E0332 /* InviteUserTableViewCell.xib */; };
+		0479909B26D786DD000E0332 /* ChatRoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0479909926D786DC000E0332 /* ChatRoomTableViewCell.swift */; };
+		0479909C26D786DD000E0332 /* ChatRoomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0479909A26D786DC000E0332 /* ChatRoomTableViewCell.xib */; };
+		0479909E26D786F2000E0332 /* UserDefaultImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0479909D26D786F2000E0332 /* UserDefaultImageExtension.swift */; };
+		047990A026D7879F000E0332 /* ExtensionsForChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0479909F26D7879F000E0332 /* ExtensionsForChat.swift */; };
 		048188B925F66D26004F01D6 /* FollowingTeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048188B825F66D26004F01D6 /* FollowingTeacherViewController.swift */; };
 		0488FB2F26BCD9A40028070E /* TeacherListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0488FB2D26BCD9A40028070E /* TeacherListTableViewCell.swift */; };
 		0488FB3026BCD9A40028070E /* TeacherListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0488FB2E26BCD9A40028070E /* TeacherListTableViewCell.xib */; };
@@ -185,17 +191,23 @@
 		0460977A25E8291200AC91BE /* MyBalloonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBalloonView.swift; sourceTree = "<group>"; };
 		0460977B25E8291200AC91BE /* ChatRoomInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatRoomInputView.xib; sourceTree = "<group>"; };
 		0460977C25E8291200AC91BE /* YourBalloonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YourBalloonView.swift; sourceTree = "<group>"; };
-		0460977D25E8291200AC91BE /* Memo.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Memo.strings; sourceTree = "<group>"; };
 		0460977E25E8291200AC91BE /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		0460977F25E8291200AC91BE /* ChatTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewController.swift; sourceTree = "<group>"; };
 		0460978025E8291200AC91BE /* Chat.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
 		0460978125E8291200AC91BE /* CreateGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
-		0460978225E8291200AC91BE /* SearchUserForCreateGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchUserForCreateGroupViewController.swift; sourceTree = "<group>"; };
-		0460978325E8291200AC91BE /* GoToChatExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoToChatExtension.swift; sourceTree = "<group>"; };
 		046872CC25DE0CB800A6ABBF /* GlobalParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalParameters.swift; sourceTree = "<group>"; };
 		046872D025DE0E1C00A6ABBF /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		0473BF5525D2EA0900550EFB /* Questionnaire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questionnaire.swift; sourceTree = "<group>"; };
-		047E0AEF26CE86A600BFCAB6 /* Main2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main2.storyboard; sourceTree = "<group>"; };
+		0479908D26D784F8000E0332 /* iconN.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconN.png; sourceTree = "<group>"; };
+		0479908E26D784F9000E0332 /* iconS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconS.png; sourceTree = "<group>"; };
+		0479909126D78675000E0332 /* AddUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddUserViewController.swift; path = iProjectStudent/Chat/AddUserViewController.swift; sourceTree = SOURCE_ROOT; };
+		0479909326D78694000E0332 /* ChatRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
+		0479909526D786CA000E0332 /* InviteUserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteUserTableViewCell.swift; sourceTree = "<group>"; };
+		0479909626D786CA000E0332 /* InviteUserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InviteUserTableViewCell.xib; sourceTree = "<group>"; };
+		0479909926D786DC000E0332 /* ChatRoomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomTableViewCell.swift; sourceTree = "<group>"; };
+		0479909A26D786DC000E0332 /* ChatRoomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatRoomTableViewCell.xib; sourceTree = "<group>"; };
+		0479909D26D786F2000E0332 /* UserDefaultImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultImageExtension.swift; sourceTree = "<group>"; };
+		0479909F26D7879F000E0332 /* ExtensionsForChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtensionsForChat.swift; path = ../../../iProjectTeacher/iProjectTeacher/Chat/ExtensionsForChat.swift; sourceTree = "<group>"; };
 		048188B825F66D26004F01D6 /* FollowingTeacherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingTeacherViewController.swift; sourceTree = "<group>"; };
 		0488FB2D26BCD9A40028070E /* TeacherListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherListTableViewCell.swift; sourceTree = "<group>"; };
 		0488FB2E26BCD9A40028070E /* TeacherListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeacherListTableViewCell.xib; sourceTree = "<group>"; };
@@ -330,14 +342,14 @@
 			isa = PBXGroup;
 			children = (
 				0460977025E8291200AC91BE /* UI */,
-				0460977D25E8291200AC91BE /* Memo.strings */,
-				0460977E25E8291200AC91BE /* Chat.swift */,
-				0460976F25E8291200AC91BE /* ChatViewController.swift */,
 				0460977F25E8291200AC91BE /* ChatTableViewController.swift */,
-				0460978025E8291200AC91BE /* Chat.storyboard */,
+				0460976F25E8291200AC91BE /* ChatViewController.swift */,
+				0479909126D78675000E0332 /* AddUserViewController.swift */,
 				0460978125E8291200AC91BE /* CreateGroupViewController.swift */,
-				0460978225E8291200AC91BE /* SearchUserForCreateGroupViewController.swift */,
-				0460978325E8291200AC91BE /* GoToChatExtension.swift */,
+				0460978025E8291200AC91BE /* Chat.storyboard */,
+				0460977E25E8291200AC91BE /* Chat.swift */,
+				0479909326D78694000E0332 /* ChatRoom.swift */,
+				0479909F26D7879F000E0332 /* ExtensionsForChat.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -354,12 +366,16 @@
 		0460977125E8291200AC91BE /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				0479909926D786DC000E0332 /* ChatRoomTableViewCell.swift */,
+				0479909A26D786DC000E0332 /* ChatRoomTableViewCell.xib */,
 				0460977225E8291200AC91BE /* MyChatViewCell.swift */,
+				0460977625E8291200AC91BE /* MyChatViewCell.xib */,
 				0460977325E8291200AC91BE /* YourChatViewCell.xib */,
 				0460977425E8291200AC91BE /* YourChatViewCell.swift */,
 				0460977525E8291200AC91BE /* YourGroupChatViewCell.xib */,
-				0460977625E8291200AC91BE /* MyChatViewCell.xib */,
 				0460977725E8291200AC91BE /* YourGroupChatViewCell.swift */,
+				0479909526D786CA000E0332 /* InviteUserTableViewCell.swift */,
+				0479909626D786CA000E0332 /* InviteUserTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -404,6 +420,8 @@
 				0459388125D1495E00A0E3C8 /* creating.png */,
 				0459388025D1495E00A0E3C8 /* studentNoImage.png */,
 				0459387F25D1495E00A0E3C8 /* teacherNoImage.png */,
+				0479908D26D784F8000E0332 /* iconN.png */,
+				0479908E26D784F9000E0332 /* iconS.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -467,8 +485,8 @@
 				043079BB266A49D000247080 /* RailsExtensions.swift */,
 				043079BD266A49DE00247080 /* SetImageExtensions.swift */,
 				043079AF266A3F0300247080 /* TransformateExtensions.swift */,
+				0479909D26D786F2000E0332 /* UserDefaultImageExtension.swift */,
 				04A7E99725AF309900C0F43C /* Main.storyboard */,
-				047E0AEF26CE86A600BFCAB6 /* Main2.storyboard */,
 				04A7E99A25AF309900C0F43C /* Assets.xcassets */,
 				04A7E99C25AF309900C0F43C /* LaunchScreen.storyboard */,
 				04A7E99F25AF309900C0F43C /* Info.plist */,
@@ -641,6 +659,7 @@
 				1BA0D04525E7DF160008FF43 /* Icon-App-20x20@3x.png in Resources */,
 				043F1ABA26B6AC5D00389B8D /* DateTableViewCell.xib in Resources */,
 				1BA0D04A25E7DF160008FF43 /* Icon-App-40x40@2x.png in Resources */,
+				0479909826D786CA000E0332 /* InviteUserTableViewCell.xib in Resources */,
 				04B4344F26CBFF4D005A56BC /* Lecture.storyboard in Resources */,
 				0488FB3826BD1A790028070E /* BookingTableViewCell.xib in Resources */,
 				1BA0D04225E7DF160008FF43 /* Icon-App-40x40@1x.png in Resources */,
@@ -652,20 +671,20 @@
 				04A7E99B25AF309900C0F43C /* Assets.xcassets in Resources */,
 				1BA0D05125E7DF160008FF43 /* iTunesArtwork@2x.png in Resources */,
 				0460978625E8291200AC91BE /* YourChatViewCell.xib in Resources */,
-				0460978F25E8291200AC91BE /* Memo.strings in Resources */,
 				1BA0D04B25E7DF160008FF43 /* Icon-App-60x60@3x.png in Resources */,
 				1BA0D04325E7DF160008FF43 /* Icon-App-20x20@1x.png in Resources */,
 				042DBC7C26B790200091E6B9 /* FollowedTeacherInfoTableViewCell.xib in Resources */,
 				1F3343F125D1500A00A090DA /* Questionnaire.storyboard in Resources */,
 				1BA0D04425E7DF160008FF43 /* Icon-App-83.5x83.5@2x.png in Resources */,
+				0479909026D784F9000E0332 /* iconS.png in Resources */,
 				1BA0D05225E7DF160008FF43 /* iTunesArtwork@3x.png in Resources */,
 				04C7A05A25CD7F0F0031281B /* Opening.storyboard in Resources */,
 				1BA0D04F25E7DF160008FF43 /* Icon-App-29x29@2x.png in Resources */,
 				04A7E99925AF309900C0F43C /* Main.storyboard in Resources */,
 				0460979225E8291200AC91BE /* Chat.storyboard in Resources */,
 				0460978825E8291200AC91BE /* YourGroupChatViewCell.xib in Resources */,
+				0479909C26D786DD000E0332 /* ChatRoomTableViewCell.xib in Resources */,
 				0488FB3026BCD9A40028070E /* TeacherListTableViewCell.xib in Resources */,
-				047E0AF026CE86A600BFCAB6 /* Main2.storyboard in Resources */,
 				1BA0D04925E7DF160008FF43 /* Icon-App-29x29@3x.png in Resources */,
 				04A841EC25C57B1E00469B5E /* SignIn.storyboard in Resources */,
 				1BA0D04025E7DF160008FF43 /* Icon-App-76x76@2x.png in Resources */,
@@ -676,6 +695,7 @@
 				0459388225D1497300A0E3C8 /* creating.png in Resources */,
 				1BA0D03F25E7DF160008FF43 /* iTunesArtwork@1x.png in Resources */,
 				1BA0D04625E7DF160008FF43 /* ItunesArtwork@2x.png in Resources */,
+				0479908F26D784F9000E0332 /* iconN.png in Resources */,
 				1BA0D04725E7DF160008FF43 /* Contents.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -733,6 +753,7 @@
 				048D1A68267B3DD300F88973 /* ReviewTitleTableViewCell.swift in Sources */,
 				04AF5D4D25E5428100E2B385 /* Teachers.swift in Sources */,
 				043079BA266A49C300247080 /* NCMBUserExtensions.swift in Sources */,
+				0479909B26D786DD000E0332 /* ChatRoomTableViewCell.swift in Sources */,
 				043F1AA826B6AC4900389B8D /* Lecture.swift in Sources */,
 				0455EDC425DA8ECE00013330 /* ReviewTeacher.swift in Sources */,
 				0455EDC225DA8ECE00013330 /* TeacherInfoTableViewCell.swift in Sources */,
@@ -740,6 +761,7 @@
 				043F1AC126B6AC9300389B8D /* TimeFrameUnit.swift in Sources */,
 				043F1AB426B6AC5D00389B8D /* SingleScheduleTableViewCell.swift in Sources */,
 				04C7A05E25CD7F720031281B /* Opening1ViewController.swift in Sources */,
+				0479909E26D786F2000E0332 /* UserDefaultImageExtension.swift in Sources */,
 				041B7E7A26B7CEEA00F9FD60 /* DetailTelectureViewController.swift in Sources */,
 				1F761FEA25D419C600FFB590 /* UserPageViewController.swift in Sources */,
 				04A7E99625AF309900C0F43C /* ViewController.swift in Sources */,
@@ -754,6 +776,7 @@
 				0460978C25E8291200AC91BE /* MyBalloonView.swift in Sources */,
 				04EA679125BC8A9C005F0D06 /* User.swift in Sources */,
 				04C7A06025CD7F750031281B /* Opening2ViewController.swift in Sources */,
+				0479909226D78675000E0332 /* AddUserViewController.swift in Sources */,
 				0488FB2F26BCD9A40028070E /* TeacherListTableViewCell.swift in Sources */,
 				043079B8266A49A900247080 /* AlertExtensions.swift in Sources */,
 				043079BC266A49D000247080 /* RailsExtensions.swift in Sources */,
@@ -766,6 +789,8 @@
 				04AB3AF826C54A7300990F43 /* OriginalTabBarController.swift in Sources */,
 				1F3343F525D151C400A090DA /* Questionnaire_subViewController.swift in Sources */,
 				04C7A05C25CD7F6F0031281B /* ScreenSize.swift in Sources */,
+				0479909426D78694000E0332 /* ChatRoom.swift in Sources */,
+				047990A026D7879F000E0332 /* ExtensionsForChat.swift in Sources */,
 				04192FF3266A9322004F6C3D /* RadioButton.swift in Sources */,
 				0488FB3426BD15A70028070E /* SelectBookingEventViewController.swift in Sources */,
 				048A839F26B7F3FB00C7C78E /* ShowNormalEventViewController.swift in Sources */,
@@ -787,7 +812,6 @@
 				04EE4A0026059A60002A42B7 /* SpiritCompatibility.swift in Sources */,
 				043F1AA626B6AC3300389B8D /* CalendarViewController.swift in Sources */,
 				0473BF5625D2EA0900550EFB /* Questionnaire.swift in Sources */,
-				0460979525E8291200AC91BE /* GoToChatExtension.swift in Sources */,
 				0488FB3226BD01E80028070E /* BookingData.swift in Sources */,
 				041B7E7C26B7D52600F9FD60 /* ReviewListViewController.swift in Sources */,
 				0460979125E8291200AC91BE /* ChatTableViewController.swift in Sources */,
@@ -795,7 +819,6 @@
 				0460978A25E8291200AC91BE /* YourGroupChatViewCell.swift in Sources */,
 				0460978725E8291200AC91BE /* YourChatViewCell.swift in Sources */,
 				043079BE266A49DE00247080 /* SetImageExtensions.swift in Sources */,
-				0460979425E8291200AC91BE /* SearchUserForCreateGroupViewController.swift in Sources */,
 				0455EDC125DA8ECE00013330 /* ReviewDetailViewController.swift in Sources */,
 				1F2A698E2670E03500A3ACC4 /* Review.swift in Sources */,
 				1FB58C2E25E3ED29009CFCD0 /* ForgetPasswordViewController.swift in Sources */,
@@ -805,6 +828,7 @@
 				043F1ABF26B6AC7500389B8D /* ScheduleObject.swift in Sources */,
 				04F2792E2679C35500138955 /* TimeRange.swift in Sources */,
 				044BD1C3265D2C9800A169FC /* CalenderExtension.swift in Sources */,
+				0479909726D786CA000E0332 /* InviteUserTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

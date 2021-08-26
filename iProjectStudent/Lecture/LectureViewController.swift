@@ -49,7 +49,7 @@ class LectureViewController: UIViewController {
             object.fetchInBackground({ (error) in
                 if(error == nil){
                     let peerId = object.object(forKey: "peerId") as? String
-                    if(peerId == nil){
+                    if(peerId == nil || peerId == ""){
                         DispatchQueue.main.async {
                             self.mainView.addSubview(self.waitingLabel)
                         }
@@ -249,6 +249,9 @@ extension LectureViewController{
         }else{
             print("failed to create peer setup")
         }
+        
+        setAppFinishIvent()
+        
     }
     
     func setupStream(peer:SKWPeer){
@@ -268,6 +271,28 @@ extension LectureViewController{
         }else{
             print("failed to call :\(targetPeerId)")
         }
+    }
+    
+    func setAppFinishIvent(){
+        let notificationCenter1 = NotificationCenter.default
+        notificationCenter1.addObserver(
+            self,
+            selector: #selector(self.finnished),
+            name:UIApplication.willTerminateNotification,
+            object: nil)
+        let notificationCenter2 = NotificationCenter.default
+        notificationCenter2.addObserver(
+            self,
+            selector: #selector(self.finnished),
+            name:UIApplication.didEnterBackgroundNotification,
+            object: nil)
+    }
+    
+    @objc private func finnished(){
+        let obj = currentUserG.studentParameter!.ncmb
+        obj.setObject(nil, forKey: "peerId")
+        let error = NSErrorPointer(nilLiteral: ())
+        obj.save(error)
     }
 }
 

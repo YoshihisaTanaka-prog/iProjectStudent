@@ -11,13 +11,12 @@ import NCMB
 
 class Opening1ViewController: UIViewController {
     
-    @IBOutlet var label: UILabel!
+    private var imageView = UIImageView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = dColor.opening
-        label.alpha = 0.f
         isLogInG = false
         let ud = UserDefaults.standard
         if ud.bool(forKey: "isLogin"){
@@ -33,15 +32,13 @@ class Opening1ViewController: UIViewController {
 //                        条件を全て満たしていたら再ログインする。
                         NCMBUser.logInWithMailAddress(inBackground: u.mailAddress, password: p) { (user, error) in
                             if error == nil{
+                                currentUserG = User(user!)
 //                                次回のログイン判定のために「以前ログインした時間」を保存する部分を今の時間に上書きする。
                                 ud.set(now, forKey: u.mailAddress + "time")
                                 ud.set(true, forKey: "isLogin")
                                 ud.synchronize()
 //                                ログインしていることを次のViewに伝える、ログイン中のユーザーの情報を保存する。
                                 isLogInG = true
-                                currentUserG = User(user!)
-//                                フォロワーを読み込む
-                                self.loadFollowList()
                             }
                         }
                     } else {
@@ -68,8 +65,19 @@ class Opening1ViewController: UIViewController {
 //        画面サイズの取得
         screenSizeG["NnNt"] = Size(x: self.view.frame.size.width, y: self.view.frame.size.height, tm: self.view.safeAreaInsets.top, bm: self.view.safeAreaInsets.bottom)
         print("NnNt", screenSizeG["NnNt"]!.viewHeight)
-        UIView.animate(withDuration: 1.5, animations: {
-            self.label.alpha = 1.f
+        
+        let x = screenSizeG["NnNt"]!.width
+        let y = screenSizeG["NnNt"]!.screenHeight
+        imageView.frame = CGRect(x: 0, y: 0, width: x*0.8, height: x*0.8)
+        imageView.layer.cornerRadius = x / 10.f
+        imageView.clipsToBounds = true
+        imageView.center = CGPoint(x: x / 2.f, y: y / 2.f)
+        imageView.image = UIImage(named: "iconN.png")
+        imageView.alpha = 0.f
+        self.view.addSubview(imageView)
+        
+        UIView.animate(withDuration: 0.8, animations: {
+            self.imageView.alpha = 1.f
         }) { _ in
 //            ナビゲーションバーがある場合の画面サイズを取得するために画面遷移を行う
             let storyboad = UIStoryboard(name: "Opening", bundle: nil)

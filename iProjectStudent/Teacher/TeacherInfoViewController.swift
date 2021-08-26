@@ -344,7 +344,7 @@ extension TeacherInfoViewController: TeacherInfoTableViewCellDelegate, FollowedT
     
     func didTapCellButton(tableViewCell: UITableViewCell, button: UIButton) {
         print("didTapButton was called!")
-        self.createFollow(teacher.userId)
+        self.createFollow(teacher)
         var k = -1
         for i in 0..<waitingUserListG.count{
             if waitingUserListG[i].userId == teacher.userId {
@@ -479,7 +479,11 @@ extension TeacherInfoViewController{
             nextVC.isAbletoEdit = false
         case "GoToChat":
             let nextVC = segue.destination as! ChatViewController
-            nextVC.selectedChatRoom = ChatRoom(teacher)
+            let chatRoom = ChatRoom(user: teacher)
+            chatRoom.loadChats()
+            chatRoom.delegate = nextVC
+            nextVC.sentChatRoom = chatRoom
+            break
         case "WatchSchedule":
             let nextVC = segue.destination as! CalendarViewController
             nextVC.teacher = teacher

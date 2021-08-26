@@ -30,7 +30,6 @@ class UserPageViewController: UIViewController, UITextFieldDelegate, UITextViewD
         userImageView.layer.masksToBounds = true
         
         setBackGround(true, true)
-        myScheduleG.loadSchedule(date: Date(), userIds: [currentUserG.userId], self)
         // Do any additional setup after loading the view.
     }
     
