@@ -80,16 +80,7 @@ class ChatRoom{
     }
     
     convenience init(user: User){
-        let q = NCMBQuery(className: "UserChatRoom")!
-        
-        q.whereKey("oneOnOneSearch", equalTo: user.oneOnOneSerch)
-        
-        let result = try! q.findObjects().first!
-        let object = result as! NCMBObject
-        
-        let id = object.object(forKey: "chatRoomId") as! String
-        
-        let o = NCMBObject(className: "ChatRoom", objectId: id)!
+        let o = NCMBObject(className: "ChatRoom", objectId: user.chatRoomId)!
         var error: NSError? = nil
         o.fetch(&error)
         self.init(chatRoom: o, UIViewController())

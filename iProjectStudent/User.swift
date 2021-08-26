@@ -18,7 +18,7 @@ class User {
     var grade = "0"
     var status = 0
     var mailAddress = ""
-    var oneOnOneSerch: String
+    var chatRoomId = ""
     var selection = ""
     var introduction = ""
     var youbiTimeList: [[String]] = []
@@ -29,14 +29,6 @@ class User {
     init(userId: String, isNeedParameter: Bool, viewController: UIViewController) {
         
         self.userId = userId
-        
-        //        個人チャットを検索するためのパラメータ
-        if (NCMBUser.current()?.objectId)! < self.userId {
-            oneOnOneSerch = (NCMBUser.current()?.objectId)! + "-" + self.userId
-        }
-        else{
-            oneOnOneSerch = self.userId + "-" + (NCMBUser.current()?.objectId)!
-        }
         
         //        ユーザの詳細データ
         if isNeedParameter{
