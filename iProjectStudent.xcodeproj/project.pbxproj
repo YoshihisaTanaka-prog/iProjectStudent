@@ -134,7 +134,6 @@
 		1FA191B625CACE3F007B935B /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA191B525CACE3F007B935B /* SignInViewController.swift */; };
 		1FA191B925CC1F56007B935B /* SignUp2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA191B825CC1F56007B935B /* SignUp2ViewController.swift */; };
 		1FB58C2E25E3ED29009CFCD0 /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB58C2D25E3ED29009CFCD0 /* ForgetPasswordViewController.swift */; };
-		1FE0F48126D7B19E004C8835 /* ExtensionForChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE0F48026D7B19E004C8835 /* ExtensionForChat.swift */; };
 		1FF0559526A056BD0009E19B /* ChoiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF0559326A056BD0009E19B /* ChoiceTableViewCell.swift */; };
 		1FF0559626A056BD0009E19B /* ChoiceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FF0559426A056BD0009E19B /* ChoiceTableViewCell.xib */; };
 		1FF055A326A06E390009E19B /* DetailChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF055A226A06E390009E19B /* DetailChoiceViewController.swift */; };
@@ -272,7 +271,6 @@
 		1FA191B525CACE3F007B935B /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		1FA191B825CC1F56007B935B /* SignUp2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp2ViewController.swift; sourceTree = "<group>"; };
 		1FB58C2D25E3ED29009CFCD0 /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
-		1FE0F48026D7B19E004C8835 /* ExtensionForChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionForChat.swift; sourceTree = "<group>"; };
 		1FF0559326A056BD0009E19B /* ChoiceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceTableViewCell.swift; sourceTree = "<group>"; };
 		1FF0559426A056BD0009E19B /* ChoiceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChoiceTableViewCell.xib; sourceTree = "<group>"; };
 		1FF055A226A06E390009E19B /* DetailChoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailChoiceViewController.swift; sourceTree = "<group>"; };
@@ -349,7 +347,6 @@
 				0460978025E8291200AC91BE /* Chat.storyboard */,
 				0460977E25E8291200AC91BE /* Chat.swift */,
 				0479909326D78694000E0332 /* ChatRoom.swift */,
-				1FE0F48026D7B19E004C8835 /* ExtensionForChat.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -802,7 +799,6 @@
 				043079B0266A3F0300247080 /* TransformateExtensions.swift in Sources */,
 				1F806AC925D81336001BF41B /* EditUserPageViewController.swift in Sources */,
 				046872CD25DE0CB800A6ABBF /* GlobalParameters.swift in Sources */,
-				1FE0F48126D7B19E004C8835 /* ExtensionForChat.swift in Sources */,
 				1FA191B625CACE3F007B935B /* SignInViewController.swift in Sources */,
 				0455EDC025DA8ECD00013330 /* TeacherInfoViewController.swift in Sources */,
 				046872D125DE0E1C00A6ABBF /* CheckBox.swift in Sources */,
