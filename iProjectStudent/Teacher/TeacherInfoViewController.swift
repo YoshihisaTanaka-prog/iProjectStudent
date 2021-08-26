@@ -344,7 +344,7 @@ extension TeacherInfoViewController: TeacherInfoTableViewCellDelegate, FollowedT
     
     func didTapCellButton(tableViewCell: UITableViewCell, button: UIButton) {
         print("didTapButton was called!")
-        self.createFollow(teacher.userId)
+        self.createFollow(teacher)
         var k = -1
         for i in 0..<waitingUserListG.count{
             if waitingUserListG[i].userId == teacher.userId {

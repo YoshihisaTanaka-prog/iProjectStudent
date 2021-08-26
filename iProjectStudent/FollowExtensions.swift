@@ -63,7 +63,8 @@ extension UIViewController{
         return ret
     }
     
-    func createFollow(_ userId: String){
+    func createFollow(_ user: User){
+        let userId = user.userId
         
         let query = NCMBQuery(className: "Follow")
         query?.whereKey("fromUserId", equalTo: NCMBUser.current()!.objectId)
@@ -71,25 +72,63 @@ extension UIViewController{
         query?.findObjectsInBackground({ result, error in
             if error == nil {
                 if result!.count == 0 {
-                    let object1 = NCMBObject(className: "Follow")
-                    object1?.setObject(NCMBUser.current()!.objectId, forKey: "fromUserId")
-                    object1?.setObject(userId, forKey: "toUserId")
-                    object1?.setObject(1, forKey: "status")
-                    object1?.saveInBackground({ error in
-                        if error == nil {
-                            let object2 = NCMBObject(className: "Follow")
-                            object2?.setObject(NCMBUser.current()!.objectId, forKey: "toUserId")
-                            object2?.setObject(userId, forKey: "fromUserId")
-                            object2?.setObject(0, forKey: "status")
-                            object2?.saveInBackground({ error in
+                    let object = NCMBObject(className: "ChatRoom")
+                    let userInfo = [[currentUserG.userId, currentUserG.userName], [userId,user.userName]]
+                    object?.setObject(userInfo, forKey: "userInfo")
+                    object?.saveInBackground({ error in
+                        if error == nil{
+                            object?.setObject(object?.createDate, forKey: "lastTimeMessageSent")
+                            object?.saveInBackground({ error in
                                 if error == nil{
-                                    followUserListG.append(User(userId: userId, isNeedParameter: true, viewController: self))
-                                } else {
-                                    self.showOkAlert(title: "Error", message: error!.localizedDescription)
+                                    let room1 = NCMBObject(className: "UserChatRoom")
+                                    room1?.setObject(object?.objectId, forKey: "chatRoomId")
+                                    room1?.setObject(false, forKey: "isFirst")
+                                    room1?.setObject(currentUserG.userId, forKey: "userId")
+                                    room1?.saveInBackground({ error in
+                                        if error == nil{
+                                            let room2 = NCMBObject(className: "UserChatRoom")
+                                            room2?.setObject(object?.objectId, forKey: "chatRoomId")
+                                            room2?.setObject(true, forKey: "isFirst")
+                                            room2?.setObject(userId, forKey: "userId")
+                                            room2?.saveInBackground({ error in
+                                                if error == nil{
+                                                    let object1 = NCMBObject(className: "Follow")
+                                                    object1?.setObject(NCMBUser.current()!.objectId, forKey: "fromUserId")
+                                                    object1?.setObject(userId, forKey: "toUserId")
+                                                    object1?.setObject(1, forKey: "status")
+                                                    object1?.setObject(object?.objectId, forKey: "chatRoomId")
+                                                    object1?.saveInBackground({ error in
+                                                        if error == nil {
+                                                            let object2 = NCMBObject(className: "Follow")
+                                                            object2?.setObject(NCMBUser.current()!.objectId, forKey: "toUserId")
+                                                            object2?.setObject(userId, forKey: "fromUserId")
+                                                            object2?.setObject(0, forKey: "status")
+                                                            object2?.setObject(object?.objectId, forKey: "chatRoomId")
+                                                            object2?.saveInBackground({ error in
+                                                                if error == nil{
+                                                                    followUserListG.append(User(userId: userId, isNeedParameter: true, viewController: self))
+                                                                } else {
+                                                                    self.showOkAlert(title: "Error", message: error!.localizedDescription)
+                                                                }
+                                                            })
+                                                        } else{
+                                                            self.showOkAlert(title: "Error", message: error!.localizedDescription)
+                                                        }
+                                                    })
+                                                } else {
+                                                    self.showOkAlert(title: "Saving chat room error", message: error!.localizedDescription)
+                                                }
+                                            })
+                                        } else {
+                                            self.showOkAlert(title: "Saving chat room error", message: error!.localizedDescription)
+                                        }
+                                    })
+                                } else{
+                                    self.showOkAlert(title: "Saving chat room error", message: error!.localizedDescription)
                                 }
                             })
                         } else{
-                            self.showOkAlert(title: "Error", message: error!.localizedDescription)
+                            self.showOkAlert(title: "Saving chat room error", message: error!.localizedDescription)
                         }
                     })
                 } else {
