@@ -21,13 +21,15 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
     //@IBOutlet var emailTextField: UITextField!
     @IBOutlet var parentsEmailTextField: UITextField!
     //@IBOutlet var choiceTextField: UITextField!
-    @IBOutlet var pickerView1: UIPickerView!
+    @IBOutlet var bunriPickerView1: UIPickerView!
+    @IBOutlet var gradePickerView2: UIPickerView!
     @IBOutlet var introductionTextView: UITextView!
     @IBOutlet private var choicetableView: UITableView!
 
     private var imageName: String?
     var selected: String?
     let bunri = ["文理選択","文系","理系","その他"]
+    let gradelist = ["1年生","2年生","3年生","その他"]
 //    var youbiCheckBox: CheckBox!
 //    let youbiList: [CheckBoxInput] = [
 //        CheckBoxInput("月曜日"),
@@ -75,8 +77,12 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         gradeTextField.delegate = self
         //emailTextField.delegate = self
         parentsEmailTextField.delegate = self
-        pickerView1.delegate = self
-        pickerView1.dataSource = self
+        bunriPickerView1.delegate = self
+        bunriPickerView1.dataSource = self
+        bunriPickerView1.tag = 1
+        gradePickerView2.delegate = self
+        gradePickerView2.dataSource = self
+        gradePickerView2.tag = 2
         //choiceTextField.delegate = self
         introductionTextView.delegate = self
         
@@ -86,7 +92,8 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         schoolTextField.text = currentUserG.studentParameter?.schoolName
         gradeTextField.text = currentUserG.grade
         introductionTextView.text = currentUserG.introduction
-        pickerView1.selectRow(getSelectionNum(selesction: currentUserG.selection), inComponent: 0, animated: false)
+        bunriPickerView1.selectRow(getSelectionNum(selesction: currentUserG.selection), inComponent: 0, animated: false)
+        gradePickerView2.selectRow(getSelectionNum(selesction: currentUserG.selection), inComponent: 0, animated: false)
         selected = currentUserG.selection
         //choiceTextField.text = (currentUserG.studentParameter?.choice.first ?? []).first ?? ""
         
@@ -157,20 +164,42 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
     
     // UIPickerViewの行数、リストの数
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return bunri.count
+        if pickerView.tag == 1 {
+            return bunri.count
+        } else if pickerView.tag == 2 {
+            return gradelist.count
+        } else {
+            return 0
+        }
+        
         
     }
     
     // UIPickerViewの最初の表示
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return bunri[row]
         
+        if pickerView.tag == 1 {
+            return bunri[row]
+        } else if pickerView.tag == 2 {
+            return gradelist[row]
+        } else {
+            return "0"
+        }
     }
     
     // UIPickerViewのRowが選択された時の挙動
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if row != 0 {
-            selected = bunri[row]
+            
+            if pickerView.tag == 1 {
+                selected = bunri[row]
+            } else if pickerView.tag == 2 {
+                selected = gradelist[row]
+            } else {
+               
+            }
+            
+    
         } else {
             selected = nil
         }
