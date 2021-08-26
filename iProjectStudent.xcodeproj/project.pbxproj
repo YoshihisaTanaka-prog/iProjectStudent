@@ -72,7 +72,6 @@
 		0479909B26D786DD000E0332 /* ChatRoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0479909926D786DC000E0332 /* ChatRoomTableViewCell.swift */; };
 		0479909C26D786DD000E0332 /* ChatRoomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0479909A26D786DC000E0332 /* ChatRoomTableViewCell.xib */; };
 		0479909E26D786F2000E0332 /* UserDefaultImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0479909D26D786F2000E0332 /* UserDefaultImageExtension.swift */; };
-		047990A026D7879F000E0332 /* ExtensionsForChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0479909F26D7879F000E0332 /* ExtensionsForChat.swift */; };
 		048188B925F66D26004F01D6 /* FollowingTeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048188B825F66D26004F01D6 /* FollowingTeacherViewController.swift */; };
 		0488FB2F26BCD9A40028070E /* TeacherListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0488FB2D26BCD9A40028070E /* TeacherListTableViewCell.swift */; };
 		0488FB3026BCD9A40028070E /* TeacherListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0488FB2E26BCD9A40028070E /* TeacherListTableViewCell.xib */; };
@@ -135,6 +134,7 @@
 		1FA191B625CACE3F007B935B /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA191B525CACE3F007B935B /* SignInViewController.swift */; };
 		1FA191B925CC1F56007B935B /* SignUp2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA191B825CC1F56007B935B /* SignUp2ViewController.swift */; };
 		1FB58C2E25E3ED29009CFCD0 /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB58C2D25E3ED29009CFCD0 /* ForgetPasswordViewController.swift */; };
+		1FE0F48126D7B19E004C8835 /* ExtensionForChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE0F48026D7B19E004C8835 /* ExtensionForChat.swift */; };
 		1FF0559526A056BD0009E19B /* ChoiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF0559326A056BD0009E19B /* ChoiceTableViewCell.swift */; };
 		1FF0559626A056BD0009E19B /* ChoiceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FF0559426A056BD0009E19B /* ChoiceTableViewCell.xib */; };
 		1FF055A326A06E390009E19B /* DetailChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF055A226A06E390009E19B /* DetailChoiceViewController.swift */; };
@@ -207,7 +207,6 @@
 		0479909926D786DC000E0332 /* ChatRoomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomTableViewCell.swift; sourceTree = "<group>"; };
 		0479909A26D786DC000E0332 /* ChatRoomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatRoomTableViewCell.xib; sourceTree = "<group>"; };
 		0479909D26D786F2000E0332 /* UserDefaultImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultImageExtension.swift; sourceTree = "<group>"; };
-		0479909F26D7879F000E0332 /* ExtensionsForChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtensionsForChat.swift; path = ../../../iProjectTeacher/iProjectTeacher/Chat/ExtensionsForChat.swift; sourceTree = "<group>"; };
 		048188B825F66D26004F01D6 /* FollowingTeacherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingTeacherViewController.swift; sourceTree = "<group>"; };
 		0488FB2D26BCD9A40028070E /* TeacherListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherListTableViewCell.swift; sourceTree = "<group>"; };
 		0488FB2E26BCD9A40028070E /* TeacherListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeacherListTableViewCell.xib; sourceTree = "<group>"; };
@@ -273,6 +272,7 @@
 		1FA191B525CACE3F007B935B /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		1FA191B825CC1F56007B935B /* SignUp2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp2ViewController.swift; sourceTree = "<group>"; };
 		1FB58C2D25E3ED29009CFCD0 /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
+		1FE0F48026D7B19E004C8835 /* ExtensionForChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionForChat.swift; sourceTree = "<group>"; };
 		1FF0559326A056BD0009E19B /* ChoiceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceTableViewCell.swift; sourceTree = "<group>"; };
 		1FF0559426A056BD0009E19B /* ChoiceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChoiceTableViewCell.xib; sourceTree = "<group>"; };
 		1FF055A226A06E390009E19B /* DetailChoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailChoiceViewController.swift; sourceTree = "<group>"; };
@@ -349,7 +349,7 @@
 				0460978025E8291200AC91BE /* Chat.storyboard */,
 				0460977E25E8291200AC91BE /* Chat.swift */,
 				0479909326D78694000E0332 /* ChatRoom.swift */,
-				0479909F26D7879F000E0332 /* ExtensionsForChat.swift */,
+				1FE0F48026D7B19E004C8835 /* ExtensionForChat.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -790,7 +790,6 @@
 				1F3343F525D151C400A090DA /* Questionnaire_subViewController.swift in Sources */,
 				04C7A05C25CD7F6F0031281B /* ScreenSize.swift in Sources */,
 				0479909426D78694000E0332 /* ChatRoom.swift in Sources */,
-				047990A026D7879F000E0332 /* ExtensionsForChat.swift in Sources */,
 				04192FF3266A9322004F6C3D /* RadioButton.swift in Sources */,
 				0488FB3426BD15A70028070E /* SelectBookingEventViewController.swift in Sources */,
 				048A839F26B7F3FB00C7C78E /* ShowNormalEventViewController.swift in Sources */,
@@ -803,6 +802,7 @@
 				043079B0266A3F0300247080 /* TransformateExtensions.swift in Sources */,
 				1F806AC925D81336001BF41B /* EditUserPageViewController.swift in Sources */,
 				046872CD25DE0CB800A6ABBF /* GlobalParameters.swift in Sources */,
+				1FE0F48126D7B19E004C8835 /* ExtensionForChat.swift in Sources */,
 				1FA191B625CACE3F007B935B /* SignInViewController.swift in Sources */,
 				0455EDC025DA8ECD00013330 /* TeacherInfoViewController.swift in Sources */,
 				046872D125DE0E1C00A6ABBF /* CheckBox.swift in Sources */,
