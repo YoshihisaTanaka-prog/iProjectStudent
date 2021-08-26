@@ -22,8 +22,6 @@ class Opening2ViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.tabBarController?.tabBar.alpha = 0.f
-        self.navigationController?.navigationBar.backgroundColor = dColor.base
         self.view.backgroundColor = dColor.opening
         
         
@@ -43,6 +41,8 @@ class Opening2ViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.alpha = 0.f
+        self.navigationController?.navigationBar.alpha = 0.f
 //        TabBarやNavigationBarがある時の画面サイズの取得
         let size = screenSizeG["NnNt"]!
         

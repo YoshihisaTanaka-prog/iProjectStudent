@@ -17,7 +17,6 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
     @IBOutlet var userIdTextField: UITextField!
     @IBOutlet var userIdFuriganaTextField: UITextField!
     @IBOutlet var schoolTextField: UITextField!
-    @IBOutlet var gradeTextField: UITextField!
     //@IBOutlet var emailTextField: UITextField!
     @IBOutlet var parentsEmailTextField: UITextField!
     //@IBOutlet var choiceTextField: UITextField!
@@ -27,9 +26,10 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
     @IBOutlet private var choicetableView: UITableView!
 
     private var imageName: String?
-    var selected: String?
+    var bunriSelected: String?
+    var gradeSelected: String?
     let bunri = ["文理選択","文系","理系","その他"]
-    let gradelist = ["1年生","2年生","3年生","その他"]
+    let gradelist = [["1年生","H1"],["2年生","H1"],["3年生","H1"],["浪人生","R"],["その他","0"]]
 //    var youbiCheckBox: CheckBox!
 //    let youbiList: [CheckBoxInput] = [
 //        CheckBoxInput("月曜日"),
@@ -74,7 +74,6 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         userIdTextField.delegate = self
         userIdFuriganaTextField.delegate = self
         schoolTextField.delegate = self
-        gradeTextField.delegate = self
         //emailTextField.delegate = self
         parentsEmailTextField.delegate = self
         bunriPickerView1.delegate = self
@@ -90,11 +89,11 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         //emailTextField.text = mailAddress_
         userIdFuriganaTextField.text = currentUserG.furigana
         schoolTextField.text = currentUserG.studentParameter?.schoolName
-        gradeTextField.text = currentUserG.grade
         introductionTextView.text = currentUserG.introduction
         bunriPickerView1.selectRow(getSelectionNum(selesction: currentUserG.selection), inComponent: 0, animated: false)
         gradePickerView2.selectRow(getSelectionNum(selesction: currentUserG.selection), inComponent: 0, animated: false)
-        selected = currentUserG.selection
+        bunriSelected = currentUserG.selection
+        gradeSelected = currentUserG.grade
         //choiceTextField.text = (currentUserG.studentParameter?.choice.first ?? []).first ?? ""
         
         parentsEmailTextField.text = currentUserG.studentParameter?.parentEmailAdress
@@ -181,7 +180,7 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         if pickerView.tag == 1 {
             return bunri[row]
         } else if pickerView.tag == 2 {
-            return gradelist[row]
+            return gradelist[row][0]
         } else {
             return "0"
         }
@@ -189,19 +188,14 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
     
     // UIPickerViewのRowが選択された時の挙動
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if row != 0 {
-            
-            if pickerView.tag == 1 {
-                selected = bunri[row]
-            } else if pickerView.tag == 2 {
-                selected = gradelist[row]
-            } else {
-               
+        if pickerView.tag == 1 {
+            if (row == 0){
+                bunriSelected = nil
+            } else{
+                bunriSelected = bunri[row]
             }
-            
-    
-        } else {
-            selected = nil
+        } else if pickerView.tag == 2 {
+            gradeSelected = gradelist[row][1]
         }
     }
 
@@ -238,9 +232,6 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         if schoolTextField.text != currentUserG.studentParameter?.schoolName {
             return true
         }
-        if gradeTextField.text != currentUserG.grade {
-            return true
-        }
         if introductionTextView.text != currentUserG.introduction {
             return true
         }
@@ -250,7 +241,10 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
 //        if youbiCheckBox.selectionText != currentUserG.studentParameter?.youbi {
 //            return true
 //        }
-        if selected != currentUserG.selection {
+        if bunriSelected != currentUserG.selection {
+            return true
+        }
+        if gradeSelected != currentUserG.grade {
             return true
         }
         // 一旦この形式で。（志望校は1つとは限らない　＆　後々のアップデートで大学・学部・学科は分けられるようにしといた方がいいと思うので、二重配列として保存します。）
@@ -270,13 +264,16 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         param.setObject(userIdTextField.text, forKey: "userName")
         param.setObject(userIdFuriganaTextField.text, forKey: "furigana")
         param.setObject(schoolTextField.text, forKey: "schoolName")
-        param.setObject(gradeTextField.text, forKey: "grade")
         //param.setObject([[choiceTextField.text]], forKey: "choice")
         param.setObject(choice, forKey: "choice")
         param.setObject(parentsEmailTextField.text, forKey: "parentEmailAdress")
-        if(selected != nil){
-            param.setObject(selected!, forKey: "selection")
+        if(bunriSelected != nil){
+            param.setObject(bunriSelected!, forKey: "selection")
         }
+        if(gradeSelected != nil){
+            param.setObject(gradeSelected!, forKey: "grade")
+        }
+        
         param.setObject(introductionTextView.text, forKey: "introduction")
         //param.setObject(youbiCheckBox.selectionText, forKey: "youbi")
         
@@ -295,10 +292,8 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         
         param.saveInBackground { (error) in
             if error == nil{
-                currentUserG = User(NCMBUser.current()!)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                    self.navigationController?.popViewController(animated: true)
-                }
+                currentUserG.studentParameter = StudentParameter(param)
+                self.navigationController?.popViewController(animated: true)
             } else{
                 self.showOkAlert(title: "Error", message: error!.localizedDescription)
             }
@@ -400,6 +395,20 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
             return 0
         }
         return i!
+    }
+    
+    
+    
+    func getGradeNum(selesction: String?) -> Int {
+        if selesction == nil{
+            return gradelist.count - 1
+        }
+        for i in 0..<gradelist.count{
+            if gradelist[i][1] == selesction!{
+                return i
+            }
+        }
+        return gradelist.count - 1
     }
     
     //セルの個数

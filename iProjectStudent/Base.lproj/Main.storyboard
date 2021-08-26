@@ -228,14 +228,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="学年" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hLL-Fh-g87">
-                                <rect key="frame" x="100" y="360" width="214" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="dxf-DR-r2M"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="通っている学校名" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GEh-57-D9i">
                                 <rect key="frame" x="100" y="321" width="214" height="34"/>
                                 <constraints>
@@ -267,7 +259,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="保護者のメールアドレス" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oYK-NK-iNB">
-                                <rect key="frame" x="100" y="595" width="214" height="34"/>
+                                <rect key="frame" x="100" y="622" width="214" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="syM-oi-q2A"/>
                                 </constraints>
@@ -275,7 +267,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="ここに自己紹介文" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="yGC-vQ-RoH">
-                                <rect key="frame" x="100" y="649" width="214" height="84"/>
+                                <rect key="frame" x="100" y="676" width="214" height="57"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -292,19 +284,19 @@
                                 </connections>
                             </button>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dfF-7z-xrL">
-                                <rect key="frame" x="100" y="394" width="214" height="50"/>
+                                <rect key="frame" x="100" y="421" width="214" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="jP9-Yl-nHP"/>
                                 </constraints>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="志望校" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="63x-Ly-X8a">
-                                <rect key="frame" x="100" y="452" width="214" height="21"/>
+                                <rect key="frame" x="100" y="479" width="214" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kKB-f4-qKH">
-                                <rect key="frame" x="0.0" y="481" width="414" height="106"/>
+                                <rect key="frame" x="0.0" y="508" width="414" height="106"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="106" id="5SQ-1x-kwx"/>
@@ -320,11 +312,20 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="awr-Ls-ZY8">
+                                <rect key="frame" x="100" y="363" width="214" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Bks-1j-dma"/>
+                                </constraints>
+                            </pickerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="WGZ-FB-9Xa"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="awr-Ls-ZY8" firstAttribute="trailing" secondItem="Z5m-hW-eCl" secondAttribute="trailing" id="0Cw-uD-DLn"/>
                             <constraint firstItem="awL-dg-5bX" firstAttribute="top" secondItem="Jvm-vH-xuj" secondAttribute="bottom" constant="5" id="1mc-Ve-brk"/>
+                            <constraint firstItem="awr-Ls-ZY8" firstAttribute="top" secondItem="GEh-57-D9i" secondAttribute="bottom" constant="8" symbolic="YES" id="2jL-tJ-BSr"/>
+                            <constraint firstItem="awr-Ls-ZY8" firstAttribute="leading" secondItem="Z5m-hW-eCl" secondAttribute="leading" id="3v8-22-aXS"/>
                             <constraint firstItem="GEh-57-D9i" firstAttribute="leading" secondItem="Z5m-hW-eCl" secondAttribute="leading" id="45h-kg-Ssa"/>
                             <constraint firstItem="kKB-f4-qKH" firstAttribute="leading" secondItem="WGZ-FB-9Xa" secondAttribute="leading" id="6PC-V6-tSK"/>
                             <constraint firstItem="GEh-57-D9i" firstAttribute="trailing" secondItem="Z5m-hW-eCl" secondAttribute="trailing" id="6RI-I9-0Ot"/>
@@ -335,7 +336,6 @@
                             <constraint firstItem="dfF-7z-xrL" firstAttribute="leading" secondItem="Z5m-hW-eCl" secondAttribute="leading" id="JLo-1W-8Fr"/>
                             <constraint firstItem="WGZ-FB-9Xa" firstAttribute="bottom" secondItem="vXW-pv-gyj" secondAttribute="bottom" constant="30" id="Ke6-1b-xoP"/>
                             <constraint firstItem="awL-dg-5bX" firstAttribute="centerX" secondItem="yRO-qh-Oiq" secondAttribute="centerX" id="Lhp-Nb-itV"/>
-                            <constraint firstItem="hLL-Fh-g87" firstAttribute="leading" secondItem="Z5m-hW-eCl" secondAttribute="leading" id="NyN-j5-BPq"/>
                             <constraint firstItem="kKB-f4-qKH" firstAttribute="trailing" secondItem="WGZ-FB-9Xa" secondAttribute="trailing" id="Qep-8W-DCR"/>
                             <constraint firstItem="vXW-pv-gyj" firstAttribute="top" secondItem="yGC-vQ-RoH" secondAttribute="bottom" constant="20" id="WSa-BN-clw"/>
                             <constraint firstItem="kKB-f4-qKH" firstAttribute="top" secondItem="63x-Ly-X8a" secondAttribute="bottom" constant="8" symbolic="YES" id="aWv-Zs-Swu"/>
@@ -347,13 +347,10 @@
                             <constraint firstItem="Jvm-vH-xuj" firstAttribute="top" secondItem="WGZ-FB-9Xa" secondAttribute="top" id="hgu-FW-DqV"/>
                             <constraint firstItem="oYK-NK-iNB" firstAttribute="trailing" secondItem="Z5m-hW-eCl" secondAttribute="trailing" id="i6V-PE-DXO"/>
                             <constraint firstItem="Z5m-hW-eCl" firstAttribute="centerX" secondItem="yRO-qh-Oiq" secondAttribute="centerX" id="jG4-WT-3Nn"/>
-                            <constraint firstItem="dfF-7z-xrL" firstAttribute="top" secondItem="hLL-Fh-g87" secondAttribute="bottom" id="k3b-y6-vfA"/>
-                            <constraint firstItem="dfF-7z-xrL" firstAttribute="top" secondItem="hLL-Fh-g87" secondAttribute="bottom" id="kwQ-aY-aFC"/>
                             <constraint firstItem="Jvm-vH-xuj" firstAttribute="centerX" secondItem="yRO-qh-Oiq" secondAttribute="centerX" id="lpL-DF-dEV"/>
-                            <constraint firstItem="hLL-Fh-g87" firstAttribute="top" secondItem="GEh-57-D9i" secondAttribute="bottom" constant="5" id="mPD-wP-Agp"/>
+                            <constraint firstItem="dfF-7z-xrL" firstAttribute="top" secondItem="awr-Ls-ZY8" secondAttribute="bottom" constant="8" symbolic="YES" id="oIy-tz-6hz"/>
                             <constraint firstItem="oYK-NK-iNB" firstAttribute="top" secondItem="kKB-f4-qKH" secondAttribute="bottom" constant="8" symbolic="YES" id="opE-AJ-HrA"/>
                             <constraint firstItem="kKB-f4-qKH" firstAttribute="top" secondItem="63x-Ly-X8a" secondAttribute="bottom" constant="8" symbolic="YES" id="qjh-eA-dZo"/>
-                            <constraint firstItem="hLL-Fh-g87" firstAttribute="trailing" secondItem="Z5m-hW-eCl" secondAttribute="trailing" id="rXK-vO-XKS"/>
                             <constraint firstItem="yGC-vQ-RoH" firstAttribute="top" secondItem="oYK-NK-iNB" secondAttribute="bottom" constant="20" id="riB-0g-hsg"/>
                             <constraint firstItem="63x-Ly-X8a" firstAttribute="leading" secondItem="WGZ-FB-9Xa" secondAttribute="leading" constant="100" id="u65-KR-xFd"/>
                             <constraint firstItem="vXW-pv-gyj" firstAttribute="trailing" secondItem="yGC-vQ-RoH" secondAttribute="trailing" id="umH-fh-5fC"/>
@@ -375,11 +372,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bunriPickerView1" destination="dfF-7z-xrL" id="ewn-RO-4y3"/>
                         <outlet property="choicetableView" destination="kKB-f4-qKH" id="hmX-qj-ieO"/>
-                        <outlet property="gradeTextField" destination="hLL-Fh-g87" id="7wX-hR-nL3"/>
+                        <outlet property="gradePickerView2" destination="awr-Ls-ZY8" id="sf5-Ee-u61"/>
                         <outlet property="introductionTextView" destination="yGC-vQ-RoH" id="qZD-xO-5oR"/>
                         <outlet property="parentsEmailTextField" destination="oYK-NK-iNB" id="dU3-KW-Gk1"/>
-                        <outlet property="pickerView1" destination="dfF-7z-xrL" id="Diz-dD-tJI"/>
                         <outlet property="schoolTextField" destination="GEh-57-D9i" id="1pX-kA-sPB"/>
                         <outlet property="userIdFuriganaTextField" destination="IKp-j9-FZY" id="pQf-BY-Q9V"/>
                         <outlet property="userIdTextField" destination="Z5m-hW-eCl" id="Ku1-bh-P4i"/>
@@ -796,7 +793,6 @@
         <!--グループチャットの作成-->
         <scene sceneID="EXV-5j-hcG">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XNe-V6-JWE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="j8h-Jp-o4r" customClass="CreateGroupViewController" customModule="iProjectStudent" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VH1-Eo-KhJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -825,6 +821,7 @@
                         <outlet property="textField" destination="3WR-9c-ShF" id="4Av-Ul-cJq"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XNe-V6-JWE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1951" y="2839"/>
         </scene>
