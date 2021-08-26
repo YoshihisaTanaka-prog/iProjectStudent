@@ -479,7 +479,11 @@ extension TeacherInfoViewController{
             nextVC.isAbletoEdit = false
         case "GoToChat":
             let nextVC = segue.destination as! ChatViewController
-            nextVC.selectedChatRoom = ChatRoom(teacher)
+            let chatRoom = ChatRoom(user: teacher)
+            chatRoom.loadChats()
+            chatRoom.delegate = nextVC
+            nextVC.sentChatRoom = chatRoom
+            break
         case "WatchSchedule":
             let nextVC = segue.destination as! CalendarViewController
             nextVC.teacher = teacher

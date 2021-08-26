@@ -11,7 +11,8 @@ import NCMB
 
 class Opening2ViewController: UIViewController {
     
-    @IBOutlet var label: UILabel!
+    private var baceView: UIView!
+    private var imageView: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,22 @@ class Opening2ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.alpha = 0.f
         self.navigationController?.navigationBar.backgroundColor = dColor.base
+        self.view.backgroundColor = dColor.opening
+        
+        
+        let x = screenSizeG["NnNt"]!.width
+        let y = screenSizeG["NnNt"]!.screenHeight
+        
+        baceView = UIView(frame: CGRect(x: 0, y: 0, width: x*0.8.f, height: x*0.8.f) )
+        baceView.center = CGPoint(x: x / 2.f, y: y / 2.f)
+        baceView.layer.cornerRadius = x / 10.f
+        baceView.clipsToBounds = true
+        
+        imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: x*1.6.f, height: x*0.8.f) )
+        imageView.image = UIImage(named: "iconS.png")
+        baceView.addSubview(imageView)
+        
+        self.view.addSubview(baceView)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -36,15 +53,14 @@ class Opening2ViewController: UIViewController {
         print("EnNt", screenSizeG["EnNt"]!.viewHeight)
         print("EnEt", screenSizeG["EnEt"]!.viewHeight)
         
-        label.textColor = .black
-        UIView.animate(withDuration: 1.5, animations: {
-            self.label.textColor = .red
+        UIView.animate(withDuration: 0.8, animations: {
+            let x = screenSizeG["NnNt"]!.width
+            self.imageView.center = CGPoint(x: 0, y: x*0.4.f)
         }) { _ in
             if isLogInG {
                 // ログイン中だったら
 //                let storyboard = UIStoryboard(name: "Questionnaire", bundle: Bundle.main)
 //                let rootViewController = storyboard.instantiateViewController(withIdentifier: "QuestionnaireController")
-                self.loadFollowList()
                 let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
                 let rootViewController = storyboard.instantiateViewController(identifier: "RootTabBarController")
                 self.present(rootViewController, animated: true, completion: nil)

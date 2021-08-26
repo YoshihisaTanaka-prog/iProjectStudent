@@ -1,111 +1,72 @@
 //
 //  ChatTableViewController.swift
-//  ChatTest
+//  ChatTest3
 //
-//  Created by 田中義久 on 2021/01/12.
-//  Copyright © 2021 Tanaka_Yoshihisa_4413. All rights reserved.
+//  Created by 田中義久 on 2021/08/20.
 //
 
 import UIKit
 import NCMB
 
-class ChatTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ChatTableViewController: UIViewController {
     
-    var chatRooms:[ChatRoom] = []
-    var chatRoomsFromUser:[ChatRoom] = []
-    var selectedChatRoom:ChatRoom?
-    
-    @IBOutlet var tableView: UITableView!
+    @IBOutlet private var tableView: UITableView!
+    private var selectedChatRoom: ChatRoom!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Do any additional setup after loading the view.
+        setTableView()
+        
+        setBackGround(true, true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
+
+}
+
+extension ChatTableViewController: UITableViewDataSource, UITableViewDelegate{
+    
+    private func setTableView(){
+        tableView.rowHeight = 100
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView()
         
-        if selectedChatRoom != nil {
-            self.performSegue(withIdentifier: "GoToRoom", sender: nil)
-        }
-        setBackGround(true, true)
-        // Do any additional setup after loading the view.
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        loadChatRoom()
+        let nib = UINib(nibName: "ChatRoomTableViewCell", bundle: .main)
+        tableView.register(nib, forCellReuseIdentifier: "Cell")
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return chatRooms.count
+        return chatRoomsG.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
-        cell.textLabel?.text = chatRooms[indexPath.row].name
-        cell.setFontColor()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! ChatRoomTableViewCell
+        cell.roomNameLabel.text = chatRoomsG[indexPath.row].roomName
+        let ud = UserDefaults.standard
+        cell.iconImageView.image = ud.image(forKey: chatRoomsG[indexPath.row].imageId)
         return cell
     }
     
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        selectedChatRoom = chatRooms[indexPath.row]
-        self.performSegue(withIdentifier: "GoToRoom", sender: nil)
+        selectedChatRoom = chatRoomsG[indexPath.row]
+        self.performSegue(withIdentifier: "GoToChatRoom", sender: nil)
     }
-    
-    func loadChatRoom() {
-        let query = NCMBQuery(className: "UserChatGroup")
-        query?.includeKey("user")
-        query?.includeKey("chatGroup")
-        query?.whereKey("user", equalTo: NCMBUser.current()!)
-        query?.findObjectsInBackground({ (result, error) in
-            if(error == nil){
-                self.chatRooms = []
-                let chatRoomList = result as! [NCMBObject]
-                for chatRoom in chatRoomList {
-                    let chatRoomObject = chatRoom.object(forKey: "chatGroup") as! NCMBObject
-                    let isGroup = chatRoom.object(forKey: "isGroup") as! Bool
-                    self.chatRooms.append(ChatRoom(chatRoomObject, isGroup))
-                }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    self.tableView.reloadData()
-                }
-            }
-            else{
-                self.showOkAlert(title: "Error", message: error!.localizedDescription)
-            }
-        })
-    }
-    
-    func loadChatRoomFromUser() {
-        let query = NCMBUser.query()
-        query?.whereKey("objectId", notEqualTo: NCMBUser.current()!.objectId)
-        query?.findObjectsInBackground({ (result, error) in
-            if(error == nil){
-                let users = result as! [NCMBUser]
-                for user in users {
-                    self.chatRoomsFromUser.append(ChatRoom(User(user)))
-                }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    self.tableView.reloadData()
-                }
-            }
-            else{
-                self.showOkAlert(title: "Error", message: error!.localizedDescription)
-            }
-        })
-    }
-    
-    @IBAction func tappedPlus(){
-        self.performSegue(withIdentifier: "MakeGroup", sender: nil)
-    }
+}
 
-    
-    
+extension ChatTableViewController{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier! {
-        case "GoToRoom":
-            let view2 = segue.destination as! ChatViewController
-            view2.selectedChatRoom = selectedChatRoom!
+        switch segue.identifier {
+        case "GoToChatRoom":
+            let nextVC = segue.destination as! ChatViewController
+            nextVC.sentChatRoom = selectedChatRoom
+            nextVC.sentChatRoom.loadChats()
+            nextVC.sentChatRoom.delegate = nextVC
         default:
             break
         }

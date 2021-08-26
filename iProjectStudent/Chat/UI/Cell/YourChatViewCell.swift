@@ -9,7 +9,8 @@
 import UIKit
 
 class YourChatViewCell: UITableViewCell {
-	
+    
+    @IBOutlet weak var iconImageView: UIImageView!
 	@IBOutlet weak var textView: UITextView!
 	@IBOutlet weak var timeLabel: UILabel!
 	@IBOutlet weak var textViewWidthConstraint: NSLayoutConstraint!
@@ -17,8 +18,9 @@ class YourChatViewCell: UITableViewCell {
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		self.backgroundColor = UIColor.clear
+        self.iconImageView.layer.cornerRadius = 15
+        self.iconImageView.clipsToBounds = true
 		self.textView.layer.cornerRadius = 15// 角を丸める
-        self.timeLabel.textColor = dColor.concept
 		self.addSubview(YourBalloonView(frame: CGRect(x: textView.frame.minX-10, y: textView.frame.minY-10, width: 50, height: 50)))//吹き出しのようにするためにビューを重ねる
 	}
 	

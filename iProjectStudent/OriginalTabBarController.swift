@@ -13,7 +13,9 @@ class OriginalTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getTodaysLectureTimeList()
+        loadChatRoom()
+        loadFollowList()
+        myScheduleG.loadSchedule(date: Date(), userIds: [currentUserG.userId], UIViewController())
         
 //        基本的に1分ごとに判定するが、最初が00秒とは限らないので00秒ごとに判定させるように計算する。
         let d = Date()
