@@ -130,7 +130,7 @@ extension UIView{
         if !(self is FSCalendar){
             self.backgroundColor = dColor.base
             for view in self.subviews {
-                if !((view is IgnoreView)||(view is UITextField)||(view is UISwitch)){
+                if !((view is IgnoreView)||(view is UITextField)||(view is UISwitch)||(view is UIPickerView)){
                     view.setFontColor()
                 }
                 if view is UILabel{
