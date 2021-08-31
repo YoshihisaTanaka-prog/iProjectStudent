@@ -97,15 +97,15 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         //choiceTextField.text = (currentUserG.studentParameter?.choice.first ?? []).first ?? ""
         
         parentsEmailTextField.text = currentUserG.studentParameter?.parentEmailAdress
-        
-        userImageView.image = userImagesCacheG[currentUserG.userId] ?? UIImage(named: "studentNoImage.png")
+        let ud = UserDefaults.standard
+        userImageView.image = ud.image(forKey: currentUserG.userId)
         
         //youbiCheckBox.setSelection(currentUserG.studentParameter?.youbi ?? "")
         
         choicetableView.delegate = self
         choicetableView.dataSource = self
         choicetableView.tableFooterView = UIView()
-        choicetableView.rowHeight = 44.f
+        choicetableView.rowHeight = 25.f
         
         let nib = UINib(nibName: "ChoiceTableViewCell", bundle: Bundle.main)
         choicetableView.register(nib, forCellReuseIdentifier: "Cell")
@@ -147,8 +147,9 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
                 self.showOkAlert(title: "Error", message: error!.localizedDescription)
             } else {
                 self.imageName = NCMBUser.current()!.objectId
-                self.userImageView.image = selectedImage
-                userImagesCacheG[NCMBUser.current()!.objectId] = resizedImage
+                self.userImageView.image = resizedImage
+                let ud = UserDefaults.standard
+                ud.saveImage(image: resizedImage, forKey: currentUserG.userId)
             }
         } progressBlock: { (progress) in
             print(progress)
@@ -428,7 +429,7 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         }
         let cell = choicetableView.dequeueReusableCell(withIdentifier: "Cell") as! ChoiceTableViewCell
         cell.choiceTextField.text = choice[indexPath.row][0]
-        cell.choiceLabel.text = "第" + (indexPath.row + 1).s + "志望"
+        cell.choiceLabel.text = "第" + (indexPath.row + 1).jp + "志望"
         cell.setFontColor()
         return cell
     }

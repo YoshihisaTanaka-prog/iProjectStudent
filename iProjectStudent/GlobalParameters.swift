@@ -22,7 +22,6 @@ let businessHoursG = [
 ]
 
 //ユーザー画像を保存するための変数
-var userImagesCacheG: [String: UIImage] = [:]
 
 //フォロー中などのユーザリストを保存するための変数
 var blockedUserIdListG = [String]()

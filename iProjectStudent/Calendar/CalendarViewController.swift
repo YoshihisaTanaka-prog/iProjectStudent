@@ -28,7 +28,8 @@ class CalendarViewController: UIViewController, UITableViewDataSource, UITableVi
     private var alert: UIAlertController?
     
     @IBOutlet private var tableView: UITableView!  //スケジュール内容
-    @IBOutlet private var labelTitle: UILabel!  //「主なスケジュール」の表示
+    @IBOutlet private var myTitleLabel: UILabel!
+    @IBOutlet private var yourTitleLabel: UILabel!
     //カレンダー部分
     @IBOutlet private var datelabel: UILabel!  //日付の表示
     @IBOutlet private var calenderView: FSCalendar!
@@ -50,10 +51,12 @@ class CalendarViewController: UIViewController, UITableViewDataSource, UITableVi
         let now = Date()
         selectedDate = tmpCalendar.date(from: DateComponents(year: now.y, month: now.m, day: now.d))!
         currentMonth = selectedDate.m
-        
+        myTitleLabel.text = "あなたの予定"
+        yourTitleLabel.text = ""
         userIds.append(currentUserG.userId)
         if teacher != nil{
             self.navigationItem.title = teacher!.userName + "先生とのスケジュール"
+            yourTitleLabel.text = teacher!.userName + "先生の予定"
             userIds.insert(teacher!.userId, at: 0)
         }
     }

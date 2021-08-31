@@ -24,7 +24,7 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
         }
         else{
             var error: NSError? = nil
-            let mail = emailTextField.text!
+            let mail = emailTextField.text!.lowercased()
             NCMBUser.requestAuthenticationMail(mail, error: &error)
             if(error == nil){
                 self.showOkDismissAlert(title: "報告", message: "本人確認用のメールアドレスを送信いたします。しばらくお待ちください。")

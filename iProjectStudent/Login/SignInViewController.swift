@@ -29,9 +29,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func signIn() {
+        let mail = emailTextField.text!.lowercased()
         
-        if passwordTextField.text!.count * emailTextField.text!.count != 0 {
-            NCMBUser.logInWithMailAddress(inBackground: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
+        if passwordTextField.text!.count * mail.count != 0 {
+            NCMBUser.logInWithMailAddress(inBackground: mail, password: passwordTextField.text!) { (user, error) in
                 if error != nil{
                     //エラーがあった場合
                     self.showOkAlert(title: "Error", message: error!.localizedDescription)
@@ -39,8 +40,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                     //ログイン成功
                     
                     let ud = UserDefaults.standard
-                    ud.set(self.passwordTextField.text!, forKey: self.emailTextField.text!)
-                    ud.set(Date(), forKey: self.emailTextField.text! + "time")
+                    ud.set(self.passwordTextField.text!, forKey: mail)
+                    ud.set(Date(), forKey: mail + "time")
                     ud.synchronize()
                     
                     let p = user?.object(forKey:"parameter") as? NCMBObject
@@ -55,9 +56,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                                 
                                 //ログイン状態の保持
                                 let ud = UserDefaults.standard
+                                ud.saveImage(image: UIImage(named: "studentNoImage.png"), forKey: user!.objectId)
                                 ud.set(true, forKey: "isLogin")
-                                ud.set(self.passwordTextField.text!, forKey: self.emailTextField.text!)
-                                ud.set(Date(), forKey: self.emailTextField.text! + "time")
+                                ud.set(self.passwordTextField.text!, forKey: mail)
+                                ud.set(Date(), forKey: mail + "time")
                                 ud.synchronize()
                             }
                             else{
@@ -91,8 +93,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                             //ログイン状態の保持
                             let ud = UserDefaults.standard
                             ud.set(true, forKey: "isLogin")
-                            ud.set(self.passwordTextField.text!, forKey: self.emailTextField.text!)
-                            ud.set(Date(), forKey: self.emailTextField.text! + "time")
+                            ud.set(self.passwordTextField.text!, forKey: mail)
+                            ud.set(Date(), forKey: mail + "time")
                             ud.synchronize()
                         }
                     }

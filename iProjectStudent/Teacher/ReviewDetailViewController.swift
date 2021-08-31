@@ -50,8 +50,9 @@ class ReviewDetailViewController: UIViewController, UITextFieldDelegate {
         //描画の設定
         // スター半分の評価ができるようにする(本人だけが編集できるよう設定してある）
         ratingScore.settings.fillMode = .half
+        let ud = UserDefaults.standard
         if isAbletoEdit {
-            userImageView?.image = userImagesCacheG[currentUserG.userId]
+            userImageView?.image = ud.image(forKey: currentUserG.userId)
             userNameLabel?.text = currentUserG.userName
             // ビューから指を離した時に呼ばれる
             ratingScore.didFinishTouchingCosmos = { rating in
@@ -62,7 +63,7 @@ class ReviewDetailViewController: UIViewController, UITextFieldDelegate {
 
         } else{
             let student = review!.student
-            userImageView?.image = userImagesCacheG[student.userId]
+            userImageView?.image = ud.image(forKey: student.userId)
             userNameLabel?.text = student.userName
             sendButton.setTitle("通報", for: .normal)
             ratingScore.settings.updateOnTouch = false

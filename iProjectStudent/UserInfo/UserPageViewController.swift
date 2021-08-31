@@ -10,18 +10,18 @@ import UIKit
 import NCMB
 import NYXImagesKit
 
-class UserPageViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+class UserPageViewController: UIViewController{
     
     @IBOutlet private var userImageView: UIImageView!
-    @IBOutlet private var userIdTextField: UITextField!
-    @IBOutlet private var userIdFuriganaTextField: UITextField!
-    @IBOutlet private var schoolTextField: UITextField!
-    @IBOutlet private var gradeTextField: UITextField!
-    //@IBOutlet private var choiceTextField: UITextField!
-    @IBOutlet private var selectionTextField: UITextField!
-    @IBOutlet private var emailTextField: UITextField!
-    @IBOutlet private var parentsEmailTextField: UITextField!
+    @IBOutlet private var userNameLabel: UILabel!
+    @IBOutlet private var userFuriganaLabel: UILabel!
+    @IBOutlet private var schoolLabel: UILabel!
+    @IBOutlet private var gradeLabel: UILabel!
+    @IBOutlet private var selectionLabel: UILabel!
+    @IBOutlet private var myEmailLabel: UILabel!
+    @IBOutlet private var parentsEmailLabel: UILabel!
     @IBOutlet private var introductionTextView: UITextView!
+    @IBOutlet private var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,34 +29,31 @@ class UserPageViewController: UIViewController, UITextFieldDelegate, UITextViewD
         userImageView.layer.cornerRadius = userImageView.bounds.width / 2.0
         userImageView.layer.masksToBounds = true
         
+        tableView.dataSource = self
+        tableView.tableFooterView = UIView()
+        let nib = UINib(nibName: "ChoiceTableViewCell", bundle: .main)
+        tableView.register(nib, forCellReuseIdentifier: "Cell")
+        tableView.allowsSelection = false
+        tableView.rowHeight = 25
+        
         setBackGround(true, true)
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
-        userImageView.layer.cornerRadius = userImageView.bounds.width / 2.0
-        userImageView.layer.masksToBounds = true
-        
-        userIdTextField.delegate = self
-        userIdFuriganaTextField.delegate = self
-        schoolTextField.delegate = self
-        gradeTextField.delegate = self
-        //choiceTextField.delegate = self
-        emailTextField.delegate = self
-        parentsEmailTextField.delegate = self
-        introductionTextView.delegate = self
-        
-        userIdTextField.text = currentUserG.userName
-        emailTextField.text = NCMBUser.current().mailAddress
-        userIdFuriganaTextField.text = currentUserG.furigana
-        schoolTextField.text = currentUserG.studentParameter?.schoolName
-        gradeTextField.text = transformGrade(currentUserG.grade)
+        userNameLabel.text = currentUserG.userName
+        myEmailLabel.text = NCMBUser.current().mailAddress
+        userFuriganaLabel.text = currentUserG.furigana
+        schoolLabel.text = currentUserG.studentParameter?.schoolName
+        gradeLabel.text = transformGrade(currentUserG.grade)
         //choiceTextField.text = (currentUserG.studentParameter?.choice.first ?? []).first ?? ""
-        selectionTextField.text = currentUserG.selection
-        parentsEmailTextField.text = currentUserG.studentParameter?.parentEmailAdress
+        selectionLabel.text = currentUserG.selection
+        parentsEmailLabel.text = currentUserG.studentParameter?.parentEmailAdress
         introductionTextView.text = currentUserG.introduction
-        userImageView.image = userImagesCacheG[currentUserG.userId] ?? UIImage(named: "studentNoImage.png")
+        let ud = UserDefaults.standard
+        userImageView.image = ud.image(forKey: currentUserG.userId)
+        
     }
     
     @IBAction func showMenu(){
@@ -91,4 +88,19 @@ class UserPageViewController: UIViewController, UITextFieldDelegate, UITextViewD
     }
   
 
+}
+
+extension UserPageViewController: UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return currentUserG.studentParameter!.choice.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! ChoiceTableViewCell
+        cell.choiceLabel.text = "第" + (indexPath.row + 1).jp + "志望"
+        cell.choiceTextField.text = currentUserG.studentParameter!.choice[indexPath.row][0]
+        cell.backgroundColor = dColor.base
+        return cell
+    }
+    
 }

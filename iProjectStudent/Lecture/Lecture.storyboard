@@ -35,21 +35,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BLR-Zu-LLo" customClass="CosmosView" customModule="Cosmos">
-                                <rect key="frame" x="87" y="146" width="240" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BLR-Zu-LLo" customClass="CosmosView" customModule="Cosmos">
+                                <rect key="frame" x="147" y="94" width="120" height="20"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="Eyq-I2-tbC"/>
+                                    <constraint firstAttribute="height" constant="20" id="Vnk-m6-cNb"/>
+                                </constraints>
                             </view>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="タイトル" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z9Y-ad-Uzt">
-                                <rect key="frame" x="78" y="212" width="259" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="タイトル" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z9Y-ad-Uzt">
+                                <rect key="frame" x="50" y="154" width="314" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="J3H-Pz-18z"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O1i-Rd-646">
-                                <rect key="frame" x="78" y="733" width="259" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O1i-Rd-646">
+                                <rect key="frame" x="147" y="782" width="120" height="30"/>
                                 <color key="backgroundColor" systemColor="linkColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="5vR-Td-Th9"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="送信">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -58,17 +65,18 @@
                                     <action selector="sendReview" destination="X7L-sC-lxM" eventType="touchUpInside" id="Liq-fK-jF3"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kC4-31-lsp">
-                                <rect key="frame" x="78" y="339" width="259" height="330"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kC4-31-lsp">
+                                <rect key="frame" x="50" y="269" width="314" height="473"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="授業の感想を書いてください。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I8t-8j-zhW">
-                                <rect key="frame" x="78" y="293" width="243" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="授業の感想を書いてください。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I8t-8j-zhW">
+                                <rect key="frame" x="50" y="228" width="314" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Z70-8F-cLq"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -76,6 +84,23 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="lfM-5I-rO1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="kC4-31-lsp" firstAttribute="trailing" secondItem="Z9Y-ad-Uzt" secondAttribute="trailing" id="7oZ-K8-tQo"/>
+                            <constraint firstItem="I8t-8j-zhW" firstAttribute="trailing" secondItem="Z9Y-ad-Uzt" secondAttribute="trailing" id="Btx-pP-HtU"/>
+                            <constraint firstItem="BLR-Zu-LLo" firstAttribute="top" secondItem="lfM-5I-rO1" secondAttribute="top" constant="50" id="Hwy-d7-Gv3"/>
+                            <constraint firstItem="O1i-Rd-646" firstAttribute="trailing" secondItem="BLR-Zu-LLo" secondAttribute="trailing" id="Jka-ak-9B5"/>
+                            <constraint firstItem="I8t-8j-zhW" firstAttribute="top" secondItem="Z9Y-ad-Uzt" secondAttribute="bottom" constant="40" id="PdS-aw-w4U"/>
+                            <constraint firstItem="Z9Y-ad-Uzt" firstAttribute="leading" secondItem="lfM-5I-rO1" secondAttribute="leading" constant="50" id="SOU-eJ-UIL"/>
+                            <constraint firstItem="BLR-Zu-LLo" firstAttribute="centerX" secondItem="ri6-6W-lnp" secondAttribute="centerX" id="VnE-lI-Dfv"/>
+                            <constraint firstItem="lfM-5I-rO1" firstAttribute="bottom" secondItem="O1i-Rd-646" secondAttribute="bottom" constant="50" id="W1N-Xn-81D"/>
+                            <constraint firstItem="kC4-31-lsp" firstAttribute="top" secondItem="I8t-8j-zhW" secondAttribute="bottom" constant="20" id="Wn6-bf-KUt"/>
+                            <constraint firstItem="lfM-5I-rO1" firstAttribute="trailing" secondItem="Z9Y-ad-Uzt" secondAttribute="trailing" constant="50" id="fpL-rV-NHq"/>
+                            <constraint firstItem="Z9Y-ad-Uzt" firstAttribute="top" secondItem="BLR-Zu-LLo" secondAttribute="bottom" constant="40" id="gTk-1K-MWC"/>
+                            <constraint firstItem="O1i-Rd-646" firstAttribute="top" secondItem="kC4-31-lsp" secondAttribute="bottom" constant="40" id="m3h-lo-hD4"/>
+                            <constraint firstItem="O1i-Rd-646" firstAttribute="leading" secondItem="BLR-Zu-LLo" secondAttribute="leading" id="mph-wY-GLy"/>
+                            <constraint firstItem="kC4-31-lsp" firstAttribute="leading" secondItem="Z9Y-ad-Uzt" secondAttribute="leading" id="ntY-9V-bag"/>
+                            <constraint firstItem="I8t-8j-zhW" firstAttribute="leading" secondItem="Z9Y-ad-Uzt" secondAttribute="leading" id="tX9-VZ-KQ9"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="レビューの詳細" id="Ntn-u5-nft"/>
                     <connections>

@@ -42,7 +42,8 @@ class FollowingTeacherViewController: UIViewController, UITableViewDataSource, U
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! TeacherListTableViewCell
         let teacher = teachers[indexPath.row]
-        cell.teacherImageView.image = userImagesCacheG[teacher.userId]
+        let ud = UserDefaults.standard
+        cell.teacherImageView.image = ud.image(forKey: teacher.userId)
         cell.teacherNameLabel.text = teacher.userName
         cell.teacherCollageLabel.text = teacher.teacherParameter!.collage + teacher.selection + self.transformGrade(teacher.grade)
         switch teacher.status {

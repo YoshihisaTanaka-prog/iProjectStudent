@@ -19,6 +19,12 @@ class Opening1ViewController: UIViewController {
         self.view.backgroundColor = dColor.opening
         isLogInG = false
         let ud = UserDefaults.standard
+        
+        if !ud.bool(forKey: "didSetUp-v1.0.0"){
+            ud.setValue(true, forKey: "didSetUp-v1.0.0")
+            ud.saveImage(image: UIImage(named: "iconN.png"), forKey: "sapo-to")
+        }
+        
         if ud.bool(forKey: "isLogin"){
 //            まず、端末上にNCMBUser.current()の情報があるか確認
             if let u = NCMBUser.current(){

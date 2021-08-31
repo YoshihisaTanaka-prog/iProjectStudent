@@ -109,7 +109,8 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
             cell.cosmosView.rating = teacher.teacherParameter!.score
             cell.score.text = teacher.teacherParameter!.score.s2
             cell.userNameLabel.text = teacher.userName
-            cell.userimage.image = userImagesCacheG[teacher.userId]
+            let ud = UserDefaults.standard
+            cell.userimage.image = ud.image(forKey: teacher.userId)
             cell.title.text = teacher.teacherParameter!.collage + " " + transformGrade(teacher.grade)
             cell.title.numberOfLines = 0
             
