@@ -91,6 +91,7 @@ class QuestionnaireViewController: UIViewController {
                             let rootViewController = storyboard.instantiateViewController(withIdentifier: "RootTabBarController")
                             currentUserG = User(NCMBUser.current()!)
                             self.present(rootViewController, animated: false, completion: nil)
+                            self.createUserInRails(id: NCMBUser.current()!.objectId)
                         }
                         else{
                             self.showOkAlert(title: "Error", message: error!.localizedDescription)
