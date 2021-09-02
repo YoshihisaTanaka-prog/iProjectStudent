@@ -9,7 +9,7 @@
 import UIKit
 import NCMB
 
-class DetailChoiceViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate {
+class DetailChoiceViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet var choiceTextField: UITextField!
     var selectedIndex: Int!

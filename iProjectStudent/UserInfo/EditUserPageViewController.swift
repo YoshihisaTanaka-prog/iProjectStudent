@@ -10,7 +10,9 @@ import UIKit
 import NCMB
 import NYXImagesKit
 
-class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource,UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate {
+class EditUserPageViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource,UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate {
+    
+    private var isTextViewActive = false
     
     
     @IBOutlet var userImageView: UIImageView!
@@ -27,19 +29,9 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
 
     private var imageName: String?
     var bunriSelected: String?
-    var gradeSelected: String?
+    var gradeSelected: String!
     let bunri = ["文理選択","文系","理系","その他"]
     let gradelist = [["1年生","H1"],["2年生","H1"],["3年生","H1"],["浪人生","R"],["その他","0"]]
-//    var youbiCheckBox: CheckBox!
-//    let youbiList: [CheckBoxInput] = [
-//        CheckBoxInput("月曜日"),
-//        CheckBoxInput("火曜日"),
-//        CheckBoxInput("水曜日"),
-//        CheckBoxInput("木曜日"),
-//        CheckBoxInput("金曜日"),
-//        CheckBoxInput("土曜日", color: .blue),
-//        CheckBoxInput("日曜日", color: .red)
-//    ]
     var youbiCheckBoxList: [CheckBox] = []
     var youbiList_: [[CheckBoxInput]] = []
     let youbiAlertController = UIAlertController(title: "曜日を選んでください。", message: "", preferredStyle: .actionSheet)
@@ -91,7 +83,7 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         schoolTextField.text = currentUserG.studentParameter?.schoolName
         introductionTextView.text = currentUserG.introduction
         bunriPickerView1.selectRow(getSelectionNum(selesction: currentUserG.selection), inComponent: 0, animated: false)
-        gradePickerView2.selectRow(getSelectionNum(selesction: currentUserG.selection), inComponent: 0, animated: false)
+        gradePickerView2.selectRow(getGradeNum(selesction: currentUserG.grade), inComponent: 0, animated: false)
         bunriSelected = currentUserG.selection
         gradeSelected = currentUserG.grade
         //choiceTextField.text = (currentUserG.studentParameter?.choice.first ?? []).first ?? ""
@@ -112,6 +104,9 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
 
         setBackGround(true, true)
         choice = currentUserG.studentParameter?.choice ?? []
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
     }
     
@@ -148,8 +143,6 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
             } else {
                 self.imageName = NCMBUser.current()!.objectId
                 self.userImageView.image = resizedImage
-                let ud = UserDefaults.standard
-                ud.saveImage(image: resizedImage, forKey: currentUserG.userId)
             }
         } progressBlock: { (progress) in
             print(progress)
@@ -239,17 +232,12 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         if parentsEmailTextField.text != currentUserG.studentParameter?.parentEmailAdress {
             return true
         }
-//        if youbiCheckBox.selectionText != currentUserG.studentParameter?.youbi {
-//            return true
-//        }
         if bunriSelected != currentUserG.selection {
             return true
         }
         if gradeSelected != currentUserG.grade {
             return true
         }
-        // 一旦この形式で。（志望校は1つとは限らない　＆　後々のアップデートで大学・学部・学科は分けられるようにしといた方がいいと思うので、二重配列として保存します。）
-        // e.g. [[(第一志望の)大学名,学部,学科],[(第二志望の)大学名,学部,学科],...]
         if choice != currentUserG.studentParameter!.choice {
             return true
         }
@@ -258,9 +246,13 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
     
     @IBAction func saveUserInfo(){
         let param = currentUserG.studentParameter!.ncmb
-        let im = param.object(forKey: "imageName")
+        let im = param.object(forKey: "imageName") as? String
         if im == nil{
             param.setObject(imageName, forKey: "imageName")
+            print("imageName is nil")
+        } else if self.imageName != nil{
+            let ud = UserDefaults.standard
+            ud.saveImage(image: userImageView.image, forKey: currentUserG.userId)
         }
         param.setObject(userIdTextField.text, forKey: "userName")
         param.setObject(userIdFuriganaTextField.text, forKey: "furigana")
@@ -271,9 +263,7 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         if(bunriSelected != nil){
             param.setObject(bunriSelected!, forKey: "selection")
         }
-        if(gradeSelected != nil){
-            param.setObject(gradeSelected!, forKey: "grade")
-        }
+        param.setObject(gradeSelected, forKey: "grade")
         
         param.setObject(introductionTextView.text, forKey: "introduction")
         //param.setObject(youbiCheckBox.selectionText, forKey: "youbi")
@@ -290,9 +280,13 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         }
         param.setObject(youbi, forKey: "youbi")
         
-        
         param.saveInBackground { (error) in
             if error == nil{
+                currentUserG.userName = self.userIdTextField.text ?? ""
+                currentUserG.furigana = self.userIdFuriganaTextField.text ?? ""
+                currentUserG.grade = self.gradeSelected
+                currentUserG.selection = self.bunriSelected ?? "???"
+                currentUserG.introduction = self.introductionTextView.text ?? ""
                 currentUserG.studentParameter = StudentParameter(param)
                 self.navigationController?.popViewController(animated: true)
             } else{
@@ -333,17 +327,6 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         actionController.addAction(cancelAction)
         self.present(actionController, animated: true, completion: nil)
     }
-    
-//    @IBAction func selectWeek(){
-//        let alertController = UIAlertController(title: "曜日を選んでください。", message: "\n\n\n\n\n\n\n\n\n\n\n", preferredStyle: .alert)
-//        let alertOkAction = UIAlertAction(title: "選択完了", style: .default) { (action) in
-//            self.youbiCheckBox.mainView.removeFromSuperview()
-//            alertController.dismiss(animated: true, completion: nil)
-//        }
-//        alertController.view.addSubview(youbiCheckBox.mainView)
-//        alertController.addAction(alertOkAction)
-//        self.present(alertController, animated: true, completion: nil)
-//    }
     
     @IBAction func selectWeek(){
         var alertOkActionList = [UIAlertAction(title: "終了", style: .cancel) { (action) in
@@ -468,6 +451,45 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UITextV
         preVC.choice = selectedchoice
     }
     
+}
 
+extension EditUserPageViewController: UITextViewDelegate{
     
+    private func setUpTextViewCloseButton(){
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let toolBarBtn = UIBarButtonItem(title: "決定", style: .plain, target: self, action: #selector(closeBtn))
+        toolBar.items = [toolBarBtn]
+        introductionTextView.inputAccessoryView = toolBar
+        introductionTextView.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        isTextViewActive = true
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        isTextViewActive = false
+    }
+    
+    @objc private func closeBtn(){
+        introductionTextView.resignFirstResponder()
+    }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if isTextViewActive{
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    @objc private func keyboardWillHide() {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
 }

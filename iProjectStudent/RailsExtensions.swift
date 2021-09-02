@@ -35,7 +35,7 @@ extension UIViewController{
     }
     
     func createUserInRails(id: String){
-        let message = "userId" + id +  "role=student"
+        let message = "userId=" + id +  "&role=student"
         sendToRailsServer(message: message, path: "/app/user")
     }
 }

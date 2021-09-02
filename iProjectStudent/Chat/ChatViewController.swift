@@ -74,6 +74,7 @@ class ChatViewController: UIViewController {
 extension ChatViewController{
     @IBAction func tappedSend(){
         if textView.text!.count != 0{
+            textView.resignFirstResponder()
             let c = Chat()
             c.delegate = self
             c.sendMessage(message: textView.text, chatRoomId: sentChatRoom.id)
@@ -156,30 +157,25 @@ extension ChatViewController{
         tableView.register(UINib(nibName: "MyChatViewCell", bundle: nil), forCellReuseIdentifier: "MyChat")
     }
     
-    @objc func update(){
+    @objc private func update(){
         self.sentChatRoom.loadChats()
     }
     
-    @objc func addBarButtonTapped(_ sender: UIBarButtonItem) {
+    @objc private func addBarButtonTapped(_ sender: UIBarButtonItem) {
         self.performSegue(withIdentifier: "UserList", sender: nil)
     }
     
-    @objc func keyboardWillShow(notification: NSNotification) {
+    @objc private func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0 {
-                self.view.frame.origin.y -= keyboardSize.height
-            } else {
-                let suggestionHeight = self.view.frame.origin.y + keyboardSize.height
-                self.view.frame.origin.y -= suggestionHeight
-            }
+            self.view.frame.origin.y -= keyboardSize.height
         }
     }
     
-    @objc func keyboardWillHide() {
-            if self.view.frame.origin.y != 0 {
-                self.view.frame.origin.y = 0
-            }
+    @objc private func keyboardWillHide() {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
         }
+    }
 }
 
 //チャット用の自作デリゲートたち

@@ -21,6 +21,8 @@ class ShowNormalEventViewController: UIViewController, UITableViewDataSource {
         
         titleLabel.text = schedule.title
         detailTextView.text = schedule.detail
+        detailTextView.isEditable = false
+        detailTextView.isSelectable = false
         
         tableView.dataSource = self
         tableView.allowsSelection = false

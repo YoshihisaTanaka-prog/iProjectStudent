@@ -30,6 +30,8 @@ class DetailTelectureViewController: UIViewController, UITableViewDataSource {
         
         subjectLabel.text = lecture.subjectName
         detailTextView.text = lecture.detail
+        detailTextView.isEditable = false
+        detailTextView.isSelectable = false
         tableView.tableFooterView = UIView()
         
         setBackGround(true, true)

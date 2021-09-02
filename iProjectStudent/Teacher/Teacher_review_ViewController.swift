@@ -10,7 +10,8 @@ import UIKit
 import NCMB
 import NYXImagesKit
 
-class Teacher_review_ViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate {
+class Teacher_review_ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate {
+    
     @IBOutlet private var tangenTextField: UITextField!
     @IBOutlet private var pickerView1: UIPickerView!
     @IBOutlet private var reviewTextView: UITextView!
@@ -18,6 +19,8 @@ class Teacher_review_ViewController: UIViewController, UITextFieldDelegate, UITe
     private var selected: String?
     private let hyouka = ["先生の授業態度を選択してください","大変良い","まあまあ良い","普通","やや改善が必要","改善が必要"]
     private var report: Teacher_Review!
+    
+    private var isTextViewActive = false
     
 
     override func viewDidLoad() {
@@ -35,9 +38,9 @@ class Teacher_review_ViewController: UIViewController, UITextFieldDelegate, UITe
         tangenTextField.text = ""
         reviewTextView.text = ""
         pickerView1.selectRow(0, inComponent: 0, animated: true)
- 
-
-   
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
  
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -103,8 +106,45 @@ class Teacher_review_ViewController: UIViewController, UITextFieldDelegate, UITe
             }
         }
     }
+}
+
+extension Teacher_review_ViewController: UITextViewDelegate{
     
-
-
-
+    private func setUpTextViewCloseButton(){
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let toolBarBtn = UIBarButtonItem(title: "決定", style: .plain, target: self, action: #selector(closeBtn))
+        toolBar.items = [toolBarBtn]
+        reviewTextView.inputAccessoryView = toolBar
+        reviewTextView.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        isTextViewActive = true
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        isTextViewActive = false
+    }
+    
+    @objc private func closeBtn(){
+        reviewTextView.resignFirstResponder()
+    }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if isTextViewActive{
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    @objc private func keyboardWillHide() {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
 }

@@ -43,7 +43,7 @@ class UserPageViewController: UIViewController{
     override func viewWillAppear(_ animated: Bool) {
         
         userNameLabel.text = currentUserG.userName
-        myEmailLabel.text = NCMBUser.current().mailAddress
+        myEmailLabel.text = currentUserG.mailAddress
         userFuriganaLabel.text = currentUserG.furigana
         schoolLabel.text = currentUserG.studentParameter?.schoolName
         gradeLabel.text = transformGrade(currentUserG.grade)
@@ -53,6 +53,7 @@ class UserPageViewController: UIViewController{
         introductionTextView.text = currentUserG.introduction
         let ud = UserDefaults.standard
         userImageView.image = ud.image(forKey: currentUserG.userId)
+        tableView.reloadData()
         
     }
     

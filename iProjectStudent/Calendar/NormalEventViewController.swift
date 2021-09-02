@@ -12,6 +12,8 @@ import CalculateCalendarLogic
 
 class NormalEventViewController: UIViewController, UITextFieldDelegate {
     
+    private var isTextViewActive = false
+    
     var sentDate: Date!
     var eventType: String!
     var schedule: Schedule?
@@ -45,6 +47,8 @@ class NormalEventViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setUpTextViewCloseButton()
+            
         size = getScreenSize(isExsistsNavigationBar: true, isExsistsTabBar: true)
         let tmp = Calendar(identifier: .gregorian)
         
@@ -679,6 +683,49 @@ extension NormalEventViewController{
     }
     
 }
+
+
+extension NormalEventViewController: UITextViewDelegate{
+    
+    private func setUpTextViewCloseButton(){
+        toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let toolBarBtn = UIBarButtonItem(title: "決定", style: .plain, target: self, action: #selector(closeBtn))
+        toolBar.items = [toolBarBtn]
+        textTextView.inputAccessoryView = toolBar
+        textTextView.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        isTextViewActive = true
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        isTextViewActive = false
+    }
+    
+    @objc private func closeBtn(){
+        textTextView.resignFirstResponder()
+    }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if isTextViewActive{
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    @objc private func keyboardWillHide() {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
+}
+
 
 //値渡し用
 extension NormalEventViewController{

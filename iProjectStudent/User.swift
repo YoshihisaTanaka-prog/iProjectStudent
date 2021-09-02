@@ -21,7 +21,7 @@ class User {
     var chatRoomId = ""
     var selection = ""
     var introduction = ""
-    var youbiTimeList: [[String]] = []
+    var youbiTimeList: [[String]] = [[],[],[],[],[],[],[]]
     var teacherParameter: TeacherParameter?
     var studentParameter: StudentParameter?
     

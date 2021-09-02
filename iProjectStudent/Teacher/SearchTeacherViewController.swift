@@ -30,9 +30,7 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
         CheckBoxInput("修士 2年生", key: "M2"),
         CheckBoxInput("博士 1年生", key: "D1"),
         CheckBoxInput("博士 2年生", key: "D2"),
-        CheckBoxInput("博士 3年生", key: "D3"),
-        CheckBoxInput("博士 4年生", key: "D4"),
-        CheckBoxInput("博士 5年生", key: "D5")
+        CheckBoxInput("博士 3年生", key: "D3")
     ]
     private var selectedSubject: String?
     private var selectedSubjectList = [["------",""]]

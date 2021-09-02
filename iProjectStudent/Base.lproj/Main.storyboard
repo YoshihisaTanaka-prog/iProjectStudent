@@ -799,6 +799,10 @@
                                     <constraint firstAttribute="height" constant="40" id="ORo-Rt-m1x"/>
                                 </constraints>
                                 <state key="normal" title="編集"/>
+                                <connections>
+                                    <action selector="sendReview" destination="B6k-jo-g1c" eventType="touchUpInside" id="u1L-Uo-U02"/>
+                                    <action selector="tappedReport" destination="B6k-jo-g1c" eventType="touchUpInside" id="x5N-kb-l32"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Cfz-uq-PNB"/>
