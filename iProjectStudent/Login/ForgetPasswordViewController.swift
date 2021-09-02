@@ -25,7 +25,7 @@ class ForgetPasswordViewController: UIViewController, UITextFieldDelegate {
             showOkAlert(title: "注意", message: "メールアドレスを入力してください。")
         }
         else{
-            let Forgetemail = ForgetemailTextField.text
+            let Forgetemail = ForgetemailTextField.text!.lowercased()
             
             NCMBUser.requestPasswordResetForEmail(inBackground: Forgetemail, block: {(error) in
                 if (error != nil) {

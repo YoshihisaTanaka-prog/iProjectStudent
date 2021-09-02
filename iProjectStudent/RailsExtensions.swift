@@ -30,7 +30,12 @@ extension UIViewController{
     }
     
     func reportToRailsServer(className: String, objectId: String){
-        let message = "classname=" + className + "&objectid=" + objectId
-        sendToRailsServer(message: message, path: "")
+        let message = "className=" + className + "&objectId=" + objectId + "&userId=" + currentUserG.userId
+        sendToRailsServer(message: message, path: "/app/report/object")
+    }
+    
+    func createUserInRails(id: String){
+        let message = "userId" + id +  "role=student"
+        sendToRailsServer(message: message, path: "/app/user")
     }
 }

@@ -125,7 +125,8 @@ extension TeacherInfoViewController{
                 cell.delegate = self
                 
                 cell.teacher = teacher
-                cell.userImageView.image = userImagesCacheG[teacher.userId]
+                let ud = UserDefaults.standard
+                cell.userImageView.image = ud.image(forKey: teacher.userId)
                 cell.furiganaLabel.text = teacher.furigana
                 cell.userNameLabel.text = teacher.userName
                 cell.collageInfoLabel.text = teacher.teacherParameter!.collage
@@ -154,7 +155,8 @@ extension TeacherInfoViewController{
                 cell.delegate = self
                 cell.averageScoreCosmosView.rating = teacher.teacherParameter!.score
                 cell.furiganaLabel.text = teacher.furigana
-                self.setUserImage(&cell.userImageView, teacher)
+                let ud = UserDefaults.standard
+                cell.userImageView.image = ud.image(forKey: teacher.userId)
                 cell.userNameLabel.text = teacher.userName + "　先生"
                 cell.collageInfoLabel.text = teacher.teacherParameter!.collage + " " + teacher.selection + " " + transformGrade(teacher.grade)
                 cell.averageTitleLabel.text = transformSubject(subject!) + "の平均評価："

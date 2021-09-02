@@ -133,7 +133,6 @@
 		1F761FEA25D419C600FFB590 /* UserPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F761FE925D419C600FFB590 /* UserPageViewController.swift */; };
 		1F806AC925D81336001BF41B /* EditUserPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F806AC825D81336001BF41B /* EditUserPageViewController.swift */; };
 		1FA191B625CACE3F007B935B /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA191B525CACE3F007B935B /* SignInViewController.swift */; };
-		1FA191B925CC1F56007B935B /* SignUp2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA191B825CC1F56007B935B /* SignUp2ViewController.swift */; };
 		1FB58C2E25E3ED29009CFCD0 /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB58C2D25E3ED29009CFCD0 /* ForgetPasswordViewController.swift */; };
 		1FF0559526A056BD0009E19B /* ChoiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF0559326A056BD0009E19B /* ChoiceTableViewCell.swift */; };
 		1FF0559626A056BD0009E19B /* ChoiceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FF0559426A056BD0009E19B /* ChoiceTableViewCell.xib */; };
@@ -271,7 +270,6 @@
 		1F761FE925D419C600FFB590 /* UserPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageViewController.swift; sourceTree = "<group>"; };
 		1F806AC825D81336001BF41B /* EditUserPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserPageViewController.swift; sourceTree = "<group>"; };
 		1FA191B525CACE3F007B935B /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
-		1FA191B825CC1F56007B935B /* SignUp2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp2ViewController.swift; sourceTree = "<group>"; };
 		1FB58C2D25E3ED29009CFCD0 /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
 		1FF0559326A056BD0009E19B /* ChoiceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceTableViewCell.swift; sourceTree = "<group>"; };
 		1FF0559426A056BD0009E19B /* ChoiceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChoiceTableViewCell.xib; sourceTree = "<group>"; };
@@ -560,11 +558,10 @@
 		1F761FE825D4194900FFB590 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				1FA191B825CC1F56007B935B /* SignUp2ViewController.swift */,
 				1F0D91E925E1380800503048 /* SignUpViewController.swift */,
-				04A841EB25C57B1E00469B5E /* SignIn.storyboard */,
 				1FA191B525CACE3F007B935B /* SignInViewController.swift */,
 				1FB58C2D25E3ED29009CFCD0 /* ForgetPasswordViewController.swift */,
+				04A841EB25C57B1E00469B5E /* SignIn.storyboard */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -784,7 +781,6 @@
 				1F2A698B2670DE9F00A3ACC4 /* Teacher_review_ViewController.swift in Sources */,
 				0455EDC325DA8ECE00013330 /* ReviewTableViewCell.swift in Sources */,
 				0460979025E8291200AC91BE /* Chat.swift in Sources */,
-				1FA191B925CC1F56007B935B /* SignUp2ViewController.swift in Sources */,
 				0460978E25E8291200AC91BE /* YourBalloonView.swift in Sources */,
 				04AB3AF826C54A7300990F43 /* OriginalTabBarController.swift in Sources */,
 				1F3343F525D151C400A090DA /* Questionnaire_subViewController.swift in Sources */,

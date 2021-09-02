@@ -20,7 +20,8 @@ class ChoiceTableViewCell: UITableViewCell, UITextFieldDelegate {
         let size = screenSizeG["EnEt"]!
         self.contentView.frame = CGRect(x: 0.f, y: 0.f, width: size.width, height: size.viewHeight)
         choiceTextField.delegate = self
-        choiceTextField.text = (currentUserG.studentParameter?.choice.first ?? []).first ?? ""
+        choiceTextField.isEnabled = false
+        choiceTextField.backgroundColor = dColor.base
     }
     
 

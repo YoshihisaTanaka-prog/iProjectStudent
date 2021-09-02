@@ -17,23 +17,12 @@ class DetailChoiceViewController: UIViewController, UITextViewDelegate, UITextFi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(selectedIndex)
         choiceTextField.delegate = self
         choiceTextField.text = choice[0]
         // Do any additional setup after loading the view.
+        setBackGround(true, true)
     }
     
-
-    
-    /*
-    func isChanged () -> Bool {
-        //currentUserG = 保存押すまで変わらないもの
-        if [[choiceTextField!]] != currentUserG.studentParameter?.choice {
-                    return true
-        }
-        return false
-    }
-*/
     @IBAction func saveUserInfo(){
 //        let param = currentUserG.studentParameter!.ncmb
 //        param.setObject([[choiceTextField.text]], forKey: "choice")

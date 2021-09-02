@@ -73,22 +73,24 @@ class Parameter{
         let imageName = parameter.object(forKey: "imageName") as? String
         let userId = parameter.object(forKey: "userId") as! String
         
-        
-        if userImagesCacheG[userId] == nil{
-            if imageName == nil {
-                setNoImage(userId)
-            } else {
-                let file =  NCMBFile.file(withName: userId,data:nil) as! NCMBFile
-                file.getDataInBackground { (data, error) in
-                    if error == nil {
-                        if data == nil {
-                            self.setNoImage(userId)
+        if userId != currentUserG.userId{
+            let ud = UserDefaults.standard
+            if ud.image(forKey: userId) == nil{
+                if imageName == nil {
+                    setNoImage(userId)
+                } else {
+                    let file =  NCMBFile.file(withName: userId,data:nil) as! NCMBFile
+                    file.getDataInBackground { (data, error) in
+                        if error == nil {
+                            if data == nil {
+                                self.setNoImage(userId)
+                            } else {
+                                let image = UIImage(data: data!)
+                                ud.saveImage(image: image, forKey: userId)
+                            }
                         } else {
-                            let image = UIImage(data: data!)
-                            userImagesCacheG[userId] = image
+                            self.setNoImage(userId)
                         }
-                    } else {
-                        self.setNoImage(userId)
                     }
                 }
             }
@@ -96,10 +98,11 @@ class Parameter{
     }
     
     private func setNoImage(_ userId: String){
+        let ud = UserDefaults.standard
         if self.ncmb.ncmbClassName == "TeacherParameter" {
-            userImagesCacheG[userId] = UIImage(named: "teacherNoImage.png")
+            ud.saveImage(image: UIImage(named: "teacherNoImage.png"), forKey: userId)
         } else {
-            userImagesCacheG[userId] = UIImage(named: "studentNoImage.png")
+            ud.saveImage(image: UIImage(named: "studentNoImage.png"), forKey: userId)
         }
     }
     
