@@ -155,6 +155,8 @@ class NormalEventViewController: UIViewController, UITextFieldDelegate {
         firstTimeTextField.text = firstTime.hmJp
         endDateTextField.text = sentDate.ymdJp
         endTimeTextField.text = endTime.hmJp
+        
+        titleTextField.delegate = self
 
         setBackGround(true, true)
     }
@@ -162,6 +164,12 @@ class NormalEventViewController: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         saveBookingSchedule()
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
 }
 
 //NCMBへの保存部分
@@ -173,110 +181,7 @@ extension NormalEventViewController: ScheduleClassDelegate{
         })
     }
     
-    private func saveBookingSchedule(){
-        if didSelectBookingSchedule{
-            let c = Calendar(identifier: .gregorian)
-            var detailTimeList = [[Date]]()
-            var savedIndexList = [Int]()
-            for b in bookingList{
-                if b.isSelectFirst{
-//                    元々あるスケジュールが優先された時は新しいスケジュールの時間を分割する。
-                    for i in b.index{
-                        let d1 = Date().mixDateAndTime(date: savedDate[i][0], time: savedDate[i][1])
-                        let d2 = Date().mixDateAndTime(date: savedDate[i][0], time: savedDate[i][2])
-                        let detailTimes = [d1,d2]
-                        if savedIndexList.contains(i){
-                            
-                        } else{
-                            savedIndexList.append(i)
-                            detailTimeList.append(detailTimes)
-                        }
-                    }
-                } else{
-//                    元々あるスケジュールより新しいスケジュールが優先されたとき、古いスケジュールのデータを削除して追加する。
-                    if b.isFirstSchedule{
-                        for i in b.index{
-                            let d1 = Date().mixDateAndTime(date: savedDate[i][0], time: savedDate[i][1])
-                            let d2 = Date().mixDateAndTime(date: savedDate[i][0], time: savedDate[i][2])
-                            let detailTimes = [d1,d2]
-                            let schedule = cachedScheduleG[b.id]!
-                            var scheduleDetailTimeList = [[Date]]()
-                            for dTimes in schedule.detailTimeList{
-                                if (detailTimes[1] < dTimes[0] || dTimes[1] < detailTimes[0] ){
-                                    scheduleDetailTimeList.append(dTimes)
-                                }
-                            }
-                            if scheduleDetailTimeList.count == 0{
-                                let id = schedule.ncmb.objectId ?? ""
-                                let object = NCMBObject(className: "Schedule", objectId: id)
-                                object?.deleteInBackground({ error in
-                                    if error == nil{
-                                        cachedScheduleG[id] = nil
-                                    } else {
-                                        print("Deleting schedule data error!", error!.localizedDescription)
-                                    }
-                                })
-                            } else{
-                                schedule.detailTimeList = scheduleDetailTimeList
-                                schedule.save(self)
-                            }
-                            if !savedIndexList.contains(i){
-                                savedIndexList.append(i)
-                                detailTimeList.append(detailTimes)
-                            }
-                        }
-                    } else {
-                        for i in b.index{
-                            let d1 = Date().mixDateAndTime(date: savedDate[i][0], time: savedDate[i][1])
-                            let d2 = Date().mixDateAndTime(date: savedDate[i][0], time: savedDate[i][2])
-                            let detailTimes = [d1,d2]
-                            let lecture = cachedLectureG[b.id]!
-                            var lectureDetailTimeList = [Date]()
-                            for dTime in lecture.timeList{
-                                let start = dTime
-                                let end = c.date(byAdding: .hour, value: 1, to: start)!
-                                if (detailTimes[1] < start || end < detailTimes[0] ){
-                                    lectureDetailTimeList.append(dTime)
-                                }
-                            }
-                            if lectureDetailTimeList.count == 0{
-                                let id = lecture.ncmb.objectId ?? ""
-                                let object = NCMBObject(className: "Lecture", objectId: id)
-                                object?.deleteInBackground({ error in
-                                    if error == nil{
-                                        cachedLectureG[id] = nil
-                                    } else {
-                                        print("Deleting lecture data error!", error!.localizedDescription)
-                                    }
-                                })
-                            } else{
-                                lecture.timeList = lectureDetailTimeList
-                                lecture.save(self)
-                            }
-                            if !savedIndexList.contains(i){
-                                savedIndexList.append(i)
-                                detailTimeList.append(detailTimes)
-                            }
-                        }
-                    }
-                }
-            }
-            if detailTimeList.count == 0{
-                self.navigationController?.popViewController(animated: true)
-            } else{
-                if isShownTableView{
-                    savedDate = []
-                    for dTimes in detailTimeList{
-                        let d = c.date(from: DateComponents(year: dTimes[0].y, month: dTimes[0].m, day: dTimes[0].d))!
-                        let s = c.date(from: DateComponents(hour: dTimes[0].h, minute: dTimes[0].min))!
-                        let e = c.date(from: DateComponents(hour: dTimes[1].h, minute: dTimes[1].min))!
-                        savedDate.append([d,s,e])
-                    }
-                }
-                save()
-            }
-        }
-    }
+    private func saveBookingSchedule(){}
     
     @IBAction private func save(){
         if titleTextField.text!.count == 0{
@@ -388,26 +293,25 @@ extension NormalEventViewController: ScheduleClassDelegate{
                 }
                 for l in cachedLectureG.values {
                     if l.student.userId == currentUserG.userId{
-                        for start in l.timeList{
-                            let end = c.date(from: DateComponents(year: start.y, month: start.m, day: start.d, hour: start.h + 1))!
-                            if (start < dEnd && dStart < end){
-                                var k = 0
-                                while k < ret.count{
-                                    if l.ncmb.objectId == ret[k].id && !ret[k].isFirstSchedule{
-                                        break
-                                    }
-                                    k += 1
+                        let start = l.startTime
+                        let end = c.date(from: DateComponents(year: start.y, month: start.m, day: start.d, hour: start.h + 1))!
+                        if (start < dEnd && dStart < end){
+                            var k = 0
+                            while k < ret.count{
+                                if l.objectId == ret[k].id && !ret[k].isFirstSchedule{
+                                    break
                                 }
-                                if k == ret.count{
-                                    ret.append(BookingData())
-                                    ret[k].date = c.date(from: DateComponents(year: dStart.y, month: dStart.m, day: dStart.d))!
-                                    ret[k].id = l.ncmb.objectId
-                                    ret[k].title1 = l.subjectName + "(" + l.teacher.userName + "先生)"
-                                    ret[k].title2 = titleTextField.text!
-                                }
-                                ret[k].index.append(dateListIndex)
-                                ret[k].timeList.append([[start.h*100+start.min, end.h*100+end.min], [dList[0].h*100+dList[0].min, dList[1].h*100+dList[1].min]])
+                                k += 1
                             }
+                            if k == ret.count{
+                                ret.append(BookingData())
+                                ret[k].date = c.date(from: DateComponents(year: dStart.y, month: dStart.m, day: dStart.d))!
+                                ret[k].id = l.objectId
+                                ret[k].title1 = l.subjectName + "(" + l.teacher.userName + "先生)"
+                                ret[k].title2 = titleTextField.text!
+                            }
+                            ret[k].index.append(dateListIndex)
+                            ret[k].timeList.append([[start.h*100+start.min, end.h*100+end.min], [dList[0].h*100+dList[0].min, dList[1].h*100+dList[1].min]])
                         }
                     }
                 }
@@ -712,9 +616,11 @@ extension NormalEventViewController: UITextViewDelegate{
     }
     
     @objc private func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if isTextViewActive{
-                self.view.frame.origin.y -= keyboardSize.height
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                if self.isTextViewActive{
+                    self.view.frame.origin.y -= keyboardSize.height
+                }
             }
         }
     }

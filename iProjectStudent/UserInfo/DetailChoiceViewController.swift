@@ -24,17 +24,6 @@ class DetailChoiceViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func saveUserInfo(){
-//        let param = currentUserG.studentParameter!.ncmb
-//        param.setObject([[choiceTextField.text]], forKey: "choice")
-//        param.saveInBackground { (error) in
-//            if error == nil{
-//                currentUserG = User(NCMBUser.current()!)
-//                self.navigationController?.popViewController(animated: true)
-//            } else{
-//                self.showOkAlert(title: "Error", message: error!.localizedDescription)
-//            }
-//        }
-        
         choice[0] = choiceTextField.text!
 //        let preNC = self.presentingViewController as! UINavigationController
         let preNC = self.navigationController!
@@ -42,6 +31,11 @@ class DetailChoiceViewController: UIViewController, UITextFieldDelegate {
         preVC.choice[selectedIndex] = self.choice  //ここで値渡し
         self.navigationController?.popViewController(animated: true)
         
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
 }

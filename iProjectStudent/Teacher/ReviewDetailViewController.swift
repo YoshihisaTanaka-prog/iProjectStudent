@@ -99,6 +99,20 @@ class ReviewDetailViewController: UIViewController, UITextFieldDelegate {
         if !isAbletoEdit{
             showOkAlert(title: "通報", message: "このレビューを通報しますか？"){
                 self.reportToRailsServer(className: "Review", objectId: self.review!.ncmb.objectId)
+                var rep = NCMBUser.current().object(forKey: "reportInfo") as? [String: [String]] ?? [:]
+                if rep["Review"] == nil{
+                    rep["Review"] = [self.review!.ncmb.objectId]
+                } else{
+                    rep["Review"]!.append(self.review!.ncmb.objectId)
+                }
+                NCMBUser.current().setObject(rep, forKey: "reportInfo")
+                NCMBUser.current().saveInBackground { error in
+                    if error == nil{
+                        self.showOkAlert(title: "報告", message: "通報が完了しました。")
+                    } else {
+                        self.showOkAlert(title: "Saving report infomation error", message: error!.localizedDescription)
+                    }
+                }
             }
         }
     }
@@ -128,10 +142,18 @@ class ReviewDetailViewController: UIViewController, UITextFieldDelegate {
                             self.teacher.teacherParameter!.ncmb.setObject(1, forKey: self.subjectName + "TotalNum")
                             self.teacher.teacherParameter!.ncmb.saveInBackground({ (error) in
                                 if error == nil{
-//                                    メイン画面へ
-                                    let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-                                    let rootViewController = storyboard.instantiateViewController(identifier: "RootTabBarController")
-                                    self.present(rootViewController, animated: true, completion: nil)
+                                    let lectureObject = NCMBObject(className: "Lecture", objectId: self.lecture!.objectId)
+                                    lectureObject?.setObject(object!.objectId, forKey: "reviewId")
+                                    lectureObject?.saveInBackground({ error in
+                                        if error == nil{
+//                                            メイン画面へ
+                                            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                                            let rootViewController = storyboard.instantiateViewController(identifier: "RootTabBarController")
+                                            self.present(rootViewController, animated: true, completion: nil)
+                                        } else{
+                                            self.showOkAlert(title: "Error", message: error!.localizedDescription)
+                                        }
+                                    })
                                 }
                                 else{
                                     self.showOkAlert(title: "Error", message: error!.localizedDescription)

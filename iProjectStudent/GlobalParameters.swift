@@ -43,6 +43,7 @@ let pickerLabelG = PickerLabel()
 
 var cachedScheduleG = [String: Schedule]()
 var cachedLectureG = [String: Lecture]()
+var cachedLecturesG = [String: Lectures]()
 var myScheduleG = Schedules()
 var mixedScheduleG = Schedules()
 

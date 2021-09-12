@@ -27,6 +27,8 @@ class Teacher_review_ViewController: UIViewController, UITextFieldDelegate, UIPi
         super.viewDidLoad()
         setBackGround(true, true)
         
+        setUpTextViewCloseButton()
+        
 //        userImageView.layer.cornerRadius = userImageView.bounds.width / 2.0
 //        userImageView.layer.masksToBounds = true
         
@@ -135,9 +137,11 @@ extension Teacher_review_ViewController: UITextViewDelegate{
     }
     
     @objc private func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if isTextViewActive{
-                self.view.frame.origin.y -= keyboardSize.height
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                if self.isTextViewActive{
+                    self.view.frame.origin.y -= keyboardSize.height
+                }
             }
         }
     }

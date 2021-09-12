@@ -85,14 +85,16 @@ class QuestionnaireViewController: UIViewController {
             object?.saveInBackground({ (error) in
                 if(error == nil){
                     NCMBUser.current()?.setObject(object, forKey: "parameter")
+                    let rep = [String: [String]]()
+                    NCMBUser.current().setObject(rep, forKey: "reportInfo")
                     NCMBUser.current()?.saveInBackground({ (error) in
                         if(error == nil){
                             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
                             let rootViewController = storyboard.instantiateViewController(withIdentifier: "RootTabBarController")
                             currentUserG = User(userId: NCMBUser.current()!.objectId, isNeedParameter: false, viewController: self)
                             currentUserG.studentParameter = StudentParameter(object!)
+                            self.createUserInRails(id: NCMBUser.current()!.objectId, paramId: object!.objectId)
                             self.present(rootViewController, animated: false, completion: nil)
-                            self.createUserInRails(id: NCMBUser.current()!.objectId)
                         }
                         else{
                             self.showOkAlert(title: "Error", message: error!.localizedDescription)

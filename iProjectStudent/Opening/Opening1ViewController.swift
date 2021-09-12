@@ -74,8 +74,9 @@ class Opening1ViewController: UIViewController {
         
         let x = screenSizeG["NnNt"]!.width
         let y = screenSizeG["NnNt"]!.screenHeight
-        imageView.frame = CGRect(x: 0, y: 0, width: x*0.8, height: x*0.8)
-        imageView.layer.cornerRadius = x / 10.f
+        let length = min(x, 500.f)
+        imageView.frame = CGRect(x: 0, y: 0, width: length*0.8, height: length*0.8)
+        imageView.layer.cornerRadius = length / 10.f
         imageView.clipsToBounds = true
         imageView.center = CGPoint(x: x / 2.f, y: y / 2.f)
         imageView.image = UIImage(named: "iconN.png")

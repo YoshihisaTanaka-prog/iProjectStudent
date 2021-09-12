@@ -12,6 +12,7 @@ import NCMB
 class DetailTelectureViewController: UIViewController, UITableViewDataSource {
     
     var lecture: Lecture!
+    var lectures = [Lecture]()
     
     private var reviewList = [Review]()
     private var isAbleToMove = false
@@ -33,6 +34,12 @@ class DetailTelectureViewController: UIViewController, UITableViewDataSource {
         detailTextView.isEditable = false
         detailTextView.isSelectable = false
         tableView.tableFooterView = UIView()
+        
+        for id in cachedLecturesG[lecture.lecturesId]?.lectuerIds ?? []{
+            if let l = cachedLectureG[id] {
+                lectures.append(l)
+            }
+        }
         
         setBackGround(true, true)
     }
@@ -66,12 +73,12 @@ class DetailTelectureViewController: UIViewController, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return lecture.timeList.count
+        return lectures.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
-        let date = lecture.timeList[indexPath.row]
+        let date = lectures[indexPath.row].startTime
         
         cell.textLabel?.text = date.ymdJp + date.hmJp
         

@@ -15,7 +15,9 @@ class OriginalTabBarController: UITabBarController {
         
         loadChatRoom()
         loadFollowList()
-        myScheduleG.loadSchedule(date: Date(), userIds: [currentUserG.userId], UIViewController())
+        let navigationController = self.viewControllers![2] as! UINavigationController
+        let viewController = navigationController.viewControllers.first!
+        myScheduleG.loadSchedule(date: Date(), userIds: [currentUserG.userId], viewController)
         
 //        基本的に1分ごとに判定するが、最初が00秒とは限らないので00秒ごとに判定させるように計算する。
         let d = Date()

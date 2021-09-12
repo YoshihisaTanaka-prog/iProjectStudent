@@ -21,6 +21,7 @@ extension UIViewController{
         }
         alertController.addAction(alertOkAction)
         self.present(alertController, animated: true, completion: nil)
+        print("AlertController is opened!!!!!!!!!!")
     }
     
     func showOkCancelAlert(title: String, message: String, okAction: @escaping () -> Void ,cancelAction: @escaping () -> Void) {

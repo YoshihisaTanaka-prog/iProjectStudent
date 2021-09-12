@@ -105,8 +105,7 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UIPicke
         setBackGround(true, true)
         choice = currentUserG.studentParameter?.choice ?? []
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        setUpTextViewCloseButton()
         
     }
     
@@ -257,7 +256,6 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UIPicke
         param.setObject(userIdTextField.text, forKey: "userName")
         param.setObject(userIdFuriganaTextField.text, forKey: "furigana")
         param.setObject(schoolTextField.text, forKey: "schoolName")
-        //param.setObject([[choiceTextField.text]], forKey: "choice")
         param.setObject(choice, forKey: "choice")
         param.setObject(parentsEmailTextField.text, forKey: "parentEmailAdress")
         if(bunriSelected != nil){
@@ -339,6 +337,11 @@ class EditUserPageViewController: UIViewController, UITextFieldDelegate, UIPicke
             for action in alertOkActionList{
                 youbiAlertController.addAction(action)
             }
+        }
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            youbiAlertController.popoverPresentationController?.sourceView = self.view
+            let screenSize = UIScreen.main.bounds
+            youbiAlertController.popoverPresentationController?.sourceRect = CGRect(x: screenSize.size.width / 2, y: screenSize.size.height, width: 0, height: 0)
         }
         self.present(youbiAlertController, animated: true, completion: nil)
     }
@@ -480,9 +483,11 @@ extension EditUserPageViewController: UITextViewDelegate{
     }
     
     @objc private func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if isTextViewActive{
-                self.view.frame.origin.y -= keyboardSize.height
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                if self.isTextViewActive{
+                    self.view.frame.origin.y -= keyboardSize.height
+                }
             }
         }
     }

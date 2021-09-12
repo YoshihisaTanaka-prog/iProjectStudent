@@ -15,12 +15,12 @@ func getTodaysLectureTimeList(){
     lectureTimeListG = []
     for l in cachedLectureG.values{
 //            教師用へのコピペ時注意＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
-        if l.student.userId == currentUserG.userId{
-            for t in l.timeList{
-                if c.isDateInToday(t) && c.date(from: DateComponents(year: t.y, month: t.m, day: t.d, hour: t.h+1, minute: t.min))! >= Date(){
-                    lectureTimeListG.append(LectureTimeObject(id: l.ncmb.objectId, startTime: t))
-                }
+        if l.student.userId == currentUserG.userId && !l.isFinished{
+            let t = l.startTime
+            if c.isDateInToday(t) && c.date(from: DateComponents(year: t.y, month: t.m, day: t.d, hour: t.h+1, minute: t.min))! >= Date(){
+                lectureTimeListG.append(LectureTimeObject(id: l.objectId, startTime: t))
             }
+            
         }
     }
     lectureTimeListG.sort{ $0.startTime < $1.startTime }
