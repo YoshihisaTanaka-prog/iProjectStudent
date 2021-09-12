@@ -59,6 +59,7 @@ class CalendarViewController: UIViewController, UITableViewDataSource, UITableVi
             yourTitleLabel.text = teacher!.userName + "先生の予定"
             userIds.insert(teacher!.userId, at: 0)
         }
+        calenderView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
     }
     
     override func viewWillAppear(_ animated: Bool) {

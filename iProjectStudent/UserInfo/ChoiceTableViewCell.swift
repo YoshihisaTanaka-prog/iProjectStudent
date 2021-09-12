@@ -21,7 +21,8 @@ class ChoiceTableViewCell: UITableViewCell, UITextFieldDelegate {
         self.contentView.frame = CGRect(x: 0.f, y: 0.f, width: size.width, height: size.viewHeight)
         choiceTextField.delegate = self
         choiceTextField.isEnabled = false
-        choiceTextField.backgroundColor = dColor.base
+//        self.backgroundColor = dColor.base
+        self.setFontColor()
     }
     
 
