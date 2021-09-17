@@ -223,7 +223,7 @@ class SearchTeacherViewController: UIViewController, UITableViewDataSource, UITa
                 knownTeacherIds.append(u.userId)
             }
             //        ブロック済み
-            for id in blockedUserIdListG{
+            for id in reportedDataG["User"] ?? []{
                 knownTeacherIds.append(id)
             }
             if(knownTeacherIds.count != 0){

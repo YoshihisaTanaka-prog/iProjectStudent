@@ -85,8 +85,7 @@ class QuestionnaireViewController: UIViewController {
             object?.saveInBackground({ (error) in
                 if(error == nil){
                     NCMBUser.current()?.setObject(object, forKey: "parameter")
-                    let rep = [String: [String]]()
-                    NCMBUser.current().setObject(rep, forKey: "reportInfo")
+                    NCMBUser.current().setObject(reportedDataG, forKey: "reportInfo")
                     NCMBUser.current()?.saveInBackground({ (error) in
                         if(error == nil){
                             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)

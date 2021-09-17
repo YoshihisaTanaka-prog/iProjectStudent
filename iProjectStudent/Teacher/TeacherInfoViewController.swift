@@ -227,6 +227,12 @@ extension TeacherInfoViewController{
     
     func loadReview(){
         let query = NCMBQuery(className: "Review")
+        if reportedDataG["User"] != nil && reportedDataG["User"] != []{
+            query?.whereKey("studentId", notContainedIn: reportedDataG["User"]!)
+        }
+        if reportedDataG["Review"] != nil && reportedDataG["Review"] != []{
+            query?.whereKey("objectId", notContainedIn: reportedDataG["Review"]!)
+        }
         query?.whereKey("teacherId", equalTo: teacher.userId)
         if isSelectedSubject{
             query?.whereKey("subject", equalTo: subject!)
@@ -280,8 +286,7 @@ extension TeacherInfoViewController: TeacherInfoTableViewCellDelegate, FollowedT
             if k != -1{
                 followUserListG.remove(at: k)
             }
-            teacher.status = status
-            blockedUserIdListG.append(teacher.userId)
+            blockUserAlert(user: teacher)
         case (1, 2):
             var k = -1
             for i in 0..<followUserListG.count{
@@ -307,7 +312,7 @@ extension TeacherInfoViewController: TeacherInfoTableViewCellDelegate, FollowedT
                 favoriteUserListG.remove(at: k)
             }
             teacher.status = status
-            blockedUserIdListG.append(teacher.userId)
+            blockUserAlert(user: teacher)
         case (2, 1):
             var k = -1
             for i in 0..<favoriteUserListG.count{
@@ -324,24 +329,33 @@ extension TeacherInfoViewController: TeacherInfoTableViewCellDelegate, FollowedT
         default:
             break
         }
-        let query = NCMBQuery(className: "Follow")
-        query?.whereKey("fromUserId", equalTo: currentUserG.userId)
-        query?.whereKey("toUserId", equalTo: teacher.userId)
-        query?.findObjectsInBackground({ result, error in
-            if error == nil{
-                let objects = result as? [NCMBObject] ?? []
-                for o in objects{
-                    o.setObject(status, forKey: "status")
-                    o.saveInBackground { error in
-                        if error != nil{
-                            self.showOkAlert(title: "Updating infomation error!", message: error!.localizedDescription)
+        if status != -1{
+            let query = NCMBQuery(className: "Follow")
+            query?.whereKey("fromUserId", equalTo: currentUserG.userId)
+            query?.whereKey("toUserId", equalTo: teacher.userId)
+            query?.findObjectsInBackground({ result, error in
+                if error == nil{
+                    let objects = result as? [NCMBObject] ?? []
+                    for o in objects{
+                        o.setObject(status, forKey: "status")
+                        o.saveInBackground { error in
+                            if error == nil{
+                                NCMBUser.current()?.setObject(reportedDataG, forKey: "reportInfo")
+                                NCMBUser.current().saveInBackground { error in
+                                    if error == nil{
+                                        self.navigationController?.popViewController(animated: true)
+                                    }
+                                }
+                            } else {
+                                self.showOkAlert(title: "Updating infomation error!", message: error!.localizedDescription)
+                            }
                         }
                     }
+                } else{
+                    self.showOkAlert(title: "Updating infomation error!", message: error!.localizedDescription)
                 }
-            } else{
-                self.showOkAlert(title: "Updating infomation error!", message: error!.localizedDescription)
-            }
-        })
+            })
+        }
     }
     
     func didTapCellButton(tableViewCell: UITableViewCell, button: UIButton) {

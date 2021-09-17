@@ -17,9 +17,11 @@ extension UIViewController{
         if NCMBUser.current() != nil{
             let query = NCMBQuery(className: "Follow")
             query?.whereKey("fromUserId", equalTo: NCMBUser.current()!.objectId)
+            if reportedDataG["User"] != nil && reportedDataG["User"] != []{
+                query?.whereKey("toUserId", notContainedIn: reportedDataG["User"]!)
+            }
             query?.findObjectsInBackground({ (result, error) in
                 if(error == nil){
-                    blockedUserIdListG = []
                     waitingUserListG = []
                     followUserListG = []
                     favoriteUserListG = []
@@ -27,24 +29,18 @@ extension UIViewController{
                         let userId = follow.object(forKey: "toUserId") as! String
                         let status = follow.object(forKey: "status") as! Int
                         let chatRoomId = follow.object(forKey: "chatRoomId") as! String
-                        if(status < 0){
-                            blockedUserIdListG.append(userId)
-                        } else {
-                            let u = User(userId: userId, isNeedParameter: true, viewController: self)
-                            u.status = status
-                            u.chatRoomId = chatRoomId
-                            switch status {
-                            case -1:
-                                blockedUserIdListG.append(u.userId)
-                            case 0:
-                                waitingUserListG.append(u)
-                            case 1:
-                                followUserListG.append(u)
-                            case 2:
-                                favoriteUserListG.append(u)
-                            default:
-                                break
-                            }
+                        let u = User(userId: userId, isNeedParameter: true, viewController: self)
+                        u.status = status
+                        u.chatRoomId = chatRoomId
+                        switch status {
+                        case 0:
+                            waitingUserListG.append(u)
+                        case 1:
+                            followUserListG.append(u)
+                        case 2:
+                            favoriteUserListG.append(u)
+                        default:
+                            break
                         }
                     }
                 }

@@ -181,6 +181,7 @@ extension ChatViewController{
 //チャット用の自作デリゲートたち
 extension ChatViewController: ChatDelegate, ChatRoomDelegate{
     func didFinishSendingMessage() {
+        loadChatRoom()
         textView.text = ""
         sentChatRoom.loadChats()
     }
