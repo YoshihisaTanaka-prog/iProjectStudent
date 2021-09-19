@@ -25,6 +25,7 @@ class ChatViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
+//        未登録のチャットルームの場合チャットを続けるかどうか確認するためのアラートを表示する。
         if sentChatRoom.isFirst{
             showOkCancelAlert(title: "注意", message: "未登録のルームです。チャットを続けますか？", okAction: {
                 let query = NCMBQuery(className: "UserChatRoom")
@@ -51,8 +52,6 @@ class ChatViewController: UIViewController {
         }
         
         setupUI()
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         setBackGround(true, true)
     }
@@ -72,6 +71,7 @@ class ChatViewController: UIViewController {
 }
 
 extension ChatViewController{
+//    メッセージを送る関数
     @IBAction func tappedSend(){
         if textView.text!.count != 0{
             textView.resignFirstResponder()
@@ -88,6 +88,7 @@ extension ChatViewController: UITableViewDataSource{
         return chats.count
     }
     
+//    日付を表示するためのもの
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sectionTitles[section]
     }
@@ -103,14 +104,17 @@ extension ChatViewController: UITableViewDataSource{
             let cell = tableView.dequeueReusableCell(withIdentifier: "MyChat") as! MyChatViewCell
             cell.textView.text = chat.message
             cell.timeLabel.text = chat.sentTime.hm
-//            未読・既読の表示
+//            未読・既読の表示 numOfReadUserに何人が既読したのかが保存されている。
             if chat.numOfReadUser == 0 {
+//                既読人数が0人の場合、「未読」と表示する。
                 cell.readLabel.text = "未読"
             }
             else if(sentChatRoom.isGroup){
-                cell.readLabel.text = "既読" + chat.numOfReadUser.s
+//                既読人数が0人以外でチャットルームがグループの場合、「既読」と既読件数を表示する。
+                cell.readLabel.text = "既読 " + chat.numOfReadUser.s
             }
             else{
+//                既読人数が0人以外でチャットルームが1on1の場合、「既読」と表示する。
                 cell.readLabel.text = "既読"
             }
             return cell
@@ -155,6 +159,9 @@ extension ChatViewController{
         tableView.register(UINib(nibName: "YourGroupChatViewCell", bundle: nil), forCellReuseIdentifier: "YourGroupChat")
         tableView.register(UINib(nibName: "YourChatViewCell", bundle: nil), forCellReuseIdentifier: "YourChat")
         tableView.register(UINib(nibName: "MyChatViewCell", bundle: nil), forCellReuseIdentifier: "MyChat")
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     @objc private func update(){
@@ -165,12 +172,14 @@ extension ChatViewController{
         self.performSegue(withIdentifier: "UserList", sender: nil)
     }
     
+//    キーボードが出てきた時に画面を上に動かす関数
     @objc private func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             self.view.frame.origin.y -= keyboardSize.height
         }
     }
     
+//    キーボードが消えた時に画面を元の高さに戻す関数
     @objc private func keyboardWillHide() {
         if self.view.frame.origin.y != 0 {
             self.view.frame.origin.y = 0
@@ -192,30 +201,37 @@ extension ChatViewController: ChatDelegate, ChatRoomDelegate{
     
     func didFinishLoadChats(chats: [Chat]) {
         if !isLocked{
+//            チャットを日付ごとに分かれた二重配列に変換する
             self.chats = []
             self.sectionTitles = []
+//            self.chatsのi番目に追加する。
             var i = 0
             if chats.count != 0{
                 self.chats.append([])
                 let c = Calendar(identifier: .gregorian)
                 let d = chats[0].sentTime
+//                日付が変わったことを判定するために最初のチャットが送信された次の日の0時0分を定義する。
                 var nextDate = c.date(from: DateComponents(year: d.y, month: d.m, day: d.d + 1))!
-                self.sectionTitles.append(c.date(from: DateComponents(year: d.y, month: d.m, day: d.d))!.ymdJp)
+//                チャットが送信された日付を保存
+                self.sectionTitles.append(d.ymdJp)
                 for chat in chats{
                     if chat.sentTime >= nextDate{
-                        i += 1
+//                        日付が変わったら新しい配列を追加し、チャットを追加する場所を更新する
                         self.chats.append([])
+                        i += 1
                         let d = chat.sentTime
+//                        日付が変わったことを判定するために最初のチャットが送信された次の日の0時0分を定義する。
                         nextDate = c.date(from: DateComponents(year: d.y, month: d.m, day: d.d + 1))!
-                        self.sectionTitles.append(c.date(from: DateComponents(year: d.y, month: d.m, day: d.d))!.ymdJp)
+                        self.sectionTitles.append(d.ymdJp)
                     }
                     self.chats[i].append(chat)
-                    tableView.reloadData()
-                    
-                    DispatchQueue.main.async {
-                        let indexPath = IndexPath(row: self.chats.last!.count - 1, section: self.chats.count - 1)
-                        self.tableView.scrollToRow(at: indexPath, at: UITableView.ScrollPosition.top, animated: false)
-                    }
+                }
+                tableView.reloadData()
+                
+//                    テーブルビューの一番下を表示する
+                DispatchQueue.main.async {
+                    let indexPath = IndexPath(row: self.chats.last!.count - 1, section: self.chats.count - 1)
+                    self.tableView.scrollToRow(at: indexPath, at: UITableView.ScrollPosition.top, animated: false)
                 }
             }
         }

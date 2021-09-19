@@ -52,7 +52,7 @@ class ChatRoom{
             }
         } else if reportedDataG["User"] != nil{
             if reportedDataG["User"]!.contains(userInfo[0][0]) || reportedDataG["User"]!.contains(userInfo[1][0]) {
-                else if !reportedDataG["ChatRoom"]!.contains(chatRoom.objectId) {
+                if !reportedDataG["ChatRoom"]!.contains(chatRoom.objectId) {
                     reportedDataG["ChatRoom"]!.append(chatRoom.objectId)
                 }
                 NCMBUser.current()?.setObject(reportedDataG, forKey: "reportInfo")
@@ -62,7 +62,7 @@ class ChatRoom{
         }
         self.roomName = roomName ?? name
         
-//        情報の上書き
+//        ユーザ情報の上書き
         func numOfWrongCurrentUserInfoIndex() -> Int?{
             for i in 0..<userInfo.count{
                 let ui = userInfo[i]
@@ -111,7 +111,9 @@ class ChatRoom{
                 let obs = result as? [NCMBObject] ?? []
                 var loadedChats = [Chat]()
                 for o in obs{
-                    loadedChats.insert(.init(chat: o), at: 0)
+                    if let c = Chat(chat: o){
+                        loadedChats.insert(c, at: 0)
+                    }
                 }
                 self.delegate?.didFinishLoadChats(chats: loadedChats)
             } else{
@@ -120,6 +122,7 @@ class ChatRoom{
         })
     }
     
+//    チャットの送信者の名前を取得する。
     func searchUserName(userId: String) -> String{
         for ui in userInfo{
             if ui[0] == userId{
@@ -129,6 +132,7 @@ class ChatRoom{
         return "No name"
     }
     
+//    このチャットルームを開いたことがあるかどうかを判定する変数
     public var isFirst: Bool{
         if self.id.ary.contains("-"){
             return false

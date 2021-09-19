@@ -10,6 +10,8 @@ import UIKit
 import NCMB
 
 extension UIViewController{
+//    関数の中に引数として関数を入れられる
+    
     func showOkAlert(title: String, message: String) {
         showOkAlert(title: title, message: message) {}
     }

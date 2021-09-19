@@ -36,6 +36,7 @@ extension UIViewController{
                         self.showOkAlert(title: "Loading chat room error", message: error!.localizedDescription)
                     }
                 }
+//                並び替えのためのコード
                 chatRoomsG = chatRoomsG.sorted(by: {$0.lastTimeMessageSent > $1.lastTimeMessageSent})
             } else{
                 self.showOkAlert(title: "Loading chat room error", message: error!.localizedDescription)
