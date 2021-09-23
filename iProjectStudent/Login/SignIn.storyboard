@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="u8E-Cc-qLS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="u8E-Cc-qLS">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -32,7 +32,7 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cS-dI-rd8">
-                                <rect key="frame" x="92" y="502" width="230" height="35"/>
+                                <rect key="frame" x="92" y="503" width="230" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="Lie-nE-lTg"/>
                                 </constraints>
@@ -43,7 +43,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="アカウントをお持ちでない方はこちら" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wKK-03-UOr">
-                                <rect key="frame" x="60.5" y="449" width="293" height="21"/>
+                                <rect key="frame" x="60.5" y="450" width="293" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="mMp-AH-IeD"/>
                                 </constraints>
@@ -52,7 +52,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8rb-FV-aTj" customClass="WeakButton" customModule="iProjectStudent" customModuleProvider="target">
-                                <rect key="frame" x="92" y="309" width="230" height="30"/>
+                                <rect key="frame" x="92" y="310" width="230" height="30"/>
                                 <state key="normal" title="パスワードをお忘れの方はこちら"/>
                                 <connections>
                                     <action selector="forgetPassword" destination="l3F-HF-o1F" eventType="touchUpInside" id="Dys-Ot-605"/>
@@ -60,7 +60,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a0C-LO-h1j">
-                                <rect key="frame" x="92" y="378" width="230" height="35"/>
+                                <rect key="frame" x="92" y="379" width="230" height="35"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="Csx-zV-p0u"/>
@@ -84,9 +84,9 @@
                             <constraint firstItem="m4p-RK-e3w" firstAttribute="trailing" secondItem="gnM-l0-Vfe" secondAttribute="trailing" id="F0F-Hy-NDy"/>
                             <constraint firstItem="4cS-dI-rd8" firstAttribute="trailing" secondItem="8rb-FV-aTj" secondAttribute="trailing" id="JLM-OG-WBg"/>
                             <constraint firstItem="a0C-LO-h1j" firstAttribute="top" secondItem="8rb-FV-aTj" secondAttribute="bottom" constant="39" id="MOx-Zb-7V3"/>
+                            <constraint firstItem="8rb-FV-aTj" firstAttribute="top" secondItem="m4p-RK-e3w" secondAttribute="bottom" constant="28" id="QBg-vA-5Ra"/>
                             <constraint firstItem="wKK-03-UOr" firstAttribute="trailing" secondItem="gnM-l0-Vfe" secondAttribute="trailing" id="Rlr-FA-W8j"/>
                             <constraint firstItem="4cS-dI-rd8" firstAttribute="top" secondItem="wKK-03-UOr" secondAttribute="bottom" constant="32" id="Who-Vr-qJn"/>
-                            <constraint firstItem="8rb-FV-aTj" firstAttribute="top" secondItem="m4p-RK-e3w" secondAttribute="bottom" constant="27" id="XEC-kP-MR8"/>
                             <constraint firstItem="m4p-RK-e3w" firstAttribute="leading" secondItem="gnM-l0-Vfe" secondAttribute="leading" id="ZOv-gh-8a2"/>
                             <constraint firstItem="wKK-03-UOr" firstAttribute="top" secondItem="a0C-LO-h1j" secondAttribute="bottom" constant="36" id="a4v-gL-Mqx"/>
                             <constraint firstItem="gnM-l0-Vfe" firstAttribute="top" secondItem="DvO-qm-rEf" secondAttribute="top" constant="98" id="b4y-aG-qKO"/>
