@@ -13,10 +13,7 @@ import NCMB
 extension UIViewController{
     func loadChatRoom(){
         chatRoomsG = [ChatRoom()]
-        let query = NCMBQuery(className: "UserChatRoom")
-        if reportedDataG["ChatRoom"] != nil && reportedDataG["ChatRoom"] != []{
-            query?.whereKey("objectId", notContainedIn: reportedDataG["ChatRoom"]!)
-        }
+        let query = ncmbQuery(className: "UserChatRoom", userIdFields: [])
         query?.includeKey("lastTimeMessageSent")
         query?.order(byDescending: "lastTimeMessageSent")
         query?.whereKey("userId", equalTo: currentUserG.userId)

@@ -226,13 +226,7 @@ extension TeacherInfoViewController{
     }
     
     func loadReview(){
-        let query = NCMBQuery(className: "Review")
-        if reportedDataG["User"] != nil && reportedDataG["User"] != []{
-            query?.whereKey("studentId", notContainedIn: reportedDataG["User"]!)
-        }
-        if reportedDataG["Review"] != nil && reportedDataG["Review"] != []{
-            query?.whereKey("objectId", notContainedIn: reportedDataG["Review"]!)
-        }
+        let query = ncmbQuery(className: "Review", userIdFields: ["studentId"])
         query?.whereKey("teacherId", equalTo: teacher.userId)
         if isSelectedSubject{
             query?.whereKey("subject", equalTo: subject!)

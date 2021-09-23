@@ -265,9 +265,6 @@ class ScheduleMonth {
                 self.scheduleSort()
                 DispatchQueue.main.async {
                     let lectureQuery = self.query(className: "Lecture", userIds: userIds)
-                    if reportedDataG["User"] != nil && reportedDataG["User"] != []{
-                        lectureQuery.whereKey("teacherId", notContainedIn: reportedDataG["User"]!)
-                    }
                     lectureQuery.whereKey("startTime", greaterThanOrEqualTo: self.startDay)
                     lectureQuery.whereKey("startTime", lessThan: endDay)
                     lectureQuery.findObjectsInBackground { result, error in
@@ -303,9 +300,9 @@ class ScheduleMonth {
     
     private func query(className: String, userIds: [String]) -> NCMBQuery {
         var queries = [NCMBQuery]()
-        let tq = NCMBQuery(className: className)!
+        let tq = ncmbQuery(className: className,userIdFields: ["teacherId"])!
         tq.whereKey("teacherId", containedIn: userIds)
-        let sq = NCMBQuery(className: className)!
+        let sq = ncmbQuery(className: className,userIdFields: ["teacherId"])!
         sq.whereKey("studentId", containedIn: userIds)
         queries.append(tq)
         queries.append(sq)

@@ -97,11 +97,8 @@ class ChatRoom{
     }
     
     func loadChats(){
-        let query = NCMBQuery(className: "Chat")
+        let query = ncmbQuery(className: "Chat", userIdFields: ["sentUserId"])
         query?.order(byDescending: "createDate")
-        if reportedDataG["User"] != nil && reportedDataG["User"] != []{
-            query?.whereKey("sentUserId", notContainedIn: reportedDataG["User"]!)
-        }
         query?.whereKey("chatRoomId", equalTo: self.id)
         if let joinedTime = cachedJoinedTimeG[self.id] {
             query?.whereKey("createDate", greaterThan: joinedTime)

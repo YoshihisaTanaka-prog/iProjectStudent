@@ -15,7 +15,6 @@
 		042DBC7C26B790200091E6B9 /* FollowedTeacherInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042DBC7A26B790200091E6B9 /* FollowedTeacherInfoTableViewCell.xib */; };
 		043079B0266A3F0300247080 /* TransformateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043079AF266A3F0300247080 /* TransformateExtensions.swift */; };
 		043079B8266A49A900247080 /* AlertExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043079B7266A49A900247080 /* AlertExtensions.swift */; };
-		043079BA266A49C300247080 /* NCMBUserExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043079B9266A49C300247080 /* NCMBUserExtensions.swift */; };
 		043079BC266A49D000247080 /* RailsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043079BB266A49D000247080 /* RailsExtensions.swift */; };
 		043079BE266A49DE00247080 /* SetImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043079BD266A49DE00247080 /* SetImageExtensions.swift */; };
 		043079C0266A4B1000247080 /* FollowExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043079BF266A4B1000247080 /* FollowExtensions.swift */; };
@@ -149,7 +148,6 @@
 		042DBC7A26B790200091E6B9 /* FollowedTeacherInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FollowedTeacherInfoTableViewCell.xib; sourceTree = "<group>"; };
 		043079AF266A3F0300247080 /* TransformateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformateExtensions.swift; sourceTree = "<group>"; };
 		043079B7266A49A900247080 /* AlertExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertExtensions.swift; sourceTree = "<group>"; };
-		043079B9266A49C300247080 /* NCMBUserExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NCMBUserExtensions.swift; sourceTree = "<group>"; };
 		043079BB266A49D000247080 /* RailsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RailsExtensions.swift; sourceTree = "<group>"; };
 		043079BD266A49DE00247080 /* SetImageExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetImageExtensions.swift; sourceTree = "<group>"; };
 		043079BF266A4B1000247080 /* FollowExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowExtensions.swift; sourceTree = "<group>"; };
@@ -479,7 +477,6 @@
 				043079B7266A49A900247080 /* AlertExtensions.swift */,
 				044BD1C2265D2C9800A169FC /* CalenderExtension.swift */,
 				043079BF266A4B1000247080 /* FollowExtensions.swift */,
-				043079B9266A49C300247080 /* NCMBUserExtensions.swift */,
 				043079BB266A49D000247080 /* RailsExtensions.swift */,
 				043079BD266A49DE00247080 /* SetImageExtensions.swift */,
 				043079AF266A3F0300247080 /* TransformateExtensions.swift */,
@@ -749,7 +746,6 @@
 				1FF055A326A06E390009E19B /* DetailChoiceViewController.swift in Sources */,
 				048D1A68267B3DD300F88973 /* ReviewTitleTableViewCell.swift in Sources */,
 				04AF5D4D25E5428100E2B385 /* Teachers.swift in Sources */,
-				043079BA266A49C300247080 /* NCMBUserExtensions.swift in Sources */,
 				0479909B26D786DD000E0332 /* ChatRoomTableViewCell.swift in Sources */,
 				043F1AA826B6AC4900389B8D /* Lecture.swift in Sources */,
 				0455EDC425DA8ECE00013330 /* ReviewTeacher.swift in Sources */,

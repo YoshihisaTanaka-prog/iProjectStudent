@@ -15,11 +15,8 @@ extension UIViewController{
     
     func loadFollowList(){
         if NCMBUser.current() != nil{
-            let query = NCMBQuery(className: "Follow")
+            let query = ncmbQuery(className: "Follow",userIdFields: ["toUserId"])
             query?.whereKey("fromUserId", equalTo: NCMBUser.current()!.objectId)
-            if reportedDataG["User"] != nil && reportedDataG["User"] != []{
-                query?.whereKey("toUserId", notContainedIn: reportedDataG["User"]!)
-            }
             query?.findObjectsInBackground({ (result, error) in
                 if(error == nil){
                     waitingUserListG = []
