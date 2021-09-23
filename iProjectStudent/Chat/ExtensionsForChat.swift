@@ -14,6 +14,9 @@ extension UIViewController{
     func loadChatRoom(){
         chatRoomsG = [ChatRoom()]
         let query = NCMBQuery(className: "UserChatRoom")
+        if reportedDataG["ChatRoom"] != nil && reportedDataG["ChatRoom"] != []{
+            query?.whereKey("objectId", notContainedIn: reportedDataG["ChatRoom"]!)
+        }
         query?.includeKey("lastTimeMessageSent")
         query?.order(byDescending: "lastTimeMessageSent")
         query?.whereKey("userId", equalTo: currentUserG.userId)
@@ -26,11 +29,14 @@ extension UIViewController{
                     var error: NSError? = nil
                     object.fetch(&error)
                     if error == nil{
-                        chatRoomsG.append(ChatRoom(chatRoom: object, self))
+                        if let c = ChatRoom(chatRoom: object, self){
+                            chatRoomsG.append(c)
+                        }
                     } else {
                         self.showOkAlert(title: "Loading chat room error", message: error!.localizedDescription)
                     }
                 }
+//                並び替えのためのコード
                 chatRoomsG = chatRoomsG.sorted(by: {$0.lastTimeMessageSent > $1.lastTimeMessageSent})
             } else{
                 self.showOkAlert(title: "Loading chat room error", message: error!.localizedDescription)

@@ -24,10 +24,10 @@ let businessHoursG = [
 //ユーザー画像を保存するための変数
 
 //フォロー中などのユーザリストを保存するための変数
-var blockedUserIdListG = [String]()
 var followUserListG = [User]()
 var favoriteUserListG = [User]()
 var waitingUserListG = [User]()
+var reportedDataG = [String:[String]]()
 
 //ログインしているのかを判定するための変数
 var isLogInG: Bool = false

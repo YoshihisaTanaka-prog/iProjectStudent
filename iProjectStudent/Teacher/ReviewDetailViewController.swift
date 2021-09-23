@@ -99,16 +99,17 @@ class ReviewDetailViewController: UIViewController, UITextFieldDelegate {
         if !isAbletoEdit{
             showOkAlert(title: "通報", message: "このレビューを通報しますか？"){
                 self.reportToRailsServer(className: "Review", objectId: self.review!.ncmb.objectId)
-                var rep = NCMBUser.current().object(forKey: "reportInfo") as? [String: [String]] ?? [:]
-                if rep["Review"] == nil{
-                    rep["Review"] = [self.review!.ncmb.objectId]
+                if reportedDataG["Review"] == nil{
+                    reportedDataG["Review"] = [self.review!.ncmb.objectId]
                 } else{
-                    rep["Review"]!.append(self.review!.ncmb.objectId)
+                    reportedDataG["Review"]!.append(self.review!.ncmb.objectId)
                 }
-                NCMBUser.current().setObject(rep, forKey: "reportInfo")
+                NCMBUser.current().setObject(reportedDataG, forKey: "reportInfo")
                 NCMBUser.current().saveInBackground { error in
                     if error == nil{
-                        self.showOkAlert(title: "報告", message: "通報が完了しました。")
+                        self.showOkAlert(title: "報告", message: "通報が完了しました。"){
+                            self.blockUserAlert(user: self.review!.student)
+                        }
                     } else {
                         self.showOkAlert(title: "Saving report infomation error", message: error!.localizedDescription)
                     }
@@ -127,6 +128,7 @@ class ReviewDetailViewController: UIViewController, UITextFieldDelegate {
                 var object: NCMBObject?
                 if review == nil {
                     object = NCMBObject(className: "Review")
+                    object?.setObject(lecture!.subject, forKey: "subject")
                 }else{
                     object = review?.ncmb
                 }

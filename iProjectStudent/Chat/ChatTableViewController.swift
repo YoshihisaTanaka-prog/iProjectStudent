@@ -57,6 +57,42 @@ extension ChatTableViewController: UITableViewDataSource, UITableViewDelegate{
         selectedChatRoom = chatRoomsG[indexPath.row]
         self.performSegue(withIdentifier: "GoToRoom", sender: nil)
     }
+    //セルのスワイプでの編集を許可（ブロック用）
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool{
+        if indexPath.row == 0{
+//            サポートセンターはブロックできない
+            return false
+        }
+//        1on1チャットのみブロック可能
+        return !chatRoomsG[indexPath.row].isGroup
+    }
+    
+    //スワイプしたセルを削除
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
+            let chatRoom = chatRoomsG[indexPath.row]
+            var blockUserId = ""
+            if chatRoom.userInfo[0][0] == currentUserG.userId{
+                blockUserId = chatRoom.userInfo[1][0]
+            }
+            if chatRoom.userInfo[1][0] == currentUserG.userId{
+                blockUserId = chatRoom.userInfo[0][0]
+            }
+            if blockUserId != ""{
+//                afterActionの後のコードはアラートで「はい」を押した時のみ実行される部分
+                blockUserAlert(userId: blockUserId, chatRoomId: chatRoom.id, afterAction: {
+                    DispatchQueue.main.async {
+                        chatRoomsG.remove(at: indexPath.row)
+                        tableView.deleteRows(at: [indexPath as IndexPath], with: UITableView.RowAnimation.automatic)
+                    }
+                })
+            }
+        }
+    }
+//    スワイプした時に表示される文言の上書き
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt: IndexPath) -> String? {
+        return "ブロック"
+    }
 }
 
 extension ChatTableViewController{
@@ -65,8 +101,8 @@ extension ChatTableViewController{
         case "GoToRoom":
             let nextVC = segue.destination as! ChatViewController
             nextVC.sentChatRoom = selectedChatRoom
-            nextVC.sentChatRoom.loadChats()
             nextVC.sentChatRoom.delegate = nextVC
+            nextVC.sentChatRoom.loadChats()
         default:
             break
         }

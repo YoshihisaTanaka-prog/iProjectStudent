@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import NCMB
 
 class OriginalTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        reportedDataG = NCMBUser.current()?.object(forKey: "reportInfo") as? [String:[String]] ?? [:]
         loadChatRoom()
         loadFollowList()
         let navigationController = self.viewControllers![2] as! UINavigationController

@@ -17,7 +17,6 @@ class ChatRoomTableViewCell: UITableViewCell {
         // Initialization code
         iconImageView.layer.cornerRadius = 30
         iconImageView.clipsToBounds = true
-//        self.backgroundColor = dColor.base
         self.setFontColor()
     }
 
