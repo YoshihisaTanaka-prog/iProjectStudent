@@ -83,6 +83,7 @@ class DetailTelectureViewController: UIViewController, UITableViewDataSource {
         cell.textLabel?.text = date.ymdJp + date.hmJp
         
         cell.setFontColor()
+        cell.backgroundColor = dColor.base
         
         return cell
     }

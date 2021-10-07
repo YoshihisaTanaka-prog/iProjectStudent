@@ -1378,7 +1378,7 @@
             </objects>
             <point key="canvasLocation" x="6752" y="1274"/>
         </scene>
-        <!--Show Normal Event View Controller-->
+        <!--スケジュール詳細-->
         <scene sceneID="sR7-Rh-EiP">
             <objects>
                 <viewController id="hLy-2P-yrm" customClass="ShowNormalEventViewController" customModule="iProjectStudent" customModuleProvider="target" sceneMemberID="viewController">
@@ -1449,7 +1449,7 @@
                             <constraint firstItem="qMc-Lk-nk0" firstAttribute="leading" secondItem="Jsb-lt-LJ5" secondAttribute="leading" constant="20" id="yw4-oo-yKr"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Ne3-VU-nTF"/>
+                    <navigationItem key="navigationItem" title="スケジュール詳細" id="Ne3-VU-nTF"/>
                     <connections>
                         <outlet property="detailTextView" destination="9VU-s1-DfG" id="Qzy-iQ-QKx"/>
                         <outlet property="tableView" destination="lBi-NE-2ro" id="wyT-aV-Hlm"/>
@@ -1492,7 +1492,7 @@
             </objects>
             <point key="canvasLocation" x="5694" y="-238"/>
         </scene>
-        <!--スケジュール詳細-->
+        <!--授業の詳細-->
         <scene sceneID="uao-wW-RNB">
             <objects>
                 <viewController id="ETG-3v-qpy" customClass="DetailTelectureViewController" customModule="iProjectStudent" customModuleProvider="target" sceneMemberID="viewController">
@@ -1582,7 +1582,7 @@
                             <constraint firstItem="JuZ-82-r19" firstAttribute="centerX" secondItem="4XV-97-kHf" secondAttribute="centerX" id="ylM-Lj-9fo"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="スケジュール詳細" id="evs-W0-qPG"/>
+                    <navigationItem key="navigationItem" title="授業の詳細" id="evs-W0-qPG"/>
                     <connections>
                         <outlet property="detailTextView" destination="tdL-T1-n4q" id="ela-Z4-UWQ"/>
                         <outlet property="reviewButton" destination="JuZ-82-r19" id="fXW-ut-eOa"/>

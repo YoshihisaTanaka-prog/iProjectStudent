@@ -217,61 +217,9 @@ extension CalendarViewController: ScheduleTableViewCellDelegate, ScheduleClassDe
                 self.performSegue(withIdentifier: "GoToLectureDetail", sender: nil)
             }
         case "school":
-            if timeFrame.scheduleIds.count == 1{
-                selectedSchedule = cachedScheduleG[timeFrame.scheduleIds.first!]!
-                if timeFrame.isMyEvent{
-                    self.performSegue(withIdentifier: "Normal", sender: nil)
-                } else if timeFrame.isAbleToShow{
-                    self.performSegue(withIdentifier: "ShowDetailSchedule", sender: nil)
-                }
-            } else if timeFrame.scheduleIds.count != 0{
-                selectedScheduleTitleAndIds = []
-                for s in timeFrame.scheduleIds{
-                    let title = cachedScheduleG[s]!.title
-                    selectedScheduleTitleAndIds.append([s,title])
-                }
-                alert = UIAlertController(title: "どの予定の詳細を見ますか？", message: "\n\n\n\n\n", preferredStyle: .alert)
-                let action = UIAlertAction(title: "キャンセル", style: .cancel) { action in
-                    self.alert!.dismiss(animated: true, completion: nil)
-                }
-                alert!.addAction(action)
-                
-                let pickerView = UIPickerView(frame: CGRect(x: 0.f, y: 50.f, width: 250, height: 100.f))
-                pickerView.dataSource = self
-                pickerView.delegate = self
-                alert!.view.addSubview(pickerView)
-                
-                self.present(alert!, animated: true, completion: nil)
-            }
-//            self.performSegue(withIdentifier: "ShowDetailSchedule", sender: nil)
+            moveToSchedule(timeFrame: timeFrame)
         case "private":
-            if timeFrame.scheduleIds.count == 1{
-                selectedSchedule = cachedScheduleG[timeFrame.scheduleIds.first!]!
-                if timeFrame.isMyEvent{
-                    self.performSegue(withIdentifier: "Normal", sender: nil)
-                } else if timeFrame.isAbleToShow{
-                    self.performSegue(withIdentifier: "ShowDetailSchedule", sender: nil)
-                }
-            } else if timeFrame.scheduleIds.count != 0{
-                selectedScheduleTitleAndIds = []
-                for s in timeFrame.scheduleIds{
-                    let title = cachedScheduleG[s]!.title
-                    selectedScheduleTitleAndIds.append([s,title])
-                }
-                alert = UIAlertController(title: "どの予定の詳細を見ますか？", message: "\n\n\n\n\n", preferredStyle: .alert)
-                let action = UIAlertAction(title: "キャンセル", style: .cancel) { action in
-                    self.alert!.dismiss(animated: true, completion: nil)
-                }
-                alert!.addAction(action)
-                
-                let pickerView = UIPickerView(frame: CGRect(x: 0.f, y: 50.f, width: 250, height: 100.f))
-                pickerView.dataSource = self
-                pickerView.delegate = self
-                alert!.view.addSubview(pickerView)
-                
-                self.present(alert!, animated: true, completion: nil)
-            }
-            break
+            moveToSchedule(timeFrame: timeFrame)
         default:
             break
         }
@@ -282,6 +230,35 @@ extension CalendarViewController: ScheduleTableViewCellDelegate, ScheduleClassDe
             myScheduleG.loadSchedule(date: selectedDate, userIds: userIds, self)
         } else {
             mixedScheduleG.loadSchedule(date: selectedDate, userIds: userIds, self)
+        }
+    }
+    
+    private func moveToSchedule(timeFrame: TimeFrameUnit){
+        if timeFrame.scheduleIds.count == 1{
+            selectedSchedule = cachedScheduleG[timeFrame.scheduleIds.first!]!
+            if timeFrame.isMyEvent{
+                self.performSegue(withIdentifier: "Normal", sender: nil)
+            } else if timeFrame.isAbleToShow{
+                self.performSegue(withIdentifier: "ShowDetailSchedule", sender: nil)
+            }
+        } else if timeFrame.scheduleIds.count != 0{
+            selectedScheduleTitleAndIds = []
+            for s in timeFrame.scheduleIds{
+                let title = cachedScheduleG[s]!.title
+                selectedScheduleTitleAndIds.append([s,title])
+            }
+            alert = UIAlertController(title: "どの予定の詳細を見ますか？", message: "\n\n\n\n\n", preferredStyle: .alert)
+            let action = UIAlertAction(title: "キャンセル", style: .cancel) { action in
+                self.alert!.dismiss(animated: true, completion: nil)
+            }
+            alert!.addAction(action)
+            
+            let pickerView = UIPickerView(frame: CGRect(x: 0.f, y: 50.f, width: 250, height: 100.f))
+            pickerView.dataSource = self
+            pickerView.delegate = self
+            alert!.view.addSubview(pickerView)
+            
+            self.present(alert!, animated: true, completion: nil)
         }
     }
 }
